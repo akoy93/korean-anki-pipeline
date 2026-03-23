@@ -1,0 +1,51 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "italki-2026-03-30-cafe",
+    "title": "Cafe Phrases",
+    "topic": "Ordering at a cafe",
+    "lesson_date": "2026-03-30",
+    "source_description": "Hand-authored non-number sample for pipeline validation.",
+    "tags": ["italki", "phrases", "cafe"]
+  },
+  "items": [
+    {
+      "id": "phrase-1",
+      "lesson_id": "italki-2026-03-30-cafe",
+      "item_type": "phrase",
+      "korean": "아메리카노 한 잔 주세요.",
+      "english": "Please give me one Americano.",
+      "pronunciation": "amerikano han jan juseyo",
+      "examples": [
+        {
+          "korean": "아메리카노 한 잔 주세요. 차갑게요.",
+          "english": "Please give me one Americano. Iced, please."
+        }
+      ],
+      "notes": "Polite ordering phrase. 한 잔 means one cup/glass.",
+      "tags": ["ordering", "polite"],
+      "source_ref": "Cafe role-play notes",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "phrase-2",
+      "lesson_id": "italki-2026-03-30-cafe",
+      "item_type": "phrase",
+      "korean": "여기서 마실게요.",
+      "english": "I'll drink it here.",
+      "pronunciation": "yeogiseo masilgeyo",
+      "examples": [
+        {
+          "korean": "포장이세요? 아니요, 여기서 마실게요.",
+          "english": "To go? No, I'll drink it here."
+        }
+      ],
+      "notes": "Useful when asked dine-in vs takeout.",
+      "tags": ["cafe", "response"],
+      "source_ref": "Cafe role-play notes",
+      "audio": null,
+      "image": null
+    }
+  ]
+}

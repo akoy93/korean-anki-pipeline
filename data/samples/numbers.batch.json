@@ -1,0 +1,215 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "italki-2026-03-23-numbers",
+    "title": "Numbers",
+    "topic": "Numbers",
+    "lesson_date": "2026-03-23",
+    "source_description": "Sample extracted from weekly Italki number lesson.",
+    "tags": [
+      "italki",
+      "numbers"
+    ]
+  },
+  "notes": [
+    {
+      "item": {
+        "id": "num-1",
+        "lesson_id": "italki-2026-03-23-numbers",
+        "item_type": "number",
+        "korean": "하나",
+        "english": "one",
+        "pronunciation": "hana",
+        "examples": [
+          {
+            "korean": "사과 하나 주세요.",
+            "english": "Please give me one apple."
+          }
+        ],
+        "notes": "Native Korean number; commonly used with counters.",
+        "tags": [
+          "native-korean"
+        ],
+        "source_ref": "Numbers slide, native Korean 1-10",
+        "audio": null,
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "num-1-recognition",
+          "item_id": "num-1",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>하나</div>",
+          "back_html": "<div class='answer answer-en'>one</div><div class='answer answer-ko'>하나</div><div class='pronunciation'>hana</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>사과 하나 주세요.</div><div class='example-en'>Please give me one apple.</div></li></ul></section><div class='notes'>Native Korean number; commonly used with counters.</div><div class='source-ref'>Source: Numbers slide, native Korean 1-10</div>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "num-1-production",
+          "item_id": "num-1",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>one</div>",
+          "back_html": "<div class='answer answer-ko'>하나</div><div class='answer answer-en'>one</div><div class='pronunciation'>hana</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>사과 하나 주세요.</div><div class='example-en'>Please give me one apple.</div></li></ul></section><div class='notes'>Native Korean number; commonly used with counters.</div><div class='source-ref'>Source: Numbers slide, native Korean 1-10</div>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "num-1-listening",
+          "item_id": "num-1",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "back_html": "<div class='answer answer-ko'>하나</div><div class='answer answer-en'>one</div><div class='pronunciation'>hana</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>사과 하나 주세요.</div><div class='example-en'>Please give me one apple.</div></li></ul></section><div class='notes'>Native Korean number; commonly used with counters.</div><div class='source-ref'>Source: Numbers slide, native Korean 1-10</div>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": false
+        },
+        {
+          "id": "num-1-number-context",
+          "item_id": "num-1",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>하나</div>",
+          "back_html": "<div class='answer answer-en'>one</div><div class='notes'>Native Korean number; commonly used with counters.</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>사과 하나 주세요.</div><div class='example-en'>Please give me one apple.</div></li></ul></section>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "num-2",
+        "lesson_id": "italki-2026-03-23-numbers",
+        "item_type": "number",
+        "korean": "둘",
+        "english": "two",
+        "pronunciation": "dul",
+        "examples": [
+          {
+            "korean": "물 두 잔 주세요.",
+            "english": "Please give me two glasses of water."
+          }
+        ],
+        "notes": "Native Korean number; often changes form before some counters.",
+        "tags": [
+          "native-korean"
+        ],
+        "source_ref": "Numbers slide, native Korean 1-10",
+        "audio": null,
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "num-2-recognition",
+          "item_id": "num-2",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>둘</div>",
+          "back_html": "<div class='answer answer-en'>two</div><div class='answer answer-ko'>둘</div><div class='pronunciation'>dul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>물 두 잔 주세요.</div><div class='example-en'>Please give me two glasses of water.</div></li></ul></section><div class='notes'>Native Korean number; often changes form before some counters.</div><div class='source-ref'>Source: Numbers slide, native Korean 1-10</div>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "num-2-production",
+          "item_id": "num-2",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>two</div>",
+          "back_html": "<div class='answer answer-ko'>둘</div><div class='answer answer-en'>two</div><div class='pronunciation'>dul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>물 두 잔 주세요.</div><div class='example-en'>Please give me two glasses of water.</div></li></ul></section><div class='notes'>Native Korean number; often changes form before some counters.</div><div class='source-ref'>Source: Numbers slide, native Korean 1-10</div>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "num-2-listening",
+          "item_id": "num-2",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "back_html": "<div class='answer answer-ko'>둘</div><div class='answer answer-en'>two</div><div class='pronunciation'>dul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>물 두 잔 주세요.</div><div class='example-en'>Please give me two glasses of water.</div></li></ul></section><div class='notes'>Native Korean number; often changes form before some counters.</div><div class='source-ref'>Source: Numbers slide, native Korean 1-10</div>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": false
+        },
+        {
+          "id": "num-2-number-context",
+          "item_id": "num-2",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>둘</div>",
+          "back_html": "<div class='answer answer-en'>two</div><div class='notes'>Native Korean number; often changes form before some counters.</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>물 두 잔 주세요.</div><div class='example-en'>Please give me two glasses of water.</div></li></ul></section>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "num-10",
+        "lesson_id": "italki-2026-03-23-numbers",
+        "item_type": "number",
+        "korean": "열",
+        "english": "ten",
+        "pronunciation": "yeol",
+        "examples": [
+          {
+            "korean": "열 시에 만나요.",
+            "english": "Let's meet at ten o'clock."
+          }
+        ],
+        "notes": "Native Korean number; used for hours on the clock.",
+        "tags": [
+          "native-korean",
+          "time"
+        ],
+        "source_ref": "Numbers slide, native Korean 1-10",
+        "audio": null,
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "num-10-recognition",
+          "item_id": "num-10",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>열</div>",
+          "back_html": "<div class='answer answer-en'>ten</div><div class='answer answer-ko'>열</div><div class='pronunciation'>yeol</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>열 시에 만나요.</div><div class='example-en'>Let&#x27;s meet at ten o&#x27;clock.</div></li></ul></section><div class='notes'>Native Korean number; used for hours on the clock.</div><div class='source-ref'>Source: Numbers slide, native Korean 1-10</div>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "num-10-production",
+          "item_id": "num-10",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>ten</div>",
+          "back_html": "<div class='answer answer-ko'>열</div><div class='answer answer-en'>ten</div><div class='pronunciation'>yeol</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>열 시에 만나요.</div><div class='example-en'>Let&#x27;s meet at ten o&#x27;clock.</div></li></ul></section><div class='notes'>Native Korean number; used for hours on the clock.</div><div class='source-ref'>Source: Numbers slide, native Korean 1-10</div>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "num-10-listening",
+          "item_id": "num-10",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "back_html": "<div class='answer answer-ko'>열</div><div class='answer answer-en'>ten</div><div class='pronunciation'>yeol</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>열 시에 만나요.</div><div class='example-en'>Let&#x27;s meet at ten o&#x27;clock.</div></li></ul></section><div class='notes'>Native Korean number; used for hours on the clock.</div><div class='source-ref'>Source: Numbers slide, native Korean 1-10</div>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": false
+        },
+        {
+          "id": "num-10-number-context",
+          "item_id": "num-10",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>열</div>",
+          "back_html": "<div class='answer answer-en'>ten</div><div class='notes'>Native Korean number; used for hours on the clock.</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>열 시에 만나요.</div><div class='example-en'>Let&#x27;s meet at ten o&#x27;clock.</div></li></ul></section>",
+          "audio_path": null,
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    }
+  ]
+}

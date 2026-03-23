@@ -1,0 +1,252 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+    "title": "Numbers - 일 – 십",
+    "topic": "일 – 십",
+    "lesson_date": "2026-03-23",
+    "source_description": "Full-resolution Italki slide covering Sino-Korean and native Korean number systems.",
+    "target_deck": "Korean::Lessons::Numbers::Sino",
+    "tags": [
+      "numbers",
+      "sino-korean",
+      "left-column"
+    ]
+  },
+  "items": [
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-001",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "일",
+      "english": "one",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "1 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-002",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "이",
+      "english": "two",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "2 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-003",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "삼",
+      "english": "three",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "3 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-004",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "사",
+      "english": "four",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "4 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-005",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "오",
+      "english": "five",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "5 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-006",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "육",
+      "english": "six",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "6 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-007",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "칠",
+      "english": "seven",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "7 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-008",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "팔",
+      "english": "eight",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "8 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-009",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "구",
+      "english": "nine",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "9 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-010",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "십",
+      "english": "ten",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "10 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-011",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "백",
+      "english": "hundred",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 100=백",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "100 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-012",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "천",
+      "english": "thousand",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 1000=천",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "1000 • section-left-sino",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-left-sino-013",
+      "lesson_id": "italki-2026-03-23-numbers-section-left-sino",
+      "item_type": "number",
+      "korean": "만",
+      "english": "ten thousand",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 10000=만",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "source_ref": "10000 • section-left-sino",
+      "audio": null,
+      "image": null
+    }
+  ]
+}

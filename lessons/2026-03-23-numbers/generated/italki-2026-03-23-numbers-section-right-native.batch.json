@@ -1,0 +1,1224 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+    "title": "Numbers - 하나 – 열",
+    "topic": "하나 – 열",
+    "lesson_date": "2026-03-23",
+    "source_description": "Full-resolution Italki slide covering Sino-Korean and native Korean number systems.",
+    "target_deck": "Korean::Lessons::Numbers::Native",
+    "tags": [
+      "numbers",
+      "native-korean",
+      "right-column"
+    ]
+  },
+  "notes": [
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-001",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "하나",
+        "english": "one",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "1 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-001-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-001",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>하나</div>",
+          "back_html": "<div class='answer answer-en'>one</div><div class='answer answer-ko'>하나</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 1 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-001-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-001",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>one</div>",
+          "back_html": "<div class='answer answer-ko'>하나</div><div class='answer answer-en'>one</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 1 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-001-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-001",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>하나</div><div class='answer answer-en'>one</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 1 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-001-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-001",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>하나</div>",
+          "back_html": "<div class='answer answer-en'>one</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-002",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "둘",
+        "english": "two",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "2 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-002-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-002",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>둘</div>",
+          "back_html": "<div class='answer answer-en'>two</div><div class='answer answer-ko'>둘</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-002-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-002",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>two</div>",
+          "back_html": "<div class='answer answer-ko'>둘</div><div class='answer answer-en'>two</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-002-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-002",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>둘</div><div class='answer answer-en'>two</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-002-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-002",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>둘</div>",
+          "back_html": "<div class='answer answer-en'>two</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-003",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "셋",
+        "english": "three",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "3 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-003-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-003",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>셋</div>",
+          "back_html": "<div class='answer answer-en'>three</div><div class='answer answer-ko'>셋</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 3 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-003-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-003",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>three</div>",
+          "back_html": "<div class='answer answer-ko'>셋</div><div class='answer answer-en'>three</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 3 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-003-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-003",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>셋</div><div class='answer answer-en'>three</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 3 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-003-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-003",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>셋</div>",
+          "back_html": "<div class='answer answer-en'>three</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-004",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "넷",
+        "english": "four",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "4 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-004-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-004",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>넷</div>",
+          "back_html": "<div class='answer answer-en'>four</div><div class='answer answer-ko'>넷</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 4 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-004-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-004",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>four</div>",
+          "back_html": "<div class='answer answer-ko'>넷</div><div class='answer answer-en'>four</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 4 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-004-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-004",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>넷</div><div class='answer answer-en'>four</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 4 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-004-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-004",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>넷</div>",
+          "back_html": "<div class='answer answer-en'>four</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-005",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "다섯",
+        "english": "five",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "5 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-005-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-005",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>다섯</div>",
+          "back_html": "<div class='answer answer-en'>five</div><div class='answer answer-ko'>다섯</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 5 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-005-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-005",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>five</div>",
+          "back_html": "<div class='answer answer-ko'>다섯</div><div class='answer answer-en'>five</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 5 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-005-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-005",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>다섯</div><div class='answer answer-en'>five</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 5 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-005-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-005",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>다섯</div>",
+          "back_html": "<div class='answer answer-en'>five</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-006",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "여섯",
+        "english": "six",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "6 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-006-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-006",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>여섯</div>",
+          "back_html": "<div class='answer answer-en'>six</div><div class='answer answer-ko'>여섯</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 6 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-006-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-006",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>six</div>",
+          "back_html": "<div class='answer answer-ko'>여섯</div><div class='answer answer-en'>six</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 6 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-006-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-006",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>여섯</div><div class='answer answer-en'>six</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 6 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-006-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-006",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>여섯</div>",
+          "back_html": "<div class='answer answer-en'>six</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-007",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "일곱",
+        "english": "seven",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "7 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-007-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-007",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>일곱</div>",
+          "back_html": "<div class='answer answer-en'>seven</div><div class='answer answer-ko'>일곱</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 7 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-007-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-007",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>seven</div>",
+          "back_html": "<div class='answer answer-ko'>일곱</div><div class='answer answer-en'>seven</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 7 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-007-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-007",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>일곱</div><div class='answer answer-en'>seven</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 7 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-007-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-007",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>일곱</div>",
+          "back_html": "<div class='answer answer-en'>seven</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-008",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "여덟",
+        "english": "eight",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "8 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-008-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-008",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>여덟</div>",
+          "back_html": "<div class='answer answer-en'>eight</div><div class='answer answer-ko'>여덟</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 8 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-008-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-008",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>eight</div>",
+          "back_html": "<div class='answer answer-ko'>여덟</div><div class='answer answer-en'>eight</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 8 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-008-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-008",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>여덟</div><div class='answer answer-en'>eight</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 8 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-008-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-008",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>여덟</div>",
+          "back_html": "<div class='answer answer-en'>eight</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-009",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "아홉",
+        "english": "nine",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "9 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-009-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-009",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>아홉</div>",
+          "back_html": "<div class='answer answer-en'>nine</div><div class='answer answer-ko'>아홉</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 9 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-009-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-009",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>nine</div>",
+          "back_html": "<div class='answer answer-ko'>아홉</div><div class='answer answer-en'>nine</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 9 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-009-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-009",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>아홉</div><div class='answer answer-en'>nine</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 9 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-009-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-009",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>아홉</div>",
+          "back_html": "<div class='answer answer-en'>nine</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-010",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "열",
+        "english": "ten",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "10 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-010-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-010",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>열</div>",
+          "back_html": "<div class='answer answer-en'>ten</div><div class='answer answer-ko'>열</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 10 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-010-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-010",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>ten</div>",
+          "back_html": "<div class='answer answer-ko'>열</div><div class='answer answer-en'>ten</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 10 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-010-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-010",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>열</div><div class='answer answer-en'>ten</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 10 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-010-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-010",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>열</div>",
+          "back_html": "<div class='answer answer-en'>ten</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-011",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "스물",
+        "english": "twenty",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "Bottom row on slide: 20=스물",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "20 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-011-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-011",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>스물</div>",
+          "back_html": "<div class='answer answer-en'>twenty</div><div class='answer answer-ko'>스물</div><div class='notes'>Bottom row on slide: 20=스물</div><div class='source-ref'>Source: 20 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-011-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-011",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>twenty</div>",
+          "back_html": "<div class='answer answer-ko'>스물</div><div class='answer answer-en'>twenty</div><div class='notes'>Bottom row on slide: 20=스물</div><div class='source-ref'>Source: 20 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-011-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-011",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>스물</div><div class='answer answer-en'>twenty</div><div class='notes'>Bottom row on slide: 20=스물</div><div class='source-ref'>Source: 20 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-011-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-011",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>스물</div>",
+          "back_html": "<div class='answer answer-en'>twenty</div><div class='notes'>Bottom row on slide: 20=스물</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-012",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "서른",
+        "english": "thirty",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "Bottom row on slide: 30=서른",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "30 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-012-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-012",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>서른</div>",
+          "back_html": "<div class='answer answer-en'>thirty</div><div class='answer answer-ko'>서른</div><div class='notes'>Bottom row on slide: 30=서른</div><div class='source-ref'>Source: 30 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-012-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-012",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>thirty</div>",
+          "back_html": "<div class='answer answer-ko'>서른</div><div class='answer answer-en'>thirty</div><div class='notes'>Bottom row on slide: 30=서른</div><div class='source-ref'>Source: 30 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-012-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-012",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>서른</div><div class='answer answer-en'>thirty</div><div class='notes'>Bottom row on slide: 30=서른</div><div class='source-ref'>Source: 30 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-012-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-012",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>서른</div>",
+          "back_html": "<div class='answer answer-en'>thirty</div><div class='notes'>Bottom row on slide: 30=서른</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-013",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "마흔",
+        "english": "forty",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "Bottom row on slide: 40=마흔",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "40 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-013-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-013",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>마흔</div>",
+          "back_html": "<div class='answer answer-en'>forty</div><div class='answer answer-ko'>마흔</div><div class='notes'>Bottom row on slide: 40=마흔</div><div class='source-ref'>Source: 40 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-013-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-013",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>forty</div>",
+          "back_html": "<div class='answer answer-ko'>마흔</div><div class='answer answer-en'>forty</div><div class='notes'>Bottom row on slide: 40=마흔</div><div class='source-ref'>Source: 40 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-013-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-013",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>마흔</div><div class='answer answer-en'>forty</div><div class='notes'>Bottom row on slide: 40=마흔</div><div class='source-ref'>Source: 40 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-013-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-013",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>마흔</div>",
+          "back_html": "<div class='answer answer-en'>forty</div><div class='notes'>Bottom row on slide: 40=마흔</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-014",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "쉰",
+        "english": "fifty",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "Bottom row on slide: 50=쉰",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "50 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-014-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-014",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>쉰</div>",
+          "back_html": "<div class='answer answer-en'>fifty</div><div class='answer answer-ko'>쉰</div><div class='notes'>Bottom row on slide: 50=쉰</div><div class='source-ref'>Source: 50 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-014-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-014",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>fifty</div>",
+          "back_html": "<div class='answer answer-ko'>쉰</div><div class='answer answer-en'>fifty</div><div class='notes'>Bottom row on slide: 50=쉰</div><div class='source-ref'>Source: 50 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-014-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-014",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>쉰</div><div class='answer answer-en'>fifty</div><div class='notes'>Bottom row on slide: 50=쉰</div><div class='source-ref'>Source: 50 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-014-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-014",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>쉰</div>",
+          "back_html": "<div class='answer answer-en'>fifty</div><div class='notes'>Bottom row on slide: 50=쉰</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-015",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "예순",
+        "english": "sixty",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "Bottom row on slide: 60=예순",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "60 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-015-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-015",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>예순</div>",
+          "back_html": "<div class='answer answer-en'>sixty</div><div class='answer answer-ko'>예순</div><div class='notes'>Bottom row on slide: 60=예순</div><div class='source-ref'>Source: 60 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-015-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-015",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>sixty</div>",
+          "back_html": "<div class='answer answer-ko'>예순</div><div class='answer answer-en'>sixty</div><div class='notes'>Bottom row on slide: 60=예순</div><div class='source-ref'>Source: 60 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-015-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-015",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>예순</div><div class='answer answer-en'>sixty</div><div class='notes'>Bottom row on slide: 60=예순</div><div class='source-ref'>Source: 60 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-015-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-015",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>예순</div>",
+          "back_html": "<div class='answer answer-en'>sixty</div><div class='notes'>Bottom row on slide: 60=예순</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-016",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "일흔",
+        "english": "seventy",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "Bottom row on slide: 70=일흔",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "70 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-016-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-016",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>일흔</div>",
+          "back_html": "<div class='answer answer-en'>seventy</div><div class='answer answer-ko'>일흔</div><div class='notes'>Bottom row on slide: 70=일흔</div><div class='source-ref'>Source: 70 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-016-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-016",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>seventy</div>",
+          "back_html": "<div class='answer answer-ko'>일흔</div><div class='answer answer-en'>seventy</div><div class='notes'>Bottom row on slide: 70=일흔</div><div class='source-ref'>Source: 70 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-016-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-016",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>일흔</div><div class='answer answer-en'>seventy</div><div class='notes'>Bottom row on slide: 70=일흔</div><div class='source-ref'>Source: 70 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-016-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-016",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>일흔</div>",
+          "back_html": "<div class='answer answer-en'>seventy</div><div class='notes'>Bottom row on slide: 70=일흔</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-017",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "여든",
+        "english": "eighty",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "Bottom row on slide: 80=여든",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "80 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-017-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-017",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>여든</div>",
+          "back_html": "<div class='answer answer-en'>eighty</div><div class='answer answer-ko'>여든</div><div class='notes'>Bottom row on slide: 80=여든</div><div class='source-ref'>Source: 80 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-017-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-017",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>eighty</div>",
+          "back_html": "<div class='answer answer-ko'>여든</div><div class='answer answer-en'>eighty</div><div class='notes'>Bottom row on slide: 80=여든</div><div class='source-ref'>Source: 80 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-017-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-017",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>여든</div><div class='answer answer-en'>eighty</div><div class='notes'>Bottom row on slide: 80=여든</div><div class='source-ref'>Source: 80 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-017-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-017",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>여든</div>",
+          "back_html": "<div class='answer answer-en'>eighty</div><div class='notes'>Bottom row on slide: 80=여든</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    },
+    {
+      "item": {
+        "id": "italki-2026-03-23-numbers-section-right-native-018",
+        "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+        "item_type": "number",
+        "korean": "아흔",
+        "english": "ninety",
+        "pronunciation": null,
+        "examples": [],
+        "notes": "Bottom row on slide: 90=아흔",
+        "tags": [
+          "numbers",
+          "native-korean",
+          "right-column"
+        ],
+        "source_ref": "90 • section-right-native",
+        "audio": {
+          "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": null
+      },
+      "cards": [
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-018-recognition",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-018",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>아흔</div>",
+          "back_html": "<div class='answer answer-en'>ninety</div><div class='answer answer-ko'>아흔</div><div class='notes'>Bottom row on slide: 90=아흔</div><div class='source-ref'>Source: 90 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-018-production",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-018",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>ninety</div>",
+          "back_html": "<div class='answer answer-ko'>아흔</div><div class='answer answer-en'>ninety</div><div class='notes'>Bottom row on slide: 90=아흔</div><div class='source-ref'>Source: 90 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-018-listening",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-018",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>아흔</div><div class='answer answer-en'>ninety</div><div class='notes'>Bottom row on slide: 90=아흔</div><div class='source-ref'>Source: 90 • section-right-native</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3",
+          "image_path": null,
+          "approved": true
+        },
+        {
+          "id": "italki-2026-03-23-numbers-section-right-native-018-number-context",
+          "item_id": "italki-2026-03-23-numbers-section-right-native-018",
+          "kind": "number-context",
+          "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>아흔</div>",
+          "back_html": "<div class='answer answer-en'>ninety</div><div class='notes'>Bottom row on slide: 90=아흔</div>",
+          "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3",
+          "image_path": null,
+          "approved": true
+        }
+      ],
+      "approved": true
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+    "title": "Numbers - 하나 – 열",
+    "topic": "하나 – 열",
+    "lesson_date": "2026-03-23",
+    "source_description": "Full-resolution Italki slide covering Sino-Korean and native Korean number systems.",
+    "target_deck": "Korean::Lessons::Numbers::Native",
+    "tags": [
+      "numbers",
+      "native-korean",
+      "right-column"
+    ]
+  },
+  "items": [
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-001",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "하나",
+      "english": "one",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "1 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-002",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "둘",
+      "english": "two",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "2 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-003",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "셋",
+      "english": "three",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "3 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-004",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "넷",
+      "english": "four",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "4 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-005",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "다섯",
+      "english": "five",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "5 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-006",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "여섯",
+      "english": "six",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "6 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-007",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "일곱",
+      "english": "seven",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "7 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-008",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "여덟",
+      "english": "eight",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "8 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-009",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "아홉",
+      "english": "nine",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "9 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-010",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "열",
+      "english": "ten",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "10 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-011",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "스물",
+      "english": "twenty",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 20=스물",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "20 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-012",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "서른",
+      "english": "thirty",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 30=서른",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "30 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-013",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "마흔",
+      "english": "forty",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 40=마흔",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "40 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-014",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "쉰",
+      "english": "fifty",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 50=쉰",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "50 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-015",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "예순",
+      "english": "sixty",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 60=예순",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "60 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-016",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "일흔",
+      "english": "seventy",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 70=일흔",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "70 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-017",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "여든",
+      "english": "eighty",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 80=여든",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "80 • section-right-native",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "italki-2026-03-23-numbers-section-right-native-018",
+      "lesson_id": "italki-2026-03-23-numbers-section-right-native",
+      "item_type": "number",
+      "korean": "아흔",
+      "english": "ninety",
+      "pronunciation": null,
+      "examples": [],
+      "notes": "Bottom row on slide: 90=아흔",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "source_ref": "90 • section-right-native",
+      "audio": null,
+      "image": null
+    }
+  ]
+}

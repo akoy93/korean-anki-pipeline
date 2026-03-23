@@ -1,0 +1,70 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "italki-2026-03-23-numbers",
+    "title": "Numbers",
+    "topic": "Numbers",
+    "lesson_date": "2026-03-23",
+    "source_description": "Sample extracted from weekly Italki number lesson.",
+    "tags": ["italki", "numbers"]
+  },
+  "items": [
+    {
+      "id": "num-1",
+      "lesson_id": "italki-2026-03-23-numbers",
+      "item_type": "number",
+      "korean": "하나",
+      "english": "one",
+      "pronunciation": "hana",
+      "examples": [
+        {
+          "korean": "사과 하나 주세요.",
+          "english": "Please give me one apple."
+        }
+      ],
+      "notes": "Native Korean number; commonly used with counters.",
+      "tags": ["native-korean"],
+      "source_ref": "Numbers slide, native Korean 1-10",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "num-2",
+      "lesson_id": "italki-2026-03-23-numbers",
+      "item_type": "number",
+      "korean": "둘",
+      "english": "two",
+      "pronunciation": "dul",
+      "examples": [
+        {
+          "korean": "물 두 잔 주세요.",
+          "english": "Please give me two glasses of water."
+        }
+      ],
+      "notes": "Native Korean number; often changes form before some counters.",
+      "tags": ["native-korean"],
+      "source_ref": "Numbers slide, native Korean 1-10",
+      "audio": null,
+      "image": null
+    },
+    {
+      "id": "num-10",
+      "lesson_id": "italki-2026-03-23-numbers",
+      "item_type": "number",
+      "korean": "열",
+      "english": "ten",
+      "pronunciation": "yeol",
+      "examples": [
+        {
+          "korean": "열 시에 만나요.",
+          "english": "Let's meet at ten o'clock."
+        }
+      ],
+      "notes": "Native Korean number; used for hours on the clock.",
+      "tags": ["native-korean", "time"],
+      "source_ref": "Numbers slide, native Korean 1-10",
+      "audio": null,
+      "image": null
+    }
+  ]
+}

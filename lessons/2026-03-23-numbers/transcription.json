@@ -1,0 +1,285 @@
+{
+  "schema_version": "1",
+  "lesson_id": "italki-2026-03-23-numbers",
+  "title": "Numbers",
+  "lesson_date": "2026-03-23",
+  "source_summary": "Full-resolution Italki slide covering Sino-Korean and native Korean number systems.",
+  "theme": "Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts.",
+  "goals": [
+    "Distinguish the two main Korean number systems.",
+    "Memorize the visible 1-10 forms in both systems.",
+    "Learn common situations where each number system is used.",
+    "Capture the additional higher-value forms shown on the slide."
+  ],
+  "raw_sources": [
+    {
+      "kind": "image",
+      "path": "attached-image",
+      "description": "Italki lesson slide with two columns: Sino-Korean numbers on the left and native Korean numbers on the right."
+    }
+  ],
+  "expected_section_count": 2,
+  "sections": [
+    {
+      "id": "section-left-sino",
+      "title": "일 – 십",
+      "item_type": "number",
+      "side": "left",
+      "number_system": "Sino-Korean",
+      "usage_notes": [
+        "수의 차례, 번호, 단위",
+        "Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices"
+      ],
+      "expected_entry_count": 13,
+      "target_deck": "Korean::Lessons::Numbers::Sino",
+      "tags": [
+        "numbers",
+        "sino-korean",
+        "left-column"
+      ],
+      "entries": [
+        {
+          "label": "1",
+          "korean": "일",
+          "english": "one",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "2",
+          "korean": "이",
+          "english": "two",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "3",
+          "korean": "삼",
+          "english": "three",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "4",
+          "korean": "사",
+          "english": "four",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "5",
+          "korean": "오",
+          "english": "five",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "6",
+          "korean": "육",
+          "english": "six",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "7",
+          "korean": "칠",
+          "english": "seven",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "8",
+          "korean": "팔",
+          "english": "eight",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "9",
+          "korean": "구",
+          "english": "nine",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "10",
+          "korean": "십",
+          "english": "ten",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "100",
+          "korean": "백",
+          "english": "hundred",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 100=백"
+        },
+        {
+          "label": "1000",
+          "korean": "천",
+          "english": "thousand",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 1000=천"
+        },
+        {
+          "label": "10000",
+          "korean": "만",
+          "english": "ten thousand",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 10000=만"
+        }
+      ]
+    },
+    {
+      "id": "section-right-native",
+      "title": "하나 – 열",
+      "item_type": "number",
+      "side": "right",
+      "number_system": "Native Korean",
+      "usage_notes": [
+        "개수, 횟수, 크기 등",
+        "Ex) when counting things or people"
+      ],
+      "expected_entry_count": 18,
+      "target_deck": "Korean::Lessons::Numbers::Native",
+      "tags": [
+        "numbers",
+        "native-korean",
+        "right-column"
+      ],
+      "entries": [
+        {
+          "label": "1",
+          "korean": "하나",
+          "english": "one",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "2",
+          "korean": "둘",
+          "english": "two",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "3",
+          "korean": "셋",
+          "english": "three",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "4",
+          "korean": "넷",
+          "english": "four",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "5",
+          "korean": "다섯",
+          "english": "five",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "6",
+          "korean": "여섯",
+          "english": "six",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "7",
+          "korean": "일곱",
+          "english": "seven",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "8",
+          "korean": "여덟",
+          "english": "eight",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "9",
+          "korean": "아홉",
+          "english": "nine",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "10",
+          "korean": "열",
+          "english": "ten",
+          "pronunciation": null,
+          "notes": null
+        },
+        {
+          "label": "20",
+          "korean": "스물",
+          "english": "twenty",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 20=스물"
+        },
+        {
+          "label": "30",
+          "korean": "서른",
+          "english": "thirty",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 30=서른"
+        },
+        {
+          "label": "40",
+          "korean": "마흔",
+          "english": "forty",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 40=마흔"
+        },
+        {
+          "label": "50",
+          "korean": "쉰",
+          "english": "fifty",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 50=쉰"
+        },
+        {
+          "label": "60",
+          "korean": "예순",
+          "english": "sixty",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 60=예순"
+        },
+        {
+          "label": "70",
+          "korean": "일흔",
+          "english": "seventy",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 70=일흔"
+        },
+        {
+          "label": "80",
+          "korean": "여든",
+          "english": "eighty",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 80=여든"
+        },
+        {
+          "label": "90",
+          "korean": "아흔",
+          "english": "ninety",
+          "pronunciation": null,
+          "notes": "Bottom row on slide: 90=아흔"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "The slide is divided into two main columns: left for Sino-Korean numbers and right for native Korean numbers.",
+    "Supplemental larger-number rows are included within each column and have been transcribed as visible entries."
+  ]
+}
