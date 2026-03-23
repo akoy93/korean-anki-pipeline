@@ -49,19 +49,25 @@ korean-anki generate \
   --media-dir preview/public/media
 ```
 
-Open the review UI:
+Run the local push service in one terminal:
+
+```bash
+korean-anki serve
+```
+
+Open the review UI in another terminal:
 
 ```bash
 cd preview
 pnpm install
-pnpm dev
+pnpm dev --host 127.0.0.1
 ```
 
-Load `data/batch.json`, review/edit, then download the reviewed JSON.
+Load `data/batch.json`, review/edit, then use `Check push` for a dry-run. If there are no duplicates, click `Push to Anki` to import the approved cards and sync.
 
 If you want audio/image preview in the browser, generate media under `preview/public/media` as shown above so Vite can serve it during `pnpm dev`.
 
-Push approved cards to Anki Desktop:
+CLI push still works for reviewed JSON files:
 
 ```bash
 korean-anki push --input data/batch.reviewed.json

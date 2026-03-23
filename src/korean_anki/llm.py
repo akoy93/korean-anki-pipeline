@@ -6,7 +6,13 @@ from pathlib import Path
 
 from openai import OpenAI
 
-from .schema import ExtractionRequest, LessonDocument, LessonTranscription, RawSourceAsset
+from .schema import (
+    ExtractionRequest,
+    LessonDocument,
+    LessonTranscription,
+    PronunciationBatch,
+    RawSourceAsset,
+)
 
 
 SYSTEM_PROMPT = """You extract Korean study material into a strict JSON lesson document.
@@ -31,6 +37,15 @@ Rules:
 - Summarize the overall lesson theme and study goals.
 - Do not invent entries that are not visible in the source.
 - If a section has an obvious expected count, include it.
+"""
+
+PRONUNCIATION_SYSTEM_PROMPT = """You generate learner-friendly romanization for Korean study cards.
+
+Rules:
+- Return only valid JSON matching the requested schema.
+- Preserve the input order exactly.
+- Keep each pronunciation concise and readable for an English-speaking learner.
+- Do not add extra explanation, punctuation, or IPA.
 """
 
 
@@ -214,6 +229,33 @@ def _transcription_json_schema() -> dict[str, object]:
     }
 
 
+def _pronunciation_json_schema() -> dict[str, object]:
+    return {
+        "name": "pronunciation_batch",
+        "schema": {
+            "type": "object",
+            "additionalProperties": False,
+            "required": ["items"],
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": False,
+                        "required": ["korean", "pronunciation"],
+                        "properties": {
+                            "korean": {"type": "string"},
+                            "pronunciation": {"type": "string"},
+                        },
+                    },
+                }
+            },
+        },
+        "strict": True,
+    }
+
+
 def _build_user_text(request: ExtractionRequest) -> str:
     parts = [
         f"lesson_id: {request.lesson_id}",
@@ -342,7 +384,44 @@ def transcribe_sources(
         },
         reasoning={"effort": "high"},
     )
-    return LessonTranscription.model_validate_json(response.output_text)
+    transcription = LessonTranscription.model_validate_json(response.output_text)
+    return transcription.model_copy(update={"raw_sources": raw_sources})
+
+
+def generate_pronunciations(
+    korean_texts: list[str],
+    model: str = "gpt-5.4",
+) -> dict[str, str]:
+    unique_texts = list(dict.fromkeys(text for text in korean_texts if text.strip()))
+    if not unique_texts:
+        return {}
+
+    client = OpenAI()
+    response = client.responses.create(
+        model=model,
+        input=[
+            {"role": "system", "content": PRONUNCIATION_SYSTEM_PROMPT},
+            {
+                "role": "user",
+                "content": "\n".join(
+                    [
+                        "Generate one romanization for each Korean string.",
+                        "Inputs:",
+                        *unique_texts,
+                    ]
+                ),
+            },
+        ],
+        text={
+            "format": {
+                "type": "json_schema",
+                **_pronunciation_json_schema(),
+            }
+        },
+        reasoning={"effort": "low"},
+    )
+    batch = PronunciationBatch.model_validate_json(response.output_text)
+    return {item.korean: item.pronunciation for item in batch.items}
 
 
 def write_json(document: LessonDocument, output_path: Path) -> None:

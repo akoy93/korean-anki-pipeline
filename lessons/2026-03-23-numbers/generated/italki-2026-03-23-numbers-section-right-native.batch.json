@@ -9,8 +9,7 @@
     "target_deck": "Korean::Lessons::Numbers::Native",
     "tags": [
       "numbers",
-      "native-korean",
-      "right-column"
+      "native-korean"
     ]
   },
   "notes": [
@@ -21,15 +20,14 @@
         "item_type": "number",
         "korean": "하나",
         "english": "one",
-        "pronunciation": null,
+        "pronunciation": "hana",
         "examples": [],
         "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "1 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 1",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3",
           "prompt": null,
@@ -43,7 +41,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-001",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>하나</div>",
-          "back_html": "<div class='answer answer-en'>one</div><div class='answer answer-ko'>하나</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 1 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>one</div><div class='answer answer-ko'>하나</div><div class='pronunciation'>hana</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 1</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3",
           "image_path": null,
           "approved": true
@@ -53,7 +51,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-001",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>one</div>",
-          "back_html": "<div class='answer answer-ko'>하나</div><div class='answer answer-en'>one</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 1 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>하나</div><div class='answer answer-en'>one</div><div class='pronunciation'>hana</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 1</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3",
           "image_path": null,
           "approved": true
@@ -63,7 +61,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-001",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>하나</div><div class='answer answer-en'>one</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 1 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>하나</div><div class='answer answer-en'>one</div><div class='pronunciation'>hana</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 1</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-001.mp3",
           "image_path": null,
           "approved": true
@@ -88,15 +86,14 @@
         "item_type": "number",
         "korean": "둘",
         "english": "two",
-        "pronunciation": null,
+        "pronunciation": "dul",
         "examples": [],
         "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "2 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 2",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3",
           "prompt": null,
@@ -110,7 +107,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-002",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>둘</div>",
-          "back_html": "<div class='answer answer-en'>two</div><div class='answer answer-ko'>둘</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>two</div><div class='answer answer-ko'>둘</div><div class='pronunciation'>dul</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 2</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3",
           "image_path": null,
           "approved": true
@@ -120,7 +117,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-002",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>two</div>",
-          "back_html": "<div class='answer answer-ko'>둘</div><div class='answer answer-en'>two</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>둘</div><div class='answer answer-en'>two</div><div class='pronunciation'>dul</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 2</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3",
           "image_path": null,
           "approved": true
@@ -130,7 +127,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-002",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>둘</div><div class='answer answer-en'>two</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>둘</div><div class='answer answer-en'>two</div><div class='pronunciation'>dul</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 2</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-002.mp3",
           "image_path": null,
           "approved": true
@@ -155,15 +152,14 @@
         "item_type": "number",
         "korean": "셋",
         "english": "three",
-        "pronunciation": null,
+        "pronunciation": "set",
         "examples": [],
         "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "3 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 3",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3",
           "prompt": null,
@@ -177,7 +173,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-003",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>셋</div>",
-          "back_html": "<div class='answer answer-en'>three</div><div class='answer answer-ko'>셋</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 3 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>three</div><div class='answer answer-ko'>셋</div><div class='pronunciation'>set</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 3</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3",
           "image_path": null,
           "approved": true
@@ -187,7 +183,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-003",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>three</div>",
-          "back_html": "<div class='answer answer-ko'>셋</div><div class='answer answer-en'>three</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 3 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>셋</div><div class='answer answer-en'>three</div><div class='pronunciation'>set</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 3</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3",
           "image_path": null,
           "approved": true
@@ -197,7 +193,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-003",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>셋</div><div class='answer answer-en'>three</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 3 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>셋</div><div class='answer answer-en'>three</div><div class='pronunciation'>set</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 3</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-003.mp3",
           "image_path": null,
           "approved": true
@@ -222,15 +218,14 @@
         "item_type": "number",
         "korean": "넷",
         "english": "four",
-        "pronunciation": null,
+        "pronunciation": "net",
         "examples": [],
         "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "4 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 4",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3",
           "prompt": null,
@@ -244,7 +239,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-004",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>넷</div>",
-          "back_html": "<div class='answer answer-en'>four</div><div class='answer answer-ko'>넷</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 4 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>four</div><div class='answer answer-ko'>넷</div><div class='pronunciation'>net</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 4</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3",
           "image_path": null,
           "approved": true
@@ -254,7 +249,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-004",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>four</div>",
-          "back_html": "<div class='answer answer-ko'>넷</div><div class='answer answer-en'>four</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 4 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>넷</div><div class='answer answer-en'>four</div><div class='pronunciation'>net</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 4</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3",
           "image_path": null,
           "approved": true
@@ -264,7 +259,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-004",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>넷</div><div class='answer answer-en'>four</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 4 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>넷</div><div class='answer answer-en'>four</div><div class='pronunciation'>net</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 4</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-004.mp3",
           "image_path": null,
           "approved": true
@@ -289,15 +284,14 @@
         "item_type": "number",
         "korean": "다섯",
         "english": "five",
-        "pronunciation": null,
+        "pronunciation": "daseot",
         "examples": [],
         "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "5 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 5",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3",
           "prompt": null,
@@ -311,7 +305,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-005",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>다섯</div>",
-          "back_html": "<div class='answer answer-en'>five</div><div class='answer answer-ko'>다섯</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 5 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>five</div><div class='answer answer-ko'>다섯</div><div class='pronunciation'>daseot</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 5</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3",
           "image_path": null,
           "approved": true
@@ -321,7 +315,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-005",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>five</div>",
-          "back_html": "<div class='answer answer-ko'>다섯</div><div class='answer answer-en'>five</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 5 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>다섯</div><div class='answer answer-en'>five</div><div class='pronunciation'>daseot</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 5</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3",
           "image_path": null,
           "approved": true
@@ -331,7 +325,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-005",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>다섯</div><div class='answer answer-en'>five</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 5 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>다섯</div><div class='answer answer-en'>five</div><div class='pronunciation'>daseot</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 5</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-005.mp3",
           "image_path": null,
           "approved": true
@@ -356,15 +350,14 @@
         "item_type": "number",
         "korean": "여섯",
         "english": "six",
-        "pronunciation": null,
+        "pronunciation": "yeoseot",
         "examples": [],
         "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "6 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 6",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3",
           "prompt": null,
@@ -378,7 +371,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-006",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>여섯</div>",
-          "back_html": "<div class='answer answer-en'>six</div><div class='answer answer-ko'>여섯</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 6 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>six</div><div class='answer answer-ko'>여섯</div><div class='pronunciation'>yeoseot</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 6</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3",
           "image_path": null,
           "approved": true
@@ -388,7 +381,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-006",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>six</div>",
-          "back_html": "<div class='answer answer-ko'>여섯</div><div class='answer answer-en'>six</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 6 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>여섯</div><div class='answer answer-en'>six</div><div class='pronunciation'>yeoseot</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 6</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3",
           "image_path": null,
           "approved": true
@@ -398,7 +391,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-006",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>여섯</div><div class='answer answer-en'>six</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 6 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>여섯</div><div class='answer answer-en'>six</div><div class='pronunciation'>yeoseot</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 6</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-006.mp3",
           "image_path": null,
           "approved": true
@@ -423,15 +416,14 @@
         "item_type": "number",
         "korean": "일곱",
         "english": "seven",
-        "pronunciation": null,
+        "pronunciation": "ilgop",
         "examples": [],
         "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "7 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 7",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3",
           "prompt": null,
@@ -445,7 +437,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-007",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>일곱</div>",
-          "back_html": "<div class='answer answer-en'>seven</div><div class='answer answer-ko'>일곱</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 7 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>seven</div><div class='answer answer-ko'>일곱</div><div class='pronunciation'>ilgop</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 7</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3",
           "image_path": null,
           "approved": true
@@ -455,7 +447,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-007",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>seven</div>",
-          "back_html": "<div class='answer answer-ko'>일곱</div><div class='answer answer-en'>seven</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 7 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>일곱</div><div class='answer answer-en'>seven</div><div class='pronunciation'>ilgop</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 7</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3",
           "image_path": null,
           "approved": true
@@ -465,7 +457,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-007",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>일곱</div><div class='answer answer-en'>seven</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 7 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>일곱</div><div class='answer answer-en'>seven</div><div class='pronunciation'>ilgop</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 7</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-007.mp3",
           "image_path": null,
           "approved": true
@@ -490,15 +482,14 @@
         "item_type": "number",
         "korean": "여덟",
         "english": "eight",
-        "pronunciation": null,
+        "pronunciation": "yeodeol",
         "examples": [],
         "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "8 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 8",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3",
           "prompt": null,
@@ -512,7 +503,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-008",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>여덟</div>",
-          "back_html": "<div class='answer answer-en'>eight</div><div class='answer answer-ko'>여덟</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 8 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>eight</div><div class='answer answer-ko'>여덟</div><div class='pronunciation'>yeodeol</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 8</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3",
           "image_path": null,
           "approved": true
@@ -522,7 +513,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-008",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>eight</div>",
-          "back_html": "<div class='answer answer-ko'>여덟</div><div class='answer answer-en'>eight</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 8 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>여덟</div><div class='answer answer-en'>eight</div><div class='pronunciation'>yeodeol</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 8</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3",
           "image_path": null,
           "approved": true
@@ -532,7 +523,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-008",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>여덟</div><div class='answer answer-en'>eight</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 8 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>여덟</div><div class='answer answer-en'>eight</div><div class='pronunciation'>yeodeol</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 8</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-008.mp3",
           "image_path": null,
           "approved": true
@@ -557,15 +548,14 @@
         "item_type": "number",
         "korean": "아홉",
         "english": "nine",
-        "pronunciation": null,
+        "pronunciation": "ahop",
         "examples": [],
         "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "9 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 9",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3",
           "prompt": null,
@@ -579,7 +569,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-009",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>아홉</div>",
-          "back_html": "<div class='answer answer-en'>nine</div><div class='answer answer-ko'>아홉</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 9 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>nine</div><div class='answer answer-ko'>아홉</div><div class='pronunciation'>ahop</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 9</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3",
           "image_path": null,
           "approved": true
@@ -589,7 +579,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-009",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>nine</div>",
-          "back_html": "<div class='answer answer-ko'>아홉</div><div class='answer answer-en'>nine</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 9 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>아홉</div><div class='answer answer-en'>nine</div><div class='pronunciation'>ahop</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 9</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3",
           "image_path": null,
           "approved": true
@@ -599,7 +589,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-009",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>아홉</div><div class='answer answer-en'>nine</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 9 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>아홉</div><div class='answer answer-en'>nine</div><div class='pronunciation'>ahop</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 9</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-009.mp3",
           "image_path": null,
           "approved": true
@@ -624,15 +614,14 @@
         "item_type": "number",
         "korean": "열",
         "english": "ten",
-        "pronunciation": null,
+        "pronunciation": "yeol",
         "examples": [],
         "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "10 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 10",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3",
           "prompt": null,
@@ -646,7 +635,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-010",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>열</div>",
-          "back_html": "<div class='answer answer-en'>ten</div><div class='answer answer-ko'>열</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 10 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>ten</div><div class='answer answer-ko'>열</div><div class='pronunciation'>yeol</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 10</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3",
           "image_path": null,
           "approved": true
@@ -656,7 +645,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-010",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>ten</div>",
-          "back_html": "<div class='answer answer-ko'>열</div><div class='answer answer-en'>ten</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 10 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>열</div><div class='answer answer-en'>ten</div><div class='pronunciation'>yeol</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 10</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3",
           "image_path": null,
           "approved": true
@@ -666,7 +655,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-010",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>열</div><div class='answer answer-en'>ten</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 10 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>열</div><div class='answer answer-en'>ten</div><div class='pronunciation'>yeol</div><div class='notes'>개수, 횟수, 크기 등 Ex) when counting things or people</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 10</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-010.mp3",
           "image_path": null,
           "approved": true
@@ -691,15 +680,14 @@
         "item_type": "number",
         "korean": "스물",
         "english": "twenty",
-        "pronunciation": null,
+        "pronunciation": "seumul",
         "examples": [],
         "notes": "Bottom row on slide: 20=스물",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "20 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 20",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3",
           "prompt": null,
@@ -713,7 +701,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-011",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>스물</div>",
-          "back_html": "<div class='answer answer-en'>twenty</div><div class='answer answer-ko'>스물</div><div class='notes'>Bottom row on slide: 20=스물</div><div class='source-ref'>Source: 20 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>twenty</div><div class='answer answer-ko'>스물</div><div class='pronunciation'>seumul</div><div class='notes'>Bottom row on slide: 20=스물</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 20</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3",
           "image_path": null,
           "approved": true
@@ -723,7 +711,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-011",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>twenty</div>",
-          "back_html": "<div class='answer answer-ko'>스물</div><div class='answer answer-en'>twenty</div><div class='notes'>Bottom row on slide: 20=스물</div><div class='source-ref'>Source: 20 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>스물</div><div class='answer answer-en'>twenty</div><div class='pronunciation'>seumul</div><div class='notes'>Bottom row on slide: 20=스물</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 20</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3",
           "image_path": null,
           "approved": true
@@ -733,7 +721,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-011",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>스물</div><div class='answer answer-en'>twenty</div><div class='notes'>Bottom row on slide: 20=스물</div><div class='source-ref'>Source: 20 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>스물</div><div class='answer answer-en'>twenty</div><div class='pronunciation'>seumul</div><div class='notes'>Bottom row on slide: 20=스물</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 20</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-011.mp3",
           "image_path": null,
           "approved": true
@@ -758,15 +746,14 @@
         "item_type": "number",
         "korean": "서른",
         "english": "thirty",
-        "pronunciation": null,
+        "pronunciation": "seoreun",
         "examples": [],
         "notes": "Bottom row on slide: 30=서른",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "30 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 30",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3",
           "prompt": null,
@@ -780,7 +767,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-012",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>서른</div>",
-          "back_html": "<div class='answer answer-en'>thirty</div><div class='answer answer-ko'>서른</div><div class='notes'>Bottom row on slide: 30=서른</div><div class='source-ref'>Source: 30 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>thirty</div><div class='answer answer-ko'>서른</div><div class='pronunciation'>seoreun</div><div class='notes'>Bottom row on slide: 30=서른</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 30</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3",
           "image_path": null,
           "approved": true
@@ -790,7 +777,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-012",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>thirty</div>",
-          "back_html": "<div class='answer answer-ko'>서른</div><div class='answer answer-en'>thirty</div><div class='notes'>Bottom row on slide: 30=서른</div><div class='source-ref'>Source: 30 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>서른</div><div class='answer answer-en'>thirty</div><div class='pronunciation'>seoreun</div><div class='notes'>Bottom row on slide: 30=서른</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 30</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3",
           "image_path": null,
           "approved": true
@@ -800,7 +787,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-012",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>서른</div><div class='answer answer-en'>thirty</div><div class='notes'>Bottom row on slide: 30=서른</div><div class='source-ref'>Source: 30 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>서른</div><div class='answer answer-en'>thirty</div><div class='pronunciation'>seoreun</div><div class='notes'>Bottom row on slide: 30=서른</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 30</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-012.mp3",
           "image_path": null,
           "approved": true
@@ -825,15 +812,14 @@
         "item_type": "number",
         "korean": "마흔",
         "english": "forty",
-        "pronunciation": null,
+        "pronunciation": "maheun",
         "examples": [],
         "notes": "Bottom row on slide: 40=마흔",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "40 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 40",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3",
           "prompt": null,
@@ -847,7 +833,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-013",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>마흔</div>",
-          "back_html": "<div class='answer answer-en'>forty</div><div class='answer answer-ko'>마흔</div><div class='notes'>Bottom row on slide: 40=마흔</div><div class='source-ref'>Source: 40 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>forty</div><div class='answer answer-ko'>마흔</div><div class='pronunciation'>maheun</div><div class='notes'>Bottom row on slide: 40=마흔</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 40</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3",
           "image_path": null,
           "approved": true
@@ -857,7 +843,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-013",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>forty</div>",
-          "back_html": "<div class='answer answer-ko'>마흔</div><div class='answer answer-en'>forty</div><div class='notes'>Bottom row on slide: 40=마흔</div><div class='source-ref'>Source: 40 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>마흔</div><div class='answer answer-en'>forty</div><div class='pronunciation'>maheun</div><div class='notes'>Bottom row on slide: 40=마흔</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 40</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3",
           "image_path": null,
           "approved": true
@@ -867,7 +853,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-013",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>마흔</div><div class='answer answer-en'>forty</div><div class='notes'>Bottom row on slide: 40=마흔</div><div class='source-ref'>Source: 40 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>마흔</div><div class='answer answer-en'>forty</div><div class='pronunciation'>maheun</div><div class='notes'>Bottom row on slide: 40=마흔</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 40</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-013.mp3",
           "image_path": null,
           "approved": true
@@ -892,15 +878,14 @@
         "item_type": "number",
         "korean": "쉰",
         "english": "fifty",
-        "pronunciation": null,
+        "pronunciation": "swin",
         "examples": [],
         "notes": "Bottom row on slide: 50=쉰",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "50 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 50",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3",
           "prompt": null,
@@ -914,7 +899,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-014",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>쉰</div>",
-          "back_html": "<div class='answer answer-en'>fifty</div><div class='answer answer-ko'>쉰</div><div class='notes'>Bottom row on slide: 50=쉰</div><div class='source-ref'>Source: 50 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>fifty</div><div class='answer answer-ko'>쉰</div><div class='pronunciation'>swin</div><div class='notes'>Bottom row on slide: 50=쉰</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 50</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3",
           "image_path": null,
           "approved": true
@@ -924,7 +909,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-014",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>fifty</div>",
-          "back_html": "<div class='answer answer-ko'>쉰</div><div class='answer answer-en'>fifty</div><div class='notes'>Bottom row on slide: 50=쉰</div><div class='source-ref'>Source: 50 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>쉰</div><div class='answer answer-en'>fifty</div><div class='pronunciation'>swin</div><div class='notes'>Bottom row on slide: 50=쉰</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 50</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3",
           "image_path": null,
           "approved": true
@@ -934,7 +919,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-014",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>쉰</div><div class='answer answer-en'>fifty</div><div class='notes'>Bottom row on slide: 50=쉰</div><div class='source-ref'>Source: 50 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>쉰</div><div class='answer answer-en'>fifty</div><div class='pronunciation'>swin</div><div class='notes'>Bottom row on slide: 50=쉰</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 50</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-014.mp3",
           "image_path": null,
           "approved": true
@@ -959,15 +944,14 @@
         "item_type": "number",
         "korean": "예순",
         "english": "sixty",
-        "pronunciation": null,
+        "pronunciation": "yesun",
         "examples": [],
         "notes": "Bottom row on slide: 60=예순",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "60 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 60",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3",
           "prompt": null,
@@ -981,7 +965,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-015",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>예순</div>",
-          "back_html": "<div class='answer answer-en'>sixty</div><div class='answer answer-ko'>예순</div><div class='notes'>Bottom row on slide: 60=예순</div><div class='source-ref'>Source: 60 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>sixty</div><div class='answer answer-ko'>예순</div><div class='pronunciation'>yesun</div><div class='notes'>Bottom row on slide: 60=예순</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 60</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3",
           "image_path": null,
           "approved": true
@@ -991,7 +975,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-015",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>sixty</div>",
-          "back_html": "<div class='answer answer-ko'>예순</div><div class='answer answer-en'>sixty</div><div class='notes'>Bottom row on slide: 60=예순</div><div class='source-ref'>Source: 60 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>예순</div><div class='answer answer-en'>sixty</div><div class='pronunciation'>yesun</div><div class='notes'>Bottom row on slide: 60=예순</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 60</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3",
           "image_path": null,
           "approved": true
@@ -1001,7 +985,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-015",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>예순</div><div class='answer answer-en'>sixty</div><div class='notes'>Bottom row on slide: 60=예순</div><div class='source-ref'>Source: 60 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>예순</div><div class='answer answer-en'>sixty</div><div class='pronunciation'>yesun</div><div class='notes'>Bottom row on slide: 60=예순</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 60</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-015.mp3",
           "image_path": null,
           "approved": true
@@ -1026,15 +1010,14 @@
         "item_type": "number",
         "korean": "일흔",
         "english": "seventy",
-        "pronunciation": null,
+        "pronunciation": "ilheun",
         "examples": [],
         "notes": "Bottom row on slide: 70=일흔",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "70 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 70",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3",
           "prompt": null,
@@ -1048,7 +1031,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-016",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>일흔</div>",
-          "back_html": "<div class='answer answer-en'>seventy</div><div class='answer answer-ko'>일흔</div><div class='notes'>Bottom row on slide: 70=일흔</div><div class='source-ref'>Source: 70 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>seventy</div><div class='answer answer-ko'>일흔</div><div class='pronunciation'>ilheun</div><div class='notes'>Bottom row on slide: 70=일흔</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 70</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3",
           "image_path": null,
           "approved": true
@@ -1058,7 +1041,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-016",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>seventy</div>",
-          "back_html": "<div class='answer answer-ko'>일흔</div><div class='answer answer-en'>seventy</div><div class='notes'>Bottom row on slide: 70=일흔</div><div class='source-ref'>Source: 70 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>일흔</div><div class='answer answer-en'>seventy</div><div class='pronunciation'>ilheun</div><div class='notes'>Bottom row on slide: 70=일흔</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 70</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3",
           "image_path": null,
           "approved": true
@@ -1068,7 +1051,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-016",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>일흔</div><div class='answer answer-en'>seventy</div><div class='notes'>Bottom row on slide: 70=일흔</div><div class='source-ref'>Source: 70 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>일흔</div><div class='answer answer-en'>seventy</div><div class='pronunciation'>ilheun</div><div class='notes'>Bottom row on slide: 70=일흔</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 70</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-016.mp3",
           "image_path": null,
           "approved": true
@@ -1093,15 +1076,14 @@
         "item_type": "number",
         "korean": "여든",
         "english": "eighty",
-        "pronunciation": null,
+        "pronunciation": "yeodeun",
         "examples": [],
         "notes": "Bottom row on slide: 80=여든",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "80 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 80",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3",
           "prompt": null,
@@ -1115,7 +1097,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-017",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>여든</div>",
-          "back_html": "<div class='answer answer-en'>eighty</div><div class='answer answer-ko'>여든</div><div class='notes'>Bottom row on slide: 80=여든</div><div class='source-ref'>Source: 80 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>eighty</div><div class='answer answer-ko'>여든</div><div class='pronunciation'>yeodeun</div><div class='notes'>Bottom row on slide: 80=여든</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 80</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3",
           "image_path": null,
           "approved": true
@@ -1125,7 +1107,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-017",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>eighty</div>",
-          "back_html": "<div class='answer answer-ko'>여든</div><div class='answer answer-en'>eighty</div><div class='notes'>Bottom row on slide: 80=여든</div><div class='source-ref'>Source: 80 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>여든</div><div class='answer answer-en'>eighty</div><div class='pronunciation'>yeodeun</div><div class='notes'>Bottom row on slide: 80=여든</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 80</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3",
           "image_path": null,
           "approved": true
@@ -1135,7 +1117,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-017",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>여든</div><div class='answer answer-en'>eighty</div><div class='notes'>Bottom row on slide: 80=여든</div><div class='source-ref'>Source: 80 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>여든</div><div class='answer answer-en'>eighty</div><div class='pronunciation'>yeodeun</div><div class='notes'>Bottom row on slide: 80=여든</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 80</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-017.mp3",
           "image_path": null,
           "approved": true
@@ -1160,15 +1142,14 @@
         "item_type": "number",
         "korean": "아흔",
         "english": "ninety",
-        "pronunciation": null,
+        "pronunciation": "aheun",
         "examples": [],
         "notes": "Bottom row on slide: 90=아흔",
         "tags": [
           "numbers",
-          "native-korean",
-          "right-column"
+          "native-korean"
         ],
-        "source_ref": "90 • section-right-native",
+        "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 90",
         "audio": {
           "path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3",
           "prompt": null,
@@ -1182,7 +1163,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-018",
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>아흔</div>",
-          "back_html": "<div class='answer answer-en'>ninety</div><div class='answer answer-ko'>아흔</div><div class='notes'>Bottom row on slide: 90=아흔</div><div class='source-ref'>Source: 90 • section-right-native</div>",
+          "back_html": "<div class='answer answer-en'>ninety</div><div class='answer answer-ko'>아흔</div><div class='pronunciation'>aheun</div><div class='notes'>Bottom row on slide: 90=아흔</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 90</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3",
           "image_path": null,
           "approved": true
@@ -1192,7 +1173,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-018",
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>ninety</div>",
-          "back_html": "<div class='answer answer-ko'>아흔</div><div class='answer answer-en'>ninety</div><div class='notes'>Bottom row on slide: 90=아흔</div><div class='source-ref'>Source: 90 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>아흔</div><div class='answer answer-en'>ninety</div><div class='pronunciation'>aheun</div><div class='notes'>Bottom row on slide: 90=아흔</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 90</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3",
           "image_path": null,
           "approved": true
@@ -1202,7 +1183,7 @@
           "item_id": "italki-2026-03-23-numbers-section-right-native-018",
           "kind": "listening",
           "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3'></audio>",
-          "back_html": "<div class='answer answer-ko'>아흔</div><div class='answer answer-en'>ninety</div><div class='notes'>Bottom row on slide: 90=아흔</div><div class='source-ref'>Source: 90 • section-right-native</div>",
+          "back_html": "<div class='answer answer-ko'>아흔</div><div class='answer answer-en'>ninety</div><div class='pronunciation'>aheun</div><div class='notes'>Bottom row on slide: 90=아흔</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 90</div>",
           "audio_path": "preview/public/media/audio/italki-2026-03-23-numbers-section-right-native-018.mp3",
           "image_path": null,
           "approved": true

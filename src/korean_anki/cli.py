@@ -8,9 +8,17 @@ from dotenv import load_dotenv
 
 from .anki import DEFAULT_DECK, push_batch
 from .cards import generate_batch
-from .llm import extract_lesson, read_lesson, read_transcription, transcribe_sources, write_json
+from .llm import (
+    extract_lesson,
+    generate_pronunciations,
+    read_lesson,
+    read_transcription,
+    transcribe_sources,
+    write_json,
+)
 from .media import enrich_audio, enrich_images
 from .schema import CardBatch, ExtractionRequest, RawSourceAsset
+from .push_service import run_server
 from .stages import build_lesson_documents, qa_transcription, write_lesson_documents
 
 
@@ -46,6 +54,8 @@ def _parse_args() -> argparse.Namespace:
     build_lessons = subparsers.add_parser("build-lessons", help="Stage 2: build one lesson JSON per transcribed section.")
     build_lessons.add_argument("--input", required=True)
     build_lessons.add_argument("--output-dir", required=True)
+    build_lessons.add_argument("--pronunciation-model", default="gpt-5.4")
+    build_lessons.add_argument("--skip-pronunciation-fill", action="store_true")
 
     qa = subparsers.add_parser("qa", help="Stage 3: run deterministic QA checks on a transcription.")
     qa.add_argument("--input", required=True)
@@ -63,6 +73,10 @@ def _parse_args() -> argparse.Namespace:
     push.add_argument("--deck", default=None)
     push.add_argument("--anki-url", default="http://127.0.0.1:8765")
     push.add_argument("--no-sync", action="store_true")
+
+    serve = subparsers.add_parser("serve", help="Run the local-only Python HTTP service for preview push actions.")
+    serve.add_argument("--host", default="127.0.0.1")
+    serve.add_argument("--port", type=int, default=8767)
 
     return parser.parse_args()
 
@@ -118,7 +132,20 @@ def _command_transcribe(args: argparse.Namespace) -> None:
 
 def _command_build_lessons(args: argparse.Namespace) -> None:
     transcription = read_transcription(Path(args.input))
-    documents = build_lesson_documents(transcription)
+    pronunciation_lookup: dict[str, str] = {}
+    if not args.skip_pronunciation_fill:
+        missing_pronunciations = [
+            entry.korean
+            for section in transcription.sections
+            for entry in section.entries
+            if entry.pronunciation is None
+        ]
+        pronunciation_lookup = generate_pronunciations(
+            missing_pronunciations,
+            model=args.pronunciation_model,
+        )
+
+    documents = build_lesson_documents(transcription, pronunciation_lookup=pronunciation_lookup)
     written = write_lesson_documents(documents, Path(args.output_dir))
     print("\n".join(str(path) for path in written))
 
@@ -152,13 +179,13 @@ def _command_generate(args: argparse.Namespace) -> None:
 def _command_push(args: argparse.Namespace) -> None:
     batch = CardBatch.model_validate_json(Path(args.input).read_text(encoding="utf-8"))
     deck_name = args.deck if args.deck is not None else batch.metadata.target_deck or DEFAULT_DECK
-    note_ids = push_batch(
+    result = push_batch(
         batch,
         deck_name=deck_name,
         anki_url=args.anki_url,
         sync=not args.no_sync,
     )
-    print(f"Pushed {len(note_ids)} notes to Anki: {note_ids}")
+    print(result.model_dump_json(indent=2, ensure_ascii=False))
 
 
 def main() -> None:
@@ -181,6 +208,9 @@ def main() -> None:
         return
     if args.command == "push":
         _command_push(args)
+        return
+    if args.command == "serve":
+        run_server(host=args.host, port=args.port)
         return
 
     raise SystemExit(f"Unknown command: {args.command}")

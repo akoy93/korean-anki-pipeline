@@ -14,8 +14,8 @@
   "raw_sources": [
     {
       "kind": "image",
-      "path": "attached-image",
-      "description": "Italki lesson slide with two columns: Sino-Korean numbers on the left and native Korean numbers on the right."
+      "path": "lessons/2026-03-23-numbers/raw-sources/2026-03-21_1.png",
+      "description": "Original full-resolution Italki slide with Sino-Korean and native Korean number sections."
     }
   ],
   "expected_section_count": 2,

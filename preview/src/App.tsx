@@ -1,5 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { CheckCircle2, Download, FileJson, Link2, XCircle } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle2,
+  Download,
+  FileJson,
+  Link2,
+  Loader2,
+  Send,
+  ShieldCheck,
+  XCircle
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -7,7 +17,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import type { CardBatch, CardPreview, GeneratedNote, LessonItem } from "@/lib/schema";
+import type { CardBatch, CardPreview, GeneratedNote, LessonItem, PushResult } from "@/lib/schema";
 
 import sampleBatch from "../../data/samples/numbers.batch.json";
 
@@ -119,6 +129,17 @@ function App() {
   const [batch, setBatch] = useState<CardBatch>(initialBatch);
   const [loadedFrom, setLoadedFrom] = useState<string>("bundled sample");
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [pushPlan, setPushPlan] = useState<PushResult | null>(null);
+  const [pushResult, setPushResult] = useState<PushResult | null>(null);
+  const [pushError, setPushError] = useState<string | null>(null);
+  const [checkingPush, setCheckingPush] = useState<boolean>(false);
+  const [pushing, setPushing] = useState<boolean>(false);
+
+  function clearPushState() {
+    setPushPlan(null);
+    setPushResult(null);
+    setPushError(null);
+  }
 
   useEffect(() => {
     const directBatchPath = (() => {
@@ -158,6 +179,7 @@ function App() {
 
         setBatch(nextBatch);
         setLoadedFrom(batchPath);
+        clearPushState();
       } catch (error) {
         if (cancelled) {
           return;
@@ -189,6 +211,7 @@ function App() {
   }, [batch]);
 
   function updateNote(noteId: string, updater: (note: GeneratedNote) => GeneratedNote) {
+    clearPushState();
     setBatch((current) => ({
       ...current,
       notes: current.notes.map((note) => (note.item.id === noteId ? updater(note) : note))
@@ -207,6 +230,7 @@ function App() {
     setBatch(JSON.parse(text) as CardBatch);
     setLoadedFrom(file.name);
     setLoadError(null);
+    clearPushState();
   }
 
   function downloadReviewed() {
@@ -217,6 +241,61 @@ function App() {
     anchor.download = `${batch.metadata.lesson_id}.reviewed.json`;
     anchor.click();
     URL.revokeObjectURL(url);
+  }
+
+  async function callPushApi(dryRun: boolean): Promise<PushResult | null> {
+    const response = await fetch("/api/push", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        batch,
+        dry_run: dryRun,
+        deck_name: batch.metadata.target_deck ?? null,
+        sync: true
+      })
+    });
+
+    const body = (await response.json().catch(() => null)) as { error?: string } | PushResult | null;
+    if (!response.ok) {
+      const message =
+        body !== null && "error" in body && typeof body.error === "string"
+          ? body.error
+          : `Push service request failed: ${response.status}`;
+      throw new Error(message);
+    }
+
+    return body as PushResult;
+  }
+
+  async function runDryRun() {
+    setCheckingPush(true);
+    setPushError(null);
+    setPushResult(null);
+    try {
+      const result = await callPushApi(true);
+      setPushPlan(result);
+    } catch (error) {
+      setPushPlan(null);
+      setPushError(error instanceof Error ? error.message : "Failed to check push.");
+    } finally {
+      setCheckingPush(false);
+    }
+  }
+
+  async function pushToAnki() {
+    setPushing(true);
+    setPushError(null);
+    try {
+      const result = await callPushApi(false);
+      setPushResult(result);
+      setPushPlan(null);
+    } catch (error) {
+      setPushError(error instanceof Error ? error.message : "Failed to push to Anki.");
+    } finally {
+      setPushing(false);
+    }
   }
 
   return (
@@ -293,6 +372,106 @@ function App() {
                 <Download className="mr-2 h-4 w-4" />
                 Download reviewed JSON
               </Button>
+              <Button type="button" variant="secondary" onClick={() => void runDryRun()} disabled={checkingPush || pushing}>
+                {checkingPush ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ShieldCheck className="mr-2 h-4 w-4" />}
+                Check push
+              </Button>
+            </div>
+
+            <div className="space-y-3 rounded-md border border-border p-3 text-sm">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <div className="font-medium">Anki push</div>
+                  <div className="text-muted-foreground">
+                    Dry-run first, then confirm the target deck and note count before importing.
+                  </div>
+                </div>
+              </div>
+
+              {pushError ? (
+                <div className="rounded-md border border-red-200 bg-red-50 p-3 text-red-700">{pushError}</div>
+              ) : null}
+
+              {pushPlan ? (
+                <div className="space-y-3 rounded-md border border-amber-200 bg-amber-50 p-3">
+                  <div className="space-y-2">
+                    <div className="rounded-md border border-amber-200 bg-white p-3">
+                      <div className="text-muted-foreground">Target deck</div>
+                      <div className="mt-1 break-all font-mono text-base font-medium leading-snug">{pushPlan.deck_name}</div>
+                    </div>
+
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      <div className="rounded-md border border-amber-200 bg-white p-3">
+                        <div className="text-muted-foreground">Approved notes</div>
+                        <div className="mt-1 text-2xl font-semibold leading-none">{pushPlan.approved_notes}</div>
+                      </div>
+                      <div className="rounded-md border border-amber-200 bg-white p-3">
+                        <div className="text-muted-foreground">Approved cards</div>
+                        <div className="mt-1 text-2xl font-semibold leading-none">{pushPlan.approved_cards}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {pushPlan.duplicate_notes.length > 0 ? (
+                    <div className="space-y-2 rounded-md border border-red-200 bg-white p-3">
+                      <div className="flex items-center gap-2 font-medium text-red-700">
+                        <AlertTriangle className="h-4 w-4" />
+                        Duplicate notes found in this deck. Push is blocked.
+                      </div>
+                      <ul className="space-y-1">
+                        {pushPlan.duplicate_notes.map((duplicate) => (
+                          <li key={`${duplicate.item_id}-${duplicate.existing_note_id}`}>
+                            {duplicate.korean} / {duplicate.english}{" "}
+                            <span className="text-muted-foreground">(existing note {duplicate.existing_note_id})</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : pushPlan.can_push ? (
+                    <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-emerald-200 bg-white p-3">
+                      <div className="flex items-center gap-2 text-emerald-700">
+                        <CheckCircle2 className="h-4 w-4" />
+                        No duplicates found. Ready to push this reviewed batch.
+                      </div>
+                      <Button type="button" onClick={() => void pushToAnki()} disabled={pushing}>
+                        {pushing ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
+                        Push to Anki
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2 rounded-md border border-slate-200 bg-white p-3 text-slate-700">
+                      <AlertTriangle className="h-4 w-4" />
+                      No approved notes are selected, so there is nothing to push yet.
+                    </div>
+                  )}
+                </div>
+              ) : null}
+
+              {pushResult ? (
+                <div className="space-y-2 rounded-md border border-emerald-200 bg-emerald-50 p-3">
+                  <div className="flex items-center gap-2 font-medium text-emerald-800">
+                    <CheckCircle2 className="h-4 w-4" />
+                    Pushed to {pushResult.deck_name}
+                  </div>
+                  <div className="grid gap-2 md:grid-cols-3">
+                    <div>
+                      <div className="text-muted-foreground">Notes added</div>
+                      <div className="font-medium">{pushResult.notes_added}</div>
+                    </div>
+                    <div>
+                      <div className="text-muted-foreground">Cards created</div>
+                      <div className="font-medium">{pushResult.cards_created}</div>
+                    </div>
+                    <div>
+                      <div className="text-muted-foreground">Sync</div>
+                      <div className="font-medium">{pushResult.sync_completed ? "Completed" : "Not completed"}</div>
+                    </div>
+                  </div>
+                  {pushResult.reviewed_batch_path ? (
+                    <div className="text-muted-foreground">Saved reviewed batch to {pushResult.reviewed_batch_path}</div>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
           </CardContent>
         </Card>

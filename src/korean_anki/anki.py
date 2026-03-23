@@ -6,7 +6,7 @@ from typing import Literal, TypedDict
 
 import requests
 
-from .schema import CardBatch, GeneratedNote
+from .schema import CardBatch, DuplicateNote, GeneratedNote, PushResult
 
 ANKI_MODEL_NAME = "Korean Lesson Item"
 DEFAULT_DECK = "Korean::Lessons"
@@ -156,6 +156,18 @@ img { max-width: 280px; max-height: 280px; margin-top: 12px; }
         self.invoke("sync")
 
 
+def _approved_notes(batch: CardBatch) -> list[GeneratedNote]:
+    return [note for note in batch.notes if note.approved and any(card.approved for card in note.cards)]
+
+
+def _approved_card_count(note: GeneratedNote) -> int:
+    return sum(
+        1
+        for card in note.cards
+        if card.approved and (card.kind != "listening" or note.item.audio is not None)
+    )
+
+
 def _join_examples(note: GeneratedNote, field: Literal["korean", "english"]) -> str:
     if field == "korean":
         return "\n".join(example.korean for example in note.item.examples)
@@ -205,29 +217,144 @@ def _note_payload(note: GeneratedNote, deck_name: str, media_names: dict[str, st
     }
 
 
+def _target_deck(batch: CardBatch, deck_name: str | None) -> str:
+    return deck_name or batch.metadata.target_deck or DEFAULT_DECK
+
+
+def find_duplicate_notes(
+    batch: CardBatch,
+    deck_name: str | None = None,
+    anki_url: str = "http://127.0.0.1:8765",
+) -> list[DuplicateNote]:
+    client = AnkiConnectClient(url=anki_url)
+    resolved_deck = _target_deck(batch, deck_name)
+    query = f'deck:"{resolved_deck}" note:"{ANKI_MODEL_NAME}"'
+    existing_note_ids = client.invoke("findNotes", query=query)
+    if not isinstance(existing_note_ids, list) or not existing_note_ids:
+        return []
+
+    notes_info = client.invoke("notesInfo", notes=existing_note_ids)
+    if not isinstance(notes_info, list):
+        return []
+
+    existing_by_key: dict[tuple[str, str], int] = {}
+    for note_info in notes_info:
+        if not isinstance(note_info, dict):
+            continue
+        fields = note_info.get("fields")
+        note_id = note_info.get("noteId")
+        if not isinstance(fields, dict) or not isinstance(note_id, int):
+            continue
+        korean_field = fields.get("Korean")
+        english_field = fields.get("English")
+        if not isinstance(korean_field, dict) or not isinstance(english_field, dict):
+            continue
+        korean = korean_field.get("value")
+        english = english_field.get("value")
+        if not isinstance(korean, str) or not isinstance(english, str):
+            continue
+        existing_by_key[(korean, english)] = note_id
+
+    duplicates: list[DuplicateNote] = []
+    for note in _approved_notes(batch):
+        key = (note.item.korean, note.item.english)
+        existing_note_id = existing_by_key.get(key)
+        if existing_note_id is not None:
+            duplicates.append(
+                DuplicateNote(
+                    item_id=note.item.id,
+                    korean=note.item.korean,
+                    english=note.item.english,
+                    existing_note_id=existing_note_id,
+                )
+            )
+
+    return duplicates
+
+
+def plan_push(
+    batch: CardBatch,
+    deck_name: str | None = None,
+    anki_url: str = "http://127.0.0.1:8765",
+) -> PushResult:
+    resolved_deck = _target_deck(batch, deck_name)
+    approved_notes = _approved_notes(batch)
+    duplicate_notes = find_duplicate_notes(batch, deck_name=resolved_deck, anki_url=anki_url)
+    approved_cards = sum(_approved_card_count(note) for note in approved_notes)
+
+    return PushResult(
+        deck_name=resolved_deck,
+        approved_notes=len(approved_notes),
+        approved_cards=approved_cards,
+        duplicate_notes=duplicate_notes,
+        dry_run=True,
+        can_push=len(approved_notes) > 0 and len(duplicate_notes) == 0,
+    )
+
+
 def push_batch(
     batch: CardBatch,
-    deck_name: str = DEFAULT_DECK,
+    deck_name: str | None = None,
     anki_url: str = "http://127.0.0.1:8765",
     sync: bool = True,
-) -> list[int | None]:
+) -> PushResult:
     client = AnkiConnectClient(url=anki_url)
-    client.ensure_deck(deck_name)
+    resolved_deck = _target_deck(batch, deck_name)
+    plan = plan_push(batch, deck_name=resolved_deck, anki_url=anki_url)
+    if plan.duplicate_notes:
+        raise RuntimeError(
+            f"Duplicate notes already exist in {resolved_deck}: "
+            + ", ".join(f"{duplicate.korean} / {duplicate.english}" for duplicate in plan.duplicate_notes)
+        )
+
+    client.ensure_deck(resolved_deck)
     client.ensure_model()
 
     media_names: dict[str, str] = {}
-    approved_notes = [note for note in batch.notes if note.approved and any(card.approved for card in note.cards)]
+    approved_notes = _approved_notes(batch)
     for note in approved_notes:
         if note.item.audio is not None and note.item.audio.path not in media_names:
             media_names[note.item.audio.path] = client.store_media_file(note.item.audio.path)
         if note.item.image is not None and note.item.image.path not in media_names:
             media_names[note.item.image.path] = client.store_media_file(note.item.image.path)
 
-    payloads = [_note_payload(note, deck_name, media_names) for note in approved_notes]
+    payloads = [_note_payload(note, resolved_deck, media_names) for note in approved_notes]
     if not payloads:
-        return []
+        return PushResult(
+            deck_name=resolved_deck,
+            approved_notes=0,
+            approved_cards=0,
+            dry_run=False,
+            can_push=False,
+            sync_requested=sync,
+            sync_completed=False,
+        )
 
     result = client.invoke("addNotes", notes=payloads)
+    if not isinstance(result, list):
+        raise RuntimeError("Unexpected AnkiConnect addNotes response.")
+
+    pushed_note_ids = [int(note_id) for note_id in result if isinstance(note_id, int)]
     if sync:
         client.sync()
-    return [int(note_id) if note_id is not None else None for note_id in result]
+
+    notes_added = len(pushed_note_ids)
+    cards_created = sum(
+        _approved_card_count(note)
+        for note, note_id in zip(approved_notes, result, strict=False)
+        if isinstance(note_id, int)
+    )
+
+    return PushResult(
+        deck_name=resolved_deck,
+        approved_notes=plan.approved_notes,
+        approved_cards=plan.approved_cards,
+        duplicate_notes=[],
+        dry_run=False,
+        can_push=True,
+        notes_added=notes_added,
+        cards_created=cards_created,
+        pushed_note_ids=pushed_note_ids,
+        sync_requested=sync,
+        sync_completed=sync,
+    )

@@ -59,3 +59,25 @@ export interface CardBatch {
   metadata: LessonMetadata;
   notes: GeneratedNote[];
 }
+
+export interface DuplicateNote {
+  item_id: string;
+  korean: string;
+  english: string;
+  existing_note_id: number;
+}
+
+export interface PushResult {
+  deck_name: string;
+  approved_notes: number;
+  approved_cards: number;
+  duplicate_notes: DuplicateNote[];
+  dry_run: boolean;
+  can_push: boolean;
+  notes_added: number;
+  cards_created: number;
+  pushed_note_ids: number[];
+  sync_requested: boolean;
+  sync_completed: boolean;
+  reviewed_batch_path?: string | null;
+}

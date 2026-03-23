@@ -148,3 +148,42 @@ class QaReport(StrictModel):
     lesson_id: str
     passed: bool
     issues: list[QaIssue] = Field(default_factory=list)
+
+
+class DuplicateNote(StrictModel):
+    item_id: str
+    korean: str
+    english: str
+    existing_note_id: int
+
+
+class PushRequest(StrictModel):
+    batch: CardBatch
+    dry_run: bool = True
+    deck_name: str | None = None
+    anki_url: str = "http://127.0.0.1:8765"
+    sync: bool = True
+
+
+class PushResult(StrictModel):
+    deck_name: str
+    approved_notes: int
+    approved_cards: int
+    duplicate_notes: list[DuplicateNote] = Field(default_factory=list)
+    dry_run: bool
+    can_push: bool
+    notes_added: int = 0
+    cards_created: int = 0
+    pushed_note_ids: list[int] = Field(default_factory=list)
+    sync_requested: bool = False
+    sync_completed: bool = False
+    reviewed_batch_path: str | None = None
+
+
+class PronunciationSuggestion(StrictModel):
+    korean: str
+    pronunciation: str
+
+
+class PronunciationBatch(StrictModel):
+    items: Annotated[list[PronunciationSuggestion], Field(min_length=1)]

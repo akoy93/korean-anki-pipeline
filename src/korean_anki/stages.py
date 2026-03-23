@@ -15,18 +15,26 @@ from .schema import (
     TranscriptionEntry,
 )
 
+_POSITIONAL_TAGS = frozenset({"left-column", "right-column"})
+
 
 def _default_deck(transcription: LessonTranscription, section_title: str) -> str:
     normalized = section_title.replace(" ", "-").replace("/", "-")
     return f"Korean::Lessons::{transcription.lesson_id}::{normalized}"
 
 
+def _study_tags(tags: list[str]) -> list[str]:
+    return [tag for tag in tags if tag not in _POSITIONAL_TAGS]
+
+
 def _to_item(
     transcription: LessonTranscription,
     section_id: str,
+    section_title: str,
     item_type: ItemType,
     section_usage_notes: list[str],
     section_tags: list[str],
+    pronunciation_lookup: dict[str, str],
     entry: TranscriptionEntry,
     index: int,
 ) -> LessonItem:
@@ -34,6 +42,9 @@ def _to_item(
     notes = entry.notes
     if notes is None and section_usage_notes:
         notes = " ".join(section_usage_notes)
+    pronunciation = entry.pronunciation or pronunciation_lookup.get(entry.korean)
+    source_names = ", ".join(Path(source.path).name for source in transcription.raw_sources)
+    source_ref = f"{transcription.lesson_date.isoformat()} {transcription.title} lesson • {source_names} • {section_title} • {entry.label}"
 
     return LessonItem(
         id=f"{transcription.lesson_id}-{section_id}-{index:03d}",
@@ -41,17 +52,21 @@ def _to_item(
         item_type=item_type,
         korean=entry.korean,
         english=entry.english,
-        pronunciation=entry.pronunciation,
+        pronunciation=pronunciation,
         examples=examples,
         notes=notes,
-        tags=section_tags,
-        source_ref=f"{entry.label} • {section_id}",
+        tags=_study_tags(section_tags),
+        source_ref=source_ref,
         audio=None,
         image=None,
     )
 
 
-def build_lesson_documents(transcription: LessonTranscription) -> list[LessonDocument]:
+def build_lesson_documents(
+    transcription: LessonTranscription,
+    pronunciation_lookup: dict[str, str] | None = None,
+) -> list[LessonDocument]:
+    resolved_pronunciation_lookup = pronunciation_lookup or {}
     documents: list[LessonDocument] = []
     for section in transcription.sections:
         metadata = LessonMetadata(
@@ -61,13 +76,23 @@ def build_lesson_documents(transcription: LessonTranscription) -> list[LessonDoc
             lesson_date=transcription.lesson_date,
             source_description=transcription.source_summary,
             target_deck=section.target_deck or _default_deck(transcription, section.title),
-            tags=section.tags,
+            tags=_study_tags(section.tags),
         )
         documents.append(
             LessonDocument(
                 metadata=metadata,
                 items=[
-                    _to_item(transcription, section.id, section.item_type, section.usage_notes, section.tags, entry, index)
+                    _to_item(
+                        transcription,
+                        section.id,
+                        section.title,
+                        section.item_type,
+                        section.usage_notes,
+                        section.tags,
+                        resolved_pronunciation_lookup,
+                        entry,
+                        index,
+                    )
                     for index, entry in enumerate(section.entries, start=1)
                 ],
             )

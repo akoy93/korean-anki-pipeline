@@ -9,8 +9,7 @@
     "target_deck": "Korean::Lessons::Numbers::Native",
     "tags": [
       "numbers",
-      "native-korean",
-      "right-column"
+      "native-korean"
     ]
   },
   "items": [
@@ -20,15 +19,14 @@
       "item_type": "number",
       "korean": "하나",
       "english": "one",
-      "pronunciation": null,
+      "pronunciation": "hana",
       "examples": [],
       "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "1 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 1",
       "audio": null,
       "image": null
     },
@@ -38,15 +36,14 @@
       "item_type": "number",
       "korean": "둘",
       "english": "two",
-      "pronunciation": null,
+      "pronunciation": "dul",
       "examples": [],
       "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "2 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 2",
       "audio": null,
       "image": null
     },
@@ -56,15 +53,14 @@
       "item_type": "number",
       "korean": "셋",
       "english": "three",
-      "pronunciation": null,
+      "pronunciation": "set",
       "examples": [],
       "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "3 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 3",
       "audio": null,
       "image": null
     },
@@ -74,15 +70,14 @@
       "item_type": "number",
       "korean": "넷",
       "english": "four",
-      "pronunciation": null,
+      "pronunciation": "net",
       "examples": [],
       "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "4 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 4",
       "audio": null,
       "image": null
     },
@@ -92,15 +87,14 @@
       "item_type": "number",
       "korean": "다섯",
       "english": "five",
-      "pronunciation": null,
+      "pronunciation": "daseot",
       "examples": [],
       "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "5 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 5",
       "audio": null,
       "image": null
     },
@@ -110,15 +104,14 @@
       "item_type": "number",
       "korean": "여섯",
       "english": "six",
-      "pronunciation": null,
+      "pronunciation": "yeoseot",
       "examples": [],
       "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "6 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 6",
       "audio": null,
       "image": null
     },
@@ -128,15 +121,14 @@
       "item_type": "number",
       "korean": "일곱",
       "english": "seven",
-      "pronunciation": null,
+      "pronunciation": "ilgop",
       "examples": [],
       "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "7 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 7",
       "audio": null,
       "image": null
     },
@@ -146,15 +138,14 @@
       "item_type": "number",
       "korean": "여덟",
       "english": "eight",
-      "pronunciation": null,
+      "pronunciation": "yeodeol",
       "examples": [],
       "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "8 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 8",
       "audio": null,
       "image": null
     },
@@ -164,15 +155,14 @@
       "item_type": "number",
       "korean": "아홉",
       "english": "nine",
-      "pronunciation": null,
+      "pronunciation": "ahop",
       "examples": [],
       "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "9 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 9",
       "audio": null,
       "image": null
     },
@@ -182,15 +172,14 @@
       "item_type": "number",
       "korean": "열",
       "english": "ten",
-      "pronunciation": null,
+      "pronunciation": "yeol",
       "examples": [],
       "notes": "개수, 횟수, 크기 등 Ex) when counting things or people",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "10 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 10",
       "audio": null,
       "image": null
     },
@@ -200,15 +189,14 @@
       "item_type": "number",
       "korean": "스물",
       "english": "twenty",
-      "pronunciation": null,
+      "pronunciation": "seumul",
       "examples": [],
       "notes": "Bottom row on slide: 20=스물",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "20 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 20",
       "audio": null,
       "image": null
     },
@@ -218,15 +206,14 @@
       "item_type": "number",
       "korean": "서른",
       "english": "thirty",
-      "pronunciation": null,
+      "pronunciation": "seoreun",
       "examples": [],
       "notes": "Bottom row on slide: 30=서른",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "30 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 30",
       "audio": null,
       "image": null
     },
@@ -236,15 +223,14 @@
       "item_type": "number",
       "korean": "마흔",
       "english": "forty",
-      "pronunciation": null,
+      "pronunciation": "maheun",
       "examples": [],
       "notes": "Bottom row on slide: 40=마흔",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "40 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 40",
       "audio": null,
       "image": null
     },
@@ -254,15 +240,14 @@
       "item_type": "number",
       "korean": "쉰",
       "english": "fifty",
-      "pronunciation": null,
+      "pronunciation": "swin",
       "examples": [],
       "notes": "Bottom row on slide: 50=쉰",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "50 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 50",
       "audio": null,
       "image": null
     },
@@ -272,15 +257,14 @@
       "item_type": "number",
       "korean": "예순",
       "english": "sixty",
-      "pronunciation": null,
+      "pronunciation": "yesun",
       "examples": [],
       "notes": "Bottom row on slide: 60=예순",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "60 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 60",
       "audio": null,
       "image": null
     },
@@ -290,15 +274,14 @@
       "item_type": "number",
       "korean": "일흔",
       "english": "seventy",
-      "pronunciation": null,
+      "pronunciation": "ilheun",
       "examples": [],
       "notes": "Bottom row on slide: 70=일흔",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "70 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 70",
       "audio": null,
       "image": null
     },
@@ -308,15 +291,14 @@
       "item_type": "number",
       "korean": "여든",
       "english": "eighty",
-      "pronunciation": null,
+      "pronunciation": "yeodeun",
       "examples": [],
       "notes": "Bottom row on slide: 80=여든",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "80 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 80",
       "audio": null,
       "image": null
     },
@@ -326,15 +308,14 @@
       "item_type": "number",
       "korean": "아흔",
       "english": "ninety",
-      "pronunciation": null,
+      "pronunciation": "aheun",
       "examples": [],
       "notes": "Bottom row on slide: 90=아흔",
       "tags": [
         "numbers",
-        "native-korean",
-        "right-column"
+        "native-korean"
       ],
-      "source_ref": "90 • section-right-native",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 하나 – 열 • 90",
       "audio": null,
       "image": null
     }

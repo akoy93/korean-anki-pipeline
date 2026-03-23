@@ -55,4 +55,13 @@ korean-anki generate \
   --media-dir preview/public/media
 ```
 
-Then open the preview app and load one batch JSON at a time.
+Then run the local push service and open a direct preview route:
+
+```bash
+korean-anki serve
+```
+
+- Sino-Korean: <http://127.0.0.1:5173/batch/lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-left-sino.batch.json>
+- Native Korean: <http://127.0.0.1:5173/batch/lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json>
+
+Use `Check push` for a dry-run first. The page shows the target deck, approved note/card counts, and blocks the import if duplicates already exist in that deck.

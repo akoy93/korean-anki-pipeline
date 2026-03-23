@@ -9,8 +9,7 @@
     "target_deck": "Korean::Lessons::Numbers::Sino",
     "tags": [
       "numbers",
-      "sino-korean",
-      "left-column"
+      "sino-korean"
     ]
   },
   "items": [
@@ -20,15 +19,14 @@
       "item_type": "number",
       "korean": "일",
       "english": "one",
-      "pronunciation": null,
+      "pronunciation": "il",
       "examples": [],
       "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "1 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 1",
       "audio": null,
       "image": null
     },
@@ -38,15 +36,14 @@
       "item_type": "number",
       "korean": "이",
       "english": "two",
-      "pronunciation": null,
+      "pronunciation": "i",
       "examples": [],
       "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "2 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 2",
       "audio": null,
       "image": null
     },
@@ -56,15 +53,14 @@
       "item_type": "number",
       "korean": "삼",
       "english": "three",
-      "pronunciation": null,
+      "pronunciation": "sam",
       "examples": [],
       "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "3 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 3",
       "audio": null,
       "image": null
     },
@@ -74,15 +70,14 @@
       "item_type": "number",
       "korean": "사",
       "english": "four",
-      "pronunciation": null,
+      "pronunciation": "sa",
       "examples": [],
       "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "4 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 4",
       "audio": null,
       "image": null
     },
@@ -92,15 +87,14 @@
       "item_type": "number",
       "korean": "오",
       "english": "five",
-      "pronunciation": null,
+      "pronunciation": "o",
       "examples": [],
       "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "5 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 5",
       "audio": null,
       "image": null
     },
@@ -110,15 +104,14 @@
       "item_type": "number",
       "korean": "육",
       "english": "six",
-      "pronunciation": null,
+      "pronunciation": "yuk",
       "examples": [],
       "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "6 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 6",
       "audio": null,
       "image": null
     },
@@ -128,15 +121,14 @@
       "item_type": "number",
       "korean": "칠",
       "english": "seven",
-      "pronunciation": null,
+      "pronunciation": "chil",
       "examples": [],
       "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "7 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 7",
       "audio": null,
       "image": null
     },
@@ -146,15 +138,14 @@
       "item_type": "number",
       "korean": "팔",
       "english": "eight",
-      "pronunciation": null,
+      "pronunciation": "pal",
       "examples": [],
       "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "8 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 8",
       "audio": null,
       "image": null
     },
@@ -164,15 +155,14 @@
       "item_type": "number",
       "korean": "구",
       "english": "nine",
-      "pronunciation": null,
+      "pronunciation": "gu",
       "examples": [],
       "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "9 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 9",
       "audio": null,
       "image": null
     },
@@ -182,15 +172,14 @@
       "item_type": "number",
       "korean": "십",
       "english": "ten",
-      "pronunciation": null,
+      "pronunciation": "ship",
       "examples": [],
       "notes": "수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "10 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 10",
       "audio": null,
       "image": null
     },
@@ -200,15 +189,14 @@
       "item_type": "number",
       "korean": "백",
       "english": "hundred",
-      "pronunciation": null,
+      "pronunciation": "baek",
       "examples": [],
       "notes": "Bottom row on slide: 100=백",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "100 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 100",
       "audio": null,
       "image": null
     },
@@ -218,15 +206,14 @@
       "item_type": "number",
       "korean": "천",
       "english": "thousand",
-      "pronunciation": null,
+      "pronunciation": "cheon",
       "examples": [],
       "notes": "Bottom row on slide: 1000=천",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "1000 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 1000",
       "audio": null,
       "image": null
     },
@@ -236,15 +223,14 @@
       "item_type": "number",
       "korean": "만",
       "english": "ten thousand",
-      "pronunciation": null,
+      "pronunciation": "man",
       "examples": [],
       "notes": "Bottom row on slide: 10000=만",
       "tags": [
         "numbers",
-        "sino-korean",
-        "left-column"
+        "sino-korean"
       ],
-      "source_ref": "10000 • section-left-sino",
+      "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 10000",
       "audio": null,
       "image": null
     }
