@@ -6,10 +6,13 @@ from pathlib import Path
 
 from openai import OpenAI
 
+from .llm import plan_image_generation
 from .schema import LessonDocument, MediaAsset
 
 
 _SLUG_RE = re.compile(r"[^a-zA-Z0-9가-힣]+")
+_IMAGE_NEVER_ITEM_TYPES = frozenset({"grammar", "number"})
+_IMAGE_CANDIDATE_ITEM_TYPES = frozenset({"vocab", "phrase", "dialogue"})
 
 
 def _slug(value: str) -> str:
@@ -40,13 +43,26 @@ def enrich_audio(document: LessonDocument, output_dir: Path, voice: str = "coral
     return document.model_copy(update={"items": updated_items})
 
 
-def enrich_images(document: LessonDocument, output_dir: Path) -> LessonDocument:
+def enrich_images(
+    document: LessonDocument,
+    output_dir: Path,
+    decision_model: str = "gpt-5.4",
+) -> LessonDocument:
     client = OpenAI()
     output_dir.mkdir(parents=True, exist_ok=True)
+    image_decisions = plan_image_generation(document, model=decision_model)
     updated_items = []
 
     for item in document.items:
         if item.image is not None:
+            updated_items.append(item)
+            continue
+        if item.item_type in _IMAGE_NEVER_ITEM_TYPES:
+            updated_items.append(item)
+            continue
+        if item.item_type not in _IMAGE_CANDIDATE_ITEM_TYPES:
+            raise RuntimeError(f"Unhandled item_type for image policy: {item.item_type}")
+        if not image_decisions[item.id]:
             updated_items.append(item)
             continue
 

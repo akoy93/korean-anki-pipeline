@@ -8,6 +8,7 @@ from openai import OpenAI
 
 from .schema import (
     ExtractionRequest,
+    ImageGenerationPlan,
     LessonDocument,
     LessonTranscription,
     PronunciationBatch,
@@ -46,6 +47,16 @@ Rules:
 - Preserve the input order exactly.
 - Keep each pronunciation concise and readable for an English-speaking learner.
 - Do not add extra explanation, punctuation, or IPA.
+"""
+
+IMAGE_DECISION_SYSTEM_PROMPT = """You decide whether a Korean flashcard should get an AI-generated image.
+
+Rules:
+- Return only valid JSON matching the requested schema.
+- Return one decision for every candidate item, preserving input order exactly.
+- Choose generate_image=true only when a simple concrete image or scene would likely improve recall.
+- Choose generate_image=false for abstract meanings, function words, grammar, numbers, or items where usage context matters more than visual identity.
+- Keep reasons short and specific.
 """
 
 
@@ -256,6 +267,34 @@ def _pronunciation_json_schema() -> dict[str, object]:
     }
 
 
+def _image_decision_json_schema() -> dict[str, object]:
+    return {
+        "name": "image_generation_plan",
+        "schema": {
+            "type": "object",
+            "additionalProperties": False,
+            "required": ["decisions"],
+            "properties": {
+                "decisions": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": False,
+                        "required": ["item_id", "generate_image", "reason"],
+                        "properties": {
+                            "item_id": {"type": "string"},
+                            "generate_image": {"type": "boolean"},
+                            "reason": {"type": "string"},
+                        },
+                    },
+                }
+            },
+        },
+        "strict": True,
+    }
+
+
 def _build_user_text(request: ExtractionRequest) -> str:
     parts = [
         f"lesson_id: {request.lesson_id}",
@@ -422,6 +461,59 @@ def generate_pronunciations(
     )
     batch = PronunciationBatch.model_validate_json(response.output_text)
     return {item.korean: item.pronunciation for item in batch.items}
+
+
+def plan_image_generation(
+    document: LessonDocument,
+    model: str = "gpt-5.4",
+) -> dict[str, bool]:
+    candidates = [
+        item
+        for item in document.items
+        if item.image is None and item.item_type in {"vocab", "phrase", "dialogue"}
+    ]
+    if not candidates:
+        return {}
+
+    client = OpenAI()
+    response = client.responses.create(
+        model=model,
+        input=[
+            {"role": "system", "content": IMAGE_DECISION_SYSTEM_PROMPT},
+            {
+                "role": "user",
+                "content": "\n".join(
+                    [
+                        f"Lesson title: {document.metadata.title}",
+                        f"Lesson topic: {document.metadata.topic}",
+                        "Candidate items:",
+                        *[
+                            (
+                                f"- item_id: {item.id} | item_type: {item.item_type} | "
+                                f"korean: {item.korean} | english: {item.english} | notes: {item.notes or ''}"
+                            )
+                            for item in candidates
+                        ],
+                    ]
+                ),
+            },
+        ],
+        text={
+            "format": {
+                "type": "json_schema",
+                **_image_decision_json_schema(),
+            }
+        },
+        reasoning={"effort": "low"},
+    )
+
+    plan = ImageGenerationPlan.model_validate_json(response.output_text)
+    decisions = {decision.item_id: decision.generate_image for decision in plan.decisions}
+    missing_item_ids = [item.id for item in candidates if item.id not in decisions]
+    if missing_item_ids:
+        raise RuntimeError(f"Image decision model omitted item ids: {', '.join(missing_item_ids)}")
+
+    return decisions
 
 
 def write_json(document: LessonDocument, output_path: Path) -> None:

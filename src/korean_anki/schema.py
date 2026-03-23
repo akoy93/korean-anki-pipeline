@@ -187,3 +187,13 @@ class PronunciationSuggestion(StrictModel):
 
 class PronunciationBatch(StrictModel):
     items: Annotated[list[PronunciationSuggestion], Field(min_length=1)]
+
+
+class ImageGenerationDecision(StrictModel):
+    item_id: str
+    generate_image: bool
+    reason: str
+
+
+class ImageGenerationPlan(StrictModel):
+    decisions: Annotated[list[ImageGenerationDecision], Field(min_length=1)]

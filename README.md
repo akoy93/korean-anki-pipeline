@@ -8,6 +8,7 @@ Local workflow for turning arbitrary Korean lesson material into reviewed Anki c
 - `preview`: TypeScript review UI built with React and ShadCN-style components
 - `data/samples`: sample number and phrase batches for validating the generic flow
 - `lessons/<date-topic>`: weekly lesson workspaces with raw sources, transcription, QA, generated files, and a lesson log
+- `CHANGELOG.md`: implementation history for iterative work across agents
 
 ## Python setup
 
