@@ -14,6 +14,16 @@ Local workflow for turning arbitrary Korean lesson material into reviewed Anki c
 
 ## Python setup
 
+For a fresh clone, run the bootstrap script:
+
+```bash
+./scripts/bootstrap.sh
+```
+
+That creates `.venv`, installs the Python package, installs preview dependencies, and seeds `.env` from `.env.example` if needed.
+
+Manual setup still works too:
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate
@@ -77,6 +87,13 @@ korean-anki push --input data/batch.reviewed.json
 ```
 
 Anki Desktop must be open with AnkiConnect installed.
+
+## Portability
+
+- `.env` is intentionally untracked. Copy `.env.example` to `.env` and set your own `OPENAI_API_KEY` on each machine.
+- Tracked lesson batches are committed without local media references, so a fresh clone does not point at missing audio/image files.
+- To restore audio/image preview on a new machine, regenerate the batch there with `--with-audio` and/or `--with-images`, using `--media-dir preview/public/media` if you want browser playback.
+- The local push flow still requires Anki Desktop plus AnkiConnect running on that machine.
 
 ## Tests
 
