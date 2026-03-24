@@ -8,6 +8,8 @@ from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 SchemaVersion = Literal["1"]
 ItemType = Literal["vocab", "phrase", "grammar", "dialogue", "number"]
 CardKind = Literal["recognition", "production", "listening", "number-context"]
+StudyLane = Literal["lesson", "new-vocab", "reading-speed", "grammar", "listening"]
+DuplicateStatus = Literal["new", "exact-duplicate", "near-duplicate"]
 RawSourceKind = Literal["image", "text"]
 QaSeverity = Literal["error", "warning"]
 
@@ -47,6 +49,8 @@ class LessonItem(StrictModel):
     examples: list[ExampleSentence] = Field(default_factory=list)
     notes: str | None = None
     tags: list[str] = Field(default_factory=list)
+    lane: StudyLane = "lesson"
+    skill_tags: list[str] = Field(default_factory=list)
     source_ref: str | None = None
     audio: MediaAsset | None = None
     image: MediaAsset | None = None
@@ -73,6 +77,14 @@ class GeneratedNote(StrictModel):
     item: LessonItem
     cards: Annotated[list[CardPreview], Field(min_length=1)]
     approved: bool = True
+    note_key: str = ""
+    lane: StudyLane = "lesson"
+    skill_tags: list[str] = Field(default_factory=list)
+    duplicate_status: DuplicateStatus = "new"
+    duplicate_note_key: str | None = None
+    duplicate_note_id: int | None = None
+    duplicate_source: str | None = None
+    inclusion_reason: str = "New card"
 
 
 class CardBatch(StrictModel):
@@ -197,3 +209,27 @@ class ImageGenerationDecision(StrictModel):
 
 class ImageGenerationPlan(StrictModel):
     decisions: Annotated[list[ImageGenerationDecision], Field(min_length=1)]
+
+
+class PriorNote(StrictModel):
+    note_key: str
+    korean: str
+    english: str
+    item_type: ItemType
+    lane: StudyLane = "lesson"
+    skill_tags: list[str] = Field(default_factory=list)
+    source: str
+    existing_note_id: int | None = None
+
+
+class AnkiStatsSnapshot(StrictModel):
+    note_count: int = 0
+    card_count: int = 0
+    by_template: dict[str, int] = Field(default_factory=dict)
+    by_tag: dict[str, int] = Field(default_factory=dict)
+
+
+class StudyState(StrictModel):
+    generated_notes: list[PriorNote] = Field(default_factory=list)
+    imported_notes: list[PriorNote] = Field(default_factory=list)
+    anki_stats: AnkiStatsSnapshot = Field(default_factory=AnkiStatsSnapshot)

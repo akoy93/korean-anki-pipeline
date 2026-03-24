@@ -189,8 +189,10 @@ def _note_payload(note: GeneratedNote, deck_name: str, media_names: dict[str, st
         {
             "korean",
             f"lesson:{note.item.lesson_id}",
+            f"lane:{note.lane}",
             f"type:{note.item.item_type}",
             *note.item.tags,
+            *(f"skill:{skill_tag}" for skill_tag in note.skill_tags),
         }
     )
 

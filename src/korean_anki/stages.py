@@ -56,6 +56,8 @@ def _to_item(
         examples=examples,
         notes=notes,
         tags=_study_tags(section_tags),
+        lane="lesson",
+        skill_tags=_study_tags(section_tags),
         source_ref=source_ref,
         audio=None,
         image=None,

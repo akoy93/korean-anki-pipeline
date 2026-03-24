@@ -22,6 +22,8 @@ class StageTests(unittest.TestCase):
         item = document.items[0]
         self.assertEqual(item.pronunciation, "il")
         self.assertEqual(item.tags, ["numbers", "sino-korean"])
+        self.assertEqual(item.lane, "lesson")
+        self.assertEqual(item.skill_tags, ["numbers", "sino-korean"])
         self.assertEqual(item.notes, "Used for sequence and prices.")
         self.assertEqual(
             item.source_ref,

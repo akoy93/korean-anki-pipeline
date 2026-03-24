@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from datetime import date
 from pathlib import Path
 
@@ -20,6 +21,7 @@ from .media import enrich_audio, enrich_images
 from .schema import CardBatch, ExtractionRequest, RawSourceAsset
 from .push_service import run_server
 from .stages import build_lesson_documents, qa_transcription, write_lesson_documents
+from .study_state import build_study_state
 
 
 def _parse_args() -> argparse.Namespace:
@@ -67,6 +69,8 @@ def _parse_args() -> argparse.Namespace:
     generate.add_argument("--with-audio", action="store_true")
     generate.add_argument("--with-images", action="store_true")
     generate.add_argument("--media-dir", default="data/media")
+    generate.add_argument("--project-root", default=".")
+    generate.add_argument("--anki-url", default="http://127.0.0.1:8765")
 
     push = subparsers.add_parser("push", help="Push approved cards to Anki Desktop via AnkiConnect.")
     push.add_argument("--input", required=True)
@@ -164,16 +168,52 @@ def _command_qa(args: argparse.Namespace) -> None:
 def _command_generate(args: argparse.Namespace) -> None:
     document = read_lesson(Path(args.input))
     media_dir = Path(args.media_dir)
+    output_path = Path(args.output)
 
     if args.with_audio:
         document = enrich_audio(document, media_dir / "audio")
     if args.with_images:
         document = enrich_images(document, media_dir / "images")
 
-    batch = generate_batch(document)
-    output_path = Path(args.output)
+    project_root = Path(args.project_root)
+    state = build_study_state(project_root, anki_url=args.anki_url, exclude_batch_path=output_path)
+    batch = generate_batch(document, study_state=state)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    state_output = project_root / "state" / "study-state.json"
+    state_output.parent.mkdir(parents=True, exist_ok=True)
+    state_output.write_text(state.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    plan_output = output_path.with_suffix(".generation-plan.json")
+    plan_output.write_text(
+        json.dumps(
+            {
+                "lesson_id": batch.metadata.lesson_id,
+                "notes": [
+                    note.model_dump(
+                        include={
+                            "item": {"id", "korean", "english", "item_type", "lane", "skill_tags"},
+                            "note_key": True,
+                            "lane": True,
+                            "skill_tags": True,
+                            "duplicate_status": True,
+                            "duplicate_note_key": True,
+                            "duplicate_note_id": True,
+                            "duplicate_source": True,
+                            "inclusion_reason": True,
+                            "approved": True,
+                        }
+                    )
+                    for note in batch.notes
+                ],
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
 
 
 def _command_push(args: argparse.Namespace) -> None:

@@ -1,0 +1,42 @@
+from __future__ import annotations
+
+import tempfile
+import unittest
+from pathlib import Path
+
+from korean_anki.cards import generate_batch
+from korean_anki.study_state import generated_history, normalize_text, note_key_for_item
+
+from support import make_document, make_item
+
+
+class StudyStateTests(unittest.TestCase):
+    def test_normalized_note_key_is_stable_across_case_and_spacing(self) -> None:
+        item = make_item(korean=" 안녕 하세요 ", english=" Hello ")
+
+        self.assertEqual(normalize_text("  Hello  World "), "hello world")
+        self.assertEqual(note_key_for_item(item), "vocab:안녕 하세요:hello")
+
+    def test_generated_history_scans_real_generated_batches_and_skips_samples(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            project_root = Path(temp_dir)
+
+            real_dir = project_root / "lessons" / "2026-03-23-test" / "generated"
+            real_dir.mkdir(parents=True)
+            sample_dir = project_root / "data" / "samples"
+            sample_dir.mkdir(parents=True)
+
+            real_batch = generate_batch(make_document([make_item(item_id="real-1", korean="일", english="one")]))
+            sample_batch = generate_batch(make_document([make_item(item_id="sample-1", korean="이", english="two")]))
+
+            (real_dir / "real.batch.json").write_text(real_batch.model_dump_json(), encoding="utf-8")
+            (sample_dir / "sample.batch.json").write_text(sample_batch.model_dump_json(), encoding="utf-8")
+
+            history = generated_history(project_root)
+
+        self.assertEqual([note.korean for note in history], ["일"])
+        self.assertEqual(history[0].source, "lessons/2026-03-23-test/generated/real.batch.json")
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -10,3 +10,6 @@ src/*.egg-info/
 preview/node_modules/
 preview/dist/
 preview/public/media/
+data/media/
+*.generation-plan.json
+state/

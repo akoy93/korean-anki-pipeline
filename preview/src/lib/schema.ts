@@ -1,5 +1,7 @@
 export type ItemType = "vocab" | "phrase" | "grammar" | "dialogue" | "number";
 export type CardKind = "recognition" | "production" | "listening" | "number-context";
+export type StudyLane = "lesson" | "new-vocab" | "reading-speed" | "grammar" | "listening";
+export type DuplicateStatus = "new" | "exact-duplicate" | "near-duplicate";
 
 export interface ExampleSentence {
   korean: string;
@@ -32,6 +34,8 @@ export interface LessonItem {
   examples: ExampleSentence[];
   notes?: string | null;
   tags: string[];
+  lane?: StudyLane;
+  skill_tags?: string[];
   source_ref?: string | null;
   audio?: MediaAsset | null;
   image?: MediaAsset | null;
@@ -52,6 +56,14 @@ export interface GeneratedNote {
   item: LessonItem;
   cards: CardPreview[];
   approved: boolean;
+  note_key?: string;
+  lane?: StudyLane;
+  skill_tags?: string[];
+  duplicate_status?: DuplicateStatus;
+  duplicate_note_key?: string | null;
+  duplicate_note_id?: number | null;
+  duplicate_source?: string | null;
+  inclusion_reason?: string;
 }
 
 export interface CardBatch {

@@ -221,7 +221,17 @@ function App() {
   function updateItem(noteId: string, updater: (item: LessonItem) => LessonItem) {
     updateNote(noteId, (current) => {
       const item = updater(current.item);
-      return { ...current, item, cards: renderCardsForItem(item, current.cards) };
+      return {
+        ...current,
+        item,
+        cards: renderCardsForItem(item, current.duplicate_status === "exact-duplicate" ? [] : current.cards),
+        approved: current.duplicate_status === "exact-duplicate" ? true : current.approved,
+        duplicate_status: "new",
+        duplicate_note_key: null,
+        duplicate_note_id: null,
+        duplicate_source: null,
+        inclusion_reason: "Edited in preview"
+      };
     });
   }
 
@@ -485,22 +495,64 @@ function App() {
                 <div className="flex flex-wrap items-center gap-3">
                   <CardTitle className="text-xl">{note.item.korean}</CardTitle>
                   <Badge variant="secondary">{note.item.item_type}</Badge>
+                  <Badge variant="outline">lane: {note.lane ?? note.item.lane ?? "lesson"}</Badge>
                   {note.item.tags.map((tag) => (
                     <Badge key={tag} variant="outline">
                       {tag}
+                    </Badge>
+                  ))}
+                  {(note.skill_tags ?? note.item.skill_tags ?? []).map((tag) => (
+                    <Badge key={`skill-${tag}`} variant="outline">
+                      skill: {tag}
                     </Badge>
                   ))}
                 </div>
                 <Button
                   type="button"
                   variant={note.approved ? "default" : "outline"}
+                  disabled={note.duplicate_status === "exact-duplicate"}
                   onClick={() => updateNote(note.item.id, (current) => ({ ...current, approved: !current.approved }))}
                 >
-                  {note.approved ? <CheckCircle2 className="mr-2 h-4 w-4" /> : <XCircle className="mr-2 h-4 w-4" />}
-                  {note.approved ? "Approved note" : "Rejected note"}
+                  {note.duplicate_status === "exact-duplicate" ? (
+                    <AlertTriangle className="mr-2 h-4 w-4" />
+                  ) : note.approved ? (
+                    <CheckCircle2 className="mr-2 h-4 w-4" />
+                  ) : (
+                    <XCircle className="mr-2 h-4 w-4" />
+                  )}
+                  {note.duplicate_status === "exact-duplicate"
+                    ? "Blocked duplicate"
+                    : note.approved
+                      ? "Approved note"
+                      : "Rejected note"}
                 </Button>
               </div>
               <CardDescription>{note.item.source_ref ?? batch.metadata.source_description}</CardDescription>
+              <div className="mt-3 space-y-2">
+                <div className="rounded-md border border-border bg-background p-3 text-sm">
+                  <div className="text-muted-foreground">Generation rationale</div>
+                  <div className="mt-1 font-medium">{note.inclusion_reason ?? "New card"}</div>
+                  {note.note_key ? (
+                    <div className="mt-1 break-all font-mono text-xs text-muted-foreground">{note.note_key}</div>
+                  ) : null}
+                </div>
+
+                {note.duplicate_status === "exact-duplicate" ? (
+                  <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                    Exact duplicate blocked before push.
+                    {note.duplicate_source ? ` Prior source: ${note.duplicate_source}.` : ""}
+                    {note.duplicate_note_id ? ` Existing Anki note ${note.duplicate_note_id}.` : ""}
+                  </div>
+                ) : null}
+
+                {note.duplicate_status === "near-duplicate" ? (
+                  <div className="rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
+                    Near-duplicate warning.
+                    {note.duplicate_source ? ` Similar prior source: ${note.duplicate_source}.` : ""}
+                    {note.duplicate_note_id ? ` Existing Anki note ${note.duplicate_note_id}.` : ""}
+                  </div>
+                ) : null}
+              </div>
             </CardHeader>
 
             <CardContent className="grid gap-6 pt-6 lg:grid-cols-[minmax(320px,380px)_1fr]">
