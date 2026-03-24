@@ -3,6 +3,8 @@ from __future__ import annotations
 from html import escape
 from pathlib import Path
 
+from .new_vocab import inclusion_reason_for_item
+from .reading_speed import chunk_hangul
 from .schema import CardBatch, CardPreview, GeneratedNote, LessonDocument, LessonItem, PriorNote, StudyState
 from .study_state import normalize_text, note_key_for_item
 
@@ -134,6 +136,85 @@ def _number_context_card(item: LessonItem) -> CardPreview | None:
     )
 
 
+def _read_aloud_card(item: LessonItem) -> CardPreview:
+    audio_html = ""
+    if item.audio is not None:
+        audio_name = escape(Path(item.audio.path).name)
+        audio_html = f"<div class='reading-audio'><audio controls src='/media/audio/{audio_name}'></audio></div>"
+
+    return CardPreview(
+        id=f"{item.id}-read-aloud",
+        item_id=item.id,
+        kind="read-aloud",
+        front_html=(
+            "<div class='prompt prompt-context'>Read aloud before revealing anything else.</div>"
+            f"<div class='prompt prompt-ko'>{escape(item.korean)}</div>"
+        ),
+        back_html=(
+            f"<div class='answer answer-ko'>{escape(item.korean)}</div>"
+            f"<div class='answer answer-en'>{escape(item.english)}</div>"
+            f"{_render_back_common(item)}"
+            f"{audio_html}"
+        ),
+        audio_path=item.audio.path if item.audio is not None else None,
+        image_path=None,
+    )
+
+
+def _chunked_reading_card(item: LessonItem) -> CardPreview:
+    chunked = chunk_hangul(item.korean)
+    return CardPreview(
+        id=f"{item.id}-chunked-reading",
+        item_id=item.id,
+        kind="chunked-reading",
+        front_html=(
+            "<div class='prompt prompt-context'>Sound out the chunks, then blend the full word.</div>"
+            f"<div class='prompt prompt-ko'>{escape(chunked)}</div>"
+        ),
+        back_html=(
+            f"<div class='answer answer-ko'>{escape(item.korean)}</div>"
+            f"<div class='answer answer-en'>{escape(item.english)}</div>"
+            f"{_render_back_common(item)}"
+        ),
+        audio_path=item.audio.path if item.audio is not None else None,
+        image_path=None,
+    )
+
+
+def _decodable_passage_card(item: LessonItem) -> CardPreview:
+    audio_html = ""
+    if item.audio is not None:
+        audio_name = escape(Path(item.audio.path).name)
+        audio_html = f"<div class='reading-audio'><audio controls src='/media/audio/{audio_name}'></audio></div>"
+
+    return CardPreview(
+        id=f"{item.id}-decodable-passage",
+        item_id=item.id,
+        kind="decodable-passage",
+        front_html=(
+            "<div class='prompt prompt-context'>Read this tiny passage smoothly.</div>"
+            f"<div class='prompt prompt-ko'>{escape(item.korean)}</div>"
+        ),
+        back_html=(
+            f"<div class='answer answer-en'>{escape(item.english)}</div>"
+            f"{_render_back_common(item)}"
+            f"{audio_html}"
+        ),
+        audio_path=item.audio.path if item.audio is not None else None,
+        image_path=None,
+    )
+
+
+def _reading_speed_cards(item: LessonItem) -> list[CardPreview]:
+    if "passage" in item.skill_tags:
+        return [_decodable_passage_card(item)]
+
+    cards = [_read_aloud_card(item)]
+    if "chunked" in item.skill_tags:
+        cards.append(_chunked_reading_card(item))
+    return cards
+
+
 def _find_exact_duplicate(item: LessonItem, prior_notes: list[PriorNote]) -> PriorNote | None:
     note_key = note_key_for_item(item)
     for prior_note in prior_notes:
@@ -157,6 +238,21 @@ def _find_near_duplicate(item: LessonItem, prior_notes: list[PriorNote]) -> Prio
 
 def generate_note(item: LessonItem, prior_notes: list[PriorNote] | None = None) -> GeneratedNote:
     resolved_prior_notes = prior_notes or []
+    if item.lane == "reading-speed":
+        cards = _reading_speed_cards(item)
+        return GeneratedNote(
+            item=item,
+            cards=cards,
+            note_key=note_key_for_item(item),
+            lane=item.lane,
+            skill_tags=item.skill_tags,
+            inclusion_reason=(
+                "Weekly decodable passage from known-word bank"
+                if "passage" in item.skill_tags
+                else "Reading-speed drill from known-word bank"
+            ),
+        )
+
     cards = [_recognition_card(item), _production_card(item), _listening_card(item)]
 
     number_context = _number_context_card(item)
@@ -202,7 +298,7 @@ def generate_note(item: LessonItem, prior_notes: list[PriorNote] | None = None) 
         note_key=note_key,
         lane=item.lane,
         skill_tags=item.skill_tags,
-        inclusion_reason="New card",
+        inclusion_reason=inclusion_reason_for_item(item) if item.lane == "new-vocab" else "New card",
     )
 
 

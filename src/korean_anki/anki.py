@@ -11,6 +11,156 @@ from .schema import CardBatch, DuplicateNote, GeneratedNote, PushResult
 ANKI_MODEL_NAME = "Korean Lesson Item"
 DEFAULT_DECK = "Korean::Lessons"
 
+ANKI_FIELDS = [
+    "Korean",
+    "English",
+    "Pronunciation",
+    "ExampleKo",
+    "ExampleEn",
+    "Notes",
+    "Audio",
+    "Image",
+    "SourceRef",
+    "ChunkedKorean",
+    "EnableRecognition",
+    "EnableProduction",
+    "EnableListening",
+    "EnableNumberContext",
+    "EnableReadAloud",
+    "EnableChunkedReading",
+    "EnableDecodablePassage",
+]
+
+ANKI_TEMPLATES: list[_Template] = [
+    {
+        "Name": "Recognition",
+        "Front": "{{#EnableRecognition}}<div class='card-ko'>{{Korean}}</div>{{/EnableRecognition}}",
+        "Back": (
+            "{{FrontSide}}<hr id='answer'>"
+            "<div class='card-en'>{{English}}</div>"
+            "<div class='pronunciation'>{{Pronunciation}}</div>"
+            "<div class='example-ko'>{{ExampleKo}}</div>"
+            "<div class='example-en'>{{ExampleEn}}</div>"
+            "<div class='notes'>{{Notes}}</div>"
+            "<div class='media'>{{Audio}}{{Image}}</div>"
+            "<div class='source'>{{SourceRef}}</div>"
+        ),
+    },
+    {
+        "Name": "Production",
+        "Front": "{{#EnableProduction}}<div class='card-en'>{{English}}</div>{{/EnableProduction}}",
+        "Back": (
+            "{{FrontSide}}<hr id='answer'>"
+            "<div class='card-ko'>{{Korean}}</div>"
+            "<div class='pronunciation'>{{Pronunciation}}</div>"
+            "<div class='example-ko'>{{ExampleKo}}</div>"
+            "<div class='example-en'>{{ExampleEn}}</div>"
+            "<div class='notes'>{{Notes}}</div>"
+            "<div class='media'>{{Audio}}{{Image}}</div>"
+            "<div class='source'>{{SourceRef}}</div>"
+        ),
+    },
+    {
+        "Name": "Listening",
+        "Front": "{{#EnableListening}}<div class='listening'>{{Audio}}</div>{{/EnableListening}}",
+        "Back": (
+            "{{FrontSide}}<hr id='answer'>"
+            "<div class='card-ko'>{{Korean}}</div>"
+            "<div class='card-en'>{{English}}</div>"
+            "<div class='pronunciation'>{{Pronunciation}}</div>"
+            "<div class='example-ko'>{{ExampleKo}}</div>"
+            "<div class='example-en'>{{ExampleEn}}</div>"
+            "<div class='notes'>{{Notes}}</div>"
+            "<div class='media'>{{Image}}</div>"
+            "<div class='source'>{{SourceRef}}</div>"
+        ),
+    },
+    {
+        "Name": "Number Context",
+        "Front": (
+            "{{#EnableNumberContext}}"
+            "<div class='prompt-context'>In what context is this number form used?</div>"
+            "<div class='card-ko'>{{Korean}}</div>"
+            "{{/EnableNumberContext}}"
+        ),
+        "Back": (
+            "{{FrontSide}}<hr id='answer'>"
+            "<div class='card-en'>{{English}}</div>"
+            "<div class='notes'>{{Notes}}</div>"
+            "<div class='example-ko'>{{ExampleKo}}</div>"
+            "<div class='example-en'>{{ExampleEn}}</div>"
+        ),
+    },
+    {
+        "Name": "Read Aloud",
+        "Front": (
+            "{{#EnableReadAloud}}"
+            "<div class='prompt-context'>Read aloud before revealing anything else.</div>"
+            "<div class='card-ko'>{{Korean}}</div>"
+            "{{/EnableReadAloud}}"
+        ),
+        "Back": (
+            "{{FrontSide}}<hr id='answer'>"
+            "<div class='card-ko'>{{Korean}}</div>"
+            "<div class='card-en'>{{English}}</div>"
+            "<div class='pronunciation'>{{Pronunciation}}</div>"
+            "<div class='notes'>{{Notes}}</div>"
+            "<div class='media'>{{Audio}}</div>"
+            "<div class='source'>{{SourceRef}}</div>"
+        ),
+    },
+    {
+        "Name": "Chunked Reading",
+        "Front": (
+            "{{#EnableChunkedReading}}"
+            "<div class='prompt-context'>Sound out the chunks, then blend the full word.</div>"
+            "<div class='card-ko'>{{ChunkedKorean}}</div>"
+            "{{/EnableChunkedReading}}"
+        ),
+        "Back": (
+            "{{FrontSide}}<hr id='answer'>"
+            "<div class='card-ko'>{{Korean}}</div>"
+            "<div class='card-en'>{{English}}</div>"
+            "<div class='pronunciation'>{{Pronunciation}}</div>"
+            "<div class='notes'>{{Notes}}</div>"
+            "<div class='source'>{{SourceRef}}</div>"
+        ),
+    },
+    {
+        "Name": "Decodable Passage",
+        "Front": (
+            "{{#EnableDecodablePassage}}"
+            "<div class='prompt-context'>Read this tiny passage smoothly.</div>"
+            "<div class='card-ko'>{{Korean}}</div>"
+            "{{/EnableDecodablePassage}}"
+        ),
+        "Back": (
+            "{{FrontSide}}<hr id='answer'>"
+            "<div class='card-en'>{{English}}</div>"
+            "<div class='notes'>{{Notes}}</div>"
+            "<div class='media'>{{Audio}}</div>"
+            "<div class='source'>{{SourceRef}}</div>"
+        ),
+    },
+]
+
+ANKI_CSS = """
+.card {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 22px;
+  text-align: center;
+  color: #111;
+  background: #fff;
+}
+.card-ko { font-size: 40px; font-weight: 700; margin-bottom: 12px; }
+.card-en { font-size: 24px; margin-bottom: 8px; }
+.prompt-context { color: #555; font-size: 18px; margin-bottom: 12px; }
+.pronunciation { color: #555; margin-bottom: 12px; }
+.example-ko { margin-top: 12px; font-size: 22px; }
+.example-en, .notes, .source { color: #666; font-size: 18px; margin-top: 6px; }
+img { max-width: 280px; max-height: 280px; margin-top: 12px; }
+"""
+
 
 class _Template(TypedDict):
     Name: str
@@ -45,105 +195,29 @@ class AnkiConnectClient:
     def ensure_model(self) -> None:
         model_names = self.invoke("modelNames")
         if ANKI_MODEL_NAME in model_names:
+            existing_fields = self.invoke("modelFieldNames", modelName=ANKI_MODEL_NAME)
+            if isinstance(existing_fields, list):
+                for field_name in ANKI_FIELDS:
+                    if field_name not in existing_fields:
+                        self.invoke("modelFieldAdd", modelName=ANKI_MODEL_NAME, fieldName=field_name)
+
+            existing_templates = self.invoke("modelTemplates", modelName=ANKI_MODEL_NAME)
+            if isinstance(existing_templates, dict):
+                for template in ANKI_TEMPLATES:
+                    if template["Name"] not in existing_templates:
+                        self.invoke(
+                            "modelTemplateAdd",
+                            modelName=ANKI_MODEL_NAME,
+                            template=template,
+                        )
             return
 
-        fields = [
-            "Korean",
-            "English",
-            "Pronunciation",
-            "ExampleKo",
-            "ExampleEn",
-            "Notes",
-            "Audio",
-            "Image",
-            "SourceRef",
-            "EnableRecognition",
-            "EnableProduction",
-            "EnableListening",
-            "EnableNumberContext",
-        ]
-        templates: list[_Template] = [
-            {
-                "Name": "Recognition",
-                "Front": "{{#EnableRecognition}}<div class='card-ko'>{{Korean}}</div>{{/EnableRecognition}}",
-                "Back": (
-                    "{{FrontSide}}<hr id='answer'>"
-                    "<div class='card-en'>{{English}}</div>"
-                    "<div class='pronunciation'>{{Pronunciation}}</div>"
-                    "<div class='example-ko'>{{ExampleKo}}</div>"
-                    "<div class='example-en'>{{ExampleEn}}</div>"
-                    "<div class='notes'>{{Notes}}</div>"
-                    "<div class='media'>{{Audio}}{{Image}}</div>"
-                    "<div class='source'>{{SourceRef}}</div>"
-                ),
-            },
-            {
-                "Name": "Production",
-                "Front": "{{#EnableProduction}}<div class='card-en'>{{English}}</div>{{/EnableProduction}}",
-                "Back": (
-                    "{{FrontSide}}<hr id='answer'>"
-                    "<div class='card-ko'>{{Korean}}</div>"
-                    "<div class='pronunciation'>{{Pronunciation}}</div>"
-                    "<div class='example-ko'>{{ExampleKo}}</div>"
-                    "<div class='example-en'>{{ExampleEn}}</div>"
-                    "<div class='notes'>{{Notes}}</div>"
-                    "<div class='media'>{{Audio}}{{Image}}</div>"
-                    "<div class='source'>{{SourceRef}}</div>"
-                ),
-            },
-            {
-                "Name": "Listening",
-                "Front": "{{#EnableListening}}<div class='listening'>{{Audio}}</div>{{/EnableListening}}",
-                "Back": (
-                    "{{FrontSide}}<hr id='answer'>"
-                    "<div class='card-ko'>{{Korean}}</div>"
-                    "<div class='card-en'>{{English}}</div>"
-                    "<div class='pronunciation'>{{Pronunciation}}</div>"
-                    "<div class='example-ko'>{{ExampleKo}}</div>"
-                    "<div class='example-en'>{{ExampleEn}}</div>"
-                    "<div class='notes'>{{Notes}}</div>"
-                    "<div class='media'>{{Image}}</div>"
-                    "<div class='source'>{{SourceRef}}</div>"
-                ),
-            },
-            {
-                "Name": "Number Context",
-                "Front": (
-                    "{{#EnableNumberContext}}"
-                    "<div class='prompt-context'>In what context is this number form used?</div>"
-                    "<div class='card-ko'>{{Korean}}</div>"
-                    "{{/EnableNumberContext}}"
-                ),
-                "Back": (
-                    "{{FrontSide}}<hr id='answer'>"
-                    "<div class='card-en'>{{English}}</div>"
-                    "<div class='notes'>{{Notes}}</div>"
-                    "<div class='example-ko'>{{ExampleKo}}</div>"
-                    "<div class='example-en'>{{ExampleEn}}</div>"
-                ),
-            },
-        ]
-        css = """
-.card {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 22px;
-  text-align: center;
-  color: #111;
-  background: #fff;
-}
-.card-ko { font-size: 40px; font-weight: 700; margin-bottom: 12px; }
-.card-en { font-size: 24px; margin-bottom: 8px; }
-.pronunciation { color: #555; margin-bottom: 12px; }
-.example-ko { margin-top: 12px; font-size: 22px; }
-.example-en, .notes, .source { color: #666; font-size: 18px; margin-top: 6px; }
-img { max-width: 280px; max-height: 280px; margin-top: 12px; }
-"""
         self.invoke(
             "createModel",
             modelName=ANKI_MODEL_NAME,
-            inOrderFields=fields,
-            cardTemplates=templates,
-            css=css,
+            inOrderFields=ANKI_FIELDS,
+            cardTemplates=ANKI_TEMPLATES,
+            css=ANKI_CSS,
         )
 
     def store_media_file(self, path: str) -> str:
@@ -154,6 +228,10 @@ img { max-width: 280px; max-height: 280px; margin-top: 12px; }
 
     def sync(self) -> None:
         self.invoke("sync")
+
+
+def _chunk_hangul(text: str) -> str:
+    return " ".join("·".join(segment) for segment in text.split())
 
 
 def _approved_notes(batch: CardBatch) -> list[GeneratedNote]:
@@ -209,10 +287,14 @@ def _note_payload(note: GeneratedNote, deck_name: str, media_names: dict[str, st
             "Audio": audio,
             "Image": image,
             "SourceRef": note.item.source_ref or "",
+            "ChunkedKorean": _chunk_hangul(note.item.korean),
             "EnableRecognition": "1" if "recognition" in approved_kinds else "",
             "EnableProduction": "1" if "production" in approved_kinds else "",
             "EnableListening": "1" if "listening" in approved_kinds and note.item.audio is not None else "",
             "EnableNumberContext": "1" if "number-context" in approved_kinds else "",
+            "EnableReadAloud": "1" if "read-aloud" in approved_kinds else "",
+            "EnableChunkedReading": "1" if "chunked-reading" in approved_kinds else "",
+            "EnableDecodablePassage": "1" if "decodable-passage" in approved_kinds else "",
         },
         "tags": tags,
         "options": {"allowDuplicate": False},

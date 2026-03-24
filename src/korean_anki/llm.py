@@ -11,6 +11,7 @@ from .schema import (
     ImageGenerationPlan,
     LessonDocument,
     LessonTranscription,
+    NewVocabProposalBatch,
     PronunciationBatch,
     RawSourceAsset,
 )
@@ -57,6 +58,20 @@ Rules:
 - Choose generate_image=true only when a simple concrete image or scene would likely improve recall.
 - Choose generate_image=false for abstract meanings, function words, grammar, numbers, or items where usage context matters more than visual identity.
 - Keep reasons short and specific.
+"""
+
+NEW_VOCAB_SYSTEM_PROMPT = """You propose beginner Korean vocabulary for a TOPIK I learner.
+
+Rules:
+- Return only valid JSON matching the requested schema.
+- Propose A1-level, high-utility words only.
+- Keep one atomic meaning per item.
+- Prefer everyday words a beginner can use immediately.
+- Do not repeat excluded words or near-repeats if avoidable.
+- For every item, provide a simple example sentence and an image prompt.
+- The image prompt must describe a polished, engaging illustration for an adult learner, with no text in the image.
+- If the image prompt includes people, depict Korean people in a natural contemporary Korean setting.
+- Use adjacency_kind='coverage-gap' for topic gap fill and 'lesson-adjacent' for words that naturally co-occur with the lesson context.
 """
 
 
@@ -295,6 +310,53 @@ def _image_decision_json_schema() -> dict[str, object]:
     }
 
 
+def _new_vocab_proposal_json_schema() -> dict[str, object]:
+    return {
+        "name": "new_vocab_proposal_batch",
+        "schema": {
+            "type": "object",
+            "additionalProperties": False,
+            "required": ["proposals"],
+            "properties": {
+                "proposals": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": False,
+                        "required": [
+                            "candidate_id",
+                            "korean",
+                            "english",
+                            "topic_tag",
+                            "example_ko",
+                            "example_en",
+                            "proposal_reason",
+                            "image_prompt",
+                            "adjacency_kind",
+                        ],
+                        "properties": {
+                            "candidate_id": {"type": "string"},
+                            "korean": {"type": "string"},
+                            "english": {"type": "string"},
+                            "topic_tag": {"type": "string"},
+                            "example_ko": {"type": "string"},
+                            "example_en": {"type": "string"},
+                            "proposal_reason": {"type": "string"},
+                            "image_prompt": {"type": "string"},
+                            "adjacency_kind": {
+                                "type": "string",
+                                "enum": ["coverage-gap", "lesson-adjacent"],
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "strict": True,
+    }
+
+
 def _build_user_text(request: ExtractionRequest) -> str:
     parts = [
         f"lesson_id: {request.lesson_id}",
@@ -514,6 +576,46 @@ def plan_image_generation(
         raise RuntimeError(f"Image decision model omitted item ids: {', '.join(missing_item_ids)}")
 
     return decisions
+
+
+def propose_new_vocab(
+    *,
+    model: str = "gpt-5.4",
+    candidate_count: int,
+    target_gap_topics: list[str],
+    lesson_context_summary: str | None,
+    lesson_context_tags: list[str],
+    excluded_pairs: list[str],
+) -> NewVocabProposalBatch:
+    client = OpenAI()
+    lines = [
+        f"Propose {candidate_count} candidate vocab items.",
+        f"Target coverage-gap topics: {', '.join(target_gap_topics)}",
+        (
+            f"Latest lesson context: {lesson_context_summary}"
+            if lesson_context_summary is not None
+            else "No latest lesson context provided; use coverage-gap proposals only."
+        ),
+        f"Latest lesson tags: {', '.join(lesson_context_tags) if lesson_context_tags else '(none)'}",
+        "Excluded known words (normalized korean | english):",
+        *(excluded_pairs[:200] or ["(none)"]),
+        "Return a diverse pool. If lesson context is present, include both coverage-gap and lesson-adjacent candidates.",
+    ]
+    response = client.responses.create(
+        model=model,
+        input=[
+            {"role": "system", "content": NEW_VOCAB_SYSTEM_PROMPT},
+            {"role": "user", "content": "\n".join(lines)},
+        ],
+        text={
+            "format": {
+                "type": "json_schema",
+                **_new_vocab_proposal_json_schema(),
+            }
+        },
+        reasoning={"effort": "high"},
+    )
+    return NewVocabProposalBatch.model_validate_json(response.output_text)
 
 
 def write_json(document: LessonDocument, output_path: Path) -> None:

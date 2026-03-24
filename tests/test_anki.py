@@ -162,6 +162,83 @@ class AnkiTests(unittest.TestCase):
         calls = [call[0] for client in FakeAnkiConnectClient.instances for call in client.calls]
         self.assertNotIn("addNotes", calls)
 
+    def test_push_batch_sets_reading_speed_enable_fields(self) -> None:
+        reading_item = make_item(
+            item_id="read-1",
+            korean="안녕하세요",
+            english="hello",
+            notes="Read aloud before revealing meaning.",
+            tags=["reading-speed", "read-aloud"],
+        ).model_copy(update={"lane": "reading-speed", "skill_tags": ["reading-speed", "read-aloud", "chunked"]})
+        batch = make_batch(
+            [generate_note(reading_item)],
+            metadata=make_metadata(target_deck="Korean::Reading Speed"),
+        )
+        FakeAnkiConnectClient.add_notes_result = [789]
+
+        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
+            result = anki.push_batch(batch)
+
+        self.assertEqual(result.notes_added, 1)
+        self.assertEqual(result.cards_created, 2)
+
+        push_client = FakeAnkiConnectClient.instances[0]
+        add_notes_call = next(call for call in push_client.calls if call[0] == "addNotes")
+        payload = add_notes_call[1]["notes"][0]
+        self.assertEqual(payload["deckName"], "Korean::Reading Speed")
+        self.assertEqual(payload["fields"]["ChunkedKorean"], "안·녕·하·세·요")
+        self.assertEqual(payload["fields"]["EnableReadAloud"], "1")
+        self.assertEqual(payload["fields"]["EnableChunkedReading"], "1")
+        self.assertEqual(payload["fields"]["EnableDecodablePassage"], "")
+        self.assertIn("lane:reading-speed", payload["tags"])
+        self.assertIn("skill:chunked", payload["tags"])
+
+    def test_ensure_model_upgrades_existing_model_with_reading_speed_fields_and_templates(self) -> None:
+        class UpgradeClient(anki.AnkiConnectClient):
+            def __init__(self) -> None:
+                self.calls: list[tuple[str, dict[str, object]]] = []
+
+            def invoke(self, action: str, **params: object) -> object:
+                self.calls.append((action, params))
+                if action == "modelNames":
+                    return [anki.ANKI_MODEL_NAME]
+                if action == "modelFieldNames":
+                    return [
+                        "Korean",
+                        "English",
+                        "Pronunciation",
+                        "ExampleKo",
+                        "ExampleEn",
+                        "Notes",
+                        "Audio",
+                        "Image",
+                        "SourceRef",
+                        "EnableRecognition",
+                        "EnableProduction",
+                        "EnableListening",
+                        "EnableNumberContext",
+                    ]
+                if action == "modelTemplates":
+                    return {
+                        "Recognition": {},
+                        "Production": {},
+                        "Listening": {},
+                        "Number Context": {},
+                    }
+                return None
+
+        client = UpgradeClient()
+
+        client.ensure_model()
+
+        field_adds = [params["fieldName"] for action, params in client.calls if action == "modelFieldAdd"]
+        template_adds = [params["template"]["Name"] for action, params in client.calls if action == "modelTemplateAdd"]
+        self.assertEqual(
+            field_adds,
+            ["ChunkedKorean", "EnableReadAloud", "EnableChunkedReading", "EnableDecodablePassage"],
+        )
+        self.assertEqual(template_adds, ["Read Aloud", "Chunked Reading", "Decodable Passage"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -6,7 +6,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from korean_anki.media import enrich_audio, enrich_images
+from korean_anki.media import enrich_audio, enrich_images, enrich_new_vocab_images
 from korean_anki.schema import MediaAsset
 
 from support import make_document, make_item
@@ -82,10 +82,45 @@ class MediaTests(unittest.TestCase):
         self.assertIsNone(images_by_id["phrase-2"])
         self.assertIsNone(images_by_id["grammar-1"])
         self.assertEqual(len(FakeOpenAI.image_calls), 1)
+        self.assertEqual(FakeOpenAI.image_calls[0]["quality"], "auto")
         self.assertTrue(Path(images_by_id["phrase-1"].path).exists())
 
         self.addCleanup(lambda: output_dir.rmdir() if output_dir.exists() else None)
         self.addCleanup(lambda: Path(images_by_id["phrase-1"].path).unlink(missing_ok=True))
+
+    def test_enrich_new_vocab_images_generates_an_image_for_every_item(self) -> None:
+        document = make_document(
+            [
+                make_item(
+                    item_id="concrete-1",
+                    korean="사과",
+                    english="apple",
+                    image_prompt="A bright red apple on a small table.",
+                ),
+                make_item(
+                    item_id="abstract-1",
+                    korean="중요하다",
+                    english="important",
+                    image_prompt="A child proudly holding a gold star to show something important.",
+                ),
+            ]
+        )
+
+        output_dir = Path(self._testMethodName)
+        with patch("korean_anki.media.OpenAI", FakeOpenAI):
+            updated = enrich_new_vocab_images(document, output_dir)
+
+        self.assertEqual(len(FakeOpenAI.image_calls), 2)
+        self.assertTrue(all(call["quality"] == "low" for call in FakeOpenAI.image_calls))
+        self.addCleanup(lambda: output_dir.rmdir() if output_dir.exists() else None)
+        for item in updated.items:
+            self.assertIsNotNone(item.image)
+            self.assertTrue(Path(item.image.path).exists())
+            self.assertIn("adult language learner in their 30s", item.image.prompt)
+            self.assertIn("warm, playful, and visually engaging", item.image.prompt)
+            self.assertIn("depict Korean people", item.image.prompt)
+            self.assertIn("No text in the image.", item.image.prompt)
+            self.addCleanup(lambda image_path=item.image.path: Path(image_path).unlink(missing_ok=True))
 
 
 if __name__ == "__main__":

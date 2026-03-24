@@ -97,6 +97,47 @@ class PushServiceTests(unittest.TestCase):
         self.assertEqual(payload["notes_added"], 1)
         self.assertEqual(payload["pushed_note_ids"], [789])
 
+    def test_real_push_overwrites_source_batch_path_when_provided(self) -> None:
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        batch = make_batch([generate_note(make_item(english="hello edited"))])
+        result = PushResult(
+            deck_name="Korean::Lessons::Basics",
+            approved_notes=1,
+            approved_cards=3,
+            dry_run=False,
+            can_push=True,
+            notes_added=1,
+            cards_created=3,
+        )
+
+        output_dir = Path(self._testMethodName)
+        output_path = output_dir / "reviewed.batch.json"
+        output_dir.mkdir(exist_ok=True)
+        output_path.write_text("stale\n", encoding="utf-8")
+        self.addCleanup(output_dir.rmdir)
+        self.addCleanup(output_path.unlink, missing_ok=True)
+
+        with patch("korean_anki.push_service.push_batch", return_value=result):
+            request = urllib.request.Request(
+                f"{base_url}/api/push",
+                data=json.dumps(
+                    {
+                        "batch": batch.model_dump(mode="json"),
+                        "dry_run": False,
+                        "source_batch_path": str(output_path),
+                    }
+                ).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+            )
+            with urllib.request.urlopen(request, timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        self.assertEqual(payload["reviewed_batch_path"], str(output_path.resolve()))
+        written = json.loads(output_path.read_text(encoding="utf-8"))
+        self.assertEqual(written["notes"][0]["item"]["english"], "hello edited")
+
     def test_invalid_request_returns_400(self) -> None:
         server, base_url, thread = self._start_server()
         self.addCleanup(self._stop_server, server, thread)

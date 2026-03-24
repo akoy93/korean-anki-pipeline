@@ -80,6 +80,29 @@ Load `data/batch.json`, review/edit, then use `Check push` for a dry-run. If the
 
 If you want audio/image preview in the browser, generate media under `preview/public/media` as shown above so Vite can serve it during `pnpm dev`.
 
+Generate a reading-speed batch from your known-word bank:
+
+```bash
+korean-anki generate-reading-speed \
+  --lesson-id reading-speed-2026-03-23 \
+  --title "Reading Speed" \
+  --output data/reading-speed.batch.json
+```
+
+This lane intentionally reuses known words for decoding practice, so it does not apply the normal exact-duplicate block against prior lesson cards.
+
+Generate a supplemental new-vocab batch:
+
+```bash
+korean-anki generate-new-vocab \
+  --output data/generated/new-vocab-2026-03-24.batch.json \
+  --lesson-context lessons/2026-03-23-numbers/transcription.json \
+  --with-audio \
+  --image-quality low
+```
+
+This command uses `gpt-5.4` to propose a larger candidate pool, selects a weekly batch locally with dedupe/history guardrails, and generates one polished, adult-appropriate illustration for every selected new vocab item by default. `generate-new-vocab` defaults to `--image-quality low`; use `medium`, `high`, or `auto` only when you want richer images.
+
 CLI push still works for reviewed JSON files:
 
 ```bash

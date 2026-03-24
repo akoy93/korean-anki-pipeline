@@ -102,6 +102,31 @@ class CardGenerationTests(unittest.TestCase):
         self.assertEqual(batch.notes[0].duplicate_status, "exact-duplicate")
         self.assertFalse(batch.notes[0].approved)
 
+    def test_reading_speed_items_use_reading_cards_and_skip_duplicate_blocking(self) -> None:
+        prior = PriorNote(
+            note_key="vocab:안녕하세요:hello",
+            korean="안녕하세요",
+            english="hello",
+            item_type="vocab",
+            lane="lesson",
+            source="prior.batch.json",
+        )
+        reading_item = make_item(
+            item_id="read-1",
+            korean="안녕하세요",
+            english="hello",
+            tags=["reading-speed", "read-aloud"],
+        ).model_copy(update={"lane": "reading-speed", "skill_tags": ["reading-speed", "read-aloud", "chunked"]})
+
+        note = generate_note(reading_item, prior_notes=[prior])
+
+        self.assertEqual(note.lane, "reading-speed")
+        self.assertEqual(note.duplicate_status, "new")
+        self.assertTrue(note.approved)
+        self.assertEqual([card.kind for card in note.cards], ["read-aloud", "chunked-reading"])
+        chunked = next(card for card in note.cards if card.kind == "chunked-reading")
+        self.assertIn("안·녕·하·세·요", chunked.front_html)
+
 
 if __name__ == "__main__":
     unittest.main()

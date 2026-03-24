@@ -2,8 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import {
   AlertTriangle,
   CheckCircle2,
-  Download,
-  FileJson,
   Link2,
   Loader2,
   Send,
@@ -37,6 +35,13 @@ function escapeHtml(value: string): string {
     .join("&#39;");
 }
 
+function chunkHangul(value: string): string {
+  return value
+    .split(" ")
+    .map((segment) => segment.split("").join("·"))
+    .join(" ");
+}
+
 function renderBackCommon(item: LessonItem): string {
   const pronunciation = item.pronunciation ? `<div class='pronunciation'>${escapeHtml(item.pronunciation)}</div>` : "";
   const examples =
@@ -61,6 +66,61 @@ function renderBackCommon(item: LessonItem): string {
 
 function renderCardsForItem(item: LessonItem, previousCards: CardPreview[]): CardPreview[] {
   const approvalByKind = new Map(previousCards.map((card) => [card.kind, card.approved] as const));
+  if (item.lane === "reading-speed") {
+    if (item.skill_tags?.includes("passage")) {
+      return [
+        {
+          id: `${item.id}-decodable-passage`,
+          item_id: item.id,
+          kind: "decodable-passage",
+          front_html: `<div class='prompt prompt-context'>Read this tiny passage smoothly.</div><div class='prompt prompt-ko'>${escapeHtml(
+            item.korean
+          )}</div>`,
+          back_html: `<div class='answer answer-en'>${escapeHtml(item.english)}</div>${renderBackCommon(item)}`,
+          audio_path: item.audio?.path ?? null,
+          image_path: null,
+          approved: approvalByKind.get("decodable-passage") ?? true
+        }
+      ];
+    }
+
+    const cards: CardPreview[] = [
+      {
+        id: `${item.id}-read-aloud`,
+        item_id: item.id,
+        kind: "read-aloud",
+        front_html: `<div class='prompt prompt-context'>Read aloud before revealing anything else.</div><div class='prompt prompt-ko'>${escapeHtml(
+          item.korean
+        )}</div>`,
+        back_html: `<div class='answer answer-ko'>${escapeHtml(item.korean)}</div><div class='answer answer-en'>${escapeHtml(
+          item.english
+        )}</div>${renderBackCommon(item)}`,
+        audio_path: item.audio?.path ?? null,
+        image_path: null,
+        approved: approvalByKind.get("read-aloud") ?? true
+      }
+    ];
+
+    if (item.skill_tags?.includes("chunked")) {
+      cards.push({
+        id: `${item.id}-chunked-reading`,
+        item_id: item.id,
+        kind: "chunked-reading",
+        front_html: `<div class='prompt prompt-context'>Sound out the chunks, then blend the full word.</div><div class='prompt prompt-ko'>${escapeHtml(
+          chunkHangul(item.korean)
+        )}</div>`,
+        back_html: `<div class='answer answer-ko'>${escapeHtml(item.korean)}</div><div class='answer answer-en'>${escapeHtml(
+          item.english
+        )}</div>${renderBackCommon(item)}`,
+        audio_path: item.audio?.path ?? null,
+        image_path: null,
+        approved: approvalByKind.get("chunked-reading") ?? true
+      });
+    }
+
+    return cards;
+  }
+
   const cards: CardPreview[] = [
     {
       id: `${item.id}-recognition`,
@@ -210,6 +270,17 @@ function App() {
     };
   }, [batch]);
 
+  const notesByLane = useMemo(() => {
+    const grouped = new Map<string, GeneratedNote[]>();
+    for (const note of batch.notes) {
+      const lane = note.lane ?? note.item.lane ?? "lesson";
+      const current = grouped.get(lane) ?? [];
+      current.push(note);
+      grouped.set(lane, current);
+    }
+    return Array.from(grouped.entries());
+  }, [batch]);
+
   function updateNote(noteId: string, updater: (note: GeneratedNote) => GeneratedNote) {
     clearPushState();
     setBatch((current) => ({
@@ -221,10 +292,17 @@ function App() {
   function updateItem(noteId: string, updater: (item: LessonItem) => LessonItem) {
     updateNote(noteId, (current) => {
       const item = updater(current.item);
+      const regeneratedCards = renderCardsForItem(item, current.duplicate_status === "exact-duplicate" ? [] : current.cards).map(
+        (card) => ({
+          ...card,
+          approved: current.approved && (card.kind !== "listening" || item.audio !== null)
+        })
+      );
+
       return {
         ...current,
         item,
-        cards: renderCardsForItem(item, current.duplicate_status === "exact-duplicate" ? [] : current.cards),
+        cards: regeneratedCards,
         approved: current.duplicate_status === "exact-duplicate" ? true : current.approved,
         duplicate_status: "new",
         duplicate_note_key: null,
@@ -235,25 +313,19 @@ function App() {
     });
   }
 
-  async function loadFile(file: File) {
-    const text = await file.text();
-    setBatch(JSON.parse(text) as CardBatch);
-    setLoadedFrom(file.name);
-    setLoadError(null);
-    clearPushState();
-  }
-
-  function downloadReviewed() {
-    const blob = new Blob([JSON.stringify(batch, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = `${batch.metadata.lesson_id}.reviewed.json`;
-    anchor.click();
-    URL.revokeObjectURL(url);
+  function setNoteApproved(noteId: string, approved: boolean) {
+    updateNote(noteId, (current) => ({
+      ...current,
+      approved,
+      cards: current.cards.map((card) => ({
+        ...card,
+        approved: approved && (card.kind !== "listening" || current.item.audio !== null)
+      }))
+    }));
   }
 
   async function callPushApi(dryRun: boolean): Promise<PushResult | null> {
+    const sourceBatchPath = loadedFrom.endsWith(".batch.json") ? loadedFrom : null;
     const response = await fetch("/api/push", {
       method: "POST",
       headers: {
@@ -263,6 +335,7 @@ function App() {
         batch,
         dry_run: dryRun,
         deck_name: batch.metadata.target_deck ?? null,
+        source_batch_path: dryRun ? null : sourceBatchPath,
         sync: true
       })
     });
@@ -359,30 +432,12 @@ function App() {
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              <Label
-                htmlFor="batch-file"
-                className="inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-md border border-border bg-background px-4 text-sm font-medium hover:bg-muted"
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => void runDryRun()}
+                disabled={checkingPush || pushing}
               >
-                <FileJson className="h-4 w-4" />
-                Load batch JSON
-              </Label>
-              <Input
-                id="batch-file"
-                type="file"
-                accept="application/json"
-                className="hidden"
-                onChange={(event) => {
-                  const file = event.target.files?.[0];
-                  if (file) {
-                    void loadFile(file);
-                  }
-                }}
-              />
-              <Button type="button" onClick={downloadReviewed}>
-                <Download className="mr-2 h-4 w-4" />
-                Download reviewed JSON
-              </Button>
-              <Button type="button" variant="secondary" onClick={() => void runDryRun()} disabled={checkingPush || pushing}>
                 {checkingPush ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ShieldCheck className="mr-2 h-4 w-4" />}
                 Check push
               </Button>
@@ -487,9 +542,17 @@ function App() {
         </Card>
       </header>
 
-      <div className="space-y-6">
-        {batch.notes.map((note) => (
-          <Card key={note.item.id} className="overflow-hidden">
+      <div className="space-y-8">
+        {notesByLane.map(([lane, notes]) => (
+          <section key={lane} className="space-y-4">
+            <div className="flex items-center gap-3">
+              <h2 className="font-display text-2xl font-semibold">{lane}</h2>
+              <Badge variant="outline">{notes.length} notes</Badge>
+            </div>
+
+            <div className="space-y-6">
+              {notes.map((note) => (
+                <Card key={note.item.id} className="overflow-hidden">
             <CardHeader className="border-b border-border bg-card/70">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap items-center gap-3">
@@ -511,7 +574,7 @@ function App() {
                   type="button"
                   variant={note.approved ? "default" : "outline"}
                   disabled={note.duplicate_status === "exact-duplicate"}
-                  onClick={() => updateNote(note.item.id, (current) => ({ ...current, approved: !current.approved }))}
+                  onClick={() => setNoteApproved(note.item.id, !note.approved)}
                 >
                   {note.duplicate_status === "exact-duplicate" ? (
                     <AlertTriangle className="mr-2 h-4 w-4" />
@@ -550,6 +613,13 @@ function App() {
                     Near-duplicate warning.
                     {note.duplicate_source ? ` Similar prior source: ${note.duplicate_source}.` : ""}
                     {note.duplicate_note_id ? ` Existing Anki note ${note.duplicate_note_id}.` : ""}
+                  </div>
+                ) : null}
+
+                {note.item.image?.prompt ?? note.item.image_prompt ? (
+                  <div className="rounded-md border border-border bg-background p-3 text-sm">
+                    <div className="text-muted-foreground">Image intent</div>
+                    <div className="mt-1">{note.item.image?.prompt ?? note.item.image_prompt}</div>
                   </div>
                 ) : null}
               </div>
@@ -626,24 +696,7 @@ function App() {
                 {note.cards.map((card) => (
                   <Card key={card.id} className="border-border/80">
                     <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between gap-2">
-                        <Badge>{card.kind}</Badge>
-                        <Button
-                          type="button"
-                          size="sm"
-                          variant={card.approved ? "secondary" : "outline"}
-                          onClick={() =>
-                            updateNote(note.item.id, (current) => ({
-                              ...current,
-                              cards: current.cards.map((currentCard) =>
-                                currentCard.id === card.id ? { ...currentCard, approved: !currentCard.approved } : currentCard
-                              )
-                            }))
-                          }
-                        >
-                          {card.approved ? "Approved" : "Rejected"}
-                        </Button>
-                      </div>
+                      <Badge>{card.kind}</Badge>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="rounded-md bg-muted p-4">
@@ -669,7 +722,10 @@ function App() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+                </Card>
+              ))}
+            </div>
+          </section>
         ))}
       </div>
     </div>

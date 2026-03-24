@@ -12,16 +12,19 @@ from .cards import generate_batch
 from .llm import (
     extract_lesson,
     generate_pronunciations,
+    propose_new_vocab,
     read_lesson,
     read_transcription,
     transcribe_sources,
     write_json,
 )
-from .media import enrich_audio, enrich_images
-from .schema import CardBatch, ExtractionRequest, RawSourceAsset
+from .media import enrich_audio, enrich_images, enrich_new_vocab_images
+from .new_vocab import build_new_vocab_document, load_lesson_context, prior_notes_for_vocab, undercovered_topics
 from .push_service import run_server
+from .reading_speed import build_reading_speed_document
+from .schema import CardBatch, ExtractionRequest, RawSourceAsset
 from .stages import build_lesson_documents, qa_transcription, write_lesson_documents
-from .study_state import build_study_state
+from .study_state import build_study_state, normalize_text
 
 
 def _parse_args() -> argparse.Namespace:
@@ -68,9 +71,59 @@ def _parse_args() -> argparse.Namespace:
     generate.add_argument("--output", required=True)
     generate.add_argument("--with-audio", action="store_true")
     generate.add_argument("--with-images", action="store_true")
+    generate.add_argument(
+        "--image-quality",
+        choices=["auto", "low", "medium", "high"],
+        default="auto",
+    )
     generate.add_argument("--media-dir", default="data/media")
     generate.add_argument("--project-root", default=".")
     generate.add_argument("--anki-url", default="http://127.0.0.1:8765")
+
+    reading_speed = subparsers.add_parser(
+        "generate-reading-speed",
+        help="Generate a reading-speed batch from the known-word bank in study state.",
+    )
+    reading_speed.add_argument("--lesson-id", required=True)
+    reading_speed.add_argument("--title", required=True)
+    reading_speed.add_argument("--topic", default="Reading Speed")
+    reading_speed.add_argument("--lesson-date", default=date.today().isoformat())
+    reading_speed.add_argument(
+        "--source-description",
+        default="Reading-speed batch generated from known-word bank",
+    )
+    reading_speed.add_argument("--target-deck", default="Korean::Reading Speed")
+    reading_speed.add_argument("--output", required=True)
+    reading_speed.add_argument("--with-audio", action="store_true")
+    reading_speed.add_argument("--media-dir", default="data/media")
+    reading_speed.add_argument("--project-root", default=".")
+    reading_speed.add_argument("--anki-url", default="http://127.0.0.1:8765")
+    reading_speed.add_argument("--max-read-aloud", type=int, default=20)
+    reading_speed.add_argument("--max-chunked", type=int, default=10)
+    reading_speed.add_argument("--passage-word-count", type=int, default=5)
+
+    new_vocab = subparsers.add_parser(
+        "generate-new-vocab",
+        help="Generate a supplemental new-vocab batch from LLM proposals plus local guardrails.",
+    )
+    new_vocab.add_argument("--lesson-id", default=f"new-vocab-{date.today().isoformat()}")
+    new_vocab.add_argument("--title", default="New Vocab")
+    new_vocab.add_argument("--lesson-date", default=date.today().isoformat())
+    new_vocab.add_argument("--output", required=True)
+    new_vocab.add_argument("--count", type=int, default=20)
+    new_vocab.add_argument("--gap-ratio", type=float, default=0.6)
+    new_vocab.add_argument("--target-deck", default="Korean::New Vocab")
+    new_vocab.add_argument("--lesson-context", default=None)
+    new_vocab.add_argument("--with-audio", action="store_true")
+    new_vocab.add_argument(
+        "--image-quality",
+        choices=["auto", "low", "medium", "high"],
+        default="low",
+    )
+    new_vocab.add_argument("--media-dir", default="data/media")
+    new_vocab.add_argument("--project-root", default=".")
+    new_vocab.add_argument("--anki-url", default="http://127.0.0.1:8765")
+    new_vocab.add_argument("--model", default="gpt-5.4")
 
     push = subparsers.add_parser("push", help="Push approved cards to Anki Desktop via AnkiConnect.")
     push.add_argument("--input", required=True)
@@ -173,7 +226,7 @@ def _command_generate(args: argparse.Namespace) -> None:
     if args.with_audio:
         document = enrich_audio(document, media_dir / "audio")
     if args.with_images:
-        document = enrich_images(document, media_dir / "images")
+        document = enrich_images(document, media_dir / "images", image_quality=args.image_quality)
 
     project_root = Path(args.project_root)
     state = build_study_state(project_root, anki_url=args.anki_url, exclude_batch_path=output_path)
@@ -194,6 +247,162 @@ def _command_generate(args: argparse.Namespace) -> None:
                     note.model_dump(
                         include={
                             "item": {"id", "korean", "english", "item_type", "lane", "skill_tags"},
+                            "note_key": True,
+                            "lane": True,
+                            "skill_tags": True,
+                            "duplicate_status": True,
+                            "duplicate_note_key": True,
+                            "duplicate_note_id": True,
+                            "duplicate_source": True,
+                            "inclusion_reason": True,
+                            "approved": True,
+                        }
+                    )
+                    for note in batch.notes
+                ],
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
+def _command_generate_reading_speed(args: argparse.Namespace) -> None:
+    project_root = Path(args.project_root)
+    output_path = Path(args.output)
+    state = build_study_state(project_root, anki_url=args.anki_url, exclude_batch_path=output_path)
+    document = build_reading_speed_document(
+        state,
+        lesson_id=args.lesson_id,
+        title=args.title,
+        topic=args.topic,
+        lesson_date=date.fromisoformat(args.lesson_date),
+        source_description=args.source_description,
+        target_deck=args.target_deck,
+        max_read_aloud=args.max_read_aloud,
+        max_chunked=args.max_chunked,
+        passage_word_count=args.passage_word_count,
+    )
+
+    if args.with_audio:
+        document = enrich_audio(document, Path(args.media_dir) / "audio")
+
+    batch = generate_batch(document, study_state=state)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    state_output = project_root / "state" / "study-state.json"
+    state_output.parent.mkdir(parents=True, exist_ok=True)
+    state_output.write_text(state.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    plan_output = output_path.with_suffix(".generation-plan.json")
+    plan_output.write_text(
+        json.dumps(
+            {
+                "lesson_id": batch.metadata.lesson_id,
+                "notes": [
+                    note.model_dump(
+                        include={
+                            "item": {"id", "korean", "english", "item_type", "lane", "skill_tags"},
+                            "note_key": True,
+                            "lane": True,
+                            "skill_tags": True,
+                            "duplicate_status": True,
+                            "duplicate_note_key": True,
+                            "duplicate_note_id": True,
+                            "duplicate_source": True,
+                            "inclusion_reason": True,
+                            "approved": True,
+                        }
+                    )
+                    for note in batch.notes
+                ],
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
+def _command_generate_new_vocab(args: argparse.Namespace) -> None:
+    project_root = Path(args.project_root)
+    output_path = Path(args.output)
+    state = build_study_state(project_root, anki_url=args.anki_url, exclude_batch_path=output_path)
+    lesson_context = load_lesson_context(Path(args.lesson_context)) if args.lesson_context is not None else None
+
+    prior_vocab = prior_notes_for_vocab(state)
+    excluded_pairs = [
+        f"{normalize_text(note.korean)} | {normalize_text(note.english)}"
+        for note in prior_vocab
+    ]
+    proposal_batch = propose_new_vocab(
+        model=args.model,
+        candidate_count=max(args.count * 2, args.count + 10),
+        target_gap_topics=undercovered_topics(state, limit=4),
+        lesson_context_summary=lesson_context.summary if lesson_context is not None else None,
+        lesson_context_tags=lesson_context.tags if lesson_context is not None else [],
+        excluded_pairs=excluded_pairs,
+    )
+    document = build_new_vocab_document(
+        proposal_batch.proposals,
+        state,
+        lesson_id=args.lesson_id,
+        title=args.title,
+        lesson_date=date.fromisoformat(args.lesson_date),
+        count=args.count,
+        gap_ratio=args.gap_ratio,
+        lesson_context=lesson_context,
+        target_deck=args.target_deck,
+    )
+    pronunciation_lookup = generate_pronunciations(
+        [item.korean for item in document.items],
+        model=args.model,
+    )
+    document = document.model_copy(
+        update={
+            "items": [
+                item.model_copy(update={"pronunciation": pronunciation_lookup.get(item.korean)})
+                for item in document.items
+            ]
+        }
+    )
+    document = enrich_new_vocab_images(
+        document,
+        Path(args.media_dir) / "images",
+        image_quality=args.image_quality,
+    )
+    if args.with_audio:
+        document = enrich_audio(document, Path(args.media_dir) / "audio")
+
+    batch = generate_batch(document, study_state=state)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    state_output = project_root / "state" / "study-state.json"
+    state_output.parent.mkdir(parents=True, exist_ok=True)
+    state_output.write_text(state.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    plan_output = output_path.with_suffix(".generation-plan.json")
+    plan_output.write_text(
+        json.dumps(
+            {
+                "lesson_id": batch.metadata.lesson_id,
+                "notes": [
+                    note.model_dump(
+                        include={
+                            "item": {
+                                "id",
+                                "korean",
+                                "english",
+                                "item_type",
+                                "lane",
+                                "skill_tags",
+                                "image_prompt",
+                            },
                             "note_key": True,
                             "lane": True,
                             "skill_tags": True,
@@ -245,6 +454,12 @@ def main() -> None:
         return
     if args.command == "generate":
         _command_generate(args)
+        return
+    if args.command == "generate-reading-speed":
+        _command_generate_reading_speed(args)
+        return
+    if args.command == "generate-new-vocab":
+        _command_generate_new_vocab(args)
         return
     if args.command == "push":
         _command_push(args)

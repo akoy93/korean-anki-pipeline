@@ -7,9 +7,18 @@ from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
 SchemaVersion = Literal["1"]
 ItemType = Literal["vocab", "phrase", "grammar", "dialogue", "number"]
-CardKind = Literal["recognition", "production", "listening", "number-context"]
+CardKind = Literal[
+    "recognition",
+    "production",
+    "listening",
+    "number-context",
+    "read-aloud",
+    "chunked-reading",
+    "decodable-passage",
+]
 StudyLane = Literal["lesson", "new-vocab", "reading-speed", "grammar", "listening"]
 DuplicateStatus = Literal["new", "exact-duplicate", "near-duplicate"]
+VocabAdjacencyKind = Literal["coverage-gap", "lesson-adjacent"]
 RawSourceKind = Literal["image", "text"]
 QaSeverity = Literal["error", "warning"]
 
@@ -52,6 +61,7 @@ class LessonItem(StrictModel):
     lane: StudyLane = "lesson"
     skill_tags: list[str] = Field(default_factory=list)
     source_ref: str | None = None
+    image_prompt: str | None = None
     audio: MediaAsset | None = None
     image: MediaAsset | None = None
 
@@ -173,6 +183,7 @@ class PushRequest(StrictModel):
     batch: CardBatch
     dry_run: bool = True
     deck_name: str | None = None
+    source_batch_path: str | None = None
     anki_url: str = "http://127.0.0.1:8765"
     sync: bool = True
 
@@ -209,6 +220,22 @@ class ImageGenerationDecision(StrictModel):
 
 class ImageGenerationPlan(StrictModel):
     decisions: Annotated[list[ImageGenerationDecision], Field(min_length=1)]
+
+
+class NewVocabProposal(StrictModel):
+    candidate_id: str
+    korean: str
+    english: str
+    topic_tag: str
+    example_ko: str
+    example_en: str
+    proposal_reason: str
+    image_prompt: str
+    adjacency_kind: VocabAdjacencyKind
+
+
+class NewVocabProposalBatch(StrictModel):
+    proposals: Annotated[list[NewVocabProposal], Field(min_length=1)]
 
 
 class PriorNote(StrictModel):

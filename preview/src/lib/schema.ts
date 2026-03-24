@@ -1,5 +1,12 @@
 export type ItemType = "vocab" | "phrase" | "grammar" | "dialogue" | "number";
-export type CardKind = "recognition" | "production" | "listening" | "number-context";
+export type CardKind =
+  | "recognition"
+  | "production"
+  | "listening"
+  | "number-context"
+  | "read-aloud"
+  | "chunked-reading"
+  | "decodable-passage";
 export type StudyLane = "lesson" | "new-vocab" | "reading-speed" | "grammar" | "listening";
 export type DuplicateStatus = "new" | "exact-duplicate" | "near-duplicate";
 
@@ -37,6 +44,7 @@ export interface LessonItem {
   lane?: StudyLane;
   skill_tags?: string[];
   source_ref?: string | null;
+  image_prompt?: string | null;
   audio?: MediaAsset | null;
   image?: MediaAsset | null;
 }

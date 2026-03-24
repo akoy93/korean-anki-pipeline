@@ -48,6 +48,7 @@ def make_item(
     notes: str | None = "Greeting",
     tags: list[str] | None = None,
     source_ref: str | None = "2026-03-23 Lesson 1 lesson • source.png • section • 1",
+    image_prompt: str | None = None,
     audio: MediaAsset | None = None,
     image: MediaAsset | None = None,
 ) -> LessonItem:
@@ -62,6 +63,7 @@ def make_item(
         notes=notes,
         tags=tags or [],
         source_ref=source_ref,
+        image_prompt=image_prompt,
         audio=audio,
         image=image,
     )
