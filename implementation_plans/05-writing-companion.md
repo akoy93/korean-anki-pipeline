@@ -1,4 +1,4 @@
-# Phase 06: Writing Companion
+# Phase 05: Writing Companion
 
 ## Goal
 

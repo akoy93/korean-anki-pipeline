@@ -1,4 +1,4 @@
-# Phase 03: New Vocab Lane
+# Phase 02: New Vocab Lane
 
 ## Goal
 

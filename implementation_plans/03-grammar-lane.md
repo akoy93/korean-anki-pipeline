@@ -1,4 +1,4 @@
-# Phase 04: Grammar Lane
+# Phase 03: Grammar Lane
 
 ## Goal
 
@@ -70,4 +70,4 @@ Preview should label grammar cards by target structure and lane.
 ## Dependencies
 
 - Phase 01: Adaptive Core
-- Phase 03: New Vocab Lane is helpful but not strictly required
+- Phase 02: New Vocab Lane is helpful but not strictly required
