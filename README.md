@@ -78,6 +78,14 @@ korean-anki push --input data/batch.reviewed.json
 
 Anki Desktop must be open with AnkiConnect installed.
 
+## Tests
+
+Run the Python regression suite from the repo root:
+
+```bash
+PYTHONPATH=src python3 -m unittest discover -s tests -v
+```
+
 ## Weekly lesson folder pattern
 
 For each lesson, create:
