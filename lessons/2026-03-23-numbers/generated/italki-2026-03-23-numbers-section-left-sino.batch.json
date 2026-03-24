@@ -34,7 +34,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 1",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-001.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -44,7 +48,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>일</div>",
           "back_html": "<div class='answer answer-en'>one</div><div class='answer answer-ko'>일</div><div class='pronunciation'>il</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 1</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-001.mp3",
           "image_path": null,
           "approved": true
         },
@@ -54,7 +58,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>one</div>",
           "back_html": "<div class='answer answer-ko'>일</div><div class='answer answer-en'>one</div><div class='pronunciation'>il</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 1</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-001.mp3",
           "image_path": null,
           "approved": true
         },
@@ -62,11 +66,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-001-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-001",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-001.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>일</div><div class='answer answer-en'>one</div><div class='pronunciation'>il</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 1</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-001.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-001-number-context",
@@ -74,7 +78,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>일</div>",
           "back_html": "<div class='answer answer-en'>one</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-001.mp3",
           "image_path": null,
           "approved": true
         }
@@ -86,11 +90,11 @@
         "numbers",
         "sino-korean"
       ],
-      "duplicate_status": "new",
-      "duplicate_note_key": null,
+      "duplicate_status": "near-duplicate",
+      "duplicate_note_key": "number:하나:one",
       "duplicate_note_id": null,
-      "duplicate_source": null,
-      "inclusion_reason": "New card"
+      "duplicate_source": "lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json",
+      "inclusion_reason": "Near-duplicate of prior card from lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json"
     },
     {
       "item": {
@@ -113,7 +117,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 2",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-002.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -123,7 +131,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>이</div>",
           "back_html": "<div class='answer answer-en'>two</div><div class='answer answer-ko'>이</div><div class='pronunciation'>i</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 2</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-002.mp3",
           "image_path": null,
           "approved": true
         },
@@ -133,7 +141,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>two</div>",
           "back_html": "<div class='answer answer-ko'>이</div><div class='answer answer-en'>two</div><div class='pronunciation'>i</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 2</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-002.mp3",
           "image_path": null,
           "approved": true
         },
@@ -141,11 +149,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-002-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-002",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-002.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>이</div><div class='answer answer-en'>two</div><div class='pronunciation'>i</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 2</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-002.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-002-number-context",
@@ -153,7 +161,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>이</div>",
           "back_html": "<div class='answer answer-en'>two</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-002.mp3",
           "image_path": null,
           "approved": true
         }
@@ -165,11 +173,11 @@
         "numbers",
         "sino-korean"
       ],
-      "duplicate_status": "new",
-      "duplicate_note_key": null,
+      "duplicate_status": "near-duplicate",
+      "duplicate_note_key": "number:둘:two",
       "duplicate_note_id": null,
-      "duplicate_source": null,
-      "inclusion_reason": "New card"
+      "duplicate_source": "lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json",
+      "inclusion_reason": "Near-duplicate of prior card from lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json"
     },
     {
       "item": {
@@ -192,7 +200,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 3",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-003.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -202,7 +214,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>삼</div>",
           "back_html": "<div class='answer answer-en'>three</div><div class='answer answer-ko'>삼</div><div class='pronunciation'>sam</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 3</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-003.mp3",
           "image_path": null,
           "approved": true
         },
@@ -212,7 +224,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>three</div>",
           "back_html": "<div class='answer answer-ko'>삼</div><div class='answer answer-en'>three</div><div class='pronunciation'>sam</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 3</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-003.mp3",
           "image_path": null,
           "approved": true
         },
@@ -220,11 +232,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-003-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-003",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-003.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>삼</div><div class='answer answer-en'>three</div><div class='pronunciation'>sam</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 3</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-003.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-003-number-context",
@@ -232,7 +244,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>삼</div>",
           "back_html": "<div class='answer answer-en'>three</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-003.mp3",
           "image_path": null,
           "approved": true
         }
@@ -244,11 +256,11 @@
         "numbers",
         "sino-korean"
       ],
-      "duplicate_status": "new",
-      "duplicate_note_key": null,
+      "duplicate_status": "near-duplicate",
+      "duplicate_note_key": "number:셋:three",
       "duplicate_note_id": null,
-      "duplicate_source": null,
-      "inclusion_reason": "New card"
+      "duplicate_source": "lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json",
+      "inclusion_reason": "Near-duplicate of prior card from lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json"
     },
     {
       "item": {
@@ -271,7 +283,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 4",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-004.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -281,7 +297,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>사</div>",
           "back_html": "<div class='answer answer-en'>four</div><div class='answer answer-ko'>사</div><div class='pronunciation'>sa</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 4</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-004.mp3",
           "image_path": null,
           "approved": true
         },
@@ -291,7 +307,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>four</div>",
           "back_html": "<div class='answer answer-ko'>사</div><div class='answer answer-en'>four</div><div class='pronunciation'>sa</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 4</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-004.mp3",
           "image_path": null,
           "approved": true
         },
@@ -299,11 +315,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-004-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-004",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-004.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>사</div><div class='answer answer-en'>four</div><div class='pronunciation'>sa</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 4</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-004.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-004-number-context",
@@ -311,7 +327,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>사</div>",
           "back_html": "<div class='answer answer-en'>four</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-004.mp3",
           "image_path": null,
           "approved": true
         }
@@ -323,11 +339,11 @@
         "numbers",
         "sino-korean"
       ],
-      "duplicate_status": "new",
-      "duplicate_note_key": null,
+      "duplicate_status": "near-duplicate",
+      "duplicate_note_key": "number:넷:four",
       "duplicate_note_id": null,
-      "duplicate_source": null,
-      "inclusion_reason": "New card"
+      "duplicate_source": "lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json",
+      "inclusion_reason": "Near-duplicate of prior card from lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json"
     },
     {
       "item": {
@@ -350,7 +366,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 5",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-005.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -360,7 +380,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>오</div>",
           "back_html": "<div class='answer answer-en'>five</div><div class='answer answer-ko'>오</div><div class='pronunciation'>o</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 5</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-005.mp3",
           "image_path": null,
           "approved": true
         },
@@ -370,7 +390,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>five</div>",
           "back_html": "<div class='answer answer-ko'>오</div><div class='answer answer-en'>five</div><div class='pronunciation'>o</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 5</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-005.mp3",
           "image_path": null,
           "approved": true
         },
@@ -378,11 +398,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-005-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-005",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-005.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>오</div><div class='answer answer-en'>five</div><div class='pronunciation'>o</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 5</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-005.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-005-number-context",
@@ -390,7 +410,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>오</div>",
           "back_html": "<div class='answer answer-en'>five</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-005.mp3",
           "image_path": null,
           "approved": true
         }
@@ -402,11 +422,11 @@
         "numbers",
         "sino-korean"
       ],
-      "duplicate_status": "new",
-      "duplicate_note_key": null,
+      "duplicate_status": "near-duplicate",
+      "duplicate_note_key": "number:다섯:five",
       "duplicate_note_id": null,
-      "duplicate_source": null,
-      "inclusion_reason": "New card"
+      "duplicate_source": "lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json",
+      "inclusion_reason": "Near-duplicate of prior card from lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json"
     },
     {
       "item": {
@@ -429,7 +449,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 6",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-006.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -439,7 +463,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>육</div>",
           "back_html": "<div class='answer answer-en'>six</div><div class='answer answer-ko'>육</div><div class='pronunciation'>yuk</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 6</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-006.mp3",
           "image_path": null,
           "approved": true
         },
@@ -449,7 +473,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>six</div>",
           "back_html": "<div class='answer answer-ko'>육</div><div class='answer answer-en'>six</div><div class='pronunciation'>yuk</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 6</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-006.mp3",
           "image_path": null,
           "approved": true
         },
@@ -457,11 +481,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-006-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-006",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-006.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>육</div><div class='answer answer-en'>six</div><div class='pronunciation'>yuk</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 6</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-006.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-006-number-context",
@@ -469,7 +493,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>육</div>",
           "back_html": "<div class='answer answer-en'>six</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-006.mp3",
           "image_path": null,
           "approved": true
         }
@@ -481,11 +505,11 @@
         "numbers",
         "sino-korean"
       ],
-      "duplicate_status": "new",
-      "duplicate_note_key": null,
+      "duplicate_status": "near-duplicate",
+      "duplicate_note_key": "number:여섯:six",
       "duplicate_note_id": null,
-      "duplicate_source": null,
-      "inclusion_reason": "New card"
+      "duplicate_source": "lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json",
+      "inclusion_reason": "Near-duplicate of prior card from lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json"
     },
     {
       "item": {
@@ -508,7 +532,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 7",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-007.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -518,7 +546,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>칠</div>",
           "back_html": "<div class='answer answer-en'>seven</div><div class='answer answer-ko'>칠</div><div class='pronunciation'>chil</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 7</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-007.mp3",
           "image_path": null,
           "approved": true
         },
@@ -528,7 +556,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>seven</div>",
           "back_html": "<div class='answer answer-ko'>칠</div><div class='answer answer-en'>seven</div><div class='pronunciation'>chil</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 7</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-007.mp3",
           "image_path": null,
           "approved": true
         },
@@ -536,11 +564,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-007-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-007",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-007.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>칠</div><div class='answer answer-en'>seven</div><div class='pronunciation'>chil</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 7</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-007.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-007-number-context",
@@ -548,7 +576,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>칠</div>",
           "back_html": "<div class='answer answer-en'>seven</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-007.mp3",
           "image_path": null,
           "approved": true
         }
@@ -560,11 +588,11 @@
         "numbers",
         "sino-korean"
       ],
-      "duplicate_status": "new",
-      "duplicate_note_key": null,
+      "duplicate_status": "near-duplicate",
+      "duplicate_note_key": "number:일곱:seven",
       "duplicate_note_id": null,
-      "duplicate_source": null,
-      "inclusion_reason": "New card"
+      "duplicate_source": "lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json",
+      "inclusion_reason": "Near-duplicate of prior card from lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json"
     },
     {
       "item": {
@@ -587,7 +615,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 8",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-008.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -597,7 +629,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>팔</div>",
           "back_html": "<div class='answer answer-en'>eight</div><div class='answer answer-ko'>팔</div><div class='pronunciation'>pal</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 8</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-008.mp3",
           "image_path": null,
           "approved": true
         },
@@ -607,7 +639,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>eight</div>",
           "back_html": "<div class='answer answer-ko'>팔</div><div class='answer answer-en'>eight</div><div class='pronunciation'>pal</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 8</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-008.mp3",
           "image_path": null,
           "approved": true
         },
@@ -615,11 +647,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-008-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-008",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-008.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>팔</div><div class='answer answer-en'>eight</div><div class='pronunciation'>pal</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 8</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-008.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-008-number-context",
@@ -627,7 +659,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>팔</div>",
           "back_html": "<div class='answer answer-en'>eight</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-008.mp3",
           "image_path": null,
           "approved": true
         }
@@ -639,11 +671,11 @@
         "numbers",
         "sino-korean"
       ],
-      "duplicate_status": "new",
-      "duplicate_note_key": null,
+      "duplicate_status": "near-duplicate",
+      "duplicate_note_key": "number:여덟:eight",
       "duplicate_note_id": null,
-      "duplicate_source": null,
-      "inclusion_reason": "New card"
+      "duplicate_source": "lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json",
+      "inclusion_reason": "Near-duplicate of prior card from lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json"
     },
     {
       "item": {
@@ -666,7 +698,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 9",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-009.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -676,7 +712,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>구</div>",
           "back_html": "<div class='answer answer-en'>nine</div><div class='answer answer-ko'>구</div><div class='pronunciation'>gu</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 9</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-009.mp3",
           "image_path": null,
           "approved": true
         },
@@ -686,7 +722,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>nine</div>",
           "back_html": "<div class='answer answer-ko'>구</div><div class='answer answer-en'>nine</div><div class='pronunciation'>gu</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 9</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-009.mp3",
           "image_path": null,
           "approved": true
         },
@@ -694,11 +730,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-009-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-009",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-009.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>구</div><div class='answer answer-en'>nine</div><div class='pronunciation'>gu</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 9</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-009.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-009-number-context",
@@ -706,7 +742,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>구</div>",
           "back_html": "<div class='answer answer-en'>nine</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-009.mp3",
           "image_path": null,
           "approved": true
         }
@@ -718,11 +754,11 @@
         "numbers",
         "sino-korean"
       ],
-      "duplicate_status": "new",
-      "duplicate_note_key": null,
+      "duplicate_status": "near-duplicate",
+      "duplicate_note_key": "number:아홉:nine",
       "duplicate_note_id": null,
-      "duplicate_source": null,
-      "inclusion_reason": "New card"
+      "duplicate_source": "lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json",
+      "inclusion_reason": "Near-duplicate of prior card from lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json"
     },
     {
       "item": {
@@ -745,7 +781,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 10",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-010.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -755,7 +795,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>십</div>",
           "back_html": "<div class='answer answer-en'>ten</div><div class='answer answer-ko'>십</div><div class='pronunciation'>ship</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 10</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-010.mp3",
           "image_path": null,
           "approved": true
         },
@@ -765,7 +805,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>ten</div>",
           "back_html": "<div class='answer answer-ko'>십</div><div class='answer answer-en'>ten</div><div class='pronunciation'>ship</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 10</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-010.mp3",
           "image_path": null,
           "approved": true
         },
@@ -773,11 +813,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-010-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-010",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-010.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>십</div><div class='answer answer-en'>ten</div><div class='pronunciation'>ship</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 10</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-010.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-010-number-context",
@@ -785,7 +825,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>십</div>",
           "back_html": "<div class='answer answer-en'>ten</div><div class='notes'>수의 차례, 번호, 단위 Ex) telephone numbers, bus route numbers, height, weight, address number, years, months, minutes, seconds, and prices</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-010.mp3",
           "image_path": null,
           "approved": true
         }
@@ -797,11 +837,11 @@
         "numbers",
         "sino-korean"
       ],
-      "duplicate_status": "new",
-      "duplicate_note_key": null,
+      "duplicate_status": "near-duplicate",
+      "duplicate_note_key": "number:열:ten",
       "duplicate_note_id": null,
-      "duplicate_source": null,
-      "inclusion_reason": "New card"
+      "duplicate_source": "lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json",
+      "inclusion_reason": "Near-duplicate of prior card from lessons/2026-03-23-numbers/generated/italki-2026-03-23-numbers-section-right-native.batch.json"
     },
     {
       "item": {
@@ -824,7 +864,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 100",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-011.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -834,7 +878,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>백</div>",
           "back_html": "<div class='answer answer-en'>hundred</div><div class='answer answer-ko'>백</div><div class='pronunciation'>baek</div><div class='notes'>Bottom row on slide: 100=백</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 100</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-011.mp3",
           "image_path": null,
           "approved": true
         },
@@ -844,7 +888,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>hundred</div>",
           "back_html": "<div class='answer answer-ko'>백</div><div class='answer answer-en'>hundred</div><div class='pronunciation'>baek</div><div class='notes'>Bottom row on slide: 100=백</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 100</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-011.mp3",
           "image_path": null,
           "approved": true
         },
@@ -852,11 +896,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-011-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-011",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-011.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>백</div><div class='answer answer-en'>hundred</div><div class='pronunciation'>baek</div><div class='notes'>Bottom row on slide: 100=백</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 100</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-011.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-011-number-context",
@@ -864,7 +908,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>백</div>",
           "back_html": "<div class='answer answer-en'>hundred</div><div class='notes'>Bottom row on slide: 100=백</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-011.mp3",
           "image_path": null,
           "approved": true
         }
@@ -903,7 +947,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 1000",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-012.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -913,7 +961,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>천</div>",
           "back_html": "<div class='answer answer-en'>thousand</div><div class='answer answer-ko'>천</div><div class='pronunciation'>cheon</div><div class='notes'>Bottom row on slide: 1000=천</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 1000</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-012.mp3",
           "image_path": null,
           "approved": true
         },
@@ -923,7 +971,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>thousand</div>",
           "back_html": "<div class='answer answer-ko'>천</div><div class='answer answer-en'>thousand</div><div class='pronunciation'>cheon</div><div class='notes'>Bottom row on slide: 1000=천</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 1000</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-012.mp3",
           "image_path": null,
           "approved": true
         },
@@ -931,11 +979,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-012-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-012",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-012.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>천</div><div class='answer answer-en'>thousand</div><div class='pronunciation'>cheon</div><div class='notes'>Bottom row on slide: 1000=천</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 1000</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-012.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-012-number-context",
@@ -943,7 +991,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>천</div>",
           "back_html": "<div class='answer answer-en'>thousand</div><div class='notes'>Bottom row on slide: 1000=천</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-012.mp3",
           "image_path": null,
           "approved": true
         }
@@ -982,7 +1030,11 @@
         ],
         "source_ref": "2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 10000",
         "image_prompt": null,
-        "audio": null,
+        "audio": {
+          "path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-013.mp3",
+          "prompt": null,
+          "source_url": null
+        },
         "image": null
       },
       "cards": [
@@ -992,7 +1044,7 @@
           "kind": "recognition",
           "front_html": "<div class='prompt prompt-ko'>만</div>",
           "back_html": "<div class='answer answer-en'>ten thousand</div><div class='answer answer-ko'>만</div><div class='pronunciation'>man</div><div class='notes'>Bottom row on slide: 10000=만</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 10000</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-013.mp3",
           "image_path": null,
           "approved": true
         },
@@ -1002,7 +1054,7 @@
           "kind": "production",
           "front_html": "<div class='prompt prompt-en'>ten thousand</div>",
           "back_html": "<div class='answer answer-ko'>만</div><div class='answer answer-en'>ten thousand</div><div class='pronunciation'>man</div><div class='notes'>Bottom row on slide: 10000=만</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 10000</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-013.mp3",
           "image_path": null,
           "approved": true
         },
@@ -1010,11 +1062,11 @@
           "id": "italki-2026-03-23-numbers-section-left-sino-013-listening",
           "item_id": "italki-2026-03-23-numbers-section-left-sino-013",
           "kind": "listening",
-          "front_html": "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/italki-2026-03-23-numbers-section-left-sino-013.mp3'></audio>",
           "back_html": "<div class='answer answer-ko'>만</div><div class='answer answer-en'>ten thousand</div><div class='pronunciation'>man</div><div class='notes'>Bottom row on slide: 10000=만</div><div class='source-ref'>Source: 2026-03-23 Numbers lesson • 2026-03-21_1.png • 일 – 십 • 10000</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-013.mp3",
           "image_path": null,
-          "approved": false
+          "approved": true
         },
         {
           "id": "italki-2026-03-23-numbers-section-left-sino-013-number-context",
@@ -1022,7 +1074,7 @@
           "kind": "number-context",
           "front_html": "<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>만</div>",
           "back_html": "<div class='answer answer-en'>ten thousand</div><div class='notes'>Bottom row on slide: 10000=만</div>",
-          "audio_path": null,
+          "audio_path": "data/media/audio/italki-2026-03-23-numbers-section-left-sino-013.mp3",
           "image_path": null,
           "approved": true
         }

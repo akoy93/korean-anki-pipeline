@@ -13,6 +13,37 @@ export default defineConfig({
     {
       name: "local-batch-api",
       configureServer(server) {
+        server.middlewares.use("/media", (req, res, next) => {
+          try {
+            const requestPath = decodeURIComponent((req.url ?? "").split("?")[0] ?? "");
+            const normalizedRequestPath = requestPath.replace(/^\/+/, "");
+            const resolvedPath = path.resolve(projectRoot, "data/media", normalizedRequestPath);
+            const mediaRoot = `${path.resolve(projectRoot, "data/media")}${path.sep}`;
+
+            if (resolvedPath !== path.resolve(projectRoot, "data/media") && !resolvedPath.startsWith(mediaRoot)) {
+              res.statusCode = 403;
+              res.end("Path escapes media root.");
+              return;
+            }
+
+            if (!fs.existsSync(resolvedPath) || !fs.statSync(resolvedPath).isFile()) {
+              next();
+              return;
+            }
+
+            const ext = path.extname(resolvedPath).toLowerCase();
+            const contentType =
+              ext === ".mp3" ? "audio/mpeg" : ext === ".png" ? "image/png" : "application/octet-stream";
+
+            res.statusCode = 200;
+            res.setHeader("Content-Type", contentType);
+            res.setHeader("Cache-Control", "no-store");
+            res.end(fs.readFileSync(resolvedPath));
+          } catch {
+            next();
+          }
+        });
+
         server.middlewares.use("/api/batch", (req, res) => {
           try {
             const requestUrl = new URL(req.url ?? "", "http://127.0.0.1");
