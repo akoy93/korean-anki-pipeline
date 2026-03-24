@@ -9,6 +9,7 @@ Local workflow for turning arbitrary Korean lesson material into reviewed Anki c
 - `data/samples`: sample number and phrase batches for validating the generic flow
 - `lessons/<date-topic>`: weekly lesson workspaces with raw sources, transcription, QA, generated files, and a lesson log
 - `CHANGELOG.md`: implementation history for iterative work across agents
+- `IDEAS.md`: backlog for follow-on features and future workflow improvements
 
 ## Python setup
 
