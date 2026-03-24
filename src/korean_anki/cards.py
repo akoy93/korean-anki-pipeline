@@ -218,6 +218,8 @@ def _reading_speed_cards(item: LessonItem) -> list[CardPreview]:
 def _find_exact_duplicate(item: LessonItem, prior_notes: list[PriorNote]) -> PriorNote | None:
     note_key = note_key_for_item(item)
     for prior_note in prior_notes:
+        if prior_note.lane == "reading-speed":
+            continue
         if prior_note.note_key == note_key:
             return prior_note
     return None
@@ -227,6 +229,8 @@ def _find_near_duplicate(item: LessonItem, prior_notes: list[PriorNote]) -> Prio
     korean = normalize_text(item.korean)
     english = normalize_text(item.english)
     for prior_note in prior_notes:
+        if prior_note.lane == "reading-speed":
+            continue
         if prior_note.item_type != item.item_type:
             continue
         if prior_note.note_key == note_key_for_item(item):

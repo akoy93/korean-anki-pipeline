@@ -127,6 +127,30 @@ class CardGenerationTests(unittest.TestCase):
         chunked = next(card for card in note.cards if card.kind == "chunked-reading")
         self.assertIn("안·녕·하·세·요", chunked.front_html)
 
+    def test_reading_speed_history_does_not_block_lesson_cards(self) -> None:
+        prior = PriorNote(
+            note_key="number:일:one",
+            korean="일",
+            english="one",
+            item_type="number",
+            lane="reading-speed",
+            skill_tags=["reading-speed", "read-aloud"],
+            source="data/generated/reading-speed-2026-03-23.batch.json",
+        )
+        lesson_item = make_item(
+            item_id="sino-1",
+            item_type="number",
+            korean="일",
+            english="one",
+            tags=["numbers", "sino-korean"],
+        ).model_copy(update={"lane": "lesson", "skill_tags": ["numbers", "sino-korean"]})
+
+        note = generate_note(lesson_item, prior_notes=[prior])
+
+        self.assertEqual(note.duplicate_status, "new")
+        self.assertTrue(note.approved)
+        self.assertTrue(all(card.approved for card in note.cards if card.kind != "listening"))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -252,7 +252,13 @@ def _join_examples(note: GeneratedNote, field: Literal["korean", "english"]) -> 
     return "\n".join(example.english for example in note.item.examples)
 
 
-def _note_payload(note: GeneratedNote, deck_name: str, media_names: dict[str, str]) -> _AnkiNote:
+def _note_payload(
+    note: GeneratedNote,
+    deck_name: str,
+    media_names: dict[str, str],
+    *,
+    allow_duplicate: bool = False,
+) -> _AnkiNote:
     approved_kinds = {card.kind for card in note.cards if card.approved}
     audio = ""
     if note.item.audio is not None:
@@ -297,7 +303,7 @@ def _note_payload(note: GeneratedNote, deck_name: str, media_names: dict[str, st
             "EnableDecodablePassage": "1" if "decodable-passage" in approved_kinds else "",
         },
         "tags": tags,
-        "options": {"allowDuplicate": False},
+        "options": {"allowDuplicate": allow_duplicate},
     }
 
 
@@ -305,23 +311,18 @@ def _target_deck(batch: CardBatch, deck_name: str | None) -> str:
     return deck_name or batch.metadata.target_deck or DEFAULT_DECK
 
 
-def find_duplicate_notes(
-    batch: CardBatch,
-    deck_name: str | None = None,
-    anki_url: str = "http://127.0.0.1:8765",
-) -> list[DuplicateNote]:
+def _existing_model_notes(anki_url: str = "http://127.0.0.1:8765") -> dict[str, list[tuple[str, int]]]:
     client = AnkiConnectClient(url=anki_url)
-    resolved_deck = _target_deck(batch, deck_name)
-    query = f'deck:"{resolved_deck}" note:"{ANKI_MODEL_NAME}"'
+    query = f'note:"{ANKI_MODEL_NAME}"'
     existing_note_ids = client.invoke("findNotes", query=query)
     if not isinstance(existing_note_ids, list) or not existing_note_ids:
-        return []
+        return {}
 
     notes_info = client.invoke("notesInfo", notes=existing_note_ids)
     if not isinstance(notes_info, list):
-        return []
+        return {}
 
-    existing_by_key: dict[tuple[str, str], int] = {}
+    existing_by_korean: dict[str, list[tuple[str, int]]] = {}
     for note_info in notes_info:
         if not isinstance(note_info, dict):
             continue
@@ -337,12 +338,24 @@ def find_duplicate_notes(
         english = english_field.get("value")
         if not isinstance(korean, str) or not isinstance(english, str):
             continue
-        existing_by_key[(korean, english)] = note_id
+        existing_by_korean.setdefault(korean, []).append((english, note_id))
 
+    return existing_by_korean
+
+
+def find_duplicate_notes(
+    batch: CardBatch,
+    deck_name: str | None = None,
+    anki_url: str = "http://127.0.0.1:8765",
+) -> list[DuplicateNote]:
+    existing_by_korean = _existing_model_notes(anki_url=anki_url)
     duplicates: list[DuplicateNote] = []
     for note in _approved_notes(batch):
-        key = (note.item.korean, note.item.english)
-        existing_note_id = existing_by_key.get(key)
+        existing_matches = existing_by_korean.get(note.item.korean, [])
+        existing_note_id = next(
+            (note_id for existing_english, note_id in existing_matches if existing_english == note.item.english),
+            None,
+        )
         if existing_note_id is not None:
             duplicates.append(
                 DuplicateNote(
@@ -354,6 +367,19 @@ def find_duplicate_notes(
             )
 
     return duplicates
+
+
+def _homograph_item_ids(batch: CardBatch, anki_url: str = "http://127.0.0.1:8765") -> set[str]:
+    existing_by_korean = _existing_model_notes(anki_url=anki_url)
+    homograph_ids: set[str] = set()
+    for note in _approved_notes(batch):
+        existing_matches = existing_by_korean.get(note.item.korean, [])
+        if not existing_matches:
+            continue
+        if any(existing_english == note.item.english for existing_english, _note_id in existing_matches):
+            continue
+        homograph_ids.add(note.item.id)
+    return homograph_ids
 
 
 def plan_push(
@@ -387,7 +413,7 @@ def push_batch(
     plan = plan_push(batch, deck_name=resolved_deck, anki_url=anki_url)
     if plan.duplicate_notes:
         raise RuntimeError(
-            f"Duplicate notes already exist in {resolved_deck}: "
+            "Duplicate notes already exist for this Anki note type: "
             + ", ".join(f"{duplicate.korean} / {duplicate.english}" for duplicate in plan.duplicate_notes)
         )
 
@@ -402,7 +428,16 @@ def push_batch(
         if note.item.image is not None and note.item.image.path not in media_names:
             media_names[note.item.image.path] = client.store_media_file(note.item.image.path)
 
-    payloads = [_note_payload(note, resolved_deck, media_names) for note in approved_notes]
+    homograph_ids = _homograph_item_ids(batch, anki_url=anki_url)
+    payloads = [
+        _note_payload(
+            note,
+            resolved_deck,
+            media_names,
+            allow_duplicate=note.item.id in homograph_ids,
+        )
+        for note in approved_notes
+    ]
     if not payloads:
         return PushResult(
             deck_name=resolved_deck,

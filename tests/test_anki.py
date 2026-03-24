@@ -162,6 +162,57 @@ class AnkiTests(unittest.TestCase):
         calls = [call[0] for client in FakeAnkiConnectClient.instances for call in client.calls]
         self.assertNotIn("addNotes", calls)
 
+    def test_plan_push_allows_homographs_with_different_meanings(self) -> None:
+        batch = make_batch([generate_note(make_item(korean="일", english="one"))])
+        FakeAnkiConnectClient.existing_note_ids = [456]
+        FakeAnkiConnectClient.notes_info = [
+            {
+                "noteId": 456,
+                "fields": {
+                    "Korean": {"value": "일"},
+                    "English": {"value": "day (date)"},
+                },
+            }
+        ]
+
+        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
+            result = anki.plan_push(batch)
+
+        self.assertTrue(result.can_push)
+        self.assertEqual(result.duplicate_notes, [])
+
+        plan_client = FakeAnkiConnectClient.instances[0]
+        find_notes_call = next(call for call in plan_client.calls if call[0] == "findNotes")
+        self.assertEqual(find_notes_call[1]["query"], f'note:"{anki.ANKI_MODEL_NAME}"')
+
+    def test_push_batch_marks_homographs_as_allowed_duplicates_for_anki(self) -> None:
+        batch = make_batch([generate_note(make_item(korean="일", english="one"))])
+        FakeAnkiConnectClient.existing_note_ids = [456]
+        FakeAnkiConnectClient.notes_info = [
+            {
+                "noteId": 456,
+                "fields": {
+                    "Korean": {"value": "일"},
+                    "English": {"value": "day (date)"},
+                },
+            }
+        ]
+        FakeAnkiConnectClient.add_notes_result = [789]
+
+        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
+            result = anki.push_batch(batch, sync=False)
+
+        self.assertEqual(result.notes_added, 1)
+        self.assertEqual(result.pushed_note_ids, [789])
+        self.assertTrue(result.can_push)
+
+        push_client = FakeAnkiConnectClient.instances[0]
+        add_notes_call = next(call for call in push_client.calls if call[0] == "addNotes")
+        payload = add_notes_call[1]["notes"][0]
+        self.assertEqual(payload["fields"]["Korean"], "일")
+        self.assertEqual(payload["fields"]["English"], "one")
+        self.assertEqual(payload["options"], {"allowDuplicate": True})
+
     def test_push_batch_sets_reading_speed_enable_fields(self) -> None:
         reading_item = make_item(
             item_id="read-1",
