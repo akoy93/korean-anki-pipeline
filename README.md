@@ -59,7 +59,7 @@ korean-anki generate \
   --input data/lesson.json \
   --output data/batch.json \
   --with-audio \
-  --media-dir preview/public/media
+  --with-images
 ```
 
 Run the local push service in one terminal:
@@ -78,7 +78,17 @@ pnpm dev --host 127.0.0.1
 
 Load `data/batch.json`, review/edit, then use `Check push` for a dry-run. If there are no duplicates, click `Push to Anki` to import the approved cards and sync.
 
-If you want audio/image preview in the browser, generate media under `preview/public/media` as shown above so Vite can serve it during `pnpm dev`.
+The preview app serves `/media` directly from the repo's local `data/media` directory during `pnpm dev`.
+
+If you already pushed cards and synced Anki Desktop with AnkiWeb, you can hydrate local preview assets from Anki instead of regenerating them:
+
+```bash
+korean-anki sync-media \
+  --input data/generated/new-vocab-2026-03-24.batch.json \
+  --sync-first
+```
+
+By default this writes a sibling local-only file such as `data/generated/new-vocab-2026-03-24.synced.batch.json` and downloads the referenced media into local `data/media/`.
 
 Generate a reading-speed batch from your known-word bank:
 
@@ -114,8 +124,10 @@ Anki Desktop must be open with AnkiConnect installed.
 ## Portability
 
 - `.env` is intentionally untracked. Copy `.env.example` to `.env` and set your own `OPENAI_API_KEY` on each machine.
-- Tracked lesson batches are committed without local media references, so a fresh clone does not point at missing audio/image files.
-- To restore audio/image preview on a new machine, regenerate the batch there with `--with-audio` and/or `--with-images`, using `--media-dir preview/public/media` if you want browser playback.
+- Git is for source material and local lesson/batch JSON. Generated audio and image assets under `data/media/` are local-only by default and are intentionally ignored.
+- Anki Desktop plus AnkiWeb are the canonical storage layer for finished card media after push/sync.
+- Use `korean-anki sync-media` when you want a local previewable copy of media for an existing lesson or batch. The command downloads media from Anki via AnkiConnect and writes a sibling `.synced.batch.json` or `.synced.lesson.json` file for local preview.
+- `preview/public/media/` is scratch space only. Do not point committed lesson or batch JSON at that directory.
 - The local push flow still requires Anki Desktop plus AnkiConnect running on that machine.
 
 ## Tests

@@ -7,7 +7,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from .anki import DEFAULT_DECK, push_batch
+from .anki import DEFAULT_DECK, push_batch, sync_batch_media, sync_lesson_media
 from .cards import generate_batch
 from .llm import (
     extract_lesson,
@@ -130,6 +130,16 @@ def _parse_args() -> argparse.Namespace:
     push.add_argument("--deck", default=None)
     push.add_argument("--anki-url", default="http://127.0.0.1:8765")
     push.add_argument("--no-sync", action="store_true")
+
+    sync_media = subparsers.add_parser(
+        "sync-media",
+        help="Hydrate local lesson or batch media from existing Anki notes via AnkiConnect.",
+    )
+    sync_media.add_argument("--input", required=True)
+    sync_media.add_argument("--output", default=None)
+    sync_media.add_argument("--media-dir", default="data/media")
+    sync_media.add_argument("--anki-url", default="http://127.0.0.1:8765")
+    sync_media.add_argument("--sync-first", action="store_true")
 
     serve = subparsers.add_parser("serve", help="Run the local-only Python HTTP service for preview push actions.")
     serve.add_argument("--host", default="127.0.0.1")
@@ -437,6 +447,46 @@ def _command_push(args: argparse.Namespace) -> None:
     print(result.model_dump_json(indent=2, ensure_ascii=False))
 
 
+def _default_synced_output_path(input_path: Path) -> Path:
+    name = input_path.name
+    if name.endswith(".batch.json"):
+        return input_path.with_name(f"{name.removesuffix('.batch.json')}.synced.batch.json")
+    if name.endswith(".lesson.json"):
+        return input_path.with_name(f"{name.removesuffix('.lesson.json')}.synced.lesson.json")
+    return input_path.with_name(f"{name}.synced")
+
+
+def _command_sync_media(args: argparse.Namespace) -> None:
+    input_path = Path(args.input)
+    output_path = Path(args.output) if args.output is not None else _default_synced_output_path(input_path)
+    raw_text = input_path.read_text(encoding="utf-8")
+
+    try:
+        batch = CardBatch.model_validate_json(raw_text)
+    except Exception:  # noqa: BLE001
+        batch = None
+
+    if batch is not None:
+        synced_batch, summary = sync_batch_media(
+            batch,
+            media_dir=Path(args.media_dir),
+            anki_url=args.anki_url,
+            sync_first=args.sync_first,
+        )
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(synced_batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    else:
+        synced_document, summary = sync_lesson_media(
+            read_lesson(input_path),
+            media_dir=Path(args.media_dir),
+            anki_url=args.anki_url,
+            sync_first=args.sync_first,
+        )
+        write_json(synced_document, output_path)
+
+    print(json.dumps({"output_path": str(output_path), **summary.__dict__}, indent=2))
+
+
 def main() -> None:
     load_dotenv(override=True)
     args = _parse_args()
@@ -463,6 +513,9 @@ def main() -> None:
         return
     if args.command == "push":
         _command_push(args)
+        return
+    if args.command == "sync-media":
+        _command_sync_media(args)
         return
     if args.command == "serve":
         run_server(host=args.host, port=args.port)

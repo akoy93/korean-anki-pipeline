@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import base64
+import shutil
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -16,6 +18,7 @@ class FakeAnkiConnectClient:
     existing_note_ids: list[int] = []
     notes_info: list[dict[str, object]] = []
     add_notes_result: list[int | None] = []
+    media_files: dict[str, bytes] = {}
 
     def __init__(self, url: str = "http://127.0.0.1:8765") -> None:
         self.url = url
@@ -30,6 +33,7 @@ class FakeAnkiConnectClient:
         cls.existing_note_ids = []
         cls.notes_info = []
         cls.add_notes_result = []
+        cls.media_files = {}
 
     def invoke(self, action: str, **params: object) -> object:
         self.calls.append((action, params))
@@ -45,6 +49,11 @@ class FakeAnkiConnectClient:
             return None
         if action == "addNotes":
             return self.add_notes_result
+        if action == "retrieveMediaFile":
+            filename = params["filename"]
+            if isinstance(filename, str) and filename in self.media_files:
+                return base64.b64encode(self.media_files[filename]).decode("ascii")
+            return False
         if action == "sync":
             self.synced = True
             return None
@@ -60,6 +69,12 @@ class FakeAnkiConnectClient:
         name = Path(path).name
         self.stored_media.append(name)
         return name
+
+    def retrieve_media_file(self, filename: str) -> bytes | None:
+        encoded = self.invoke("retrieveMediaFile", filename=filename)
+        if not isinstance(encoded, str):
+            return None
+        return base64.b64decode(encoded)
 
     def sync(self) -> None:
         self.invoke("sync")
@@ -243,6 +258,85 @@ class AnkiTests(unittest.TestCase):
         self.assertEqual(payload["fields"]["EnableDecodablePassage"], "")
         self.assertIn("lane:reading-speed", payload["tags"])
         self.assertIn("skill:chunked", payload["tags"])
+
+    def test_sync_lesson_media_downloads_assets_from_anki(self) -> None:
+        output_dir = Path("tests/tmp-sync-lesson")
+        document = anki.LessonDocument(
+            metadata=make_metadata(),
+            items=[
+                make_item(
+                    item_id="item-1",
+                    korean="오늘",
+                    english="today",
+                    audio=None,
+                    image=None,
+                )
+            ],
+        )
+        FakeAnkiConnectClient.existing_note_ids = [123]
+        FakeAnkiConnectClient.notes_info = [
+            {
+                "noteId": 123,
+                "tags": ["type:vocab", "lane:new-vocab", "skill:time"],
+                "fields": {
+                    "Korean": {"value": "오늘"},
+                    "English": {"value": "today"},
+                    "Audio": {"value": "[sound:today.mp3]"},
+                    "Image": {"value": "<img src='today.png'>"},
+                },
+            }
+        ]
+        FakeAnkiConnectClient.media_files = {
+            "today.mp3": b"audio-bytes",
+            "today.png": b"image-bytes",
+        }
+
+        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
+            updated, summary = anki.sync_lesson_media(document, media_dir=output_dir, sync_first=True)
+
+        self.assertEqual(summary.matched_notes, 1)
+        self.assertEqual(summary.missing_notes, 0)
+        self.assertEqual(summary.audio_downloaded, 1)
+        self.assertEqual(summary.image_downloaded, 1)
+        self.assertEqual(updated.items[0].audio.path, "tests/tmp-sync-lesson/audio/today.mp3")
+        self.assertEqual(updated.items[0].image.path, "tests/tmp-sync-lesson/images/today.png")
+        self.assertEqual(Path(updated.items[0].audio.path).read_bytes(), b"audio-bytes")
+        self.assertEqual(Path(updated.items[0].image.path).read_bytes(), b"image-bytes")
+        self.assertTrue(FakeAnkiConnectClient.instances[0].synced)
+        self.addCleanup(lambda: shutil.rmtree(output_dir, ignore_errors=True))
+
+    def test_sync_batch_media_enables_listening_card_when_audio_arrives(self) -> None:
+        output_dir = Path("tests/tmp-sync-batch")
+        batch = make_batch([generate_note(make_item(korean="오늘", english="today", audio=None, image=None))])
+        listening_before = next(card for card in batch.notes[0].cards if card.kind == "listening")
+        self.assertFalse(listening_before.approved)
+
+        FakeAnkiConnectClient.existing_note_ids = [123]
+        FakeAnkiConnectClient.notes_info = [
+            {
+                "noteId": 123,
+                "tags": ["type:vocab", "lane:new-vocab", "skill:time"],
+                "fields": {
+                    "Korean": {"value": "오늘"},
+                    "English": {"value": "today"},
+                    "Audio": {"value": "[sound:today.mp3]"},
+                    "Image": {"value": ""},
+                },
+            }
+        ]
+        FakeAnkiConnectClient.media_files = {"today.mp3": b"audio-bytes"}
+
+        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
+            updated, summary = anki.sync_batch_media(batch, media_dir=output_dir)
+
+        listening_after = next(card for card in updated.notes[0].cards if card.kind == "listening")
+        self.assertEqual(summary.matched_notes, 1)
+        self.assertEqual(summary.audio_downloaded, 1)
+        self.assertTrue(listening_after.approved)
+        self.assertIn("<audio controls", listening_after.front_html)
+        self.assertEqual(updated.notes[0].item.audio.path, "tests/tmp-sync-batch/audio/today.mp3")
+        self.assertEqual(Path(updated.notes[0].item.audio.path).read_bytes(), b"audio-bytes")
+        self.addCleanup(lambda: shutil.rmtree(output_dir, ignore_errors=True))
 
     def test_ensure_model_upgrades_existing_model_with_reading_speed_fields_and_templates(self) -> None:
         class UpgradeClient(anki.AnkiConnectClient):

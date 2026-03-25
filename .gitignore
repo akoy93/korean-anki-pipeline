@@ -11,5 +11,7 @@ preview/node_modules/
 preview/dist/
 preview/public/media/
 data/media/
+*.synced.batch.json
+*.synced.lesson.json
 *.generation-plan.json
 state/
