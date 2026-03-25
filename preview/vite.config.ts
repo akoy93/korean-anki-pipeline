@@ -1,11 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, URL } from "node:url";
 
 const previewRoot = fileURLToPath(new URL(".", import.meta.url));
 const projectRoot = path.resolve(previewRoot, "..");
+let backendProcess: ReturnType<typeof spawn> | null = null;
 
 export default defineConfig({
   plugins: [
@@ -97,6 +99,64 @@ export default defineConfig({
             res.end(
               JSON.stringify({
                 error: error instanceof Error ? error.message : "Failed to read batch file."
+              })
+            );
+          }
+        });
+
+        server.middlewares.use("/api/start-backend", (_req, res) => {
+          try {
+            if (backendProcess !== null && backendProcess.exitCode === null) {
+              res.statusCode = 200;
+              res.setHeader("Content-Type", "application/json");
+              res.end(JSON.stringify({ ok: true }));
+              return;
+            }
+
+            const venvPython = path.resolve(projectRoot, ".venv/bin/python");
+            const pythonBin = fs.existsSync(venvPython) ? venvPython : "python3";
+            backendProcess = spawn(pythonBin, ["-m", "korean_anki.cli", "serve"], {
+              cwd: projectRoot,
+              detached: true,
+              env: {
+                ...process.env,
+                PYTHONPATH: path.resolve(projectRoot, "src")
+              },
+              stdio: "ignore"
+            });
+            backendProcess.unref();
+
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify({ ok: true }));
+          } catch (error) {
+            res.statusCode = 500;
+            res.setHeader("Content-Type", "application/json");
+            res.end(
+              JSON.stringify({
+                error: error instanceof Error ? error.message : "Failed to start backend."
+              })
+            );
+          }
+        });
+
+        server.middlewares.use("/api/open-anki", (_req, res) => {
+          try {
+            const ankiProcess = spawn("open", ["-a", "Anki"], {
+              detached: true,
+              stdio: "ignore"
+            });
+            ankiProcess.unref();
+
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify({ ok: true }));
+          } catch (error) {
+            res.statusCode = 500;
+            res.setHeader("Content-Type", "application/json");
+            res.end(
+              JSON.stringify({
+                error: error instanceof Error ? error.message : "Failed to open Anki."
               })
             );
           }

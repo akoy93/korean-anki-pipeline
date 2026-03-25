@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   AlertTriangle,
   ArrowRight,
@@ -14,8 +14,10 @@ import {
   Languages,
   Loader2,
   Play,
+  Power,
   RotateCcw,
   Send,
+  Server,
   ShieldCheck,
   XCircle,
 } from "lucide-react";
@@ -28,7 +30,9 @@ import {
   fetchBatch,
   fetchDashboard,
   fetchJob,
+  openAnki,
   pushBatch,
+  startBackend,
 } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -214,24 +218,43 @@ function renderCardsForItem(
   return cards;
 }
 
-function serviceBadge(label: string, ok: boolean, detail?: string) {
+function serviceCard(
+  label: string,
+  ok: boolean,
+  detail?: string,
+  action?: ReactNode,
+) {
   return (
-    <div className="flex items-center justify-between rounded-xl border border-border bg-white/70 px-4 py-3">
+    <div className="flex items-center justify-between gap-4 rounded-xl border border-border bg-white/70 px-4 py-3">
       <div>
         <div className="text-sm font-medium">{label}</div>
         {detail ? (
           <div className="text-xs text-muted-foreground">{detail}</div>
         ) : null}
       </div>
-      <Badge variant={ok ? "default" : "secondary"} className="gap-2">
-        {ok ? (
-          <CheckCircle2 className="h-3.5 w-3.5" />
-        ) : (
-          <Circle className="h-3.5 w-3.5" />
-        )}
-        {ok ? "Online" : "Offline"}
-      </Badge>
+      <div className="flex shrink-0 items-center gap-2">
+        <Badge variant={ok ? "default" : "secondary"} className="gap-2">
+          {ok ? (
+            <CheckCircle2 className="h-3.5 w-3.5" />
+          ) : (
+            <Circle className="h-3.5 w-3.5" />
+          )}
+          {ok ? "Online" : "Offline"}
+        </Badge>
+        {action}
+      </div>
     </div>
+  );
+}
+
+function statCard(label: string, value: number) {
+  return (
+    <Card>
+      <CardHeader className="space-y-1 p-3 sm:p-4">
+        <CardDescription className="text-xs sm:text-sm">{label}</CardDescription>
+        <CardTitle className="text-2xl sm:text-3xl">{value}</CardTitle>
+      </CardHeader>
+    </Card>
   );
 }
 
@@ -480,6 +503,8 @@ function HomePage() {
   const [lessonImages, setLessonImages] = useState<FileList | null>(null);
   const [newVocabCount, setNewVocabCount] = useState(20);
   const [newVocabContext, setNewVocabContext] = useState("");
+  const [startingBackend, setStartingBackend] = useState(false);
+  const [openingAnki, setOpeningAnki] = useState(false);
 
   async function loadDashboard() {
     setDashboardError(null);
@@ -487,8 +512,22 @@ function HomePage() {
       const nextDashboard = await fetchDashboard();
       setDashboard(nextDashboard);
     } catch (error) {
+      setDashboard((currentDashboard) =>
+        currentDashboard === null
+          ? null
+          : {
+              ...currentDashboard,
+              status: {
+                ...currentDashboard.status,
+                backend_ok: false,
+              },
+            },
+      );
+      const message = error instanceof Error ? error.message : "";
       setDashboardError(
-        error instanceof Error ? error.message : "Failed to load dashboard.",
+        message.startsWith("Request failed:")
+          ? "App backend is offline."
+          : message || "Failed to load dashboard.",
       );
     }
   }
@@ -530,6 +569,40 @@ function HomePage() {
 
     return () => window.clearInterval(intervalId);
   }, [lessonJob, newVocabJob, syncJob]);
+
+  async function submitStartBackend() {
+    setDashboardError(null);
+    setStartingBackend(true);
+    try {
+      await startBackend();
+      window.setTimeout(() => {
+        void loadDashboard();
+      }, 1500);
+    } catch (error) {
+      setDashboardError(
+        error instanceof Error ? error.message : "Failed to start backend.",
+      );
+    } finally {
+      setStartingBackend(false);
+    }
+  }
+
+  async function submitOpenAnki() {
+    setDashboardError(null);
+    setOpeningAnki(true);
+    try {
+      await openAnki();
+      window.setTimeout(() => {
+        void loadDashboard();
+      }, 3000);
+    } catch (error) {
+      setDashboardError(
+        error instanceof Error ? error.message : "Failed to open Anki.",
+      );
+    } finally {
+      setOpeningAnki(false);
+    }
+  }
 
   async function submitLessonJob() {
     setLessonError(null);
@@ -612,76 +685,67 @@ function HomePage() {
         </div>
       ) : null}
 
-      <div className="mb-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {serviceBadge("Preview app", true, "Vite dev server")}
-        {serviceBadge(
-          "Push backend",
+      <div className="mb-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {serviceCard(
+          "App backend",
           dashboard?.status.backend_ok ?? false,
           "Python local service",
+          dashboard?.status.backend_ok ? null : (
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="gap-2"
+              onClick={() => void submitStartBackend()}
+              disabled={startingBackend}
+            >
+              {startingBackend ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Server className="h-4 w-4" />
+              )}
+              Start
+            </Button>
+          ),
         )}
-        {serviceBadge(
+        {serviceCard(
           "AnkiConnect",
           dashboard?.status.anki_connect_ok ?? false,
           dashboard?.status.anki_connect_version
             ? `Version ${dashboard.status.anki_connect_version}`
             : "Anki Desktop",
+          dashboard?.status.anki_connect_ok ? null : (
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="gap-2"
+              onClick={() => void submitOpenAnki()}
+              disabled={openingAnki}
+            >
+              {openingAnki ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Power className="h-4 w-4" />
+              )}
+              Open
+            </Button>
+          ),
         )}
-        {serviceBadge(
+        {serviceCard(
           "OpenAI key",
           dashboard?.status.openai_configured ?? false,
           ".env",
         )}
       </div>
 
-      <div className="mb-8 grid gap-4 md:grid-cols-3 xl:grid-cols-6">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Local batches</CardDescription>
-            <CardTitle className="text-3xl">
-              {dashboard?.stats.local_batch_count ?? 0}
-            </CardTitle>
-          </CardHeader>
-        </Card>
-        <Card className="overflow-hidden">
-          <CardHeader className="pb-2">
-            <CardDescription>Local notes</CardDescription>
-            <CardTitle className="text-3xl">
-              {dashboard?.stats.local_note_count ?? 0}
-            </CardTitle>
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Pending push</CardDescription>
-            <CardTitle className="text-3xl">
-              {dashboard?.stats.pending_push_count ?? 0}
-            </CardTitle>
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Audio notes</CardDescription>
-            <CardTitle className="text-3xl">
-              {dashboard?.stats.audio_note_count ?? 0}
-            </CardTitle>
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Anki notes</CardDescription>
-            <CardTitle className="text-3xl">
-              {dashboard?.stats.anki_note_count ?? 0}
-            </CardTitle>
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Anki cards</CardDescription>
-            <CardTitle className="text-3xl">
-              {dashboard?.stats.anki_card_count ?? 0}
-            </CardTitle>
-          </CardHeader>
-        </Card>
+      <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
+        {statCard("Local batches", dashboard?.stats.local_batch_count ?? 0)}
+        {statCard("Local notes", dashboard?.stats.local_note_count ?? 0)}
+        {statCard("Pending push", dashboard?.stats.pending_push_count ?? 0)}
+        {statCard("Audio notes", dashboard?.stats.audio_note_count ?? 0)}
+        {statCard("Anki notes", dashboard?.stats.anki_note_count ?? 0)}
+        {statCard("Anki cards", dashboard?.stats.anki_card_count ?? 0)}
       </div>
 
       <div className="mb-8 grid gap-6 lg:grid-cols-2">
