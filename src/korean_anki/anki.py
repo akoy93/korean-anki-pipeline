@@ -1,15 +1,20 @@
 from __future__ import annotations
 
 import base64
+import re
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Literal, TypedDict
 
 import requests
 
-from .schema import CardBatch, DuplicateNote, GeneratedNote, PushResult
+from .schema import CardBatch, DuplicateNote, GeneratedNote, LessonDocument, LessonItem, MediaAsset, PushResult
 
 ANKI_MODEL_NAME = "Korean Lesson Item"
 DEFAULT_DECK = "Korean::Lessons"
+_SPACE_RE = re.compile(r"\s+")
+_SOUND_RE = re.compile(r"\[sound:([^\]]+)\]")
+_IMAGE_RE = re.compile(r"""<img\s+[^>]*src=['"]([^'"]+)['"]""")
 
 ANKI_FIELDS = [
     "Korean",
@@ -176,6 +181,20 @@ class _AnkiNote(TypedDict):
     options: dict[str, bool]
 
 
+class _StoredNoteMedia(TypedDict):
+    note_id: int
+    audio_filename: str | None
+    image_filename: str | None
+
+
+@dataclass(frozen=True)
+class MediaSyncSummary:
+    matched_notes: int = 0
+    missing_notes: int = 0
+    audio_downloaded: int = 0
+    image_downloaded: int = 0
+
+
 class AnkiConnectClient:
     def __init__(self, url: str = "http://127.0.0.1:8765") -> None:
         self.url = url
@@ -226,8 +245,41 @@ class AnkiConnectClient:
         self.invoke("storeMediaFile", filename=media_path.name, data=data)
         return media_path.name
 
+    def retrieve_media_file(self, filename: str) -> bytes | None:
+        result = self.invoke("retrieveMediaFile", filename=filename)
+        if not isinstance(result, str) or result == "":
+            return None
+        return base64.b64decode(result)
+
     def sync(self) -> None:
         self.invoke("sync")
+
+
+def _normalize_text(value: str) -> str:
+    return _SPACE_RE.sub(" ", value.strip().casefold())
+
+
+def _note_key_for_fields(item_type: str, korean: str, english: str) -> str:
+    return f"{item_type}:{_normalize_text(korean)}:{_normalize_text(english)}"
+
+
+def _parse_item_type(tags: list[str]) -> str:
+    for tag in tags:
+        if tag.startswith("type:"):
+            candidate = tag.removeprefix("type:")
+            if candidate in {"vocab", "phrase", "grammar", "dialogue", "number"}:
+                return candidate
+    return "vocab"
+
+
+def _extract_audio_filename(value: str) -> str | None:
+    match = _SOUND_RE.search(value)
+    return match.group(1) if match is not None else None
+
+
+def _extract_image_filename(value: str) -> str | None:
+    match = _IMAGE_RE.search(value)
+    return Path(match.group(1)).name if match is not None else None
 
 
 def _chunk_hangul(text: str) -> str:
@@ -341,6 +393,175 @@ def _existing_model_notes(anki_url: str = "http://127.0.0.1:8765") -> dict[str, 
         existing_by_korean.setdefault(korean, []).append((english, note_id))
 
     return existing_by_korean
+
+
+def _existing_model_media_index(client: AnkiConnectClient) -> dict[str, _StoredNoteMedia]:
+    query = f'note:"{ANKI_MODEL_NAME}"'
+    note_ids = client.invoke("findNotes", query=query)
+    if not isinstance(note_ids, list) or not note_ids:
+        return {}
+
+    notes_info = client.invoke("notesInfo", notes=note_ids)
+    if not isinstance(notes_info, list):
+        return {}
+
+    media_index: dict[str, _StoredNoteMedia] = {}
+    for note_info in notes_info:
+        if not isinstance(note_info, dict):
+            continue
+        fields = note_info.get("fields")
+        tags = note_info.get("tags")
+        note_id = note_info.get("noteId")
+        if not isinstance(fields, dict) or not isinstance(tags, list) or not isinstance(note_id, int):
+            continue
+
+        korean_field = fields.get("Korean")
+        english_field = fields.get("English")
+        audio_field = fields.get("Audio")
+        image_field = fields.get("Image")
+        if not isinstance(korean_field, dict) or not isinstance(english_field, dict):
+            continue
+
+        korean = korean_field.get("value")
+        english = english_field.get("value")
+        if not isinstance(korean, str) or not isinstance(english, str):
+            continue
+
+        tag_values = [tag for tag in tags if isinstance(tag, str)]
+        note_key = _note_key_for_fields(_parse_item_type(tag_values), korean, english)
+        media_index[note_key] = {
+            "note_id": note_id,
+            "audio_filename": (
+                _extract_audio_filename(audio_field.get("value", "")) if isinstance(audio_field, dict) else None
+            ),
+            "image_filename": (
+                _extract_image_filename(image_field.get("value", "")) if isinstance(image_field, dict) else None
+            ),
+        }
+
+    return media_index
+
+
+def _write_media_asset(
+    client: AnkiConnectClient,
+    filename: str | None,
+    output_dir: Path,
+    existing: MediaAsset | None,
+) -> tuple[MediaAsset | None, bool]:
+    if filename is None:
+        return existing, False
+
+    payload = client.retrieve_media_file(filename)
+    if payload is None:
+        return existing, False
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / filename
+    output_path.write_bytes(payload)
+
+    if existing is not None:
+        return existing.model_copy(update={"path": str(output_path)}), True
+    return MediaAsset(path=str(output_path)), True
+
+
+def _sync_item_media(
+    item: LessonItem,
+    client: AnkiConnectClient,
+    media_index: dict[str, _StoredNoteMedia],
+    media_dir: Path,
+) -> tuple[LessonItem, bool, int, int]:
+    note_key = _note_key_for_fields(item.item_type, item.korean, item.english)
+    stored = media_index.get(note_key)
+    if stored is None:
+        return item, False, 0, 0
+
+    audio_asset, audio_downloaded = _write_media_asset(client, stored["audio_filename"], media_dir / "audio", item.audio)
+    image_asset, image_downloaded = _write_media_asset(client, stored["image_filename"], media_dir / "images", item.image)
+
+    return (
+        item.model_copy(update={"audio": audio_asset, "image": image_asset}),
+        True,
+        1 if audio_downloaded else 0,
+        1 if image_downloaded else 0,
+    )
+
+
+def sync_lesson_media(
+    document: LessonDocument,
+    *,
+    media_dir: Path,
+    anki_url: str = "http://127.0.0.1:8765",
+    sync_first: bool = False,
+) -> tuple[LessonDocument, MediaSyncSummary]:
+    client = AnkiConnectClient(url=anki_url)
+    if sync_first:
+        client.sync()
+    media_index = _existing_model_media_index(client)
+
+    matched_notes = 0
+    missing_notes = 0
+    audio_downloaded = 0
+    image_downloaded = 0
+    updated_items: list[LessonItem] = []
+    for item in document.items:
+        updated_item, matched, audio_count, image_count = _sync_item_media(item, client, media_index, media_dir)
+        updated_items.append(updated_item)
+        if matched:
+            matched_notes += 1
+        else:
+            missing_notes += 1
+        audio_downloaded += audio_count
+        image_downloaded += image_count
+
+    return (
+        document.model_copy(update={"items": updated_items}),
+        MediaSyncSummary(
+            matched_notes=matched_notes,
+            missing_notes=missing_notes,
+            audio_downloaded=audio_downloaded,
+            image_downloaded=image_downloaded,
+        ),
+    )
+
+
+def sync_batch_media(
+    batch: CardBatch,
+    *,
+    media_dir: Path,
+    anki_url: str = "http://127.0.0.1:8765",
+    sync_first: bool = False,
+) -> tuple[CardBatch, MediaSyncSummary]:
+    from .cards import refresh_generated_note
+
+    client = AnkiConnectClient(url=anki_url)
+    if sync_first:
+        client.sync()
+    media_index = _existing_model_media_index(client)
+
+    matched_notes = 0
+    missing_notes = 0
+    audio_downloaded = 0
+    image_downloaded = 0
+    updated_notes: list[GeneratedNote] = []
+    for note in batch.notes:
+        updated_item, matched, audio_count, image_count = _sync_item_media(note.item, client, media_index, media_dir)
+        updated_notes.append(refresh_generated_note(note, updated_item))
+        if matched:
+            matched_notes += 1
+        else:
+            missing_notes += 1
+        audio_downloaded += audio_count
+        image_downloaded += image_count
+
+    return (
+        batch.model_copy(update={"notes": updated_notes}),
+        MediaSyncSummary(
+            matched_notes=matched_notes,
+            missing_notes=missing_notes,
+            audio_downloaded=audio_downloaded,
+            image_downloaded=image_downloaded,
+        ),
+    )
 
 
 def find_duplicate_notes(

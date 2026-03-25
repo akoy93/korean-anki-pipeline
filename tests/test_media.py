@@ -49,7 +49,10 @@ class MediaTests(unittest.TestCase):
             ]
         )
 
-        with patch("korean_anki.media.OpenAI", FakeOpenAI):
+        with (
+            patch("korean_anki.media.OpenAI", FakeOpenAI),
+            patch("korean_anki.media._audio_asset_is_valid", return_value=True),
+        ):
             updated = enrich_audio(document, Path(self._testMethodName))
 
         self.assertEqual(updated.items[0].audio, existing_audio)
@@ -58,6 +61,40 @@ class MediaTests(unittest.TestCase):
         self.assertEqual(len(FakeOpenAI.audio_calls), 1)
         self.addCleanup(lambda: Path(self._testMethodName).rmdir() if Path(self._testMethodName).exists() else None)
         self.addCleanup(lambda: Path(updated.items[1].audio.path).unlink(missing_ok=True))
+
+    def test_enrich_audio_regenerates_invalid_existing_asset(self) -> None:
+        output_dir = Path(self._testMethodName)
+        output_dir.mkdir(exist_ok=True)
+        existing_path = output_dir / "existing.mp3"
+        existing_path.write_bytes(b"old-bytes")
+        document = make_document([make_item(item_id="existing", korean="오늘", english="today", audio=MediaAsset(path=str(existing_path)))])
+
+        with (
+            patch("korean_anki.media.OpenAI", FakeOpenAI),
+            patch("korean_anki.media._audio_asset_is_valid", side_effect=[False, True]),
+        ):
+            updated = enrich_audio(document, output_dir)
+
+        self.assertEqual(updated.items[0].audio.path, str(existing_path))
+        self.assertEqual(existing_path.read_bytes(), b"mp3-bytes")
+        self.assertEqual(len(FakeOpenAI.audio_calls), 1)
+        self.addCleanup(lambda: output_dir.rmdir() if output_dir.exists() else None)
+        self.addCleanup(lambda: existing_path.unlink(missing_ok=True))
+
+    def test_enrich_audio_retries_when_generated_audio_is_invalid(self) -> None:
+        output_dir = Path(self._testMethodName)
+        document = make_document([make_item(item_id="retry", korean="오늘", english="today", audio=None)])
+
+        with (
+            patch("korean_anki.media.OpenAI", FakeOpenAI),
+            patch("korean_anki.media._audio_asset_is_valid", side_effect=[False, True]),
+        ):
+            updated = enrich_audio(document, output_dir)
+
+        self.assertEqual(updated.items[0].audio.path, f"{self._testMethodName}/retry.mp3")
+        self.assertEqual(len(FakeOpenAI.audio_calls), 2)
+        self.addCleanup(lambda: output_dir.rmdir() if output_dir.exists() else None)
+        self.addCleanup(lambda: Path(updated.items[0].audio.path).unlink(missing_ok=True))
 
     def test_enrich_images_skips_number_and_grammar_and_uses_model_decision_for_candidates(self) -> None:
         document = make_document(

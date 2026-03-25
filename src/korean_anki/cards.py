@@ -306,6 +306,32 @@ def generate_note(item: LessonItem, prior_notes: list[PriorNote] | None = None) 
     )
 
 
+def refresh_generated_note(note: GeneratedNote, item: LessonItem) -> GeneratedNote:
+    regenerated = generate_note(item)
+    previous_cards_by_kind = {card.kind: card for card in note.cards}
+    updated_cards: list[CardPreview] = []
+
+    for card in regenerated.cards:
+        previous_card = previous_cards_by_kind.get(card.kind)
+        if previous_card is None:
+            updated_cards.append(card)
+            continue
+
+        approved = previous_card.approved
+        if (
+            card.kind == "listening"
+            and not previous_card.approved
+            and note.item.audio is None
+            and "Audio not generated yet." in previous_card.front_html
+            and card.audio_path is not None
+        ):
+            approved = card.approved
+
+        updated_cards.append(card.model_copy(update={"approved": approved}))
+
+    return note.model_copy(update={"item": item, "cards": updated_cards})
+
+
 def generate_batch(document: LessonDocument, study_state: StudyState | None = None) -> CardBatch:
     prior_notes = []
     if study_state is not None:
