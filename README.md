@@ -76,7 +76,7 @@ pnpm install
 pnpm dev --host 127.0.0.1
 ```
 
-Load `data/batch.json`, review/edit, then use `Check push` for a dry-run. If there are no duplicates, click `Push to Anki` to import the approved cards and sync.
+Open `http://127.0.0.1:5173/` for the homepage dashboard, or open a direct `/batch/...` URL to review a specific batch. Use `Check push` for a dry-run; if there are no duplicates, click `Push to Anki` to import the approved cards and sync.
 
 The preview app serves `/media` directly from the repo's local `data/media` directory during `pnpm dev`.
 

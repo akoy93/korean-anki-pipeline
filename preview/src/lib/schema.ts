@@ -9,6 +9,9 @@ export type CardKind =
   | "decodable-passage";
 export type StudyLane = "lesson" | "new-vocab" | "reading-speed" | "grammar" | "listening";
 export type DuplicateStatus = "new" | "exact-duplicate" | "near-duplicate";
+export type JobStatus = "queued" | "running" | "succeeded" | "failed";
+export type JobKind = "lesson-generate" | "new-vocab" | "sync-media";
+export type BatchPushStatus = "not-pushed" | "pushed" | "synced";
 
 export interface ExampleSentence {
   korean: string;
@@ -100,4 +103,63 @@ export interface PushResult {
   sync_requested: boolean;
   sync_completed: boolean;
   reviewed_batch_path?: string | null;
+}
+
+export interface ServiceStatus {
+  backend_ok: boolean;
+  anki_connect_ok: boolean;
+  anki_connect_version?: number | null;
+  openai_configured: boolean;
+}
+
+export interface DashboardBatch {
+  path: string;
+  title: string;
+  topic: string;
+  lesson_date: string;
+  target_deck?: string | null;
+  notes: number;
+  cards: number;
+  approved_notes: number;
+  approved_cards: number;
+  audio_notes: number;
+  image_notes: number;
+  exact_duplicates: number;
+  near_duplicates: number;
+  push_status: BatchPushStatus;
+  media_hydrated: boolean;
+  synced_batch_path?: string | null;
+  lanes: StudyLane[];
+}
+
+export interface DashboardStats {
+  local_batch_count: number;
+  local_note_count: number;
+  local_card_count: number;
+  pending_push_count: number;
+  audio_note_count: number;
+  image_note_count: number;
+  lane_counts: Record<string, number>;
+  anki_note_count: number;
+  anki_card_count: number;
+  anki_deck_counts: Record<string, number>;
+}
+
+export interface DashboardResponse {
+  status: ServiceStatus;
+  stats: DashboardStats;
+  recent_batches: DashboardBatch[];
+  lesson_contexts: string[];
+  syncable_files: string[];
+}
+
+export interface JobResponse {
+  id: string;
+  kind: JobKind;
+  status: JobStatus;
+  created_at: string;
+  updated_at: string;
+  logs: string[];
+  error?: string | null;
+  output_paths: string[];
 }

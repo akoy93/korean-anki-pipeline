@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import threading
+import time
 import unittest
 import urllib.error
 import urllib.request
@@ -10,7 +11,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from korean_anki.push_service import PushServiceHandler
-from korean_anki.schema import PushResult
+from korean_anki.schema import PushResult, ServiceStatus
 
 from korean_anki.cards import generate_note
 from support import make_batch, make_item
@@ -29,6 +30,24 @@ class PushServiceTests(unittest.TestCase):
         thread.join()
         server.server_close()
 
+    def _post_json(self, base_url: str, path: str, payload: dict[str, object]) -> dict[str, object]:
+        request = urllib.request.Request(
+            f"{base_url}{path}",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+        )
+        with urllib.request.urlopen(request, timeout=5) as response:
+            return json.loads(response.read().decode("utf-8"))
+
+    def _wait_for_job(self, base_url: str, job_id: str) -> dict[str, object]:
+        for _ in range(20):
+            with urllib.request.urlopen(f"{base_url}/api/jobs/{job_id}", timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            if payload["status"] in {"succeeded", "failed"}:
+                return payload
+            time.sleep(0.05)
+        raise AssertionError(f"Job did not finish: {job_id}")
+
     def test_health_endpoint_returns_ok(self) -> None:
         server, base_url, thread = self._start_server()
         self.addCleanup(self._stop_server, server, thread)
@@ -37,6 +56,74 @@ class PushServiceTests(unittest.TestCase):
             payload = json.loads(response.read().decode("utf-8"))
 
         self.assertEqual(payload, {"ok": True})
+
+    def test_status_endpoint_returns_service_state(self) -> None:
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch(
+            "korean_anki.push_service._service_status",
+            return_value=ServiceStatus(
+                backend_ok=True,
+                anki_connect_ok=True,
+                anki_connect_version=6,
+                openai_configured=True,
+            ),
+        ):
+            with urllib.request.urlopen(f"{base_url}/api/status", timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        self.assertEqual(
+            payload,
+            {
+                "backend_ok": True,
+                "anki_connect_ok": True,
+                "anki_connect_version": 6,
+                "openai_configured": True,
+            },
+        )
+
+    def test_dashboard_endpoint_aggregates_batches_and_anki_counts(self) -> None:
+        class FakeDashboardAnkiClient:
+            def invoke(self, action: str, **params: object) -> object:
+                if action == "version":
+                    return 6
+                if action == "findNotes":
+                    return [1, 2]
+                if action == "findCards":
+                    query = params["query"]
+                    if query == 'note:"Korean Lesson Item"':
+                        return [10, 11, 12]
+                    if query == 'deck:"Korean::Lessons::Numbers::Sino" note:"Korean Lesson Item"':
+                        return [10, 11]
+                    if query == 'deck:"Korean::New Vocab" note:"Korean Lesson Item"':
+                        return [12]
+                    return []
+                if action == "deckNames":
+                    return ["Default", "Korean::Lessons::Numbers::Sino", "Korean::New Vocab"]
+                return None
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch("korean_anki.push_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()):
+            with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        self.assertTrue(payload["status"]["anki_connect_ok"])
+        self.assertGreaterEqual(payload["stats"]["local_batch_count"], 2)
+        self.assertGreaterEqual(payload["stats"]["local_note_count"], 1)
+        self.assertEqual(payload["stats"]["anki_note_count"], 2)
+        self.assertEqual(payload["stats"]["anki_card_count"], 3)
+        self.assertEqual(payload["stats"]["anki_deck_counts"]["Korean::Lessons::Numbers::Sino"], 2)
+        self.assertTrue(any(batch["path"].endswith(".batch.json") for batch in payload["recent_batches"]))
+        self.assertFalse(any(batch["path"].endswith(".synced.batch.json") for batch in payload["recent_batches"]))
+        self.assertTrue(all("push_status" in batch for batch in payload["recent_batches"]))
+        self.assertTrue(all("media_hydrated" in batch for batch in payload["recent_batches"]))
+        self.assertTrue(any(path.endswith("transcription.json") for path in payload["lesson_contexts"]))
+        self.assertTrue(any(path.endswith(".batch.json") for path in payload["syncable_files"]))
+        self.assertFalse(any(path.endswith(".lesson.json") for path in payload["syncable_files"]))
+        self.assertFalse(any(path.endswith(".synced.batch.json") for path in payload["syncable_files"]))
 
     def test_dry_run_returns_push_plan(self) -> None:
         server, base_url, thread = self._start_server()
@@ -152,6 +239,82 @@ class PushServiceTests(unittest.TestCase):
             urllib.request.urlopen(request, timeout=5)
 
         self.assertEqual(context.exception.code, 400)
+
+    def test_new_vocab_job_endpoint_returns_async_job(self) -> None:
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch("korean_anki.push_service._new_vocab_job", return_value=["data/generated/new-vocab.batch.json"]):
+            payload = self._post_json(
+                base_url,
+                "/api/jobs/new-vocab",
+                {"count": 20, "gap_ratio": 0.6, "lesson_context": None, "with_audio": True, "image_quality": "low"},
+            )
+
+        self.assertEqual(payload["kind"], "new-vocab")
+        finished = self._wait_for_job(base_url, str(payload["id"]))
+        self.assertEqual(finished["status"], "succeeded")
+        self.assertEqual(finished["output_paths"], ["data/generated/new-vocab.batch.json"])
+
+    def test_sync_media_job_endpoint_returns_async_job(self) -> None:
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch("korean_anki.push_service._sync_media_job", return_value=["data/generated/sample.synced.batch.json"]):
+            payload = self._post_json(
+                base_url,
+                "/api/jobs/sync-media",
+                {"input_path": "data/samples/numbers.batch.json", "sync_first": True},
+            )
+
+        self.assertEqual(payload["kind"], "sync-media")
+        finished = self._wait_for_job(base_url, str(payload["id"]))
+        self.assertEqual(finished["status"], "succeeded")
+        self.assertEqual(finished["output_paths"], ["data/generated/sample.synced.batch.json"])
+
+    def test_lesson_generate_job_endpoint_accepts_multipart_upload(self) -> None:
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        boundary = "----korean-anki-test"
+        body = (
+            f"--{boundary}\r\n"
+            'Content-Disposition: form-data; name="lesson_date"\r\n\r\n'
+            "2026-03-24\r\n"
+            f"--{boundary}\r\n"
+            'Content-Disposition: form-data; name="title"\r\n\r\n'
+            "Numbers\r\n"
+            f"--{boundary}\r\n"
+            'Content-Disposition: form-data; name="topic"\r\n\r\n'
+            "Numbers\r\n"
+            f"--{boundary}\r\n"
+            'Content-Disposition: form-data; name="source_summary"\r\n\r\n'
+            "Slide\r\n"
+            f"--{boundary}\r\n"
+            'Content-Disposition: form-data; name="images"; filename="lesson.png"\r\n'
+            "Content-Type: image/png\r\n\r\n"
+        ).encode("utf-8") + b"fake-image" + f"\r\n--{boundary}--\r\n".encode("utf-8")
+
+        request = urllib.request.Request(
+            f"{base_url}/api/jobs/lesson-generate",
+            data=body,
+            headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
+        )
+
+        with patch(
+            "korean_anki.push_service._lesson_generate_job",
+            return_value=["lessons/2026-03-24-numbers/generated/section.batch.json"],
+        ):
+            with urllib.request.urlopen(request, timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        self.assertEqual(payload["kind"], "lesson-generate")
+        finished = self._wait_for_job(base_url, str(payload["id"]))
+        self.assertEqual(finished["status"], "succeeded")
+        self.assertEqual(
+            finished["output_paths"],
+            ["lessons/2026-03-24-numbers/generated/section.batch.json"],
+        )
 
 
 if __name__ == "__main__":

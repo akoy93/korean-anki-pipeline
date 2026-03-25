@@ -112,6 +112,18 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
+      "/api/status": {
+        target: "http://127.0.0.1:8767",
+        changeOrigin: true
+      },
+      "/api/dashboard": {
+        target: "http://127.0.0.1:8767",
+        changeOrigin: true
+      },
+      "/api/jobs": {
+        target: "http://127.0.0.1:8767",
+        changeOrigin: true
+      },
       "/api/health": {
         target: "http://127.0.0.1:8767",
         changeOrigin: true

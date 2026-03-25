@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime
 from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
@@ -21,6 +21,9 @@ DuplicateStatus = Literal["new", "exact-duplicate", "near-duplicate"]
 VocabAdjacencyKind = Literal["coverage-gap", "lesson-adjacent"]
 RawSourceKind = Literal["image", "text"]
 QaSeverity = Literal["error", "warning"]
+JobStatus = Literal["queued", "running", "succeeded", "failed"]
+JobKind = Literal["lesson-generate", "new-vocab", "sync-media"]
+BatchPushStatus = Literal["not-pushed", "pushed", "synced"]
 
 
 class StrictModel(BaseModel):
@@ -260,3 +263,80 @@ class StudyState(StrictModel):
     generated_notes: list[PriorNote] = Field(default_factory=list)
     imported_notes: list[PriorNote] = Field(default_factory=list)
     anki_stats: AnkiStatsSnapshot = Field(default_factory=AnkiStatsSnapshot)
+
+
+class ServiceStatus(StrictModel):
+    backend_ok: bool = True
+    anki_connect_ok: bool = False
+    anki_connect_version: int | None = None
+    openai_configured: bool = False
+
+
+class DashboardBatch(StrictModel):
+    path: str
+    title: str
+    topic: str
+    lesson_date: date
+    target_deck: str | None = None
+    notes: int
+    cards: int
+    approved_notes: int
+    approved_cards: int
+    audio_notes: int
+    image_notes: int
+    exact_duplicates: int
+    near_duplicates: int
+    push_status: BatchPushStatus = "not-pushed"
+    media_hydrated: bool = False
+    synced_batch_path: str | None = None
+    lanes: list[StudyLane] = Field(default_factory=list)
+
+
+class DashboardStats(StrictModel):
+    local_batch_count: int = 0
+    local_note_count: int = 0
+    local_card_count: int = 0
+    pending_push_count: int = 0
+    audio_note_count: int = 0
+    image_note_count: int = 0
+    lane_counts: dict[str, int] = Field(default_factory=dict)
+    anki_note_count: int = 0
+    anki_card_count: int = 0
+    anki_deck_counts: dict[str, int] = Field(default_factory=dict)
+
+
+class DashboardResponse(StrictModel):
+    status: ServiceStatus
+    stats: DashboardStats
+    recent_batches: list[DashboardBatch] = Field(default_factory=list)
+    lesson_contexts: list[str] = Field(default_factory=list)
+    syncable_files: list[str] = Field(default_factory=list)
+
+
+class NewVocabJobRequest(StrictModel):
+    count: int = 20
+    gap_ratio: float = 0.6
+    lesson_context: str | None = None
+    with_audio: bool = True
+    image_quality: Literal["auto", "low", "medium", "high"] = "low"
+    target_deck: str = "Korean::New Vocab"
+    anki_url: str = "http://127.0.0.1:8765"
+
+
+class SyncMediaJobRequest(StrictModel):
+    input_path: str
+    output_path: str | None = None
+    sync_first: bool = True
+    media_dir: str = "data/media"
+    anki_url: str = "http://127.0.0.1:8765"
+
+
+class JobResponse(StrictModel):
+    id: str
+    kind: JobKind
+    status: JobStatus
+    created_at: datetime
+    updated_at: datetime
+    logs: list[str] = Field(default_factory=list)
+    error: str | None = None
+    output_paths: list[str] = Field(default_factory=list)

@@ -1,0 +1,1636 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "new-vocab-2026-03-24",
+    "title": "New Vocab",
+    "topic": "New Vocab",
+    "lesson_date": "2026-03-24",
+    "source_description": "Recovered from Anki Desktop",
+    "target_deck": "Korean::New Vocab",
+    "tags": [
+      "new-vocab"
+    ]
+  },
+  "notes": [
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-001",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "내일",
+        "english": "tomorrow",
+        "pronunciation": "naeil",
+        "examples": [
+          {
+            "korean": "내일 학교에 가요.",
+            "english": "I go to school tomorrow."
+          }
+        ],
+        "notes": "Coverage gap: time. Core planning word used constantly in everyday conversation.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "time"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-001.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-001.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-001-recognition",
+          "item_id": "new-vocab-2026-03-24-001",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>내일</div>",
+          "back_html": "<div class='answer answer-en'>tomorrow</div><div class='answer answer-ko'>내일</div><div class='pronunciation'>naeil</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>내일 학교에 가요.</div><div class='example-en'>I go to school tomorrow.</div></li></ul></section><div class='notes'>Coverage gap: time. Core planning word used constantly in everyday conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-001.png' alt='tomorrow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-001-production",
+          "item_id": "new-vocab-2026-03-24-001",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>tomorrow</div>",
+          "back_html": "<div class='answer answer-ko'>내일</div><div class='answer answer-en'>tomorrow</div><div class='pronunciation'>naeil</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>내일 학교에 가요.</div><div class='example-en'>I go to school tomorrow.</div></li></ul></section><div class='notes'>Coverage gap: time. Core planning word used constantly in everyday conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-001.png' alt='tomorrow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-001-listening",
+          "item_id": "new-vocab-2026-03-24-001",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-001.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>내일</div><div class='answer answer-en'>tomorrow</div><div class='pronunciation'>naeil</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>내일 학교에 가요.</div><div class='example-en'>I go to school tomorrow.</div></li></ul></section><div class='notes'>Coverage gap: time. Core planning word used constantly in everyday conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-001.png' alt='tomorrow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-001.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:내일:tomorrow",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-002",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "밤",
+        "english": "night",
+        "pronunciation": "bam",
+        "examples": [
+          {
+            "korean": "밤에 자요.",
+            "english": "I sleep at night."
+          }
+        ],
+        "notes": "Coverage gap: time. Core time word for schedules and sleep routines.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "time"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-002.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-002.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-002-recognition",
+          "item_id": "new-vocab-2026-03-24-002",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>밤</div>",
+          "back_html": "<div class='answer answer-en'>night</div><div class='answer answer-ko'>밤</div><div class='pronunciation'>bam</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>밤에 자요.</div><div class='example-en'>I sleep at night.</div></li></ul></section><div class='notes'>Coverage gap: time. Core time word for schedules and sleep routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-002.png' alt='night' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-002-production",
+          "item_id": "new-vocab-2026-03-24-002",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>night</div>",
+          "back_html": "<div class='answer answer-ko'>밤</div><div class='answer answer-en'>night</div><div class='pronunciation'>bam</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>밤에 자요.</div><div class='example-en'>I sleep at night.</div></li></ul></section><div class='notes'>Coverage gap: time. Core time word for schedules and sleep routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-002.png' alt='night' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-002-listening",
+          "item_id": "new-vocab-2026-03-24-002",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-002.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>밤</div><div class='answer answer-en'>night</div><div class='pronunciation'>bam</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>밤에 자요.</div><div class='example-en'>I sleep at night.</div></li></ul></section><div class='notes'>Coverage gap: time. Core time word for schedules and sleep routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-002.png' alt='night' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-002.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:밤:night",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-003",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "아침",
+        "english": "morning",
+        "pronunciation": "achim",
+        "examples": [
+          {
+            "korean": "아침에 커피를 마셔요.",
+            "english": "I drink coffee in the morning."
+          }
+        ],
+        "notes": "Coverage gap: time. Basic daily time word that supports routine conversations.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "time"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-003.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-003.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-003-recognition",
+          "item_id": "new-vocab-2026-03-24-003",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>아침</div>",
+          "back_html": "<div class='answer answer-en'>morning</div><div class='answer answer-ko'>아침</div><div class='pronunciation'>achim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아침에 커피를 마셔요.</div><div class='example-en'>I drink coffee in the morning.</div></li></ul></section><div class='notes'>Coverage gap: time. Basic daily time word that supports routine conversations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-003.png' alt='morning' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-003-production",
+          "item_id": "new-vocab-2026-03-24-003",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>morning</div>",
+          "back_html": "<div class='answer answer-ko'>아침</div><div class='answer answer-en'>morning</div><div class='pronunciation'>achim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아침에 커피를 마셔요.</div><div class='example-en'>I drink coffee in the morning.</div></li></ul></section><div class='notes'>Coverage gap: time. Basic daily time word that supports routine conversations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-003.png' alt='morning' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-003-listening",
+          "item_id": "new-vocab-2026-03-24-003",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-003.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>아침</div><div class='answer answer-en'>morning</div><div class='pronunciation'>achim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아침에 커피를 마셔요.</div><div class='example-en'>I drink coffee in the morning.</div></li></ul></section><div class='notes'>Coverage gap: time. Basic daily time word that supports routine conversations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-003.png' alt='morning' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-003.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:아침:morning",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-004",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "어제",
+        "english": "yesterday",
+        "pronunciation": "eoje",
+        "examples": [
+          {
+            "korean": "어제 공원에 갔어요.",
+            "english": "I went to the park yesterday."
+          }
+        ],
+        "notes": "Coverage gap: time. High-frequency time reference for talking about the recent past.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "time"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-004.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-004.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-004-recognition",
+          "item_id": "new-vocab-2026-03-24-004",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>어제</div>",
+          "back_html": "<div class='answer answer-en'>yesterday</div><div class='answer answer-ko'>어제</div><div class='pronunciation'>eoje</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>어제 공원에 갔어요.</div><div class='example-en'>I went to the park yesterday.</div></li></ul></section><div class='notes'>Coverage gap: time. High-frequency time reference for talking about the recent past.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-004.png' alt='yesterday' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-004-production",
+          "item_id": "new-vocab-2026-03-24-004",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>yesterday</div>",
+          "back_html": "<div class='answer answer-ko'>어제</div><div class='answer answer-en'>yesterday</div><div class='pronunciation'>eoje</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>어제 공원에 갔어요.</div><div class='example-en'>I went to the park yesterday.</div></li></ul></section><div class='notes'>Coverage gap: time. High-frequency time reference for talking about the recent past.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-004.png' alt='yesterday' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-004-listening",
+          "item_id": "new-vocab-2026-03-24-004",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-004.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>어제</div><div class='answer answer-en'>yesterday</div><div class='pronunciation'>eoje</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>어제 공원에 갔어요.</div><div class='example-en'>I went to the park yesterday.</div></li></ul></section><div class='notes'>Coverage gap: time. High-frequency time reference for talking about the recent past.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-004.png' alt='yesterday' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-004.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:어제:yesterday",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-005",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "오늘",
+        "english": "today",
+        "pronunciation": "oneul",
+        "examples": [
+          {
+            "korean": "오늘은 날씨가 좋아요.",
+            "english": "The weather is good today."
+          }
+        ],
+        "notes": "Coverage gap: time. Essential day-reference word for daily plans and small talk.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "time"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-005.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-005.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-005-recognition",
+          "item_id": "new-vocab-2026-03-24-005",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>오늘</div>",
+          "back_html": "<div class='answer answer-en'>today</div><div class='answer answer-ko'>오늘</div><div class='pronunciation'>oneul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘은 날씨가 좋아요.</div><div class='example-en'>The weather is good today.</div></li></ul></section><div class='notes'>Coverage gap: time. Essential day-reference word for daily plans and small talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-005.png' alt='today' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-005-production",
+          "item_id": "new-vocab-2026-03-24-005",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>today</div>",
+          "back_html": "<div class='answer answer-ko'>오늘</div><div class='answer answer-en'>today</div><div class='pronunciation'>oneul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘은 날씨가 좋아요.</div><div class='example-en'>The weather is good today.</div></li></ul></section><div class='notes'>Coverage gap: time. Essential day-reference word for daily plans and small talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-005.png' alt='today' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-005-listening",
+          "item_id": "new-vocab-2026-03-24-005",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-005.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>오늘</div><div class='answer answer-en'>today</div><div class='pronunciation'>oneul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘은 날씨가 좋아요.</div><div class='example-en'>The weather is good today.</div></li></ul></section><div class='notes'>Coverage gap: time. Essential day-reference word for daily plans and small talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-005.png' alt='today' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-005.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:오늘:today",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-006",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "저녁",
+        "english": "evening",
+        "pronunciation": "jeonyeok",
+        "examples": [
+          {
+            "korean": "저녁에 운동해요.",
+            "english": "I exercise in the evening."
+          }
+        ],
+        "notes": "Coverage gap: time. Common time-of-day word for plans and routines.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "time"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-006.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-006.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-006-recognition",
+          "item_id": "new-vocab-2026-03-24-006",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>저녁</div>",
+          "back_html": "<div class='answer answer-en'>evening</div><div class='answer answer-ko'>저녁</div><div class='pronunciation'>jeonyeok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저녁에 운동해요.</div><div class='example-en'>I exercise in the evening.</div></li></ul></section><div class='notes'>Coverage gap: time. Common time-of-day word for plans and routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-006.png' alt='evening' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-006-production",
+          "item_id": "new-vocab-2026-03-24-006",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>evening</div>",
+          "back_html": "<div class='answer answer-ko'>저녁</div><div class='answer answer-en'>evening</div><div class='pronunciation'>jeonyeok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저녁에 운동해요.</div><div class='example-en'>I exercise in the evening.</div></li></ul></section><div class='notes'>Coverage gap: time. Common time-of-day word for plans and routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-006.png' alt='evening' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-006-listening",
+          "item_id": "new-vocab-2026-03-24-006",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-006.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>저녁</div><div class='answer answer-en'>evening</div><div class='pronunciation'>jeonyeok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저녁에 운동해요.</div><div class='example-en'>I exercise in the evening.</div></li></ul></section><div class='notes'>Coverage gap: time. Common time-of-day word for plans and routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-006.png' alt='evening' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-006.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:저녁:evening",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-007",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "점심",
+        "english": "lunch",
+        "pronunciation": "jeomsim",
+        "examples": [
+          {
+            "korean": "점심에 식당에 가요.",
+            "english": "I go to a restaurant for lunch."
+          }
+        ],
+        "notes": "Coverage gap: time. Everyday meal word useful for schedules and invitations.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "time"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-007.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-007.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-007-recognition",
+          "item_id": "new-vocab-2026-03-24-007",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>점심</div>",
+          "back_html": "<div class='answer answer-en'>lunch</div><div class='answer answer-ko'>점심</div><div class='pronunciation'>jeomsim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>점심에 식당에 가요.</div><div class='example-en'>I go to a restaurant for lunch.</div></li></ul></section><div class='notes'>Coverage gap: time. Everyday meal word useful for schedules and invitations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-007.png' alt='lunch' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-007-production",
+          "item_id": "new-vocab-2026-03-24-007",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>lunch</div>",
+          "back_html": "<div class='answer answer-ko'>점심</div><div class='answer answer-en'>lunch</div><div class='pronunciation'>jeomsim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>점심에 식당에 가요.</div><div class='example-en'>I go to a restaurant for lunch.</div></li></ul></section><div class='notes'>Coverage gap: time. Everyday meal word useful for schedules and invitations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-007.png' alt='lunch' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-007-listening",
+          "item_id": "new-vocab-2026-03-24-007",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-007.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>점심</div><div class='answer answer-en'>lunch</div><div class='pronunciation'>jeomsim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>점심에 식당에 가요.</div><div class='example-en'>I go to a restaurant for lunch.</div></li></ul></section><div class='notes'>Coverage gap: time. Everyday meal word useful for schedules and invitations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-007.png' alt='lunch' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-007.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:점심:lunch",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-008",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "지금",
+        "english": "now",
+        "pronunciation": "jigeum",
+        "examples": [
+          {
+            "korean": "지금 집에 있어요.",
+            "english": "I am at home now."
+          }
+        ],
+        "notes": "Coverage gap: time. Very common adverb for immediate situations and questions.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "time"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-008.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-008.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-008-recognition",
+          "item_id": "new-vocab-2026-03-24-008",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>지금</div>",
+          "back_html": "<div class='answer answer-en'>now</div><div class='answer answer-ko'>지금</div><div class='pronunciation'>jigeum</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금 집에 있어요.</div><div class='example-en'>I am at home now.</div></li></ul></section><div class='notes'>Coverage gap: time. Very common adverb for immediate situations and questions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-008.png' alt='now' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-008-production",
+          "item_id": "new-vocab-2026-03-24-008",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>now</div>",
+          "back_html": "<div class='answer answer-ko'>지금</div><div class='answer answer-en'>now</div><div class='pronunciation'>jigeum</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금 집에 있어요.</div><div class='example-en'>I am at home now.</div></li></ul></section><div class='notes'>Coverage gap: time. Very common adverb for immediate situations and questions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-008.png' alt='now' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-008-listening",
+          "item_id": "new-vocab-2026-03-24-008",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-008.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>지금</div><div class='answer answer-en'>now</div><div class='pronunciation'>jigeum</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금 집에 있어요.</div><div class='example-en'>I am at home now.</div></li></ul></section><div class='notes'>Coverage gap: time. Very common adverb for immediate situations and questions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-008.png' alt='now' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-008.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:지금:now",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-009",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "가게",
+        "english": "store",
+        "pronunciation": "gage",
+        "examples": [
+          {
+            "korean": "가게에서 우유를 사요.",
+            "english": "I buy milk at the store."
+          }
+        ],
+        "notes": "Coverage gap: places. Useful everyday place word for shopping and errands.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "places"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-009.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-009.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-009-recognition",
+          "item_id": "new-vocab-2026-03-24-009",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>가게</div>",
+          "back_html": "<div class='answer answer-en'>store</div><div class='answer answer-ko'>가게</div><div class='pronunciation'>gage</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가게에서 우유를 사요.</div><div class='example-en'>I buy milk at the store.</div></li></ul></section><div class='notes'>Coverage gap: places. Useful everyday place word for shopping and errands.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-009.png' alt='store' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-009-production",
+          "item_id": "new-vocab-2026-03-24-009",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>store</div>",
+          "back_html": "<div class='answer answer-ko'>가게</div><div class='answer answer-en'>store</div><div class='pronunciation'>gage</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가게에서 우유를 사요.</div><div class='example-en'>I buy milk at the store.</div></li></ul></section><div class='notes'>Coverage gap: places. Useful everyday place word for shopping and errands.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-009.png' alt='store' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-009-listening",
+          "item_id": "new-vocab-2026-03-24-009",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-009.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>가게</div><div class='answer answer-en'>store</div><div class='pronunciation'>gage</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가게에서 우유를 사요.</div><div class='example-en'>I buy milk at the store.</div></li></ul></section><div class='notes'>Coverage gap: places. Useful everyday place word for shopping and errands.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-009.png' alt='store' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-009.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:가게:store",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-010",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "공원",
+        "english": "park",
+        "pronunciation": "gongwon",
+        "examples": [
+          {
+            "korean": "공원에서 걸어요.",
+            "english": "I walk in the park."
+          }
+        ],
+        "notes": "Coverage gap: places. Common location word for leisure, directions, and weather talk.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "places"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-010.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-010.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-010-recognition",
+          "item_id": "new-vocab-2026-03-24-010",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>공원</div>",
+          "back_html": "<div class='answer answer-en'>park</div><div class='answer answer-ko'>공원</div><div class='pronunciation'>gongwon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>공원에서 걸어요.</div><div class='example-en'>I walk in the park.</div></li></ul></section><div class='notes'>Coverage gap: places. Common location word for leisure, directions, and weather talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-010.png' alt='park' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-010-production",
+          "item_id": "new-vocab-2026-03-24-010",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>park</div>",
+          "back_html": "<div class='answer answer-ko'>공원</div><div class='answer answer-en'>park</div><div class='pronunciation'>gongwon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>공원에서 걸어요.</div><div class='example-en'>I walk in the park.</div></li></ul></section><div class='notes'>Coverage gap: places. Common location word for leisure, directions, and weather talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-010.png' alt='park' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-010-listening",
+          "item_id": "new-vocab-2026-03-24-010",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-010.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>공원</div><div class='answer answer-en'>park</div><div class='pronunciation'>gongwon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>공원에서 걸어요.</div><div class='example-en'>I walk in the park.</div></li></ul></section><div class='notes'>Coverage gap: places. Common location word for leisure, directions, and weather talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-010.png' alt='park' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-010.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:공원:park",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-011",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "병원",
+        "english": "hospital",
+        "pronunciation": "byeongwon",
+        "examples": [
+          {
+            "korean": "병원에 가요.",
+            "english": "I go to the hospital."
+          }
+        ],
+        "notes": "Coverage gap: places. Important survival word for health and directions.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "places"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-011.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-011.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-011-recognition",
+          "item_id": "new-vocab-2026-03-24-011",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>병원</div>",
+          "back_html": "<div class='answer answer-en'>hospital</div><div class='answer answer-ko'>병원</div><div class='pronunciation'>byeongwon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>병원에 가요.</div><div class='example-en'>I go to the hospital.</div></li></ul></section><div class='notes'>Coverage gap: places. Important survival word for health and directions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-011.png' alt='hospital' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-011-production",
+          "item_id": "new-vocab-2026-03-24-011",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>hospital</div>",
+          "back_html": "<div class='answer answer-ko'>병원</div><div class='answer answer-en'>hospital</div><div class='pronunciation'>byeongwon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>병원에 가요.</div><div class='example-en'>I go to the hospital.</div></li></ul></section><div class='notes'>Coverage gap: places. Important survival word for health and directions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-011.png' alt='hospital' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-011-listening",
+          "item_id": "new-vocab-2026-03-24-011",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-011.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>병원</div><div class='answer answer-en'>hospital</div><div class='pronunciation'>byeongwon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>병원에 가요.</div><div class='example-en'>I go to the hospital.</div></li></ul></section><div class='notes'>Coverage gap: places. Important survival word for health and directions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-011.png' alt='hospital' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-011.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:병원:hospital",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-012",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "식당",
+        "english": "restaurant",
+        "pronunciation": "sikdang",
+        "examples": [
+          {
+            "korean": "식당에서 밥을 먹어요.",
+            "english": "I eat at the restaurant."
+          }
+        ],
+        "notes": "Coverage gap: places. Very practical place word for meals and meeting plans.",
+        "tags": [
+          "coverage-gap",
+          "new-vocab",
+          "places"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-012.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-012.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-012-recognition",
+          "item_id": "new-vocab-2026-03-24-012",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>식당</div>",
+          "back_html": "<div class='answer answer-en'>restaurant</div><div class='answer answer-ko'>식당</div><div class='pronunciation'>sikdang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>식당에서 밥을 먹어요.</div><div class='example-en'>I eat at the restaurant.</div></li></ul></section><div class='notes'>Coverage gap: places. Very practical place word for meals and meeting plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-012.png' alt='restaurant' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-012-production",
+          "item_id": "new-vocab-2026-03-24-012",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>restaurant</div>",
+          "back_html": "<div class='answer answer-ko'>식당</div><div class='answer answer-en'>restaurant</div><div class='pronunciation'>sikdang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>식당에서 밥을 먹어요.</div><div class='example-en'>I eat at the restaurant.</div></li></ul></section><div class='notes'>Coverage gap: places. Very practical place word for meals and meeting plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-012.png' alt='restaurant' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-012-listening",
+          "item_id": "new-vocab-2026-03-24-012",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-012.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>식당</div><div class='answer answer-en'>restaurant</div><div class='pronunciation'>sikdang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>식당에서 밥을 먹어요.</div><div class='example-en'>I eat at the restaurant.</div></li></ul></section><div class='notes'>Coverage gap: places. Very practical place word for meals and meeting plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-012.png' alt='restaurant' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-012.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:식당:restaurant",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-013",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "년",
+        "english": "year",
+        "pronunciation": "nyeon",
+        "examples": [
+          {
+            "korean": "지금은 2026년이에요.",
+            "english": "It is 2026 now."
+          }
+        ],
+        "notes": "Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Core date word paired with Sino-Korean numbers.",
+        "tags": [
+          "lesson-adjacent",
+          "new-vocab",
+          "numbers"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "numbers"
+        ],
+        "source_ref": "New vocab proposal • lesson-adjacent to Numbers • numbers",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-013.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-013.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-013-recognition",
+          "item_id": "new-vocab-2026-03-24-013",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>년</div>",
+          "back_html": "<div class='answer answer-en'>year</div><div class='answer answer-ko'>년</div><div class='pronunciation'>nyeon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금은 2026년이에요.</div><div class='example-en'>It is 2026 now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Core date word paired with Sino-Korean numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-013.png' alt='year' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-013-production",
+          "item_id": "new-vocab-2026-03-24-013",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>year</div>",
+          "back_html": "<div class='answer answer-ko'>년</div><div class='answer answer-en'>year</div><div class='pronunciation'>nyeon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금은 2026년이에요.</div><div class='example-en'>It is 2026 now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Core date word paired with Sino-Korean numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-013.png' alt='year' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-013-listening",
+          "item_id": "new-vocab-2026-03-24-013",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-013.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>년</div><div class='answer answer-en'>year</div><div class='pronunciation'>nyeon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금은 2026년이에요.</div><div class='example-en'>It is 2026 now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Core date word paired with Sino-Korean numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-013.png' alt='year' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-013.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:년:year",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "numbers"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Lesson-adjacent: numbers"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-014",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "달",
+        "english": "month (duration)",
+        "pronunciation": "dal",
+        "examples": [
+          {
+            "korean": "한국에 두 달 있어요.",
+            "english": "I am in Korea for two months."
+          }
+        ],
+        "notes": "Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Important time unit that naturally contrasts with calendar month usage.",
+        "tags": [
+          "lesson-adjacent",
+          "new-vocab",
+          "numbers"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "numbers"
+        ],
+        "source_ref": "New vocab proposal • lesson-adjacent to Numbers • numbers",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-014.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-014.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-014-recognition",
+          "item_id": "new-vocab-2026-03-24-014",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>달</div>",
+          "back_html": "<div class='answer answer-en'>month (duration)</div><div class='answer answer-ko'>달</div><div class='pronunciation'>dal</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>한국에 두 달 있어요.</div><div class='example-en'>I am in Korea for two months.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Important time unit that naturally contrasts with calendar month usage.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-014.png' alt='month (duration)' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-014-production",
+          "item_id": "new-vocab-2026-03-24-014",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>month (duration)</div>",
+          "back_html": "<div class='answer answer-ko'>달</div><div class='answer answer-en'>month (duration)</div><div class='pronunciation'>dal</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>한국에 두 달 있어요.</div><div class='example-en'>I am in Korea for two months.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Important time unit that naturally contrasts with calendar month usage.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-014.png' alt='month (duration)' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-014-listening",
+          "item_id": "new-vocab-2026-03-24-014",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-014.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>달</div><div class='answer answer-en'>month (duration)</div><div class='pronunciation'>dal</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>한국에 두 달 있어요.</div><div class='example-en'>I am in Korea for two months.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Important time unit that naturally contrasts with calendar month usage.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-014.png' alt='month (duration)' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-014.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:달:month (duration)",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "numbers"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Lesson-adjacent: numbers"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-015",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "반",
+        "english": "half",
+        "pronunciation": "ban",
+        "examples": [
+          {
+            "korean": "지금은 세 시 반이에요.",
+            "english": "It is half past three now."
+          }
+        ],
+        "notes": "Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Very common time expression used right after learning clock hours.",
+        "tags": [
+          "lesson-adjacent",
+          "new-vocab",
+          "numbers"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "numbers"
+        ],
+        "source_ref": "New vocab proposal • lesson-adjacent to Numbers • numbers",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-015.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-015.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-015-recognition",
+          "item_id": "new-vocab-2026-03-24-015",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>반</div>",
+          "back_html": "<div class='answer answer-en'>half</div><div class='answer answer-ko'>반</div><div class='pronunciation'>ban</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금은 세 시 반이에요.</div><div class='example-en'>It is half past three now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Very common time expression used right after learning clock hours.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-015.png' alt='half' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-015-production",
+          "item_id": "new-vocab-2026-03-24-015",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>half</div>",
+          "back_html": "<div class='answer answer-ko'>반</div><div class='answer answer-en'>half</div><div class='pronunciation'>ban</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금은 세 시 반이에요.</div><div class='example-en'>It is half past three now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Very common time expression used right after learning clock hours.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-015.png' alt='half' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-015-listening",
+          "item_id": "new-vocab-2026-03-24-015",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-015.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>반</div><div class='answer answer-en'>half</div><div class='pronunciation'>ban</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금은 세 시 반이에요.</div><div class='example-en'>It is half past three now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Very common time expression used right after learning clock hours.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-015.png' alt='half' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-015.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:반:half",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "numbers"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Lesson-adjacent: numbers"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-016",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "번",
+        "english": "times",
+        "pronunciation": "beon",
+        "examples": [
+          {
+            "korean": "이 책을 두 번 읽어요.",
+            "english": "I read this book twice."
+          }
+        ],
+        "notes": "Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. High-utility word for frequency and repetition with counts.",
+        "tags": [
+          "lesson-adjacent",
+          "new-vocab",
+          "numbers"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "numbers"
+        ],
+        "source_ref": "New vocab proposal • lesson-adjacent to Numbers • numbers",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-016.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-016.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-016-recognition",
+          "item_id": "new-vocab-2026-03-24-016",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>번</div>",
+          "back_html": "<div class='answer answer-en'>times</div><div class='answer answer-ko'>번</div><div class='pronunciation'>beon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>이 책을 두 번 읽어요.</div><div class='example-en'>I read this book twice.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. High-utility word for frequency and repetition with counts.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-016.png' alt='times' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-016-production",
+          "item_id": "new-vocab-2026-03-24-016",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>times</div>",
+          "back_html": "<div class='answer answer-ko'>번</div><div class='answer answer-en'>times</div><div class='pronunciation'>beon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>이 책을 두 번 읽어요.</div><div class='example-en'>I read this book twice.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. High-utility word for frequency and repetition with counts.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-016.png' alt='times' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-016-listening",
+          "item_id": "new-vocab-2026-03-24-016",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-016.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>번</div><div class='answer answer-en'>times</div><div class='pronunciation'>beon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>이 책을 두 번 읽어요.</div><div class='example-en'>I read this book twice.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. High-utility word for frequency and repetition with counts.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-016.png' alt='times' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-016.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:번:times",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "numbers"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Lesson-adjacent: numbers"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-017",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "시",
+        "english": "o'clock",
+        "pronunciation": "si",
+        "examples": [
+          {
+            "korean": "지금 세 시예요.",
+            "english": "It is three o'clock now."
+          }
+        ],
+        "notes": "Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Directly tied to native Korean numbers in telling time.",
+        "tags": [
+          "lesson-adjacent",
+          "new-vocab",
+          "numbers"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "numbers"
+        ],
+        "source_ref": "New vocab proposal • lesson-adjacent to Numbers • numbers",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-017.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-017.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-017-recognition",
+          "item_id": "new-vocab-2026-03-24-017",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>시</div>",
+          "back_html": "<div class='answer answer-en'>o&#x27;clock</div><div class='answer answer-ko'>시</div><div class='pronunciation'>si</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금 세 시예요.</div><div class='example-en'>It is three o&#x27;clock now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Directly tied to native Korean numbers in telling time.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-017.png' alt='o&#x27;clock' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-017-production",
+          "item_id": "new-vocab-2026-03-24-017",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>o&#x27;clock</div>",
+          "back_html": "<div class='answer answer-ko'>시</div><div class='answer answer-en'>o&#x27;clock</div><div class='pronunciation'>si</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금 세 시예요.</div><div class='example-en'>It is three o&#x27;clock now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Directly tied to native Korean numbers in telling time.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-017.png' alt='o&#x27;clock' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-017-listening",
+          "item_id": "new-vocab-2026-03-24-017",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-017.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>시</div><div class='answer answer-en'>o&#x27;clock</div><div class='pronunciation'>si</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금 세 시예요.</div><div class='example-en'>It is three o&#x27;clock now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Directly tied to native Korean numbers in telling time.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-017.png' alt='o&#x27;clock' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-017.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:시:o'clock",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "numbers"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Lesson-adjacent: numbers"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-018",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "원",
+        "english": "won",
+        "pronunciation": "won",
+        "examples": [
+          {
+            "korean": "이 커피는 오천 원이에요.",
+            "english": "This coffee is 5,000 won."
+          }
+        ],
+        "notes": "Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential currency word for prices and shopping with numbers.",
+        "tags": [
+          "lesson-adjacent",
+          "new-vocab",
+          "numbers"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "numbers"
+        ],
+        "source_ref": "New vocab proposal • lesson-adjacent to Numbers • numbers",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-018.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-018.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-018-recognition",
+          "item_id": "new-vocab-2026-03-24-018",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>원</div>",
+          "back_html": "<div class='answer answer-en'>won</div><div class='answer answer-ko'>원</div><div class='pronunciation'>won</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>이 커피는 오천 원이에요.</div><div class='example-en'>This coffee is 5,000 won.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential currency word for prices and shopping with numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-018.png' alt='won' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-018-production",
+          "item_id": "new-vocab-2026-03-24-018",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>won</div>",
+          "back_html": "<div class='answer answer-ko'>원</div><div class='answer answer-en'>won</div><div class='pronunciation'>won</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>이 커피는 오천 원이에요.</div><div class='example-en'>This coffee is 5,000 won.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential currency word for prices and shopping with numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-018.png' alt='won' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-018-listening",
+          "item_id": "new-vocab-2026-03-24-018",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-018.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>원</div><div class='answer answer-en'>won</div><div class='pronunciation'>won</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>이 커피는 오천 원이에요.</div><div class='example-en'>This coffee is 5,000 won.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential currency word for prices and shopping with numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-018.png' alt='won' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-018.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:원:won",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "numbers"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Lesson-adjacent: numbers"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-019",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "월",
+        "english": "month (calendar)",
+        "pronunciation": "wol",
+        "examples": [
+          {
+            "korean": "지금은 5월이에요.",
+            "english": "It is May now."
+          }
+        ],
+        "notes": "Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential calendar word paired with Sino-Korean numbers.",
+        "tags": [
+          "lesson-adjacent",
+          "new-vocab",
+          "numbers"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "numbers"
+        ],
+        "source_ref": "New vocab proposal • lesson-adjacent to Numbers • numbers",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-019.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-019.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-019-recognition",
+          "item_id": "new-vocab-2026-03-24-019",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>월</div>",
+          "back_html": "<div class='answer answer-en'>month (calendar)</div><div class='answer answer-ko'>월</div><div class='pronunciation'>wol</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금은 5월이에요.</div><div class='example-en'>It is May now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential calendar word paired with Sino-Korean numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-019.png' alt='month (calendar)' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-019-production",
+          "item_id": "new-vocab-2026-03-24-019",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>month (calendar)</div>",
+          "back_html": "<div class='answer answer-ko'>월</div><div class='answer answer-en'>month (calendar)</div><div class='pronunciation'>wol</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금은 5월이에요.</div><div class='example-en'>It is May now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential calendar word paired with Sino-Korean numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-019.png' alt='month (calendar)' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-019-listening",
+          "item_id": "new-vocab-2026-03-24-019",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-019.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>월</div><div class='answer answer-en'>month (calendar)</div><div class='pronunciation'>wol</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금은 5월이에요.</div><div class='example-en'>It is May now.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential calendar word paired with Sino-Korean numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-019.png' alt='month (calendar)' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-019.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:월:month (calendar)",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "numbers"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Lesson-adjacent: numbers"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-24-020",
+        "lesson_id": "new-vocab-2026-03-24",
+        "item_type": "vocab",
+        "korean": "일",
+        "english": "day (date)",
+        "pronunciation": "il",
+        "examples": [
+          {
+            "korean": "오늘은 3일이에요.",
+            "english": "Today is the third."
+          }
+        ],
+        "notes": "Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential date marker that learners need after studying numbers.",
+        "tags": [
+          "lesson-adjacent",
+          "new-vocab",
+          "numbers"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "numbers"
+        ],
+        "source_ref": "New vocab proposal • lesson-adjacent to Numbers • numbers",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-24-020.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-24-020.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-24-020-recognition",
+          "item_id": "new-vocab-2026-03-24-020",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>일</div>",
+          "back_html": "<div class='answer answer-en'>day (date)</div><div class='answer answer-ko'>일</div><div class='pronunciation'>il</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘은 3일이에요.</div><div class='example-en'>Today is the third.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential date marker that learners need after studying numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-020.png' alt='day (date)' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-020-production",
+          "item_id": "new-vocab-2026-03-24-020",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>day (date)</div>",
+          "back_html": "<div class='answer answer-ko'>일</div><div class='answer answer-en'>day (date)</div><div class='pronunciation'>il</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘은 3일이에요.</div><div class='example-en'>Today is the third.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential date marker that learners need after studying numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-020.png' alt='day (date)' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-24-020-listening",
+          "item_id": "new-vocab-2026-03-24-020",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-24-020.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>일</div><div class='answer answer-en'>day (date)</div><div class='pronunciation'>il</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘은 3일이에요.</div><div class='example-en'>Today is the third.</div></li></ul></section><div class='notes'>Lesson-adjacent: Korean numbers: Sino-Korean and native Korean forms, with their common usage contexts./numbers. Essential date marker that learners need after studying numbers.</div><div class='source-ref'>Source: New vocab proposal • lesson-adjacent to Numbers • numbers</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-24-020.png' alt='day (date)' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-24-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-24-020.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:일:day (date)",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "numbers"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Lesson-adjacent: numbers"
+    }
+  ]
+}
