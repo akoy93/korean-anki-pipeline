@@ -399,7 +399,7 @@ def extract_lesson(request: ExtractionRequest) -> LessonDocument:
                 **_lesson_json_schema(),
             }
         },
-        reasoning={"effort": "high"},
+        reasoning={"effort": "medium"},
     )
     document = LessonDocument.model_validate_json(response.output_text)
 

@@ -9,7 +9,6 @@ import {
   ImagePlus,
   Languages,
   Loader2,
-  RefreshCw,
   Send,
   ShieldCheck,
   XCircle
@@ -221,10 +220,18 @@ function hydrationStatusBadge(mediaHydrated: boolean) {
   );
 }
 
+function parseBackendDate(value: string): Date {
+  return new Date(value.replace(" ", "T").replace(/(\.\d{3})\d+$/, "$1"));
+}
+
+function formatElapsedSeconds(startedAt: string, now: Date): string {
+  const elapsedSeconds = Math.max(0, Math.floor((now.getTime() - parseBackendDate(startedAt).getTime()) / 1000));
+  return `${elapsedSeconds}s`;
+}
+
 function HomePage() {
   const [dashboard, setDashboard] = useState<DashboardResponse | null>(null);
   const [dashboardError, setDashboardError] = useState<string | null>(null);
-  const [refreshing, setRefreshing] = useState(false);
   const [lessonJob, setLessonJob] = useState<JobResponse | null>(null);
   const [newVocabJob, setNewVocabJob] = useState<JobResponse | null>(null);
   const [syncJob, setSyncJob] = useState<JobResponse | null>(null);
@@ -241,23 +248,22 @@ function HomePage() {
   const [newVocabContext, setNewVocabContext] = useState("");
 
   async function loadDashboard() {
-    setRefreshing(true);
     setDashboardError(null);
     try {
       const nextDashboard = await fetchDashboard();
       setDashboard(nextDashboard);
-      if (!newVocabContext && nextDashboard.lesson_contexts.length > 0) {
-        setNewVocabContext(nextDashboard.lesson_contexts[0].path);
-      }
     } catch (error) {
       setDashboardError(error instanceof Error ? error.message : "Failed to load dashboard.");
-    } finally {
-      setRefreshing(false);
     }
   }
 
   useEffect(() => {
     void loadDashboard();
+    const intervalId = window.setInterval(() => {
+      void loadDashboard();
+    }, 5000);
+
+    return () => window.clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
@@ -283,7 +289,7 @@ function HomePage() {
           }
         });
       }
-    }, 1500);
+    }, 750);
 
     return () => window.clearInterval(intervalId);
   }, [lessonJob, newVocabJob, syncJob]);
@@ -334,7 +340,7 @@ function HomePage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
-      <header className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <header className="mb-8">
         <div>
           <p className="font-display text-sm uppercase tracking-[0.3em] text-primary">Korean Anki Pipeline</p>
           <h1 className="mt-2 font-display text-4xl font-semibold">Home</h1>
@@ -342,10 +348,6 @@ function HomePage() {
             Generate cards, review batches, sync media from Anki, and check local service health from one place.
           </p>
         </div>
-        <Button type="button" variant="secondary" onClick={() => void loadDashboard()} disabled={refreshing}>
-          {refreshing ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
-          Refresh
-        </Button>
       </header>
 
       {dashboardError ? (
@@ -405,7 +407,7 @@ function HomePage() {
             <div className="space-y-2"><Label>Count</Label><Input type="number" min="1" max="50" value={newVocabCount} onChange={(event) => setNewVocabCount(Number(event.target.value))} /></div>
             <div className="space-y-2">
               <Label>Lesson context</Label>
-              <select className="h-10 w-full rounded-md border border-border bg-white px-3 text-sm" value={newVocabContext} onChange={(event) => setNewVocabContext(event.target.value)}>
+              <select className="h-10 w-full rounded-md border border-border bg-white py-0 pl-3 pr-10 text-sm" value={newVocabContext} onChange={(event) => setNewVocabContext(event.target.value)}>
                 <option value="">None</option>
                 {(dashboard?.lesson_contexts ?? []).map((context) => <option key={context.path} value={context.path}>{context.label}</option>)}
               </select>
@@ -476,12 +478,77 @@ function HomePage() {
 }
 
 function JobPanel({ job }: { job: JobResponse }) {
+  const [now, setNow] = useState(new Date());
+  const inProgress = job.status === "queued" || job.status === "running";
+  const isNewVocabJob = job.kind === "new-vocab";
+  const itemCount = isNewVocabJob && job.progress_total > 0 ? Math.max(1, Math.round(job.progress_total / 5)) : 0;
+  const imageCount = Math.min(itemCount, job.progress_current);
+  const audioCount = Math.min(itemCount, Math.max(0, job.progress_current - itemCount));
+  const cardCount = Math.min(itemCount, Math.floor(Math.max(0, job.progress_current - itemCount * 2) / 3));
+
+  useEffect(() => {
+    if (!inProgress) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setNow(new Date());
+    }, 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, [inProgress]);
+
   return (
     <div className="space-y-3 rounded-xl border border-border bg-muted/40 p-4 text-sm">
       <div className="flex items-center justify-between gap-3">
         <div className="font-medium">{job.kind}</div>
         <Badge variant={job.status === "succeeded" ? "default" : "secondary"}>{job.status}</Badge>
       </div>
+      {inProgress && isNewVocabJob ? (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
+            <div>{job.progress_label ?? "Working"}</div>
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+              <span>{formatElapsedSeconds(job.created_at, now)}</span>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
+              <div className="flex items-center gap-2">
+                {job.progress_total > 0 ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : <Loader2 className="h-4 w-4 animate-spin text-primary" />}
+                <span>Planning candidates</span>
+              </div>
+              <span className="text-xs text-muted-foreground">{job.progress_total > 0 ? "Done" : "Running"}</span>
+            </div>
+            <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
+              <div className="flex items-center gap-2">
+                {imageCount >= itemCount && itemCount > 0 ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : job.progress_total > 0 ? <Loader2 className="h-4 w-4 animate-spin text-primary" /> : <Circle className="h-4 w-4 text-muted-foreground" />}
+                <span>Generating images</span>
+              </div>
+              <span className="text-xs text-muted-foreground">{imageCount}/{itemCount}</span>
+            </div>
+            <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
+              <div className="flex items-center gap-2">
+                {audioCount >= itemCount && itemCount > 0 ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : imageCount > 0 ? <Loader2 className="h-4 w-4 animate-spin text-primary" /> : <Circle className="h-4 w-4 text-muted-foreground" />}
+                <span>Generating audio</span>
+              </div>
+              <span className="text-xs text-muted-foreground">{audioCount}/{itemCount}</span>
+            </div>
+            <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
+              <div className="flex items-center gap-2">
+                {cardCount >= itemCount && itemCount > 0 ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : audioCount > 0 ? <Loader2 className="h-4 w-4 animate-spin text-primary" /> : <Circle className="h-4 w-4 text-muted-foreground" />}
+                <span>Building cards</span>
+              </div>
+              <span className="text-xs text-muted-foreground">{cardCount}/{itemCount}</span>
+            </div>
+          </div>
+        </div>
+      ) : inProgress ? (
+        <div className="h-2 overflow-hidden rounded-full bg-border">
+          <div className="h-full w-1/3 animate-[pulse_1s_ease-in-out_infinite] rounded-full bg-primary" />
+        </div>
+      ) : null}
       {job.error ? <div className="rounded-md border border-red-200 bg-red-50 p-3 text-red-700">{job.error}</div> : null}
       {job.output_paths.length > 0 ? (
         <div className="space-y-2">
@@ -553,7 +620,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
           });
         }
       });
-    }, 1500);
+    }, 750);
 
     return () => window.clearInterval(intervalId);
   }, [hydrateJob, batchPath]);

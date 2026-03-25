@@ -6,7 +6,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from korean_anki.media import enrich_audio, enrich_images, enrich_new_vocab_images
+from korean_anki.media import _audio_asset_is_valid, enrich_audio, enrich_images, enrich_new_vocab_images
 from korean_anki.schema import MediaAsset
 
 from support import make_document, make_item
@@ -95,6 +95,17 @@ class MediaTests(unittest.TestCase):
         self.assertEqual(len(FakeOpenAI.audio_calls), 2)
         self.addCleanup(lambda: output_dir.rmdir() if output_dir.exists() else None)
         self.addCleanup(lambda: Path(updated.items[0].audio.path).unlink(missing_ok=True))
+
+    def test_audio_asset_is_valid_rejects_empty_files(self) -> None:
+        output_dir = Path(self._testMethodName)
+        output_dir.mkdir(exist_ok=True)
+        audio_path = output_dir / "empty.mp3"
+        audio_path.write_bytes(b"")
+
+        self.assertFalse(_audio_asset_is_valid(audio_path))
+
+        self.addCleanup(lambda: output_dir.rmdir() if output_dir.exists() else None)
+        self.addCleanup(lambda: audio_path.unlink(missing_ok=True))
 
     def test_enrich_images_skips_number_and_grammar_and_uses_model_decision_for_candidates(self) -> None:
         document = make_document(

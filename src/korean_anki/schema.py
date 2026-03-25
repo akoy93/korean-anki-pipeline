@@ -342,6 +342,9 @@ class JobResponse(StrictModel):
     status: JobStatus
     created_at: datetime
     updated_at: datetime
+    progress_current: int = 0
+    progress_total: int = 0
+    progress_label: str | None = None
     logs: list[str] = Field(default_factory=list)
     error: str | None = None
     output_paths: list[str] = Field(default_factory=list)

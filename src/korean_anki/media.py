@@ -7,7 +7,7 @@ import shutil
 import subprocess
 import tempfile
 import wave
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections.abc import Callable, Sequence
 from pathlib import Path
 from typing import Literal
@@ -47,13 +47,28 @@ def _parallel_update_items(
     update_item: Callable[[LessonItem], LessonItem],
     *,
     max_workers: int,
+    on_item_complete: Callable[[], None] | None = None,
 ) -> list[LessonItem]:
     if len(items) <= 1 or max_workers <= 1:
-        return [update_item(item) for item in items]
+        updated_items = [update_item(item) for item in items]
+        if on_item_complete is not None:
+            for _item in updated_items:
+                on_item_complete()
+        return updated_items
 
     worker_count = min(max_workers, len(items))
+    updated_items: list[LessonItem | None] = [None] * len(items)
     with ThreadPoolExecutor(max_workers=worker_count) as executor:
-        return list(executor.map(update_item, items))
+        futures = {
+            executor.submit(update_item, item): index
+            for index, item in enumerate(items)
+        }
+        for future in as_completed(futures):
+            updated_items[futures[future]] = future.result()
+            if on_item_complete is not None:
+                on_item_complete()
+
+    return [item for item in updated_items if item is not None]
 
 
 def _decoded_audio_stats(audio_path: Path) -> tuple[float, float, int] | None:
@@ -110,6 +125,7 @@ def enrich_audio(
     output_dir: Path,
     voice: str = "coral",
     max_workers: int = _AUDIO_MAX_WORKERS,
+    on_item_complete: Callable[[], None] | None = None,
 ) -> LessonDocument:
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -133,7 +149,12 @@ def enrich_audio(
 
         raise RuntimeError(f"Audio generation produced invalid audio for item {item.id}")
 
-    updated_items = _parallel_update_items(document.items, update_item, max_workers=max_workers)
+    updated_items = _parallel_update_items(
+        document.items,
+        update_item,
+        max_workers=max_workers,
+        on_item_complete=on_item_complete,
+    )
     return document.model_copy(update={"items": updated_items})
 
 
@@ -143,6 +164,7 @@ def enrich_images(
     decision_model: str = "gpt-5.4",
     image_quality: ImageQuality = "auto",
     max_workers: int = _IMAGE_MAX_WORKERS,
+    on_item_complete: Callable[[], None] | None = None,
 ) -> LessonDocument:
     output_dir.mkdir(parents=True, exist_ok=True)
     image_decisions = plan_image_generation(document, model=decision_model)
@@ -176,7 +198,12 @@ def enrich_images(
         image_path.write_bytes(base64.b64decode(b64_json))
         return item.model_copy(update={"image": MediaAsset(path=str(image_path), prompt=prompt)})
 
-    updated_items = _parallel_update_items(document.items, update_item, max_workers=max_workers)
+    updated_items = _parallel_update_items(
+        document.items,
+        update_item,
+        max_workers=max_workers,
+        on_item_complete=on_item_complete,
+    )
     return document.model_copy(update={"items": updated_items})
 
 
@@ -185,6 +212,7 @@ def enrich_new_vocab_images(
     output_dir: Path,
     image_quality: ImageQuality = "low",
     max_workers: int = _IMAGE_MAX_WORKERS,
+    on_item_complete: Callable[[], None] | None = None,
 ) -> LessonDocument:
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -209,5 +237,10 @@ def enrich_new_vocab_images(
         image_path.write_bytes(base64.b64decode(b64_json))
         return item.model_copy(update={"image": MediaAsset(path=str(image_path), prompt=prompt)})
 
-    updated_items = _parallel_update_items(document.items, update_item, max_workers=max_workers)
+    updated_items = _parallel_update_items(
+        document.items,
+        update_item,
+        max_workers=max_workers,
+        on_item_complete=on_item_complete,
+    )
     return document.model_copy(update={"items": updated_items})

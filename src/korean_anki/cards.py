@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Callable
 from html import escape
 from pathlib import Path
 
@@ -332,12 +333,23 @@ def refresh_generated_note(note: GeneratedNote, item: LessonItem) -> GeneratedNo
     return note.model_copy(update={"item": item, "cards": updated_cards})
 
 
-def generate_batch(document: LessonDocument, study_state: StudyState | None = None) -> CardBatch:
+def generate_batch(
+    document: LessonDocument,
+    study_state: StudyState | None = None,
+    on_note_generated: Callable[[GeneratedNote], None] | None = None,
+) -> CardBatch:
     prior_notes = []
     if study_state is not None:
         prior_notes = [*study_state.generated_notes, *study_state.imported_notes]
 
+    notes: list[GeneratedNote] = []
+    for item in document.items:
+        note = generate_note(item, prior_notes=prior_notes)
+        notes.append(note)
+        if on_note_generated is not None:
+            on_note_generated(note)
+
     return CardBatch(
         metadata=document.metadata,
-        notes=[generate_note(item, prior_notes=prior_notes) for item in document.items],
+        notes=notes,
     )

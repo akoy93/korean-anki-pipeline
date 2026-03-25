@@ -20,7 +20,7 @@ For a fresh clone, run the bootstrap script:
 ./scripts/bootstrap.sh
 ```
 
-That creates `.venv`, installs the Python package, installs preview dependencies, and seeds `.env` from `.env.example` if needed.
+That creates `.venv`, installs the Python package, installs preview dependencies, seeds `.env` from `.env.example` if needed, and starts the local push backend, preview app, and Anki Desktop if they are not already running.
 
 Manual setup still works too:
 

@@ -442,6 +442,11 @@ def _existing_model_media_index(client: AnkiConnectClient) -> dict[str, _StoredN
     return media_index
 
 
+def existing_model_note_keys(anki_url: str = "http://127.0.0.1:8765") -> set[str]:
+    client = AnkiConnectClient(url=anki_url)
+    return set(_existing_model_media_index(client).keys())
+
+
 def _write_media_asset(
     client: AnkiConnectClient,
     filename: str | None,

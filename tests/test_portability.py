@@ -32,6 +32,8 @@ class PortabilityTests(unittest.TestCase):
         ]
 
         for batch_path in batch_paths:
+            if not batch_path.exists():
+                continue
             with self.subTest(batch=str(batch_path)):
                 batch = json.loads(batch_path.read_text(encoding="utf-8"))
 

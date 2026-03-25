@@ -8,6 +8,7 @@ import tempfile
 import threading
 import uuid
 from concurrent.futures import ThreadPoolExecutor
+from collections.abc import Callable
 from datetime import date, datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -16,7 +17,15 @@ from urllib.parse import unquote, urlparse
 
 from pydantic import ValidationError
 
-from .anki import ANKI_MODEL_NAME, AnkiConnectClient, plan_push, push_batch, sync_batch_media, sync_lesson_media
+from .anki import (
+    ANKI_MODEL_NAME,
+    AnkiConnectClient,
+    existing_model_note_keys,
+    plan_push,
+    push_batch,
+    sync_batch_media,
+    sync_lesson_media,
+)
 from .cards import generate_batch
 from .llm import generate_pronunciations, propose_new_vocab, read_lesson, read_transcription, transcribe_sources, write_json
 from .media import enrich_audio, enrich_new_vocab_images
@@ -37,7 +46,7 @@ from .schema import (
     SyncMediaJobRequest,
 )
 from .stages import build_lesson_documents, qa_transcription, write_lesson_documents
-from .study_state import build_study_state
+from .study_state import build_study_state, normalize_text
 
 _SLUG_RE = re.compile(r"[^a-zA-Z0-9가-힣]+")
 _JOBS: dict[str, JobResponse] = {}
@@ -87,6 +96,71 @@ def _default_synced_output_path(input_path: Path) -> Path:
     if name.endswith(".lesson.json"):
         return input_path.with_name(f"{name.removesuffix('.lesson.json')}.synced.lesson.json")
     return input_path.with_name(f"{name}.synced")
+
+
+def _project_relative_path(path: str | None, project_root: Path) -> str | None:
+    if path is None:
+        return None
+
+    media_path = Path(path)
+    if not media_path.is_absolute():
+        return path
+
+    return str(media_path.relative_to(project_root))
+
+
+def _normalize_batch_media_paths(batch: CardBatch, project_root: Path) -> CardBatch:
+    notes = []
+    for note in batch.notes:
+        audio = note.item.audio
+        image = note.item.image
+        item = note.item.model_copy(
+            update={
+                "audio": None
+                if audio is None
+                else audio.model_copy(update={"path": _project_relative_path(audio.path, project_root)}),
+                "image": None
+                if image is None
+                else image.model_copy(update={"path": _project_relative_path(image.path, project_root)}),
+            }
+        )
+        cards = [
+            card.model_copy(
+                update={
+                    "audio_path": _project_relative_path(card.audio_path, project_root),
+                    "image_path": _project_relative_path(card.image_path, project_root),
+                }
+            )
+            for card in note.cards
+        ]
+        notes.append(note.model_copy(update={"item": item, "cards": cards}))
+
+    return batch.model_copy(update={"notes": notes})
+
+
+def _unique_new_vocab_output_path(project_root: Path) -> Path:
+    timestamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
+    output_path = project_root / "data/generated" / f"new-vocab-{timestamp}.batch.json"
+    suffix = 2
+    while output_path.exists():
+        output_path = project_root / "data/generated" / f"new-vocab-{timestamp}-{suffix}.batch.json"
+        suffix += 1
+    return output_path
+
+
+def _unique_lesson_root(project_root: Path, lesson_date: str, topic: str) -> Path:
+    base_slug = f"{lesson_date}-{_slugify(topic)}"
+    lesson_root = project_root / "lessons" / base_slug
+    if not lesson_root.exists():
+        return lesson_root
+
+    timestamp = datetime.now().strftime("%H%M%S")
+    lesson_root = project_root / "lessons" / f"{base_slug}-{timestamp}"
+    suffix = 2
+    while lesson_root.exists():
+        lesson_root = project_root / "lessons" / f"{base_slug}-{timestamp}-{suffix}"
+        suffix += 1
+    return lesson_root
 
 
 def _service_status() -> ServiceStatus:
@@ -190,7 +264,7 @@ def _dashboard_response() -> DashboardResponse:
     anki_note_count = 0
     anki_card_count = 0
     anki_deck_counts: dict[str, int] = {}
-    anki_deck_names: set[str] = set()
+    anki_note_keys: set[str] = set()
     try:
         client = AnkiConnectClient()
         note_ids = client.invoke("findNotes", query=f'note:"{ANKI_MODEL_NAME}"')
@@ -204,21 +278,22 @@ def _dashboard_response() -> DashboardResponse:
             for deck_name in deck_names:
                 if not isinstance(deck_name, str) or not deck_name.startswith("Korean::"):
                     continue
-                anki_deck_names.add(deck_name)
                 deck_cards = client.invoke("findCards", query=f'deck:"{deck_name}" note:"{ANKI_MODEL_NAME}"')
                 if isinstance(deck_cards, list) and deck_cards:
                     anki_deck_counts[deck_name] = len(deck_cards)
+        anki_note_keys = existing_model_note_keys()
     except Exception:  # noqa: BLE001
         anki_note_count = 0
         anki_card_count = 0
         anki_deck_counts = {}
+        anki_note_keys = set()
 
     resolved_batches: list[DashboardBatch] = []
     for batch in recent_batches:
         canonical_path = _resolve_project_path(batch.path)
         synced_batch_path = synced_paths.get(canonical_path)
         push_status = "not-pushed"
-        if batch.target_deck is not None and batch.target_deck in anki_deck_names:
+        if batch.approved_notes > 0 and all(note.note_key in anki_note_keys for note in CardBatch.model_validate_json(canonical_path.read_text(encoding="utf-8")).notes if note.approved):
             push_status = "synced" if synced_batch_path is not None else "pushed"
         resolved_batches.append(
             batch.model_copy(
@@ -282,6 +357,9 @@ def _update_job(
     log: str | None = None,
     error: str | None = None,
     output_paths: list[str] | None = None,
+    progress_current: int | None = None,
+    progress_total: int | None = None,
+    progress_label: str | None = None,
 ) -> None:
     with _JOBS_LOCK:
         current = _JOBS[job_id]
@@ -294,6 +372,9 @@ def _update_job(
                 "logs": logs,
                 "error": error if error is not None else current.error,
                 "output_paths": output_paths if output_paths is not None else current.output_paths,
+                "progress_current": progress_current if progress_current is not None else current.progress_current,
+                "progress_total": progress_total if progress_total is not None else current.progress_total,
+                "progress_label": progress_label if progress_label is not None else current.progress_label,
                 "updated_at": datetime.now(),
             }
         )
@@ -312,16 +393,16 @@ def _create_job(kind: str) -> JobResponse:
     return job
 
 
-def _run_job(job_id: str, run: object) -> None:
+def _run_job(job_id: str, run: Callable[[str], list[str]]) -> None:
     _update_job(job_id, status="running")
     try:
-        output_paths = cast("list[str]", run())
+        output_paths = run(job_id)
         _update_job(job_id, status="succeeded", output_paths=output_paths)
     except Exception as error:  # noqa: BLE001
         _update_job(job_id, status="failed", error=str(error))
 
 
-def _submit_job(kind: str, run: object) -> JobResponse:
+def _submit_job(kind: str, run: Callable[[str], list[str]]) -> JobResponse:
     job = _create_job(kind)
     _EXECUTOR.submit(_run_job, job.id, run)
     return job
@@ -348,7 +429,7 @@ def _save_upload(file_item: cgi.FieldStorage, output_path: Path) -> None:
         handle.write(file_item.file.read())
 
 
-def _lesson_generate_job(form: cgi.FieldStorage) -> list[str]:
+def _lesson_generate_job(_job_id: str, form: cgi.FieldStorage) -> list[str]:
     lesson_date = _field_value(form, "lesson_date")
     title = _field_value(form, "title")
     topic = _field_value(form, "topic")
@@ -356,8 +437,8 @@ def _lesson_generate_job(form: cgi.FieldStorage) -> list[str]:
     if lesson_date is None or title is None or topic is None or source_summary is None:
         raise ValueError("lesson_date, title, topic, and source_summary are required.")
 
-    lesson_slug = f"{lesson_date}-{_slugify(topic)}"
-    lesson_root = _project_root() / "lessons" / lesson_slug
+    lesson_root = _unique_lesson_root(_project_root(), lesson_date, topic)
+    lesson_slug = lesson_root.name
     raw_source_dir = lesson_root / "raw-sources"
     generated_dir = lesson_root / "generated"
     raw_source_dir.mkdir(parents=True, exist_ok=True)
@@ -423,44 +504,97 @@ def _lesson_generate_job(form: cgi.FieldStorage) -> list[str]:
     return output_paths
 
 
-def _new_vocab_job(raw_body: str) -> list[str]:
+def _new_vocab_job(job_id: str, raw_body: str) -> list[str]:
     request = NewVocabJobRequest.model_validate_json(raw_body)
     project_root = _project_root()
-    output_path = project_root / "data/generated" / f"new-vocab-{date.today().isoformat()}.batch.json"
+    output_path = _unique_new_vocab_output_path(project_root)
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    lesson_id = output_path.name.removesuffix(".batch.json")
+    progress_total = 0
+    progress_current = 0
+
+    def advance_progress(label: str, step: int = 1) -> None:
+        nonlocal progress_current
+        progress_current += step
+        _update_job(
+            job_id,
+            progress_current=progress_current,
+            progress_total=progress_total,
+            progress_label=label,
+        )
+
+    _update_job(
+        job_id,
+        progress_current=0,
+        progress_total=0,
+        progress_label="Planning vocab candidates",
+    )
 
     state = build_study_state(project_root, anki_url=request.anki_url, exclude_batch_path=output_path)
     lesson_context = load_lesson_context(Path(request.lesson_context)) if request.lesson_context is not None else None
-    topics = undercovered_topics(state)
-    proposals = propose_new_vocab(
-        undercovered_topics=topics,
-        prior_notes=prior_notes_for_vocab(state),
-        count=request.count,
-        lesson_context=lesson_context,
+    prior_vocab = prior_notes_for_vocab(state)
+    excluded_pairs = [
+        f"{normalize_text(note.korean)} | {normalize_text(note.english)}"
+        for note in prior_vocab
+    ]
+    proposal_batch = propose_new_vocab(
+        candidate_count=max(request.count * 2, request.count + 10),
+        target_gap_topics=undercovered_topics(state, limit=4),
+        lesson_context_summary=lesson_context.summary if lesson_context is not None else None,
+        lesson_context_tags=lesson_context.tags if lesson_context is not None else [],
+        excluded_pairs=excluded_pairs,
     )
     document = build_new_vocab_document(
-        proposals,
-        lesson_id=f"new-vocab-{date.today().isoformat()}",
+        proposal_batch.proposals,
+        state,
+        lesson_id=lesson_id,
         title="New Vocab",
         lesson_date=date.today(),
-        target_deck=request.target_deck,
         count=request.count,
         gap_ratio=request.gap_ratio,
+        lesson_context=lesson_context,
+        target_deck=request.target_deck,
+    )
+    pronunciation_lookup = generate_pronunciations([item.korean for item in document.items])
+    document = document.model_copy(
+        update={
+            "items": [
+                item.model_copy(update={"pronunciation": pronunciation_lookup.get(item.korean)})
+                for item in document.items
+            ]
+        }
+    )
+    progress_total = len(document.items) * (5 if request.with_audio else 4)
+    _update_job(
+        job_id,
+        progress_current=0,
+        progress_total=progress_total,
+        progress_label="Generating images",
     )
     document = enrich_new_vocab_images(
         document,
         project_root / "data/media/images",
         image_quality=request.image_quality,
+        on_item_complete=lambda: advance_progress("Generating images"),
     )
     if request.with_audio:
-        document = enrich_audio(document, project_root / "data/media/audio")
+        document = enrich_audio(
+            document,
+            project_root / "data/media/audio",
+            on_item_complete=lambda: advance_progress("Generating audio"),
+        )
 
-    batch = generate_batch(document, study_state=state)
+    batch = generate_batch(
+        document,
+        study_state=state,
+        on_note_generated=lambda note: advance_progress("Generating cards", step=len(note.cards)),
+    )
+    batch = _normalize_batch_media_paths(batch, project_root)
     output_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return [str(output_path.relative_to(project_root))]
 
 
-def _sync_media_job(raw_body: str) -> list[str]:
+def _sync_media_job(_job_id: str, raw_body: str) -> list[str]:
     request = SyncMediaJobRequest.model_validate_json(raw_body)
     input_path = _resolve_project_path(request.input_path)
     output_path = (
@@ -483,6 +617,7 @@ def _sync_media_job(raw_body: str) -> list[str]:
             sync_first=request.sync_first,
         )
         output_path.parent.mkdir(parents=True, exist_ok=True)
+        synced_batch = _normalize_batch_media_paths(synced_batch, _project_root())
         output_path.write_text(synced_batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     else:
         synced_document, _summary = sync_lesson_media(
@@ -576,8 +711,9 @@ class PushServiceHandler(BaseHTTPRequestHandler):
                 return
 
             fd, reviewed_batch_path = _resolve_reviewed_batch_path(request.source_batch_path)
+            reviewed_batch = _normalize_batch_media_paths(request.batch, _project_root())
             Path(reviewed_batch_path).write_text(
-                request.batch.model_dump_json(indent=2, ensure_ascii=False) + "\n",
+                reviewed_batch.model_dump_json(indent=2, ensure_ascii=False) + "\n",
                 encoding="utf-8",
             )
 
@@ -603,7 +739,7 @@ class PushServiceHandler(BaseHTTPRequestHandler):
     def _handle_lesson_generate_job(self) -> None:
         try:
             form = self._read_multipart()
-            job = _submit_job("lesson-generate", lambda: _lesson_generate_job(form))
+            job = _submit_job("lesson-generate", lambda job_id: _lesson_generate_job(job_id, form))
             self._send_json(202, cast(dict[str, object], job.model_dump()))
         except Exception as error:  # noqa: BLE001
             self._send_json(400, {"error": str(error)})
@@ -611,7 +747,7 @@ class PushServiceHandler(BaseHTTPRequestHandler):
     def _handle_json_job(self, kind: str, run_job: object) -> None:
         try:
             raw_body = self._read_body()
-            job = _submit_job(kind, lambda: cast("list[str]", run_job(raw_body)))
+            job = _submit_job(kind, lambda job_id: cast("list[str]", run_job(job_id, raw_body)))
             self._send_json(202, cast(dict[str, object], job.model_dump()))
         except ValidationError as error:
             self._send_json(400, {"error": "Invalid job request.", "details": error.errors()})

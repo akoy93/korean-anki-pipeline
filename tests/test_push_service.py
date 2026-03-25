@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import threading
 import time
 import unittest
@@ -10,8 +11,15 @@ from http.server import ThreadingHTTPServer
 from pathlib import Path
 from unittest.mock import patch
 
-from korean_anki.push_service import PushServiceHandler
-from korean_anki.schema import PushResult, ServiceStatus
+from korean_anki.push_service import PushServiceHandler, _new_vocab_job, _unique_new_vocab_output_path
+from korean_anki.schema import (
+    AnkiStatsSnapshot,
+    NewVocabProposal,
+    NewVocabProposalBatch,
+    PushResult,
+    ServiceStatus,
+    StudyState,
+)
 
 from korean_anki.cards import generate_note
 from support import make_batch, make_item
@@ -256,6 +264,70 @@ class PushServiceTests(unittest.TestCase):
         finished = self._wait_for_job(base_url, str(payload["id"]))
         self.assertEqual(finished["status"], "succeeded")
         self.assertEqual(finished["output_paths"], ["data/generated/new-vocab.batch.json"])
+
+    def test_new_vocab_job_populates_pronunciations(self) -> None:
+        project_root = Path(self._testMethodName)
+        project_root.mkdir(exist_ok=True)
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        proposal_batch = NewVocabProposalBatch(
+            proposals=[
+                NewVocabProposal(
+                    candidate_id="candidate-1",
+                    korean="물",
+                    english="water",
+                    topic_tag="food",
+                    example_ko="물을 마셔요.",
+                    example_en="I drink water.",
+                    proposal_reason="Common A1 noun.",
+                    image_prompt="A glass of water.",
+                    adjacency_kind="coverage-gap",
+                )
+            ]
+        )
+
+        with (
+            patch("korean_anki.push_service._project_root", return_value=project_root),
+            patch("korean_anki.push_service._update_job"),
+            patch(
+                "korean_anki.push_service.build_study_state",
+                return_value=StudyState(anki_stats=AnkiStatsSnapshot()),
+            ),
+            patch("korean_anki.push_service.propose_new_vocab", return_value=proposal_batch),
+            patch("korean_anki.push_service.generate_pronunciations", return_value={"물": "mul"}) as mock_generate_pronunciations,
+            patch("korean_anki.push_service.enrich_new_vocab_images", side_effect=lambda document, *_args, **_kwargs: document),
+            patch("korean_anki.push_service.enrich_audio", side_effect=lambda document, *_args, **_kwargs: document),
+        ):
+            output_paths = _new_vocab_job(
+                "job-1",
+                json.dumps(
+                    {
+                        "count": 1,
+                        "gap_ratio": 1.0,
+                        "lesson_context": None,
+                        "with_audio": False,
+                        "image_quality": "low",
+                    }
+                ),
+            )
+
+        self.assertEqual(len(output_paths), 1)
+        output_path = project_root / output_paths[0]
+        payload = json.loads(output_path.read_text(encoding="utf-8"))
+        self.assertEqual(payload["notes"][0]["item"]["pronunciation"], "mul")
+        mock_generate_pronunciations.assert_called_once_with(["물"])
+
+    def test_unique_new_vocab_output_path_does_not_overwrite_existing_files(self) -> None:
+        output_dir = Path(self._testMethodName) / "data" / "generated"
+        output_dir.mkdir(parents=True, exist_ok=True)
+        first_path = _unique_new_vocab_output_path(Path(self._testMethodName))
+        first_path.write_text("{}\n", encoding="utf-8")
+        second_path = _unique_new_vocab_output_path(Path(self._testMethodName))
+
+        self.assertNotEqual(first_path, second_path)
+        self.assertEqual(first_path.parent, second_path.parent)
+
+        self.addCleanup(lambda: shutil.rmtree(Path(self._testMethodName), ignore_errors=True))
 
     def test_sync_media_job_endpoint_returns_async_job(self) -> None:
         server, base_url, thread = self._start_server()

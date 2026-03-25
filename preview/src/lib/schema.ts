@@ -164,6 +164,9 @@ export interface JobResponse {
   status: JobStatus;
   created_at: string;
   updated_at: string;
+  progress_current: number;
+  progress_total: number;
+  progress_label?: string | null;
   logs: string[];
   error?: string | null;
   output_paths: string[];
