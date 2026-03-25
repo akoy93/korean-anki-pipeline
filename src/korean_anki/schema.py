@@ -292,6 +292,11 @@ class DashboardBatch(StrictModel):
     lanes: list[StudyLane] = Field(default_factory=list)
 
 
+class DashboardLessonContext(StrictModel):
+    path: str
+    label: str
+
+
 class DashboardStats(StrictModel):
     local_batch_count: int = 0
     local_note_count: int = 0
@@ -309,7 +314,7 @@ class DashboardResponse(StrictModel):
     status: ServiceStatus
     stats: DashboardStats
     recent_batches: list[DashboardBatch] = Field(default_factory=list)
-    lesson_contexts: list[str] = Field(default_factory=list)
+    lesson_contexts: list[DashboardLessonContext] = Field(default_factory=list)
     syncable_files: list[str] = Field(default_factory=list)
 
 

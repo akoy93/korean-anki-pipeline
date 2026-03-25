@@ -24,9 +24,11 @@ from .new_vocab import build_new_vocab_document, load_lesson_context, prior_note
 from .schema import (
     CardBatch,
     DashboardBatch,
+    DashboardLessonContext,
     DashboardResponse,
     DashboardStats,
     JobResponse,
+    LessonTranscription,
     NewVocabJobRequest,
     PushRequest,
     PushResult,
@@ -134,6 +136,18 @@ def _dashboard_batch(batch_path: Path) -> DashboardBatch | None:
     )
 
 
+def _dashboard_lesson_context(transcription_path: Path) -> DashboardLessonContext | None:
+    try:
+        transcription = LessonTranscription.model_validate_json(transcription_path.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return None
+
+    return DashboardLessonContext(
+        path=str(transcription_path.relative_to(_project_root())),
+        label=f"{transcription.lesson_date.isoformat()} • {transcription.title} • {transcription.theme}",
+    )
+
+
 def _canonical_batch_path(batch_path: Path) -> Path:
     if batch_path.name.endswith(".synced.batch.json"):
         return batch_path.with_name(f"{batch_path.name.removesuffix('.synced.batch.json')}.batch.json")
@@ -218,13 +232,11 @@ def _dashboard_response() -> DashboardResponse:
             )
         )
 
-    lesson_contexts = sorted(
-        str(path.relative_to(project_root))
-        for path in [
-            *project_root.glob("lessons/*/transcription.json"),
-            *project_root.glob("lessons/*/generated/*.lesson.json"),
-        ]
-    )
+    lesson_contexts = [
+        context
+        for path in sorted(project_root.glob("lessons/*/transcription.json"), reverse=True)
+        if (context := _dashboard_lesson_context(path)) is not None
+    ]
     syncable_files = sorted(
         str(path.relative_to(project_root))
         for path in [

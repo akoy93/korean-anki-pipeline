@@ -145,11 +145,16 @@ export interface DashboardStats {
   anki_deck_counts: Record<string, number>;
 }
 
+export interface DashboardLessonContext {
+  path: string;
+  label: string;
+}
+
 export interface DashboardResponse {
   status: ServiceStatus;
   stats: DashboardStats;
   recent_batches: DashboardBatch[];
-  lesson_contexts: string[];
+  lesson_contexts: DashboardLessonContext[];
   syncable_files: string[];
 }
 

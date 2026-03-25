@@ -247,7 +247,7 @@ function HomePage() {
       const nextDashboard = await fetchDashboard();
       setDashboard(nextDashboard);
       if (!newVocabContext && nextDashboard.lesson_contexts.length > 0) {
-        setNewVocabContext(nextDashboard.lesson_contexts[0]);
+        setNewVocabContext(nextDashboard.lesson_contexts[0].path);
       }
     } catch (error) {
       setDashboardError(error instanceof Error ? error.message : "Failed to load dashboard.");
@@ -407,7 +407,7 @@ function HomePage() {
               <Label>Lesson context</Label>
               <select className="h-10 w-full rounded-md border border-border bg-white px-3 text-sm" value={newVocabContext} onChange={(event) => setNewVocabContext(event.target.value)}>
                 <option value="">None</option>
-                {(dashboard?.lesson_contexts ?? []).map((path) => <option key={path} value={path}>{path}</option>)}
+                {(dashboard?.lesson_contexts ?? []).map((context) => <option key={context.path} value={context.path}>{context.label}</option>)}
               </select>
             </div>
             {newVocabError ? <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">{newVocabError}</div> : null}
