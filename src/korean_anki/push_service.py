@@ -36,6 +36,8 @@ from .schema import (
     DashboardLessonContext,
     DashboardResponse,
     DashboardStats,
+    DeleteBatchRequest,
+    DeleteBatchResult,
     JobResponse,
     LessonTranscription,
     NewVocabJobRequest,
@@ -69,6 +71,19 @@ def _resolve_project_path(relative_path: str) -> Path:
 
     project_root = _project_root()
     resolved_path = (project_root / relative_path).resolve()
+    normalized_root = f"{project_root}{os.sep}"
+    if resolved_path != project_root and not str(resolved_path).startswith(normalized_root):
+        raise ValueError("Path escapes project root.")
+    return resolved_path
+
+
+def _resolve_media_reference_path(path: str) -> Path:
+    media_path = Path(path)
+    if not media_path.is_absolute():
+        return _resolve_project_path(path)
+
+    project_root = _project_root()
+    resolved_path = media_path.resolve()
     normalized_root = f"{project_root}{os.sep}"
     if resolved_path != project_root and not str(resolved_path).startswith(normalized_root):
         raise ValueError("Path escapes project root.")
@@ -236,6 +251,70 @@ def _batch_media_hydrated(batch: DashboardBatch) -> bool:
         return False
 
     return any(note.item.audio is not None or note.item.image is not None for note in parsed_batch.notes)
+
+
+def _batch_referenced_media_paths(batch: CardBatch) -> set[Path]:
+    media_paths: set[Path] = set()
+    for note in batch.notes:
+        if note.item.audio is not None:
+            media_paths.add(_resolve_media_reference_path(note.item.audio.path))
+        if note.item.image is not None:
+            media_paths.add(_resolve_media_reference_path(note.item.image.path))
+        for card in note.cards:
+            if card.audio_path is not None:
+                media_paths.add(_resolve_media_reference_path(card.audio_path))
+            if card.image_path is not None:
+                media_paths.add(_resolve_media_reference_path(card.image_path))
+    return media_paths
+
+
+def _batch_is_pushed(batch: CardBatch, *, anki_url: str) -> bool:
+    anki_note_keys = existing_model_note_keys(anki_url=anki_url)
+    approved_notes = [note for note in batch.notes if note.approved]
+    return len(approved_notes) > 0 and any(note.note_key in anki_note_keys for note in approved_notes)
+
+
+def _delete_batch(request: DeleteBatchRequest) -> DeleteBatchResult:
+    batch_path = _resolve_project_path(request.batch_path)
+    if not batch_path.name.endswith(".batch.json") or batch_path.name.endswith(".synced.batch.json"):
+        raise ValueError("Batch path must be a canonical .batch.json file.")
+    if not batch_path.exists():
+        raise ValueError("Batch file not found.")
+
+    batch = CardBatch.model_validate_json(batch_path.read_text(encoding="utf-8"))
+    if _batch_is_pushed(batch, anki_url=request.anki_url):
+        raise ValueError("Cannot delete a batch that has already been pushed to Anki.")
+
+    synced_batch_path = _default_synced_output_path(batch_path)
+    generation_plan_path = batch_path.with_suffix(".generation-plan.json")
+    deleted_paths: list[str] = []
+    for path in [batch_path, synced_batch_path, generation_plan_path]:
+        if path.exists():
+            path.unlink()
+            deleted_paths.append(str(path.relative_to(_project_root())))
+
+    candidate_media_paths = _batch_referenced_media_paths(batch)
+    referenced_elsewhere: set[Path] = set()
+    for other_batch_path in [
+        *_project_root().glob("lessons/**/generated/*.batch.json"),
+        *_project_root().glob("data/generated/*.batch.json"),
+    ]:
+        if other_batch_path == batch_path or other_batch_path == synced_batch_path:
+            continue
+        try:
+            other_batch = CardBatch.model_validate_json(other_batch_path.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            continue
+        referenced_elsewhere.update(_batch_referenced_media_paths(other_batch))
+
+    deleted_media_paths: list[str] = []
+    for media_path in sorted(candidate_media_paths):
+        if media_path in referenced_elsewhere or not media_path.exists() or not media_path.is_file():
+            continue
+        media_path.unlink()
+        deleted_media_paths.append(str(media_path.relative_to(_project_root())))
+
+    return DeleteBatchResult(deleted_paths=deleted_paths, deleted_media_paths=deleted_media_paths)
 
 
 def _dashboard_response() -> DashboardResponse:
@@ -662,6 +741,9 @@ class PushServiceHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/push":
             self._handle_push()
             return
+        if parsed.path == "/api/delete-batch":
+            self._handle_delete_batch()
+            return
         if parsed.path == "/api/jobs/lesson-generate":
             self._handle_lesson_generate_job()
             return
@@ -712,6 +794,16 @@ class PushServiceHandler(BaseHTTPRequestHandler):
                     os.close(fd)
                 except OSError:
                     pass
+
+    def _handle_delete_batch(self) -> None:
+        try:
+            request = DeleteBatchRequest.model_validate_json(self._read_body())
+            result = _delete_batch(request)
+            self._send_json(200, cast(dict[str, object], result.model_dump()))
+        except ValidationError as error:
+            self._send_json(400, {"error": "Invalid delete request.", "details": error.errors()})
+        except Exception as error:  # noqa: BLE001
+            self._send_json(409, {"error": str(error)})
 
     def _handle_lesson_generate_job(self) -> None:
         try:

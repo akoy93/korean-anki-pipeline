@@ -1,4 +1,10 @@
-import type { CardBatch, DashboardResponse, JobResponse, PushResult } from "@/lib/schema";
+import type {
+  CardBatch,
+  DashboardResponse,
+  DeleteBatchResult,
+  JobResponse,
+  PushResult,
+} from "@/lib/schema";
 
 async function readJson<T>(response: Response): Promise<T> {
   const body = (await response.json().catch(() => null)) as { error?: string } | T | null;
@@ -69,6 +75,19 @@ export async function pushBatch(batch: CardBatch, sourceBatchPath: string | null
     })
   });
   return readJson<PushResult>(response);
+}
+
+export async function deleteBatch(batchPath: string): Promise<DeleteBatchResult> {
+  const response = await fetch("/api/delete-batch", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      batch_path: batchPath,
+    }),
+  });
+  return readJson<DeleteBatchResult>(response);
 }
 
 export async function createLessonGenerateJob(formData: FormData): Promise<JobResponse> {

@@ -2,15 +2,19 @@ from __future__ import annotations
 
 import unittest
 from datetime import date
+from unittest.mock import patch
 
 from korean_anki.cards import generate_batch
 from korean_anki.new_vocab import (
     LessonContext,
     build_new_vocab_document,
+    build_new_vocab_document_from_state,
+    choose_new_vocab_theme,
+    new_vocab_batch_title,
     select_new_vocab_proposals,
     undercovered_topics,
 )
-from korean_anki.schema import NewVocabProposal, PriorNote, StudyState
+from korean_anki.schema import NewVocabProposal, NewVocabProposalBatch, PriorNote, StudyState
 
 
 def _proposal(
@@ -46,6 +50,24 @@ class NewVocabTests(unittest.TestCase):
         topics = undercovered_topics(state, limit=3)
 
         self.assertEqual(topics, ["food", "numbers", "time"])
+
+    def test_choose_new_vocab_theme_prefers_undercovered_lesson_tag(self) -> None:
+        state = StudyState()
+        state.anki_stats.by_tag = {
+            "skill:greetings": 10,
+            "skill:family": 2,
+            "skill:food": 0,
+            "skill:numbers": 1,
+        }
+        lesson_context = LessonContext(
+            title="Numbers",
+            topic="numbers used for prices, time, counting, age",
+            summary="Numbers used for prices, time, counting, age",
+            tags=["numbers", "time"],
+        )
+
+        self.assertEqual(choose_new_vocab_theme(state, lesson_context), "time")
+        self.assertEqual(new_vocab_batch_title("time"), "Time Basics")
 
     def test_select_new_vocab_respects_split_excludes_exact_and_uses_near_only_to_fill(self) -> None:
         state = StudyState(
@@ -155,6 +177,42 @@ class NewVocabTests(unittest.TestCase):
         self.assertTrue(all("coverage-gap" in item.tags for item in document.items))
         self.assertTrue(all(item.lane == "new-vocab" for item in document.items))
         self.assertTrue(all(item.image_prompt is not None for item in document.items))
+
+    def test_build_new_vocab_from_state_uses_theme_title_and_single_topic_prompt(self) -> None:
+        state = StudyState()
+        proposal_batch = NewVocabProposalBatch(
+            proposals=[
+                _proposal(
+                    index,
+                    korean=f"인사{index}",
+                    english=f"greeting {index}",
+                    topic_tag="greetings",
+                    adjacency_kind="coverage-gap",
+                )
+                for index in range(1, 4)
+            ]
+        )
+
+        with (
+            patch("korean_anki.new_vocab.propose_new_vocab", return_value=proposal_batch) as propose,
+            patch("korean_anki.new_vocab.generate_pronunciations", return_value={}),
+        ):
+            document = build_new_vocab_document_from_state(
+                state,
+                lesson_id="new-vocab-2026-03-25",
+                title="New Vocab",
+                lesson_date=date(2026, 3, 25),
+                count=3,
+                gap_ratio=0.6,
+                lesson_context_path=None,
+                target_deck="Korean::New Vocab",
+            )
+
+        self.assertEqual(document.metadata.title, "Greetings Basics")
+        self.assertEqual(document.metadata.topic, "New Vocab")
+        propose.assert_called_once()
+        self.assertEqual(propose.call_args.kwargs["batch_theme"], "Greetings Basics")
+        self.assertEqual(propose.call_args.kwargs["target_gap_topics"], ["greetings"])
 
 
 if __name__ == "__main__":

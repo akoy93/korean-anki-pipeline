@@ -105,6 +105,11 @@ export interface PushResult {
   reviewed_batch_path?: string | null;
 }
 
+export interface DeleteBatchResult {
+  deleted_paths: string[];
+  deleted_media_paths: string[];
+}
+
 export interface ServiceStatus {
   backend_ok: boolean;
   anki_connect_ok: boolean;

@@ -191,6 +191,10 @@ export default defineConfig({
       "/api/push": {
         target: "http://127.0.0.1:8767",
         changeOrigin: true
+      },
+      "/api/delete-batch": {
+        target: "http://127.0.0.1:8767",
+        changeOrigin: true
       }
     }
   }

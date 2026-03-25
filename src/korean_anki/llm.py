@@ -582,6 +582,7 @@ def propose_new_vocab(
     *,
     model: str = "gpt-5.4",
     candidate_count: int,
+    batch_theme: str,
     target_gap_topics: list[str],
     lesson_context_summary: str | None,
     lesson_context_tags: list[str],
@@ -590,6 +591,8 @@ def propose_new_vocab(
     client = OpenAI()
     lines = [
         f"Propose {candidate_count} candidate vocab items.",
+        f"Batch theme: {batch_theme}",
+        "All candidates must fit this single cohesive theme.",
         f"Target coverage-gap topics: {', '.join(target_gap_topics)}",
         (
             f"Latest lesson context: {lesson_context_summary}"

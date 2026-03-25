@@ -206,6 +206,16 @@ class PushResult(StrictModel):
     reviewed_batch_path: str | None = None
 
 
+class DeleteBatchRequest(StrictModel):
+    batch_path: str
+    anki_url: str = "http://127.0.0.1:8765"
+
+
+class DeleteBatchResult(StrictModel):
+    deleted_paths: list[str] = Field(default_factory=list)
+    deleted_media_paths: list[str] = Field(default_factory=list)
+
+
 class PronunciationSuggestion(StrictModel):
     korean: str
     pronunciation: str

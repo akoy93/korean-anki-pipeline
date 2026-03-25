@@ -18,7 +18,7 @@ from .schema import (
     StudyState,
     VocabAdjacencyKind,
 )
-from .study_state import normalize_text, note_key_for_item
+from .study_state import normalize_text
 
 A1_TOPIC_INVENTORY = [
     "greetings",
@@ -30,6 +30,17 @@ A1_TOPIC_INVENTORY = [
     "daily-routines",
     "weather",
 ]
+
+A1_TOPIC_TITLES = {
+    "greetings": "Greetings",
+    "family": "Family",
+    "food": "Food",
+    "numbers": "Numbers",
+    "time": "Time",
+    "places": "Places",
+    "daily-routines": "Daily Routines",
+    "weather": "Weather",
+}
 
 
 @dataclass(frozen=True)
@@ -106,6 +117,19 @@ def undercovered_topics(study_state: StudyState, limit: int = 4) -> list[str]:
         A1_TOPIC_INVENTORY,
         key=lambda topic: (topic_counts[topic], A1_TOPIC_INVENTORY.index(topic)),
     )[:limit]
+
+
+def choose_new_vocab_theme(study_state: StudyState, lesson_context: LessonContext | None = None) -> str:
+    undercovered = undercovered_topics(study_state, limit=len(A1_TOPIC_INVENTORY))
+    if lesson_context is not None:
+        for topic in undercovered:
+            if topic in lesson_context.tags:
+                return topic
+    return undercovered[0]
+
+
+def new_vocab_batch_title(topic_tag: str) -> str:
+    return f"{A1_TOPIC_TITLES[topic_tag]} Basics"
 
 
 def prior_notes_for_vocab(study_state: StudyState) -> list[PriorNote]:
@@ -352,6 +376,7 @@ def build_new_vocab_document_from_state(
     model: str = "gpt-5.4",
 ) -> LessonDocument:
     lesson_context = load_lesson_context(lesson_context_path) if lesson_context_path is not None else None
+    theme_topic = choose_new_vocab_theme(state, lesson_context)
     prior_vocab = prior_notes_for_vocab(state)
     excluded_pairs = [
         f"{normalize_text(note.korean)} | {normalize_text(note.english)}"
@@ -360,7 +385,8 @@ def build_new_vocab_document_from_state(
     proposal_batch = propose_new_vocab(
         model=model,
         candidate_count=max(count * 2, count + 10),
-        target_gap_topics=undercovered_topics(state, limit=4),
+        batch_theme=new_vocab_batch_title(theme_topic),
+        target_gap_topics=[theme_topic],
         lesson_context_summary=lesson_context.summary if lesson_context is not None else None,
         lesson_context_tags=lesson_context.tags if lesson_context is not None else [],
         excluded_pairs=excluded_pairs,
@@ -369,7 +395,7 @@ def build_new_vocab_document_from_state(
         proposal_batch.proposals,
         state,
         lesson_id=lesson_id,
-        title=title,
+        title=new_vocab_batch_title(theme_topic) if title == "New Vocab" else title,
         lesson_date=lesson_date,
         count=count,
         gap_ratio=gap_ratio,

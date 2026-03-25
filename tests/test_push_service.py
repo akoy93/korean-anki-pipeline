@@ -14,6 +14,7 @@ from unittest.mock import patch
 from korean_anki.push_service import PushServiceHandler, _new_vocab_job, _unique_new_vocab_output_path
 from korean_anki.schema import (
     AnkiStatsSnapshot,
+    MediaAsset,
     NewVocabProposal,
     NewVocabProposalBatch,
     PushResult,
@@ -344,6 +345,102 @@ class PushServiceTests(unittest.TestCase):
         finished = self._wait_for_job(base_url, str(payload["id"]))
         self.assertEqual(finished["status"], "succeeded")
         self.assertEqual(finished["output_paths"], ["data/generated/sample.synced.batch.json"])
+
+    def test_delete_batch_endpoint_deletes_unpushed_batch_and_orphaned_media(self) -> None:
+        project_root = Path(self._testMethodName)
+        batch_path = project_root / "data" / "generated" / "sample.batch.json"
+        synced_path = project_root / "data" / "generated" / "sample.synced.batch.json"
+        plan_path = project_root / "data" / "generated" / "sample.batch.generation-plan.json"
+        other_synced_path = project_root / "lessons" / "sample" / "generated" / "other.synced.batch.json"
+        audio_path = project_root / "data" / "media" / "audio" / "sample.mp3"
+        other_audio_path = project_root / "data" / "media" / "audio" / "other.mp3"
+        project_root.joinpath("data/generated").mkdir(parents=True, exist_ok=True)
+        project_root.joinpath("data/media/audio").mkdir(parents=True, exist_ok=True)
+        other_synced_path.parent.mkdir(parents=True, exist_ok=True)
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        batch = make_batch(
+            [
+                generate_note(
+                    make_item(audio=MediaAsset(path=str(audio_path.relative_to(project_root))))
+                )
+            ]
+        )
+        other_batch = make_batch(
+            [
+                generate_note(
+                    make_item(
+                        item_id="item-2",
+                        korean="감사합니다",
+                        english="thank you",
+                        audio=MediaAsset(path=str(other_audio_path.resolve())),
+                    )
+                )
+            ]
+        )
+        batch_path.write_text(batch.model_dump_json(indent=2) + "\n", encoding="utf-8")
+        synced_path.write_text(batch.model_dump_json(indent=2) + "\n", encoding="utf-8")
+        plan_path.write_text("{}\n", encoding="utf-8")
+        other_synced_path.write_text(other_batch.model_dump_json(indent=2) + "\n", encoding="utf-8")
+        audio_path.write_bytes(b"audio")
+        other_audio_path.write_bytes(b"other-audio")
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with (
+            patch("korean_anki.push_service._project_root", return_value=project_root.resolve()),
+            patch("korean_anki.push_service.existing_model_note_keys", return_value=set()),
+        ):
+            payload = self._post_json(
+                base_url,
+                "/api/delete-batch",
+                {"batch_path": "data/generated/sample.batch.json"},
+            )
+
+        self.assertEqual(
+            payload,
+            {
+                "deleted_paths": [
+                    "data/generated/sample.batch.json",
+                    "data/generated/sample.synced.batch.json",
+                    "data/generated/sample.batch.generation-plan.json",
+                ],
+                "deleted_media_paths": ["data/media/audio/sample.mp3"],
+            },
+        )
+        self.assertFalse(batch_path.exists())
+        self.assertFalse(synced_path.exists())
+        self.assertFalse(plan_path.exists())
+        self.assertFalse(audio_path.exists())
+        self.assertTrue(other_synced_path.exists())
+        self.assertTrue(other_audio_path.exists())
+
+    def test_delete_batch_endpoint_blocks_pushed_batch(self) -> None:
+        project_root = Path(self._testMethodName)
+        batch_path = project_root / "data" / "generated" / "sample.batch.json"
+        batch_path.parent.mkdir(parents=True, exist_ok=True)
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        batch = make_batch([generate_note(make_item())])
+        batch_path.write_text(batch.model_dump_json(indent=2) + "\n", encoding="utf-8")
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with (
+            patch("korean_anki.push_service._project_root", return_value=project_root.resolve()),
+            patch("korean_anki.push_service.existing_model_note_keys", return_value={batch.notes[0].note_key}),
+        ):
+            with self.assertRaises(urllib.error.HTTPError) as context:
+                self._post_json(
+                    base_url,
+                    "/api/delete-batch",
+                    {"batch_path": "data/generated/sample.batch.json"},
+                )
+
+        self.assertEqual(context.exception.code, 409)
+        self.assertTrue(batch_path.exists())
 
     def test_lesson_generate_job_endpoint_accepts_multipart_upload(self) -> None:
         server, base_url, thread = self._start_server()

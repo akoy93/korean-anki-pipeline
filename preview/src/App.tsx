@@ -19,6 +19,7 @@ import {
   Send,
   Server,
   ShieldCheck,
+  Trash2,
   XCircle,
 } from "lucide-react";
 
@@ -27,6 +28,7 @@ import {
   createLessonGenerateJob,
   createNewVocabJob,
   createSyncMediaJob,
+  deleteBatch,
   fetchBatch,
   fetchDashboard,
   fetchJob,
@@ -493,6 +495,7 @@ function HomePage() {
   const [lessonError, setLessonError] = useState<string | null>(null);
   const [newVocabError, setNewVocabError] = useState<string | null>(null);
   const [syncError, setSyncError] = useState<string | null>(null);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const [lessonDate, setLessonDate] = useState(
     new Date().toISOString().slice(0, 10),
   );
@@ -505,6 +508,9 @@ function HomePage() {
   const [newVocabContext, setNewVocabContext] = useState("");
   const [startingBackend, setStartingBackend] = useState(false);
   const [openingAnki, setOpeningAnki] = useState(false);
+  const [deletingBatchPath, setDeletingBatchPath] = useState<string | null>(
+    null,
+  );
 
   async function loadDashboard() {
     setDashboardError(null);
@@ -662,6 +668,25 @@ function HomePage() {
     }
   }
 
+  async function submitDeleteBatch(batchPath: string) {
+    if (!window.confirm("Delete this local batch and its unshared media?")) {
+      return;
+    }
+
+    setDeleteError(null);
+    setDeletingBatchPath(batchPath);
+    try {
+      await deleteBatch(batchPath);
+      await loadDashboard();
+    } catch (error) {
+      setDeleteError(
+        error instanceof Error ? error.message : "Failed to delete batch.",
+      );
+    } finally {
+      setDeletingBatchPath(null);
+    }
+  }
+
   return (
     <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
       <header className="mb-8">
@@ -749,7 +774,7 @@ function HomePage() {
       </div>
 
       <div className="mb-8 grid gap-6 lg:grid-cols-2">
-        <Card>
+        <Card className="order-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <ImagePlus className="h-5 w-5" /> Generate from lesson
@@ -839,7 +864,7 @@ function HomePage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="order-1">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Languages className="h-5 w-5" /> Generate new vocab
@@ -916,6 +941,11 @@ function HomePage() {
                 {syncError}
               </div>
             ) : null}
+            {deleteError ? (
+              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                {deleteError}
+              </div>
+            ) : null}
             {syncJob ? <JobPanel job={syncJob} /> : null}
             {(dashboard?.recent_batches ?? []).map((batch) => (
               <div
@@ -956,6 +986,22 @@ function HomePage() {
                   </div>
                 </div>
                 <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center">
+                  {batch.push_status === "not-pushed" ? (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full sm:w-auto"
+                      onClick={() => void submitDeleteBatch(batch.path)}
+                      disabled={deletingBatchPath === batch.path}
+                    >
+                      {deletingBatchPath === batch.path ? (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      ) : (
+                        <Trash2 className="mr-2 h-4 w-4" />
+                      )}
+                      Delete
+                    </Button>
+                  ) : null}
                   {batch.media_hydrated ? null : (
                     <Button
                       type="button"
@@ -1140,11 +1186,13 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [hydrateJob, setHydrateJob] = useState<JobResponse | null>(null);
   const [hydrateError, setHydrateError] = useState<string | null>(null);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const [pushPlan, setPushPlan] = useState<PushResult | null>(null);
   const [pushResult, setPushResult] = useState<PushResult | null>(null);
   const [pushError, setPushError] = useState<string | null>(null);
   const [checkingPush, setCheckingPush] = useState(false);
   const [pushing, setPushing] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   function clearPushState() {
     setPushPlan(null);
@@ -1339,6 +1387,24 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
     }
   }
 
+  async function runDelete() {
+    if (!window.confirm("Delete this local batch and its unshared media?")) {
+      return;
+    }
+
+    setDeleteError(null);
+    setDeleting(true);
+    try {
+      await deleteBatch(batchPath);
+      window.location.assign("/");
+    } catch (error) {
+      setDeleteError(
+        error instanceof Error ? error.message : "Failed to delete batch.",
+      );
+      setDeleting(false);
+    }
+  }
+
   return (
     <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
       <header className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -1399,6 +1465,21 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
+              {!batchPushed ? (
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => void runDelete()}
+                  disabled={deleting}
+                >
+                  {deleting ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    <Trash2 className="mr-2 h-4 w-4" />
+                  )}
+                  Delete batch
+                </Button>
+              ) : null}
               {!mediaHydrated ? (
                 <Button
                   type="button"
@@ -1437,6 +1518,11 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
             {hydrateError ? (
               <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
                 {hydrateError}
+              </div>
+            ) : null}
+            {deleteError ? (
+              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                {deleteError}
               </div>
             ) : null}
             {hydrateJob ? <JobPanel job={hydrateJob} /> : null}
