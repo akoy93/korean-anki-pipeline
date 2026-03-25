@@ -293,8 +293,8 @@ class PushServiceTests(unittest.TestCase):
                 "korean_anki.push_service.build_study_state",
                 return_value=StudyState(anki_stats=AnkiStatsSnapshot()),
             ),
-            patch("korean_anki.push_service.propose_new_vocab", return_value=proposal_batch),
-            patch("korean_anki.push_service.generate_pronunciations", return_value={"물": "mul"}) as mock_generate_pronunciations,
+            patch("korean_anki.new_vocab.propose_new_vocab", return_value=proposal_batch),
+            patch("korean_anki.new_vocab.generate_pronunciations", return_value={"물": "mul"}) as mock_generate_pronunciations,
             patch("korean_anki.push_service.enrich_new_vocab_images", side_effect=lambda document, *_args, **_kwargs: document),
             patch("korean_anki.push_service.enrich_audio", side_effect=lambda document, *_args, **_kwargs: document),
         ):
@@ -315,7 +315,7 @@ class PushServiceTests(unittest.TestCase):
         output_path = project_root / output_paths[0]
         payload = json.loads(output_path.read_text(encoding="utf-8"))
         self.assertEqual(payload["notes"][0]["item"]["pronunciation"], "mul")
-        mock_generate_pronunciations.assert_called_once_with(["물"])
+        mock_generate_pronunciations.assert_called_once_with(["물"], model="gpt-5.4")
 
     def test_unique_new_vocab_output_path_does_not_overwrite_existing_files(self) -> None:
         output_dir = Path(self._testMethodName) / "data" / "generated"

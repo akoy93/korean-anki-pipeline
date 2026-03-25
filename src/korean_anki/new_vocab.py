@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 
+from .llm import generate_pronunciations, propose_new_vocab
 from .schema import (
     ExampleSentence,
     LessonDocument,
@@ -336,6 +337,57 @@ def build_new_vocab_document(
         tags=["new-vocab"],
     )
     return LessonDocument(metadata=metadata, items=items)
+
+
+def build_new_vocab_document_from_state(
+    state: StudyState,
+    *,
+    lesson_id: str,
+    title: str,
+    lesson_date: date,
+    count: int,
+    gap_ratio: float,
+    lesson_context_path: Path | None,
+    target_deck: str,
+    model: str = "gpt-5.4",
+) -> LessonDocument:
+    lesson_context = load_lesson_context(lesson_context_path) if lesson_context_path is not None else None
+    prior_vocab = prior_notes_for_vocab(state)
+    excluded_pairs = [
+        f"{normalize_text(note.korean)} | {normalize_text(note.english)}"
+        for note in prior_vocab
+    ]
+    proposal_batch = propose_new_vocab(
+        model=model,
+        candidate_count=max(count * 2, count + 10),
+        target_gap_topics=undercovered_topics(state, limit=4),
+        lesson_context_summary=lesson_context.summary if lesson_context is not None else None,
+        lesson_context_tags=lesson_context.tags if lesson_context is not None else [],
+        excluded_pairs=excluded_pairs,
+    )
+    document = build_new_vocab_document(
+        proposal_batch.proposals,
+        state,
+        lesson_id=lesson_id,
+        title=title,
+        lesson_date=lesson_date,
+        count=count,
+        gap_ratio=gap_ratio,
+        lesson_context=lesson_context,
+        target_deck=target_deck,
+    )
+    pronunciation_lookup = generate_pronunciations(
+        [item.korean for item in document.items],
+        model=model,
+    )
+    return document.model_copy(
+        update={
+            "items": [
+                item.model_copy(update={"pronunciation": pronunciation_lookup.get(item.korean)})
+                for item in document.items
+            ]
+        }
+    )
 
 
 def inclusion_reason_for_item(item: LessonItem) -> str:

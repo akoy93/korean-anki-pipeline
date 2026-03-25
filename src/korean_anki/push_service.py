@@ -27,9 +27,9 @@ from .anki import (
     sync_lesson_media,
 )
 from .cards import generate_batch
-from .llm import generate_pronunciations, propose_new_vocab, read_lesson, read_transcription, transcribe_sources, write_json
+from .llm import generate_pronunciations, read_lesson, read_transcription, transcribe_sources, write_json
 from .media import enrich_audio, enrich_new_vocab_images
-from .new_vocab import build_new_vocab_document, load_lesson_context, prior_notes_for_vocab, undercovered_topics
+from .new_vocab import build_new_vocab_document_from_state
 from .schema import (
     CardBatch,
     DashboardBatch,
@@ -46,7 +46,7 @@ from .schema import (
     SyncMediaJobRequest,
 )
 from .stages import build_lesson_documents, qa_transcription, write_lesson_documents
-from .study_state import build_study_state, normalize_text
+from .study_state import build_study_state
 
 _SLUG_RE = re.compile(r"[^a-zA-Z0-9가-힣]+")
 _JOBS: dict[str, JobResponse] = {}
@@ -531,38 +531,15 @@ def _new_vocab_job(job_id: str, raw_body: str) -> list[str]:
     )
 
     state = build_study_state(project_root, anki_url=request.anki_url, exclude_batch_path=output_path)
-    lesson_context = load_lesson_context(Path(request.lesson_context)) if request.lesson_context is not None else None
-    prior_vocab = prior_notes_for_vocab(state)
-    excluded_pairs = [
-        f"{normalize_text(note.korean)} | {normalize_text(note.english)}"
-        for note in prior_vocab
-    ]
-    proposal_batch = propose_new_vocab(
-        candidate_count=max(request.count * 2, request.count + 10),
-        target_gap_topics=undercovered_topics(state, limit=4),
-        lesson_context_summary=lesson_context.summary if lesson_context is not None else None,
-        lesson_context_tags=lesson_context.tags if lesson_context is not None else [],
-        excluded_pairs=excluded_pairs,
-    )
-    document = build_new_vocab_document(
-        proposal_batch.proposals,
+    document = build_new_vocab_document_from_state(
         state,
         lesson_id=lesson_id,
         title="New Vocab",
         lesson_date=date.today(),
         count=request.count,
         gap_ratio=request.gap_ratio,
-        lesson_context=lesson_context,
+        lesson_context_path=Path(request.lesson_context) if request.lesson_context is not None else None,
         target_deck=request.target_deck,
-    )
-    pronunciation_lookup = generate_pronunciations([item.korean for item in document.items])
-    document = document.model_copy(
-        update={
-            "items": [
-                item.model_copy(update={"pronunciation": pronunciation_lookup.get(item.korean)})
-                for item in document.items
-            ]
-        }
     )
     progress_total = len(document.items) * (5 if request.with_audio else 4)
     _update_job(

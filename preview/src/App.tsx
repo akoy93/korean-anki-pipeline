@@ -485,6 +485,9 @@ function JobPanel({ job }: { job: JobResponse }) {
   const imageCount = Math.min(itemCount, job.progress_current);
   const audioCount = Math.min(itemCount, Math.max(0, job.progress_current - itemCount));
   const cardCount = Math.min(itemCount, Math.floor(Math.max(0, job.progress_current - itemCount * 2) / 3));
+  const planningDone = job.progress_total > 0;
+  const imagesDone = itemCount > 0 && imageCount >= itemCount;
+  const audioDone = itemCount > 0 && audioCount >= itemCount;
 
   useEffect(() => {
     if (!inProgress) {
@@ -516,28 +519,28 @@ function JobPanel({ job }: { job: JobResponse }) {
           <div className="space-y-2">
             <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
               <div className="flex items-center gap-2">
-                {job.progress_total > 0 ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : <Loader2 className="h-4 w-4 animate-spin text-primary" />}
+                {planningDone ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : <Loader2 className="h-4 w-4 animate-spin text-primary" />}
                 <span>Planning candidates</span>
               </div>
-              <span className="text-xs text-muted-foreground">{job.progress_total > 0 ? "Done" : "Running"}</span>
+              <span className="text-xs text-muted-foreground">{planningDone ? "Done" : "Running"}</span>
             </div>
             <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
               <div className="flex items-center gap-2">
-                {imageCount >= itemCount && itemCount > 0 ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : job.progress_total > 0 ? <Loader2 className="h-4 w-4 animate-spin text-primary" /> : <Circle className="h-4 w-4 text-muted-foreground" />}
+                {imagesDone ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : planningDone ? <Loader2 className="h-4 w-4 animate-spin text-primary" /> : <Circle className="h-4 w-4 text-muted-foreground" />}
                 <span>Generating images</span>
               </div>
               <span className="text-xs text-muted-foreground">{imageCount}/{itemCount}</span>
             </div>
             <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
               <div className="flex items-center gap-2">
-                {audioCount >= itemCount && itemCount > 0 ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : imageCount > 0 ? <Loader2 className="h-4 w-4 animate-spin text-primary" /> : <Circle className="h-4 w-4 text-muted-foreground" />}
+                {audioDone ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : imagesDone ? <Loader2 className="h-4 w-4 animate-spin text-primary" /> : <Circle className="h-4 w-4 text-muted-foreground" />}
                 <span>Generating audio</span>
               </div>
               <span className="text-xs text-muted-foreground">{audioCount}/{itemCount}</span>
             </div>
             <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
               <div className="flex items-center gap-2">
-                {cardCount >= itemCount && itemCount > 0 ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : audioCount > 0 ? <Loader2 className="h-4 w-4 animate-spin text-primary" /> : <Circle className="h-4 w-4 text-muted-foreground" />}
+                {cardCount >= itemCount && itemCount > 0 ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : audioDone ? <Loader2 className="h-4 w-4 animate-spin text-primary" /> : <Circle className="h-4 w-4 text-muted-foreground" />}
                 <span>Building cards</span>
               </div>
               <span className="text-xs text-muted-foreground">{cardCount}/{itemCount}</span>

@@ -613,7 +613,7 @@ def propose_new_vocab(
                 **_new_vocab_proposal_json_schema(),
             }
         },
-        reasoning={"effort": "high"},
+        reasoning={"effort": "medium"},
     )
     return NewVocabProposalBatch.model_validate_json(response.output_text)
 
