@@ -642,7 +642,7 @@ function HomePage() {
             </CardTitle>
           </CardHeader>
         </Card>
-        <Card>
+        <Card className="overflow-hidden">
           <CardHeader className="pb-2">
             <CardDescription>Local notes</CardDescription>
             <CardTitle className="text-3xl">
@@ -856,7 +856,7 @@ function HomePage() {
             {(dashboard?.recent_batches ?? []).map((batch) => (
               <div
                 key={batch.path}
-                className="flex flex-col gap-4 rounded-xl border border-border p-4 sm:flex-row sm:items-center sm:justify-between"
+                className="flex min-w-0 flex-col gap-4 overflow-hidden rounded-xl border border-border p-4 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="min-w-0 flex-1">
                   <div className="truncate font-medium">{batch.title}</div>
