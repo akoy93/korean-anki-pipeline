@@ -1,0 +1,1636 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "new-vocab-2026-03-25-004652",
+    "title": "New Vocab",
+    "topic": "New Vocab",
+    "lesson_date": "2026-03-25",
+    "source_description": "Recovered from Anki Desktop",
+    "target_deck": "Korean::New Vocab",
+    "tags": [
+      "new-vocab"
+    ]
+  },
+  "notes": [
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-001",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "감사합니다",
+        "english": "thank you",
+        "pronunciation": "gamsahamnida",
+        "examples": [
+          {
+            "korean": "도와주셔서 감사합니다.",
+            "english": "Thank you for helping me."
+          }
+        ],
+        "notes": "Coverage gap: greetings. High-frequency polite expression for everyday courtesy; foundational for beginner communication.",
+        "tags": [
+          "coverage-gap",
+          "greetings",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-001.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-001.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-001-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-001",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>감사합니다</div>",
+          "back_html": "<div class='answer answer-en'>thank you</div><div class='answer answer-ko'>감사합니다</div><div class='pronunciation'>gamsahamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>도와주셔서 감사합니다.</div><div class='example-en'>Thank you for helping me.</div></li></ul></section><div class='notes'>Coverage gap: greetings. High-frequency polite expression for everyday courtesy; foundational for beginner communication.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-001.png' alt='thank you' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-001-production",
+          "item_id": "new-vocab-2026-03-25-004652-001",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>thank you</div>",
+          "back_html": "<div class='answer answer-ko'>감사합니다</div><div class='answer answer-en'>thank you</div><div class='pronunciation'>gamsahamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>도와주셔서 감사합니다.</div><div class='example-en'>Thank you for helping me.</div></li></ul></section><div class='notes'>Coverage gap: greetings. High-frequency polite expression for everyday courtesy; foundational for beginner communication.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-001.png' alt='thank you' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-001-listening",
+          "item_id": "new-vocab-2026-03-25-004652-001",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-001.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>감사합니다</div><div class='answer answer-en'>thank you</div><div class='pronunciation'>gamsahamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>도와주셔서 감사합니다.</div><div class='example-en'>Thank you for helping me.</div></li></ul></section><div class='notes'>Coverage gap: greetings. High-frequency polite expression for everyday courtesy; foundational for beginner communication.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-001.png' alt='thank you' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-001.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:감사합니다:thank you",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-002",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "안녕하세요",
+        "english": "hello",
+        "pronunciation": "annyeonghaseyo",
+        "examples": [
+          {
+            "korean": "안녕하세요, 저는 민수예요.",
+            "english": "Hello, I'm Minsu."
+          }
+        ],
+        "notes": "Coverage gap: greetings. Core polite greeting for first meetings and everyday interactions; essential A1 coverage-gap item.",
+        "tags": [
+          "coverage-gap",
+          "greetings",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-002.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-002.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-002-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-002",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>안녕하세요</div>",
+          "back_html": "<div class='answer answer-en'>hello</div><div class='answer answer-ko'>안녕하세요</div><div class='pronunciation'>annyeonghaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>안녕하세요, 저는 민수예요.</div><div class='example-en'>Hello, I&#x27;m Minsu.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Core polite greeting for first meetings and everyday interactions; essential A1 coverage-gap item.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-002.png' alt='hello' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-002-production",
+          "item_id": "new-vocab-2026-03-25-004652-002",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>hello</div>",
+          "back_html": "<div class='answer answer-ko'>안녕하세요</div><div class='answer answer-en'>hello</div><div class='pronunciation'>annyeonghaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>안녕하세요, 저는 민수예요.</div><div class='example-en'>Hello, I&#x27;m Minsu.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Core polite greeting for first meetings and everyday interactions; essential A1 coverage-gap item.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-002.png' alt='hello' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-002-listening",
+          "item_id": "new-vocab-2026-03-25-004652-002",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-002.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>안녕하세요</div><div class='answer answer-en'>hello</div><div class='pronunciation'>annyeonghaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>안녕하세요, 저는 민수예요.</div><div class='example-en'>Hello, I&#x27;m Minsu.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Core polite greeting for first meetings and everyday interactions; essential A1 coverage-gap item.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-002.png' alt='hello' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-002.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:안녕하세요:hello",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-003",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "안녕히 가세요",
+        "english": "goodbye",
+        "pronunciation": "annyeonghi gaseyo",
+        "examples": [
+          {
+            "korean": "지수 씨, 안녕히 가세요.",
+            "english": "Jisu, goodbye."
+          }
+        ],
+        "notes": "Coverage gap: greetings. Very common polite farewell said to someone who is leaving; immediate practical use for beginners.",
+        "tags": [
+          "coverage-gap",
+          "greetings",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-003.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-003.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-003-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-003",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>안녕히 가세요</div>",
+          "back_html": "<div class='answer answer-en'>goodbye</div><div class='answer answer-ko'>안녕히 가세요</div><div class='pronunciation'>annyeonghi gaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지수 씨, 안녕히 가세요.</div><div class='example-en'>Jisu, goodbye.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Very common polite farewell said to someone who is leaving; immediate practical use for beginners.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-003.png' alt='goodbye' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-003-production",
+          "item_id": "new-vocab-2026-03-25-004652-003",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>goodbye</div>",
+          "back_html": "<div class='answer answer-ko'>안녕히 가세요</div><div class='answer answer-en'>goodbye</div><div class='pronunciation'>annyeonghi gaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지수 씨, 안녕히 가세요.</div><div class='example-en'>Jisu, goodbye.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Very common polite farewell said to someone who is leaving; immediate practical use for beginners.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-003.png' alt='goodbye' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-003-listening",
+          "item_id": "new-vocab-2026-03-25-004652-003",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-003.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>안녕히 가세요</div><div class='answer answer-en'>goodbye</div><div class='pronunciation'>annyeonghi gaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지수 씨, 안녕히 가세요.</div><div class='example-en'>Jisu, goodbye.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Very common polite farewell said to someone who is leaving; immediate practical use for beginners.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-003.png' alt='goodbye' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-003.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:안녕히 가세요:goodbye",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-004",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "안녕히 계세요",
+        "english": "goodbye",
+        "pronunciation": "annyeonghi gyeseyo",
+        "examples": [
+          {
+            "korean": "선생님, 안녕히 계세요.",
+            "english": "Teacher, goodbye."
+          }
+        ],
+        "notes": "Coverage gap: greetings. Basic polite farewell said when the other person is staying; fills an important greeting distinction in Korean.",
+        "tags": [
+          "coverage-gap",
+          "greetings",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-004.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-004.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-004-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-004",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>안녕히 계세요</div>",
+          "back_html": "<div class='answer answer-en'>goodbye</div><div class='answer answer-ko'>안녕히 계세요</div><div class='pronunciation'>annyeonghi gyeseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>선생님, 안녕히 계세요.</div><div class='example-en'>Teacher, goodbye.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Basic polite farewell said when the other person is staying; fills an important greeting distinction in Korean.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-004.png' alt='goodbye' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-004-production",
+          "item_id": "new-vocab-2026-03-25-004652-004",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>goodbye</div>",
+          "back_html": "<div class='answer answer-ko'>안녕히 계세요</div><div class='answer answer-en'>goodbye</div><div class='pronunciation'>annyeonghi gyeseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>선생님, 안녕히 계세요.</div><div class='example-en'>Teacher, goodbye.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Basic polite farewell said when the other person is staying; fills an important greeting distinction in Korean.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-004.png' alt='goodbye' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-004-listening",
+          "item_id": "new-vocab-2026-03-25-004652-004",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-004.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>안녕히 계세요</div><div class='answer answer-en'>goodbye</div><div class='pronunciation'>annyeonghi gyeseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>선생님, 안녕히 계세요.</div><div class='example-en'>Teacher, goodbye.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Basic polite farewell said when the other person is staying; fills an important greeting distinction in Korean.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-004.png' alt='goodbye' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-004.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:안녕히 계세요:goodbye",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-005",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "죄송합니다",
+        "english": "sorry",
+        "pronunciation": "joesonghamnida",
+        "examples": [
+          {
+            "korean": "늦어서 죄송합니다.",
+            "english": "Sorry I'm late."
+          }
+        ],
+        "notes": "Coverage gap: greetings. Essential polite apology expression used constantly in daily life; strong beginner utility.",
+        "tags": [
+          "coverage-gap",
+          "greetings",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-005.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-005.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-005-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-005",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>죄송합니다</div>",
+          "back_html": "<div class='answer answer-en'>sorry</div><div class='answer answer-ko'>죄송합니다</div><div class='pronunciation'>joesonghamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>늦어서 죄송합니다.</div><div class='example-en'>Sorry I&#x27;m late.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Essential polite apology expression used constantly in daily life; strong beginner utility.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-005.png' alt='sorry' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-005-production",
+          "item_id": "new-vocab-2026-03-25-004652-005",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>sorry</div>",
+          "back_html": "<div class='answer answer-ko'>죄송합니다</div><div class='answer answer-en'>sorry</div><div class='pronunciation'>joesonghamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>늦어서 죄송합니다.</div><div class='example-en'>Sorry I&#x27;m late.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Essential polite apology expression used constantly in daily life; strong beginner utility.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-005.png' alt='sorry' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-005-listening",
+          "item_id": "new-vocab-2026-03-25-004652-005",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-005.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>죄송합니다</div><div class='answer answer-en'>sorry</div><div class='pronunciation'>joesonghamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>늦어서 죄송합니다.</div><div class='example-en'>Sorry I&#x27;m late.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Essential polite apology expression used constantly in daily life; strong beginner utility.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-005.png' alt='sorry' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-005.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:죄송합니다:sorry",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-006",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "가족",
+        "english": "family",
+        "pronunciation": "gajok",
+        "examples": [
+          {
+            "korean": "제 가족은 네 명이에요.",
+            "english": "My family has four people."
+          }
+        ],
+        "notes": "Coverage gap: family. Core family word that supports self-introductions and basic personal information at A1 level.",
+        "tags": [
+          "coverage-gap",
+          "family",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-006.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-006.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-006-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-006",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>가족</div>",
+          "back_html": "<div class='answer answer-en'>family</div><div class='answer answer-ko'>가족</div><div class='pronunciation'>gajok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 가족은 네 명이에요.</div><div class='example-en'>My family has four people.</div></li></ul></section><div class='notes'>Coverage gap: family. Core family word that supports self-introductions and basic personal information at A1 level.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-006.png' alt='family' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-006-production",
+          "item_id": "new-vocab-2026-03-25-004652-006",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>family</div>",
+          "back_html": "<div class='answer answer-ko'>가족</div><div class='answer answer-en'>family</div><div class='pronunciation'>gajok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 가족은 네 명이에요.</div><div class='example-en'>My family has four people.</div></li></ul></section><div class='notes'>Coverage gap: family. Core family word that supports self-introductions and basic personal information at A1 level.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-006.png' alt='family' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-006-listening",
+          "item_id": "new-vocab-2026-03-25-004652-006",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-006.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>가족</div><div class='answer answer-en'>family</div><div class='pronunciation'>gajok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 가족은 네 명이에요.</div><div class='example-en'>My family has four people.</div></li></ul></section><div class='notes'>Coverage gap: family. Core family word that supports self-introductions and basic personal information at A1 level.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-006.png' alt='family' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-006.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:가족:family",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-007",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "누나",
+        "english": "older sister",
+        "pronunciation": "nuna",
+        "examples": [
+          {
+            "korean": "누나는 친절해요.",
+            "english": "My older sister is kind."
+          }
+        ],
+        "notes": "Coverage gap: family. Common kinship term for male speakers; important for understanding Korean family vocabulary.",
+        "tags": [
+          "coverage-gap",
+          "family",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-007.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-007.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-007-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-007",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>누나</div>",
+          "back_html": "<div class='answer answer-en'>older sister</div><div class='answer answer-ko'>누나</div><div class='pronunciation'>nuna</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>누나는 친절해요.</div><div class='example-en'>My older sister is kind.</div></li></ul></section><div class='notes'>Coverage gap: family. Common kinship term for male speakers; important for understanding Korean family vocabulary.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-007.png' alt='older sister' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-007-production",
+          "item_id": "new-vocab-2026-03-25-004652-007",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>older sister</div>",
+          "back_html": "<div class='answer answer-ko'>누나</div><div class='answer answer-en'>older sister</div><div class='pronunciation'>nuna</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>누나는 친절해요.</div><div class='example-en'>My older sister is kind.</div></li></ul></section><div class='notes'>Coverage gap: family. Common kinship term for male speakers; important for understanding Korean family vocabulary.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-007.png' alt='older sister' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-007-listening",
+          "item_id": "new-vocab-2026-03-25-004652-007",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-007.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>누나</div><div class='answer answer-en'>older sister</div><div class='pronunciation'>nuna</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>누나는 친절해요.</div><div class='example-en'>My older sister is kind.</div></li></ul></section><div class='notes'>Coverage gap: family. Common kinship term for male speakers; important for understanding Korean family vocabulary.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-007.png' alt='older sister' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-007.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:누나:older sister",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-008",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "부모님",
+        "english": "parents",
+        "pronunciation": "bumonim",
+        "examples": [
+          {
+            "korean": "부모님은 부산에 사세요.",
+            "english": "My parents live in Busan."
+          }
+        ],
+        "notes": "Coverage gap: family. High-utility collective family term often used in beginner conversation about home and family.",
+        "tags": [
+          "coverage-gap",
+          "family",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-008.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-008.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-008-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-008",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>부모님</div>",
+          "back_html": "<div class='answer answer-en'>parents</div><div class='answer answer-ko'>부모님</div><div class='pronunciation'>bumonim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>부모님은 부산에 사세요.</div><div class='example-en'>My parents live in Busan.</div></li></ul></section><div class='notes'>Coverage gap: family. High-utility collective family term often used in beginner conversation about home and family.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-008.png' alt='parents' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-008-production",
+          "item_id": "new-vocab-2026-03-25-004652-008",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>parents</div>",
+          "back_html": "<div class='answer answer-ko'>부모님</div><div class='answer answer-en'>parents</div><div class='pronunciation'>bumonim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>부모님은 부산에 사세요.</div><div class='example-en'>My parents live in Busan.</div></li></ul></section><div class='notes'>Coverage gap: family. High-utility collective family term often used in beginner conversation about home and family.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-008.png' alt='parents' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-008-listening",
+          "item_id": "new-vocab-2026-03-25-004652-008",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-008.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>부모님</div><div class='answer answer-en'>parents</div><div class='pronunciation'>bumonim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>부모님은 부산에 사세요.</div><div class='example-en'>My parents live in Busan.</div></li></ul></section><div class='notes'>Coverage gap: family. High-utility collective family term often used in beginner conversation about home and family.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-008.png' alt='parents' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-008.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:부모님:parents",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-009",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "아버지",
+        "english": "father",
+        "pronunciation": "abeoji",
+        "examples": [
+          {
+            "korean": "제 아버지는 회사원이에요.",
+            "english": "My father is an office worker."
+          }
+        ],
+        "notes": "Coverage gap: family. Common respectful family term used in introductions and simple conversations about family.",
+        "tags": [
+          "coverage-gap",
+          "family",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-009.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-009.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-009-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-009",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>아버지</div>",
+          "back_html": "<div class='answer answer-en'>father</div><div class='answer answer-ko'>아버지</div><div class='pronunciation'>abeoji</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 아버지는 회사원이에요.</div><div class='example-en'>My father is an office worker.</div></li></ul></section><div class='notes'>Coverage gap: family. Common respectful family term used in introductions and simple conversations about family.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-009.png' alt='father' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-009-production",
+          "item_id": "new-vocab-2026-03-25-004652-009",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>father</div>",
+          "back_html": "<div class='answer answer-ko'>아버지</div><div class='answer answer-en'>father</div><div class='pronunciation'>abeoji</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 아버지는 회사원이에요.</div><div class='example-en'>My father is an office worker.</div></li></ul></section><div class='notes'>Coverage gap: family. Common respectful family term used in introductions and simple conversations about family.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-009.png' alt='father' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-009-listening",
+          "item_id": "new-vocab-2026-03-25-004652-009",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-009.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>아버지</div><div class='answer answer-en'>father</div><div class='pronunciation'>abeoji</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 아버지는 회사원이에요.</div><div class='example-en'>My father is an office worker.</div></li></ul></section><div class='notes'>Coverage gap: family. Common respectful family term used in introductions and simple conversations about family.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-009.png' alt='father' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-009.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:아버지:father",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-010",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "어머니",
+        "english": "mother",
+        "pronunciation": "eomeoni",
+        "examples": [
+          {
+            "korean": "제 어머니는 요리를 잘해요.",
+            "english": "My mother cooks well."
+          }
+        ],
+        "notes": "Coverage gap: family. Very common respectful family term with high beginner relevance in personal introductions.",
+        "tags": [
+          "coverage-gap",
+          "family",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-010.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-010.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-010-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-010",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>어머니</div>",
+          "back_html": "<div class='answer answer-en'>mother</div><div class='answer answer-ko'>어머니</div><div class='pronunciation'>eomeoni</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 어머니는 요리를 잘해요.</div><div class='example-en'>My mother cooks well.</div></li></ul></section><div class='notes'>Coverage gap: family. Very common respectful family term with high beginner relevance in personal introductions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-010.png' alt='mother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-010-production",
+          "item_id": "new-vocab-2026-03-25-004652-010",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>mother</div>",
+          "back_html": "<div class='answer answer-ko'>어머니</div><div class='answer answer-en'>mother</div><div class='pronunciation'>eomeoni</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 어머니는 요리를 잘해요.</div><div class='example-en'>My mother cooks well.</div></li></ul></section><div class='notes'>Coverage gap: family. Very common respectful family term with high beginner relevance in personal introductions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-010.png' alt='mother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-010-listening",
+          "item_id": "new-vocab-2026-03-25-004652-010",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-010.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>어머니</div><div class='answer answer-en'>mother</div><div class='pronunciation'>eomeoni</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 어머니는 요리를 잘해요.</div><div class='example-en'>My mother cooks well.</div></li></ul></section><div class='notes'>Coverage gap: family. Very common respectful family term with high beginner relevance in personal introductions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-010.png' alt='mother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-010.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:어머니:mother",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-011",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "언니",
+        "english": "older sister",
+        "pronunciation": "eonni",
+        "examples": [
+          {
+            "korean": "언니는 책을 읽어요.",
+            "english": "My older sister reads a book."
+          }
+        ],
+        "notes": "Coverage gap: family. Very common kinship term for female speakers; useful for everyday Korean family talk.",
+        "tags": [
+          "coverage-gap",
+          "family",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-011.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-011.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-011-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-011",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>언니</div>",
+          "back_html": "<div class='answer answer-en'>older sister</div><div class='answer answer-ko'>언니</div><div class='pronunciation'>eonni</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>언니는 책을 읽어요.</div><div class='example-en'>My older sister reads a book.</div></li></ul></section><div class='notes'>Coverage gap: family. Very common kinship term for female speakers; useful for everyday Korean family talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-011.png' alt='older sister' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-011-production",
+          "item_id": "new-vocab-2026-03-25-004652-011",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>older sister</div>",
+          "back_html": "<div class='answer answer-ko'>언니</div><div class='answer answer-en'>older sister</div><div class='pronunciation'>eonni</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>언니는 책을 읽어요.</div><div class='example-en'>My older sister reads a book.</div></li></ul></section><div class='notes'>Coverage gap: family. Very common kinship term for female speakers; useful for everyday Korean family talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-011.png' alt='older sister' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-011-listening",
+          "item_id": "new-vocab-2026-03-25-004652-011",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-011.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>언니</div><div class='answer answer-en'>older sister</div><div class='pronunciation'>eonni</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>언니는 책을 읽어요.</div><div class='example-en'>My older sister reads a book.</div></li></ul></section><div class='notes'>Coverage gap: family. Very common kinship term for female speakers; useful for everyday Korean family talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-011.png' alt='older sister' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-011.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:언니:older sister",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-012",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "오빠",
+        "english": "older brother",
+        "pronunciation": "oppa",
+        "examples": [
+          {
+            "korean": "오빠는 차를 운전해요.",
+            "english": "My older brother drives a car."
+          }
+        ],
+        "notes": "Coverage gap: family. High-frequency kinship term for female speakers; core beginner cultural vocabulary.",
+        "tags": [
+          "coverage-gap",
+          "family",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-012.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-012.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-012-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-012",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>오빠</div>",
+          "back_html": "<div class='answer answer-en'>older brother</div><div class='answer answer-ko'>오빠</div><div class='pronunciation'>oppa</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오빠는 차를 운전해요.</div><div class='example-en'>My older brother drives a car.</div></li></ul></section><div class='notes'>Coverage gap: family. High-frequency kinship term for female speakers; core beginner cultural vocabulary.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-012.png' alt='older brother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-012-production",
+          "item_id": "new-vocab-2026-03-25-004652-012",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>older brother</div>",
+          "back_html": "<div class='answer answer-ko'>오빠</div><div class='answer answer-en'>older brother</div><div class='pronunciation'>oppa</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오빠는 차를 운전해요.</div><div class='example-en'>My older brother drives a car.</div></li></ul></section><div class='notes'>Coverage gap: family. High-frequency kinship term for female speakers; core beginner cultural vocabulary.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-012.png' alt='older brother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-012-listening",
+          "item_id": "new-vocab-2026-03-25-004652-012",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-012.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>오빠</div><div class='answer answer-en'>older brother</div><div class='pronunciation'>oppa</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오빠는 차를 운전해요.</div><div class='example-en'>My older brother drives a car.</div></li></ul></section><div class='notes'>Coverage gap: family. High-frequency kinship term for female speakers; core beginner cultural vocabulary.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-012.png' alt='older brother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-012.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:오빠:older brother",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-013",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "할머니",
+        "english": "grandmother",
+        "pronunciation": "halmeoni",
+        "examples": [
+          {
+            "korean": "할머니는 집에 계세요.",
+            "english": "My grandmother is at home."
+          }
+        ],
+        "notes": "Coverage gap: family. Common extended-family word that beginners often need for talking about relatives.",
+        "tags": [
+          "coverage-gap",
+          "family",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-013.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-013.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-013-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-013",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>할머니</div>",
+          "back_html": "<div class='answer answer-en'>grandmother</div><div class='answer answer-ko'>할머니</div><div class='pronunciation'>halmeoni</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>할머니는 집에 계세요.</div><div class='example-en'>My grandmother is at home.</div></li></ul></section><div class='notes'>Coverage gap: family. Common extended-family word that beginners often need for talking about relatives.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-013.png' alt='grandmother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-013-production",
+          "item_id": "new-vocab-2026-03-25-004652-013",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>grandmother</div>",
+          "back_html": "<div class='answer answer-ko'>할머니</div><div class='answer answer-en'>grandmother</div><div class='pronunciation'>halmeoni</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>할머니는 집에 계세요.</div><div class='example-en'>My grandmother is at home.</div></li></ul></section><div class='notes'>Coverage gap: family. Common extended-family word that beginners often need for talking about relatives.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-013.png' alt='grandmother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-013-listening",
+          "item_id": "new-vocab-2026-03-25-004652-013",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-013.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>할머니</div><div class='answer answer-en'>grandmother</div><div class='pronunciation'>halmeoni</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>할머니는 집에 계세요.</div><div class='example-en'>My grandmother is at home.</div></li></ul></section><div class='notes'>Coverage gap: family. Common extended-family word that beginners often need for talking about relatives.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-013.png' alt='grandmother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-013.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:할머니:grandmother",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-014",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "할아버지",
+        "english": "grandfather",
+        "pronunciation": "harabeoji",
+        "examples": [
+          {
+            "korean": "할아버지는 산책을 좋아하세요.",
+            "english": "My grandfather likes walks."
+          }
+        ],
+        "notes": "Coverage gap: family. Basic extended-family term with strong everyday relevance and cultural usefulness.",
+        "tags": [
+          "coverage-gap",
+          "family",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-014.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-014.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-014-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-014",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>할아버지</div>",
+          "back_html": "<div class='answer answer-en'>grandfather</div><div class='answer answer-ko'>할아버지</div><div class='pronunciation'>harabeoji</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>할아버지는 산책을 좋아하세요.</div><div class='example-en'>My grandfather likes walks.</div></li></ul></section><div class='notes'>Coverage gap: family. Basic extended-family term with strong everyday relevance and cultural usefulness.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-014.png' alt='grandfather' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-014-production",
+          "item_id": "new-vocab-2026-03-25-004652-014",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>grandfather</div>",
+          "back_html": "<div class='answer answer-ko'>할아버지</div><div class='answer answer-en'>grandfather</div><div class='pronunciation'>harabeoji</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>할아버지는 산책을 좋아하세요.</div><div class='example-en'>My grandfather likes walks.</div></li></ul></section><div class='notes'>Coverage gap: family. Basic extended-family term with strong everyday relevance and cultural usefulness.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-014.png' alt='grandfather' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-014-listening",
+          "item_id": "new-vocab-2026-03-25-004652-014",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-014.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>할아버지</div><div class='answer answer-en'>grandfather</div><div class='pronunciation'>harabeoji</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>할아버지는 산책을 좋아하세요.</div><div class='example-en'>My grandfather likes walks.</div></li></ul></section><div class='notes'>Coverage gap: family. Basic extended-family term with strong everyday relevance and cultural usefulness.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-014.png' alt='grandfather' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-014.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:할아버지:grandfather",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-015",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "형",
+        "english": "older brother",
+        "pronunciation": "hyeong",
+        "examples": [
+          {
+            "korean": "제 형은 대학생이에요.",
+            "english": "My older brother is a university student."
+          }
+        ],
+        "notes": "Coverage gap: family. Frequent kinship term in Korean; useful for learners discussing siblings and family structure.",
+        "tags": [
+          "coverage-gap",
+          "family",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-015.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-015.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-015-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-015",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>형</div>",
+          "back_html": "<div class='answer answer-en'>older brother</div><div class='answer answer-ko'>형</div><div class='pronunciation'>hyeong</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 형은 대학생이에요.</div><div class='example-en'>My older brother is a university student.</div></li></ul></section><div class='notes'>Coverage gap: family. Frequent kinship term in Korean; useful for learners discussing siblings and family structure.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-015.png' alt='older brother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-015-production",
+          "item_id": "new-vocab-2026-03-25-004652-015",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>older brother</div>",
+          "back_html": "<div class='answer answer-ko'>형</div><div class='answer answer-en'>older brother</div><div class='pronunciation'>hyeong</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 형은 대학생이에요.</div><div class='example-en'>My older brother is a university student.</div></li></ul></section><div class='notes'>Coverage gap: family. Frequent kinship term in Korean; useful for learners discussing siblings and family structure.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-015.png' alt='older brother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-015-listening",
+          "item_id": "new-vocab-2026-03-25-004652-015",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-015.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>형</div><div class='answer answer-en'>older brother</div><div class='pronunciation'>hyeong</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>제 형은 대학생이에요.</div><div class='example-en'>My older brother is a university student.</div></li></ul></section><div class='notes'>Coverage gap: family. Frequent kinship term in Korean; useful for learners discussing siblings and family structure.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-015.png' alt='older brother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-015.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:형:older brother",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-016",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "고기",
+        "english": "meat",
+        "pronunciation": "gogi",
+        "examples": [
+          {
+            "korean": "저는 고기를 먹어요.",
+            "english": "I eat meat."
+          }
+        ],
+        "notes": "Coverage gap: food. High-frequency general food word useful for preferences, shopping, and meals.",
+        "tags": [
+          "coverage-gap",
+          "food",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-016.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-016.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-016-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-016",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>고기</div>",
+          "back_html": "<div class='answer answer-en'>meat</div><div class='answer answer-ko'>고기</div><div class='pronunciation'>gogi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 고기를 먹어요.</div><div class='example-en'>I eat meat.</div></li></ul></section><div class='notes'>Coverage gap: food. High-frequency general food word useful for preferences, shopping, and meals.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-016.png' alt='meat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-016-production",
+          "item_id": "new-vocab-2026-03-25-004652-016",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>meat</div>",
+          "back_html": "<div class='answer answer-ko'>고기</div><div class='answer answer-en'>meat</div><div class='pronunciation'>gogi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 고기를 먹어요.</div><div class='example-en'>I eat meat.</div></li></ul></section><div class='notes'>Coverage gap: food. High-frequency general food word useful for preferences, shopping, and meals.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-016.png' alt='meat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-016-listening",
+          "item_id": "new-vocab-2026-03-25-004652-016",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-016.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>고기</div><div class='answer answer-en'>meat</div><div class='pronunciation'>gogi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 고기를 먹어요.</div><div class='example-en'>I eat meat.</div></li></ul></section><div class='notes'>Coverage gap: food. High-frequency general food word useful for preferences, shopping, and meals.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-016.png' alt='meat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-016.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:고기:meat",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-017",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "과일",
+        "english": "fruit",
+        "pronunciation": "gwail",
+        "examples": [
+          {
+            "korean": "과일을 자주 먹어요.",
+            "english": "I often eat fruit."
+          }
+        ],
+        "notes": "Coverage gap: food. Useful category word for shopping, meals, and expressing preferences at A1 level.",
+        "tags": [
+          "coverage-gap",
+          "food",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-017.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-017.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-017-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-017",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>과일</div>",
+          "back_html": "<div class='answer answer-en'>fruit</div><div class='answer answer-ko'>과일</div><div class='pronunciation'>gwail</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>과일을 자주 먹어요.</div><div class='example-en'>I often eat fruit.</div></li></ul></section><div class='notes'>Coverage gap: food. Useful category word for shopping, meals, and expressing preferences at A1 level.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-017.png' alt='fruit' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-017-production",
+          "item_id": "new-vocab-2026-03-25-004652-017",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>fruit</div>",
+          "back_html": "<div class='answer answer-ko'>과일</div><div class='answer answer-en'>fruit</div><div class='pronunciation'>gwail</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>과일을 자주 먹어요.</div><div class='example-en'>I often eat fruit.</div></li></ul></section><div class='notes'>Coverage gap: food. Useful category word for shopping, meals, and expressing preferences at A1 level.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-017.png' alt='fruit' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-017-listening",
+          "item_id": "new-vocab-2026-03-25-004652-017",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-017.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>과일</div><div class='answer answer-en'>fruit</div><div class='pronunciation'>gwail</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>과일을 자주 먹어요.</div><div class='example-en'>I often eat fruit.</div></li></ul></section><div class='notes'>Coverage gap: food. Useful category word for shopping, meals, and expressing preferences at A1 level.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-017.png' alt='fruit' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-017.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:과일:fruit",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-018",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "김치",
+        "english": "kimchi",
+        "pronunciation": "gimchi",
+        "examples": [
+          {
+            "korean": "김치를 좋아해요.",
+            "english": "I like kimchi."
+          }
+        ],
+        "notes": "Coverage gap: food. Iconic and very common Korean food noun that learners encounter immediately in daily life.",
+        "tags": [
+          "coverage-gap",
+          "food",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-018.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-018.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-018-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-018",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>김치</div>",
+          "back_html": "<div class='answer answer-en'>kimchi</div><div class='answer answer-ko'>김치</div><div class='pronunciation'>gimchi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>김치를 좋아해요.</div><div class='example-en'>I like kimchi.</div></li></ul></section><div class='notes'>Coverage gap: food. Iconic and very common Korean food noun that learners encounter immediately in daily life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-018.png' alt='kimchi' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-018-production",
+          "item_id": "new-vocab-2026-03-25-004652-018",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>kimchi</div>",
+          "back_html": "<div class='answer answer-ko'>김치</div><div class='answer answer-en'>kimchi</div><div class='pronunciation'>gimchi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>김치를 좋아해요.</div><div class='example-en'>I like kimchi.</div></li></ul></section><div class='notes'>Coverage gap: food. Iconic and very common Korean food noun that learners encounter immediately in daily life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-018.png' alt='kimchi' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-018-listening",
+          "item_id": "new-vocab-2026-03-25-004652-018",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-018.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>김치</div><div class='answer answer-en'>kimchi</div><div class='pronunciation'>gimchi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>김치를 좋아해요.</div><div class='example-en'>I like kimchi.</div></li></ul></section><div class='notes'>Coverage gap: food. Iconic and very common Korean food noun that learners encounter immediately in daily life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-018.png' alt='kimchi' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-018.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:김치:kimchi",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-019",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "물",
+        "english": "water",
+        "pronunciation": "mul",
+        "examples": [
+          {
+            "korean": "저는 물을 마셔요.",
+            "english": "I drink water."
+          }
+        ],
+        "notes": "Coverage gap: food. One of the most basic and useful food-and-drink nouns for immediate daily use.",
+        "tags": [
+          "coverage-gap",
+          "food",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-019.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-019.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-019-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-019",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>물</div>",
+          "back_html": "<div class='answer answer-en'>water</div><div class='answer answer-ko'>물</div><div class='pronunciation'>mul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 물을 마셔요.</div><div class='example-en'>I drink water.</div></li></ul></section><div class='notes'>Coverage gap: food. One of the most basic and useful food-and-drink nouns for immediate daily use.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-019.png' alt='water' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-019-production",
+          "item_id": "new-vocab-2026-03-25-004652-019",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>water</div>",
+          "back_html": "<div class='answer answer-ko'>물</div><div class='answer answer-en'>water</div><div class='pronunciation'>mul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 물을 마셔요.</div><div class='example-en'>I drink water.</div></li></ul></section><div class='notes'>Coverage gap: food. One of the most basic and useful food-and-drink nouns for immediate daily use.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-019.png' alt='water' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-019-listening",
+          "item_id": "new-vocab-2026-03-25-004652-019",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-019.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>물</div><div class='answer answer-en'>water</div><div class='pronunciation'>mul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 물을 마셔요.</div><div class='example-en'>I drink water.</div></li></ul></section><div class='notes'>Coverage gap: food. One of the most basic and useful food-and-drink nouns for immediate daily use.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-019.png' alt='water' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-019.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:물:water",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-25-004652-020",
+        "lesson_id": "new-vocab-2026-03-25-004652",
+        "item_type": "vocab",
+        "korean": "밥",
+        "english": "cooked rice",
+        "pronunciation": "bap",
+        "examples": [
+          {
+            "korean": "저는 밥을 먹어요.",
+            "english": "I eat rice."
+          }
+        ],
+        "notes": "Coverage gap: food. Extremely common Korean food word with very high frequency in beginner conversations.",
+        "tags": [
+          "coverage-gap",
+          "food",
+          "new-vocab"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": null,
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-25-004652-020.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-25-004652-020.png",
+          "prompt": null,
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-25-004652-020-recognition",
+          "item_id": "new-vocab-2026-03-25-004652-020",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>밥</div>",
+          "back_html": "<div class='answer answer-en'>cooked rice</div><div class='answer answer-ko'>밥</div><div class='pronunciation'>bap</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 밥을 먹어요.</div><div class='example-en'>I eat rice.</div></li></ul></section><div class='notes'>Coverage gap: food. Extremely common Korean food word with very high frequency in beginner conversations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-020.png' alt='cooked rice' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-020-production",
+          "item_id": "new-vocab-2026-03-25-004652-020",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>cooked rice</div>",
+          "back_html": "<div class='answer answer-ko'>밥</div><div class='answer answer-en'>cooked rice</div><div class='pronunciation'>bap</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 밥을 먹어요.</div><div class='example-en'>I eat rice.</div></li></ul></section><div class='notes'>Coverage gap: food. Extremely common Korean food word with very high frequency in beginner conversations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-020.png' alt='cooked rice' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-25-004652-020-listening",
+          "item_id": "new-vocab-2026-03-25-004652-020",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-25-004652-020.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>밥</div><div class='answer answer-en'>cooked rice</div><div class='pronunciation'>bap</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 밥을 먹어요.</div><div class='example-en'>I eat rice.</div></li></ul></section><div class='notes'>Coverage gap: food. Extremely common Korean food word with very high frequency in beginner conversations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-25-004652-020.png' alt='cooked rice' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-25-004652-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-25-004652-020.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:밥:cooked rice",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    }
+  ]
+}
