@@ -6,19 +6,14 @@ from pathlib import Path
 from .note_keys import prior_note_from_item
 from . import path_policy
 from .schema import CardBatch, PriorNote
-from .snapshot_cache import project_snapshot_version
 
 
 class BatchRepository:
     def __init__(self, project_root: Path) -> None:
         self.project_root = project_root.resolve()
 
-    @property
-    def snapshot_version(self) -> int:
-        return project_snapshot_version(self.project_root)
-
     def batch_paths(self) -> list[Path]:
-        return [Path(path) for path in _cached_batch_paths(str(self.project_root), self.snapshot_version)]
+        return _sorted_batch_paths(self.project_root)
 
     def load_batch(self, batch_path: Path) -> CardBatch:
         resolved_path = batch_path.resolve()
@@ -39,71 +34,40 @@ class BatchRepository:
         }
 
     def canonical_batch_paths(self) -> list[Path]:
-        return [path for path in self.batch_paths() if not path.name.endswith(".synced.batch.json")]
+        return [path for path in self.batch_paths() if not path_policy.is_synced_batch_path(path)]
 
     def generated_history(self, *, exclude_batch_path: Path | None = None) -> list[PriorNote]:
-        exclude_path = str(exclude_batch_path.resolve()) if exclude_batch_path is not None else None
-        return [
-            note.model_copy(deep=True)
-            for note in _cached_generated_history(
-                str(self.project_root),
-                exclude_path,
-                self.snapshot_version,
-            )
-        ]
+        exclude_resolved = exclude_batch_path.resolve() if exclude_batch_path is not None else None
+        history: list[PriorNote] = []
+        for batch_path in self.batch_paths():
+            if exclude_resolved is not None and batch_path == exclude_resolved:
+                continue
+            try:
+                batch = self.load_batch(batch_path)
+            except Exception:  # noqa: BLE001
+                continue
+            source = str(batch_path.relative_to(self.project_root))
+            for note in batch.notes:
+                history.append(prior_note_from_item(note.item, source=source))
+        return history
 
     def syncable_files(self) -> list[str]:
-        return list(_cached_syncable_files(str(self.project_root), self.snapshot_version))
-@lru_cache(maxsize=None)
-def _cached_batch_paths(project_root: str, version: int) -> tuple[str, ...]:
-    root = Path(project_root)
+        return sorted(
+            str(path.relative_to(self.project_root))
+            for path in self.batch_paths()
+            if not path_policy.is_synced_batch_path(path)
+        )
+
+
+def _sorted_batch_paths(project_root: Path) -> list[Path]:
     batch_paths = [
-        *root.glob("lessons/**/generated/*.batch.json"),
-        *root.glob("data/generated/*.batch.json"),
+        *project_root.glob("lessons/**/generated/*.batch.json"),
+        *project_root.glob("data/generated/*.batch.json"),
     ]
-    sorted_paths = sorted(batch_paths, key=lambda path: path.stat().st_mtime, reverse=True)
-    return tuple(str(path.resolve()) for path in sorted_paths)
+    return sorted(batch_paths, key=lambda path: path.stat().st_mtime, reverse=True)
 
 
 @lru_cache(maxsize=None)
 def _cached_batch(batch_path: str, mtime_ns: int) -> CardBatch:
     del mtime_ns
     return CardBatch.model_validate_json(Path(batch_path).read_text(encoding="utf-8"))
-
-
-@lru_cache(maxsize=None)
-def _cached_generated_history(
-    project_root: str,
-    exclude_batch_path: str | None,
-    version: int,
-) -> tuple[PriorNote, ...]:
-    root = Path(project_root)
-    history: list[PriorNote] = []
-    for batch_path_str in _cached_batch_paths(project_root, version):
-        batch_path = Path(batch_path_str)
-        if exclude_batch_path is not None and batch_path_str == exclude_batch_path:
-            continue
-        try:
-            batch = _cached_batch(batch_path_str, batch_path.stat().st_mtime_ns)
-        except Exception:  # noqa: BLE001
-            continue
-
-        source = str(batch_path.relative_to(root))
-        for note in batch.notes:
-            history.append(prior_note_from_item(note.item, source=source))
-    return tuple(history)
-
-
-@lru_cache(maxsize=None)
-def _cached_syncable_files(project_root: str, version: int) -> tuple[str, ...]:
-    root = Path(project_root)
-    return tuple(
-        sorted(
-            str(path.relative_to(root))
-            for path in [
-                *root.glob("lessons/**/generated/*.batch.json"),
-                *root.glob("data/generated/*.batch.json"),
-            ]
-            if not path.name.endswith(".synced.batch.json")
-        )
-    )

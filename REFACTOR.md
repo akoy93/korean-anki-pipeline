@@ -28,6 +28,7 @@ The big structural wins are real:
 - the batch preview surface is now split into concrete subcomponents instead of one large editing file
 - shared runtime defaults now live in `src/korean_anki/settings.py`
 - LLM structured-output contracts now come from backend-owned Pydantic models instead of handwritten JSON schema duplicates
+- the project-side snapshot/read-model path now rebuilds directly from the filesystem instead of depending on project version hashing plus snapshot-level caches
 
 Those were worthwhile refactors.
 
@@ -35,38 +36,11 @@ The repo still does not need another architecture rewrite. But the previous `REF
 
 If I had to summarize the current problem in one sentence:
 
-> the remaining complexity is no longer about bad boundaries, it is mostly about infrastructure that is a little too clever for a local-only app
+> the remaining complexity is no longer about bad boundaries, it is mostly about leftover indirection that a local-only app may not need
 
 ## Findings
 
-### P1. The snapshot and repository cache stack is still heavier than this app probably needs
-
-The current read-model path works, but it is still fairly layered:
-
-- `snapshot_cache.py`
-- `batch_repository.py`
-- `lesson_repository.py`
-- `study_state_snapshots.py`
-- `dashboard_snapshots.py`
-
-That stack combines:
-
-- filesystem version hashing
-- `lru_cache`
-- Anki TTL buckets
-- repository-level caches
-- snapshot-level caches
-
-None of that is individually unreasonable. The issue is that, for a local-only app with a bounded number of batch and lesson files, this may be more machinery than the runtime actually needs.
-
-The repo should decide more explicitly between two shapes:
-
-- keep one narrow cache boundary and make it obviously necessary
-- or simplify to direct rescans/rebuilds for dashboard and study-state reads
-
-Right now it sits in the middle: optimized enough to carry complexity cost, but not obviously large-scale enough to need that much infrastructure.
-
-### P2. Internal compatibility shims still exist and may no longer be worth keeping
+### P1. Internal compatibility shims still exist and may no longer be worth keeping
 
 There are still tiny compatibility modules:
 
@@ -166,9 +140,8 @@ Until then, leave it alone.
 
 ## Refactor Order
 
-1. Simplify the snapshot/read-model cache stack if the current layering is not buying meaningful performance.
-2. Remove the remaining internal compatibility shims (`cards.py`, `new_vocab.py`) once callers no longer need them.
-3. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Remove the remaining internal compatibility shims (`cards.py`, `new_vocab.py`) once callers no longer need them.
+2. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 

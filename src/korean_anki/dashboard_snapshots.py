@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from functools import lru_cache
 import os
 from pathlib import Path
 from typing import Callable, cast
@@ -115,29 +114,27 @@ def batch_push_status(batch: CardBatch, *, note_keys: set[str]) -> BatchPushStat
     return "not-pushed"
 
 
-@lru_cache(maxsize=None)
-def _cached_dashboard_response(
-    project_root: str,
-    anki_url: str,
-    project_version: int,
-    anki_version: int,
-    client_factory: Callable[..., object],
-    note_keys_loader: Callable[..., set[str]],
+def dashboard_response_snapshot(
+    *,
+    project_root: Path,
+    anki_url: str = DEFAULT_ANKI_URL,
+    client_factory: Callable[..., object] | None = None,
+    note_keys_loader: Callable[..., set[str]] | None = None,
+    openai_configured: bool | None = None,
 ) -> DashboardResponse:
-    del project_version, anki_version
-    root = Path(project_root)
-    batch_repository = BatchRepository(root)
-    lesson_repository = LessonRepository(root)
+    resolved_client_factory = client_factory or AnkiConnectClient
+    resolved_note_keys_loader = note_keys_loader or existing_model_note_keys
+    batch_repository = BatchRepository(project_root)
+    lesson_repository = LessonRepository(project_root)
     anki_repository = AnkiRepository(
         anki_url,
-        client_factory=client_factory,
-        note_keys_loader=note_keys_loader,
+        client_factory=resolved_client_factory,
+        note_keys_loader=resolved_note_keys_loader,
     )
-
     recent_batches = [
         batch
         for path in batch_repository.canonical_batch_paths()
-        if (batch := _dashboard_batch(path, project_root=root, batch_repository=batch_repository)) is not None
+        if (batch := _dashboard_batch(path, project_root=project_root, batch_repository=batch_repository)) is not None
     ]
 
     lane_counts: dict[str, int] = {}
@@ -147,10 +144,11 @@ def _cached_dashboard_response(
 
     note_count, card_count, deck_counts = anki_repository.dashboard_stats()
     note_keys = anki_repository.note_keys()
+    connected, version = anki_repository.service_status()
 
     resolved_batches: list[DashboardBatch] = []
     for batch in recent_batches:
-        canonical_path = root / batch.canonical_batch_path
+        canonical_path = project_root / batch.canonical_batch_path
         batch_paths = path_policy.batch_path_identity(canonical_path)
         synced_batch_path = batch_paths.synced_path
         preview_batch_path = batch_paths.preview_path
@@ -158,29 +156,30 @@ def _cached_dashboard_response(
         resolved_batches.append(
             batch.model_copy(
                 update={
-                    "push_status": batch_push_status(
-                        canonical_batch,
-                        note_keys=note_keys,
-                    ),
+                    "push_status": batch_push_status(canonical_batch, note_keys=note_keys),
                     "media_hydrated": batch_media_hydrated(
                         preview_batch_path,
-                        project_root=root,
+                        project_root=project_root,
                         batch_repository=batch_repository,
                     ),
-                    "preview_batch_path": str(preview_batch_path.relative_to(root)),
-                    "synced_batch_path": str(synced_batch_path.relative_to(root))
+                    "preview_batch_path": str(preview_batch_path.relative_to(project_root)),
+                    "synced_batch_path": str(synced_batch_path.relative_to(project_root))
                     if synced_batch_path is not None
                     else None,
                 }
             )
         )
 
-    connected, version = anki_repository.service_status()
     return DashboardResponse(
         status=ServiceStatus(
             backend_ok=True,
             anki_connect_ok=connected,
             anki_connect_version=version,
+            openai_configured=(
+                bool(os.environ.get("OPENAI_API_KEY"))
+                if openai_configured is None
+                else openai_configured
+            ),
         ),
         stats=DashboardStats(
             local_batch_count=len(resolved_batches),
@@ -201,48 +200,6 @@ def _cached_dashboard_response(
         recent_batches=resolved_batches[:20],
         lesson_contexts=lesson_repository.lesson_contexts(),
         syncable_files=batch_repository.syncable_files(),
-    )
-
-
-def dashboard_response_snapshot(
-    *,
-    project_root: Path,
-    anki_url: str = DEFAULT_ANKI_URL,
-    client_factory: Callable[..., object] | None = None,
-    note_keys_loader: Callable[..., set[str]] | None = None,
-    openai_configured: bool | None = None,
-) -> DashboardResponse:
-    resolved_client_factory = client_factory or AnkiConnectClient
-    resolved_note_keys_loader = note_keys_loader or existing_model_note_keys
-    batch_repository = BatchRepository(project_root)
-    anki_repository = AnkiRepository(
-        anki_url,
-        client_factory=resolved_client_factory,
-        note_keys_loader=resolved_note_keys_loader,
-    )
-    connected, version = anki_repository.service_status()
-    response = _cached_dashboard_response(
-        str(project_root.resolve()),
-        anki_url,
-        batch_repository.snapshot_version,
-        anki_repository.snapshot_version,
-        resolved_client_factory,
-        resolved_note_keys_loader,
-    ).model_copy(deep=True)
-    return response.model_copy(
-        update={
-            "status": response.status.model_copy(
-                update={
-                    "anki_connect_ok": connected,
-                    "anki_connect_version": version,
-                    "openai_configured": (
-                        bool(os.environ.get("OPENAI_API_KEY"))
-                        if openai_configured is None
-                        else openai_configured
-                    ),
-                }
-            )
-        }
     )
 
 
