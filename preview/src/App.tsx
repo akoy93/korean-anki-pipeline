@@ -57,7 +57,9 @@ import type {
   DashboardBatch,
   DashboardResponse,
   GeneratedNote,
+  JobKind,
   JobResponse,
+  JobStatus,
   LessonItem,
   PushResult,
   StudyLane,
@@ -66,6 +68,138 @@ import type {
 import sampleBatch from "../../data/samples/numbers.batch.json";
 
 const initialBatch = sampleBatch as CardBatch;
+const JOB_STATE_STORAGE_KEY = "korean-anki-preview-job-state-v1";
+
+type TerminalJobStatus = Extract<JobStatus, "succeeded" | "failed">;
+
+type JobNotification = {
+  id: string;
+  jobId: string;
+  kind: JobKind;
+  status: TerminalJobStatus;
+  outputPaths: string[];
+  createdAt: string;
+};
+
+type PersistedJobState = {
+  lessonJob: JobResponse | null;
+  newVocabJob: JobResponse | null;
+  syncJob: JobResponse | null;
+  syncingBatchPath: string | null;
+  notifications: JobNotification[];
+};
+
+function emptyPersistedJobState(): PersistedJobState {
+  return {
+    lessonJob: null,
+    newVocabJob: null,
+    syncJob: null,
+    syncingBatchPath: null,
+    notifications: [],
+  };
+}
+
+function isJobKind(value: unknown): value is JobKind {
+  return (
+    value === "lesson-generate" ||
+    value === "new-vocab" ||
+    value === "sync-media"
+  );
+}
+
+function isJobStatus(value: unknown): value is JobStatus {
+  return (
+    value === "queued" ||
+    value === "running" ||
+    value === "succeeded" ||
+    value === "failed"
+  );
+}
+
+function isActiveJob(job: JobResponse | null | undefined): job is JobResponse {
+  return job !== null && job !== undefined && (job.status === "queued" || job.status === "running");
+}
+
+function isTerminalJobStatus(status: unknown): status is TerminalJobStatus {
+  return status === "succeeded" || status === "failed";
+}
+
+function isStoredJobResponse(value: unknown): value is JobResponse {
+  return Boolean(
+    value &&
+      typeof value === "object" &&
+      "id" in value &&
+      typeof value.id === "string" &&
+      "kind" in value &&
+      isJobKind(value.kind) &&
+      "status" in value &&
+      isJobStatus(value.status),
+  );
+}
+
+function isJobNotification(value: unknown): value is JobNotification {
+  return Boolean(
+    value &&
+      typeof value === "object" &&
+      "id" in value &&
+      typeof value.id === "string" &&
+      "jobId" in value &&
+      typeof value.jobId === "string" &&
+      "kind" in value &&
+      isJobKind(value.kind) &&
+      "status" in value &&
+      isTerminalJobStatus(value.status) &&
+      "outputPaths" in value &&
+      Array.isArray(value.outputPaths) &&
+      value.outputPaths.every((path: unknown) => typeof path === "string") &&
+      "createdAt" in value &&
+      typeof value.createdAt === "string",
+  );
+}
+
+function readPersistedJobState(): PersistedJobState {
+  if (typeof window === "undefined") {
+    return emptyPersistedJobState();
+  }
+
+  try {
+    const raw = window.localStorage.getItem(JOB_STATE_STORAGE_KEY);
+    if (raw === null) {
+      return emptyPersistedJobState();
+    }
+
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    return {
+      lessonJob:
+        isStoredJobResponse(parsed.lessonJob) && isActiveJob(parsed.lessonJob)
+          ? parsed.lessonJob
+          : null,
+      newVocabJob:
+        isStoredJobResponse(parsed.newVocabJob) && isActiveJob(parsed.newVocabJob)
+          ? parsed.newVocabJob
+          : null,
+      syncJob:
+        isStoredJobResponse(parsed.syncJob) && isActiveJob(parsed.syncJob)
+          ? parsed.syncJob
+          : null,
+      syncingBatchPath:
+        typeof parsed.syncingBatchPath === "string" ? parsed.syncingBatchPath : null,
+      notifications: Array.isArray(parsed.notifications)
+        ? parsed.notifications.filter(isJobNotification).slice(0, 6)
+        : [],
+    };
+  } catch {
+    return emptyPersistedJobState();
+  }
+}
+
+function writePersistedJobState(state: PersistedJobState) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.localStorage.setItem(JOB_STATE_STORAGE_KEY, JSON.stringify(state));
+}
 
 function escapeHtml(value: string): string {
   return value
@@ -610,13 +744,124 @@ function formatAudioDuration(durationSeconds: number | null): string {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 
-function HomePage() {
+function jobStateKey(kind: JobKind) {
+  switch (kind) {
+    case "lesson-generate":
+      return "lessonJob";
+    case "new-vocab":
+      return "newVocabJob";
+    case "sync-media":
+      return "syncJob";
+  }
+}
+
+function buildJobNotification(job: JobResponse): JobNotification | null {
+  if ((job.kind !== "lesson-generate" && job.kind !== "new-vocab") || !isTerminalJobStatus(job.status)) {
+    return null;
+  }
+
+  return {
+    id: `${job.id}-${job.status}`,
+    jobId: job.id,
+    kind: job.kind,
+    status: job.status,
+    outputPaths: job.output_paths,
+    createdAt: new Date().toISOString(),
+  };
+}
+
+function applyPolledJobUpdate(
+  current: PersistedJobState,
+  nextJob: JobResponse,
+): PersistedJobState {
+  const key = jobStateKey(nextJob.kind);
+  const previousJob = current[key];
+  const nextState: PersistedJobState = {
+    ...current,
+    [key]: isActiveJob(nextJob) ? nextJob : null,
+  };
+
+  if (nextJob.kind === "sync-media" && !isActiveJob(nextJob)) {
+    nextState.syncingBatchPath = null;
+  }
+
+  const notification = buildJobNotification(nextJob);
+  if (
+    previousJob !== null &&
+    isActiveJob(previousJob) &&
+    notification !== null &&
+    !current.notifications.some((entry) => entry.id === notification.id)
+  ) {
+    nextState.notifications = [notification, ...current.notifications].slice(0, 6);
+  }
+
+  return nextState;
+}
+
+function jobNoticeTitle(notice: JobNotification) {
+  if (notice.kind === "new-vocab") {
+    return notice.status === "succeeded"
+      ? "New vocab batch ready"
+      : "New vocab generation failed";
+  }
+
+  return notice.status === "succeeded"
+    ? "Lesson batches ready"
+    : "Lesson generation failed";
+}
+
+function jobNoticeBody(notice: JobNotification) {
+  if (notice.status === "failed") {
+    return "Open home to review the error.";
+  }
+
+  if (notice.outputPaths.length === 1) {
+    return "Ready to review.";
+  }
+
+  return `${notice.outputPaths.length} batches are ready to review.`;
+}
+
+function jobNoticeHref(notice: JobNotification) {
+  if (notice.status !== "succeeded" || notice.outputPaths.length !== 1) {
+    return "/";
+  }
+
+  return `/batch/${notice.outputPaths[0]}`;
+}
+
+function jobNoticeActionLabel(notice: JobNotification) {
+  if (notice.status !== "succeeded") {
+    return "Open home";
+  }
+
+  return notice.outputPaths.length === 1 ? "Open batch" : "Open home";
+}
+
+type HomePageProps = {
+  lessonJob: JobResponse | null;
+  newVocabJob: JobResponse | null;
+  syncJob: JobResponse | null;
+  syncingBatchPath: string | null;
+  setLessonJob: (job: JobResponse | null) => void;
+  setNewVocabJob: (job: JobResponse | null) => void;
+  setSyncJob: (job: JobResponse | null) => void;
+  setSyncingBatchPath: (path: string | null) => void;
+};
+
+function HomePage({
+  lessonJob,
+  newVocabJob,
+  syncJob,
+  syncingBatchPath,
+  setLessonJob,
+  setNewVocabJob,
+  setSyncJob,
+  setSyncingBatchPath,
+}: HomePageProps) {
   const [dashboard, setDashboard] = useState<DashboardResponse | null>(null);
   const [dashboardError, setDashboardError] = useState<string | null>(null);
   const [dashboardLoading, setDashboardLoading] = useState(true);
-  const [lessonJob, setLessonJob] = useState<JobResponse | null>(null);
-  const [newVocabJob, setNewVocabJob] = useState<JobResponse | null>(null);
-  const [syncJob, setSyncJob] = useState<JobResponse | null>(null);
   const [lessonError, setLessonError] = useState<string | null>(null);
   const [newVocabError, setNewVocabError] = useState<string | null>(null);
   const [syncError, setSyncError] = useState<string | null>(null);
@@ -636,8 +881,12 @@ function HomePage() {
   const [deletingBatchPath, setDeletingBatchPath] = useState<string | null>(
     null,
   );
-  const [syncingBatchPath, setSyncingBatchPath] = useState<string | null>(null);
   const [statusExpanded, setStatusExpanded] = useState(false);
+  const previousJobActivityRef = useRef({
+    lesson: isActiveJob(lessonJob),
+    newVocab: isActiveJob(newVocabJob),
+    sync: isActiveJob(syncJob),
+  });
 
   async function loadDashboard() {
     setDashboardError(null);
@@ -677,35 +926,22 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
-    const activeJobs = [lessonJob, newVocabJob, syncJob].filter(
-      (job): job is JobResponse =>
-        job !== null && (job.status === "queued" || job.status === "running"),
-    );
-    if (activeJobs.length === 0) {
-      return;
+    const previous = previousJobActivityRef.current;
+    const current = {
+      lesson: isActiveJob(lessonJob),
+      newVocab: isActiveJob(newVocabJob),
+      sync: isActiveJob(syncJob),
+    };
+
+    if (
+      (previous.lesson && !current.lesson) ||
+      (previous.newVocab && !current.newVocab) ||
+      (previous.sync && !current.sync)
+    ) {
+      void loadDashboard();
     }
 
-    const intervalId = window.setInterval(() => {
-      for (const job of activeJobs) {
-        void fetchJob(job.id).then((nextJob) => {
-          if (nextJob.kind === "lesson-generate") {
-            setLessonJob(nextJob);
-          } else if (nextJob.kind === "new-vocab") {
-            setNewVocabJob(nextJob);
-          } else {
-            setSyncJob(nextJob);
-            if (nextJob.status === "succeeded" || nextJob.status === "failed") {
-              setSyncingBatchPath(null);
-            }
-          }
-          if (nextJob.status === "succeeded") {
-            void loadDashboard();
-          }
-        });
-      }
-    }, 750);
-
-    return () => window.clearInterval(intervalId);
+    previousJobActivityRef.current = current;
   }, [lessonJob, newVocabJob, syncJob]);
 
   async function submitStartBackend() {
@@ -1059,12 +1295,12 @@ function HomePage() {
                         onClick={() => void submitDeleteBatch(batch.path)}
                         disabled={deletingBatchPath === batch.path}
                       >
-                        {deletingBatchPath === batch.path ? (
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        ) : (
-                          <Trash2 className="mr-2 h-4 w-4" />
-                        )}
                         Delete
+                        {deletingBatchPath === batch.path ? (
+                          <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                        ) : (
+                          <Trash2 className="ml-2 h-4 w-4" />
+                        )}
                       </Button>
                     ) : null}
                     {batch.media_hydrated ? null : (
@@ -1389,6 +1625,55 @@ function JobPanel({ job }: { job: JobResponse }) {
           ))}
         </div>
       ) : null}
+    </div>
+  );
+}
+
+function JobCompletionNotice({
+  notice,
+  onDismiss,
+  onOpen,
+}: {
+  notice: JobNotification;
+  onDismiss: () => void;
+  onOpen: () => void;
+}) {
+  return (
+    <div className="fixed inset-x-3 bottom-3 z-50 sm:inset-x-auto sm:right-4 sm:w-[min(420px,calc(100vw-2rem))]">
+      <Card className="border-border/80 bg-background/95 shadow-lg backdrop-blur">
+        <CardContent className="space-y-3 p-4">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 font-medium">
+                {notice.status === "succeeded" ? (
+                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                ) : (
+                  <AlertTriangle className="h-4 w-4 text-amber-600" />
+                )}
+                <span>{jobNoticeTitle(notice)}</span>
+              </div>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {jobNoticeBody(notice)}
+              </p>
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="shrink-0 px-2"
+              onClick={onDismiss}
+            >
+              Dismiss
+            </Button>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Button type="button" size="sm" onClick={onOpen}>
+              {jobNoticeActionLabel(notice)}
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
@@ -2095,17 +2380,97 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
 }
 
 function App() {
-  if (window.location.pathname.startsWith("/batch/")) {
-    return (
-      <BatchPreviewPage
-        batchPath={decodeURIComponent(
-          window.location.pathname.slice("/batch/".length),
-        )}
-      />
-    );
+  const [jobState, setJobState] = useState<PersistedJobState>(() =>
+    readPersistedJobState(),
+  );
+  const latestNotice = jobState.notifications[0] ?? null;
+  const isBatchPage = window.location.pathname.startsWith("/batch/");
+
+  function removeNotice(
+    current: PersistedJobState,
+    id: string,
+  ): PersistedJobState {
+    return {
+      ...current,
+      notifications: current.notifications.filter((notice) => notice.id !== id),
+    };
   }
 
-  return <HomePage />;
+  useEffect(() => {
+    writePersistedJobState(jobState);
+  }, [jobState]);
+
+  useEffect(() => {
+    const activeJobs = [
+      jobState.lessonJob,
+      jobState.newVocabJob,
+      jobState.syncJob,
+    ].filter(isActiveJob);
+    if (activeJobs.length === 0) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      for (const job of activeJobs) {
+        void fetchJob(job.id).then((nextJob) => {
+          setJobState((current) => applyPolledJobUpdate(current, nextJob));
+        });
+      }
+    }, 750);
+
+    return () => window.clearInterval(intervalId);
+  }, [jobState.lessonJob, jobState.newVocabJob, jobState.syncJob]);
+
+  function dismissNotice(id: string) {
+    setJobState((current) => removeNotice(current, id));
+  }
+
+  function openNotice(notice: JobNotification) {
+    const nextState = removeNotice(jobState, notice.id);
+    setJobState(nextState);
+    writePersistedJobState(nextState);
+    window.location.assign(jobNoticeHref(notice));
+  }
+
+  const page = isBatchPage ? (
+    <BatchPreviewPage
+      batchPath={decodeURIComponent(
+        window.location.pathname.slice("/batch/".length),
+      )}
+    />
+  ) : (
+    <HomePage
+      lessonJob={jobState.lessonJob}
+      newVocabJob={jobState.newVocabJob}
+      syncJob={jobState.syncJob}
+      syncingBatchPath={jobState.syncingBatchPath}
+      setLessonJob={(job) =>
+        setJobState((current) => ({ ...current, lessonJob: job }))
+      }
+      setNewVocabJob={(job) =>
+        setJobState((current) => ({ ...current, newVocabJob: job }))
+      }
+      setSyncJob={(job) =>
+        setJobState((current) => ({ ...current, syncJob: job }))
+      }
+      setSyncingBatchPath={(path) =>
+        setJobState((current) => ({ ...current, syncingBatchPath: path }))
+      }
+    />
+  );
+
+  return (
+    <>
+      {page}
+      {latestNotice !== null ? (
+        <JobCompletionNotice
+          notice={latestNotice}
+          onDismiss={() => dismissNotice(latestNotice.id)}
+          onOpen={() => openNotice(latestNotice)}
+        />
+      ) : null}
+    </>
+  );
 }
 
 export default App;
