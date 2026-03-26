@@ -135,6 +135,162 @@ class PushServiceTests(unittest.TestCase):
         self.assertFalse(any(path.endswith(".lesson.json") for path in payload["syncable_files"]))
         self.assertFalse(any(path.endswith(".synced.batch.json") for path in payload["syncable_files"]))
 
+    def test_dashboard_marks_missing_local_media_as_not_hydrated(self) -> None:
+        class FakeDashboardAnkiClient:
+            def invoke(self, action: str, **params: object) -> object:
+                if action == "version":
+                    return 6
+                if action in {"findNotes", "findCards", "deckNames"}:
+                    return []
+                return None
+
+        project_root = Path(self._testMethodName)
+        (project_root / "data/generated").mkdir(parents=True, exist_ok=True)
+        batch_path = project_root / "data/generated/sample.batch.json"
+        batch = make_batch(
+            [
+                generate_note(
+                    make_item(
+                        audio=MediaAsset(path="data/media/audio/missing.mp3"),
+                        image=MediaAsset(path="data/media/images/missing.png"),
+                    )
+                )
+            ]
+        )
+        batch_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with (
+            patch("korean_anki.push_service._project_root", return_value=project_root.resolve()),
+            patch("korean_anki.push_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.push_service.existing_model_note_keys", return_value=set()),
+        ):
+            with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        dashboard_batch = next(
+            batch
+            for batch in payload["recent_batches"]
+            if batch["path"] == "data/generated/sample.batch.json"
+        )
+        self.assertFalse(dashboard_batch["media_hydrated"])
+        self.assertIsNone(dashboard_batch["synced_batch_path"])
+
+    def test_dashboard_uses_synced_batch_for_hydration_status(self) -> None:
+        class FakeDashboardAnkiClient:
+            def invoke(self, action: str, **params: object) -> object:
+                if action == "version":
+                    return 6
+                if action in {"findNotes", "findCards", "deckNames"}:
+                    return []
+                return None
+
+        project_root = Path(self._testMethodName)
+        (project_root / "data/generated").mkdir(parents=True, exist_ok=True)
+        (project_root / "data/media/audio").mkdir(parents=True, exist_ok=True)
+        (project_root / "data/media/images").mkdir(parents=True, exist_ok=True)
+
+        canonical_path = project_root / "data/generated/sample.batch.json"
+        synced_path = project_root / "data/generated/sample.synced.batch.json"
+        audio_path = project_root / "data/media/audio/sample.mp3"
+        image_path = project_root / "data/media/images/sample.png"
+        audio_path.write_bytes(b"audio")
+        image_path.write_bytes(b"image")
+
+        canonical_batch = make_batch([generate_note(make_item(audio=None, image=None))])
+        synced_batch = make_batch(
+            [
+                generate_note(
+                    make_item(
+                        audio=MediaAsset(path="data/media/audio/sample.mp3"),
+                        image=MediaAsset(path="data/media/images/sample.png"),
+                    )
+                )
+            ]
+        )
+        canonical_path.write_text(
+            canonical_batch.model_dump_json(indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        synced_path.write_text(
+            synced_batch.model_dump_json(indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with (
+            patch("korean_anki.push_service._project_root", return_value=project_root.resolve()),
+            patch("korean_anki.push_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.push_service.existing_model_note_keys", return_value=set()),
+        ):
+            with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        dashboard_batch = next(
+            batch
+            for batch in payload["recent_batches"]
+            if batch["path"] == "data/generated/sample.batch.json"
+        )
+        self.assertTrue(dashboard_batch["media_hydrated"])
+        self.assertEqual(
+            dashboard_batch["synced_batch_path"],
+            "data/generated/sample.synced.batch.json",
+        )
+        self.assertEqual(dashboard_batch["push_status"], "not-pushed")
+
+    def test_dashboard_keeps_push_status_separate_from_hydration(self) -> None:
+        class FakeDashboardAnkiClient:
+            def invoke(self, action: str, **params: object) -> object:
+                if action == "version":
+                    return 6
+                if action in {"findNotes", "findCards", "deckNames"}:
+                    return []
+                return None
+
+        project_root = Path(self._testMethodName)
+        (project_root / "data/generated").mkdir(parents=True, exist_ok=True)
+
+        canonical_path = project_root / "data/generated/sample.batch.json"
+        synced_path = project_root / "data/generated/sample.synced.batch.json"
+        batch = make_batch([generate_note(make_item())])
+        canonical_path.write_text(
+            batch.model_dump_json(indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        synced_path.write_text(
+            batch.model_dump_json(indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with (
+            patch("korean_anki.push_service._project_root", return_value=project_root.resolve()),
+            patch("korean_anki.push_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.push_service.existing_model_note_keys", return_value={batch.notes[0].note_key}),
+        ):
+            with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        dashboard_batch = next(
+            batch
+            for batch in payload["recent_batches"]
+            if batch["path"] == "data/generated/sample.batch.json"
+        )
+        self.assertEqual(dashboard_batch["push_status"], "pushed")
+        self.assertEqual(
+            dashboard_batch["synced_batch_path"],
+            "data/generated/sample.synced.batch.json",
+        )
+
     def test_dry_run_returns_push_plan(self) -> None:
         server, base_url, thread = self._start_server()
         self.addCleanup(self._stop_server, server, thread)

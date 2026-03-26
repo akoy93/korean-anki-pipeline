@@ -3,6 +3,8 @@ import {
   AlertTriangle,
   ArrowRight,
   BookOpen,
+  ChevronDown,
+  ChevronUp,
   CheckCircle2,
   Circle,
   CloudDownload,
@@ -58,6 +60,7 @@ import type {
   JobResponse,
   LessonItem,
   PushResult,
+  StudyLane,
 } from "@/lib/schema";
 
 import sampleBatch from "../../data/samples/numbers.batch.json";
@@ -222,7 +225,7 @@ function renderCardsForItem(
 
 function serviceCard(
   label: string,
-  ok: boolean,
+  ok: boolean | null,
   detail?: string,
   action?: ReactNode,
 ) {
@@ -235,42 +238,83 @@ function serviceCard(
         ) : null}
       </div>
       <div className="flex shrink-0 items-center gap-2">
-        <Badge variant={ok ? "default" : "secondary"} className="gap-2">
-          {ok ? (
-            <CheckCircle2 className="h-3.5 w-3.5" />
-          ) : (
-            <Circle className="h-3.5 w-3.5" />
-          )}
-          {ok ? "Online" : "Offline"}
-        </Badge>
-        {action}
+        {ok === null ? (
+          <Badge variant="secondary" className="gap-2">
+            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            Loading
+          </Badge>
+        ) : (
+          <>
+            <Badge variant={ok ? "default" : "secondary"} className="gap-2">
+              {ok ? (
+                <CheckCircle2 className="h-3.5 w-3.5" />
+              ) : (
+                <Circle className="h-3.5 w-3.5" />
+              )}
+              {ok ? "Online" : "Offline"}
+            </Badge>
+            {action}
+          </>
+        )}
       </div>
     </div>
   );
 }
 
-function statCard(label: string, value: number) {
+function systemStatusSummary(
+  status: DashboardResponse["status"] | null,
+  loading: boolean,
+) {
+  if (loading || status === null) {
+    return {
+      ok: null,
+      label: "Checking services",
+      detail: "Loading backend, AnkiConnect, and API key status.",
+      onlineCount: 0,
+      totalCount: 3,
+    };
+  }
+
+  const states = [status.backend_ok, status.anki_connect_ok, status.openai_configured];
+  const onlineCount = states.filter(Boolean).length;
+
+  if (onlineCount === states.length) {
+    return {
+      ok: true,
+      label: "Ready",
+      detail: "All required local services are available.",
+      onlineCount,
+      totalCount: states.length,
+    };
+  }
+
+  return {
+    ok: false,
+    label: "Needs attention",
+    detail: `${onlineCount}/${states.length} services are ready.`,
+    onlineCount,
+    totalCount: states.length,
+  };
+}
+
+function statCard(label: string, value: number, mobileLabel?: string) {
   return (
-    <Card>
-      <CardHeader className="space-y-1 p-3 sm:p-4">
-        <CardDescription className="text-xs sm:text-sm">{label}</CardDescription>
-        <CardTitle className="text-2xl sm:text-3xl">{value}</CardTitle>
-      </CardHeader>
-    </Card>
+    <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-white/70 px-3 py-2">
+      <div className="min-w-0 truncate text-xs text-muted-foreground sm:text-sm">
+        <span className="sm:hidden">{mobileLabel ?? label}</span>
+        <span className="hidden sm:inline">{label}</span>
+      </div>
+      <div className="shrink-0 text-sm font-semibold leading-none sm:text-base">
+        {value}
+      </div>
+    </div>
   );
 }
 
 function pushStatusBadge(status: BatchPushStatus) {
-  if (status === "synced") {
-    return (
-      <Badge className="border-emerald-200 bg-emerald-100 text-emerald-900 hover:bg-emerald-100">
-        Synced
-      </Badge>
-    );
-  }
   if (status === "pushed") {
     return (
-      <Badge className="border-amber-200 bg-amber-100 text-amber-900 hover:bg-amber-100">
+      <Badge className="border-emerald-200 bg-emerald-100 text-emerald-900 hover:bg-emerald-100">
         Pushed
       </Badge>
     );
@@ -294,8 +338,82 @@ function hydrationStatusBadge(mediaHydrated: boolean) {
   );
 }
 
+function previewBatchPath(batch: DashboardBatch) {
+  return batch.synced_batch_path ?? batch.path;
+}
+
+function matchesDashboardBatch(candidate: DashboardBatch, batchPath: string) {
+  return candidate.path === batchPath || candidate.synced_batch_path === batchPath;
+}
+
+function canonicalBatchPath(batchPath: string) {
+  return batchPath.endsWith(".synced.batch.json")
+    ? `${batchPath.slice(0, -".synced.batch.json".length)}.batch.json`
+    : batchPath;
+}
+
+type PreviewFilterKind = "recognition" | "production" | "listening";
+const PREVIEW_FILTER_KINDS: PreviewFilterKind[] = [
+  "recognition",
+  "production",
+  "listening",
+];
+
+function isLocallyFilterableCardKind(
+  kind: CardPreview["kind"],
+): kind is PreviewFilterKind {
+  return (
+    kind === "recognition" ||
+    kind === "production" ||
+    kind === "listening"
+  );
+}
+
 function visibleNoteTags(note: GeneratedNote) {
   return note.item.tags.filter((tag) => tag !== note.item.lane);
+}
+
+function laneSectionDetails(lane: StudyLane) {
+  switch (lane) {
+    case "new-vocab":
+      return {
+        title: "New Vocabulary",
+        description:
+          "Supplemental vocabulary generated around your current study context.",
+      };
+    case "reading-speed":
+      return {
+        title: "Reading Speed",
+        description: "Known-word drills for faster recognition and chunking.",
+      };
+    case "grammar":
+      return {
+        title: "Grammar Focus",
+        description: "Pattern and usage review cards for grammar study.",
+      };
+    case "listening":
+      return {
+        title: "Listening Focus",
+        description: "Audio-first cards for listening comprehension practice.",
+      };
+    case "lesson":
+    default:
+      return {
+        title: "Lesson Cards",
+        description: "Core lesson material extracted from the source content.",
+      };
+  }
+}
+
+function previewSectionDetails(lanes: StudyLane[]) {
+  if (lanes.length === 1) {
+    return laneSectionDetails(lanes[0]);
+  }
+
+  return {
+    title: "Preview Cards",
+    description: "Review the batch and filter which card types are visible.",
+  };
 }
 
 function cardKindDetails(kind: CardPreview["kind"]) {
@@ -489,6 +607,7 @@ function formatAudioDuration(durationSeconds: number | null): string {
 function HomePage() {
   const [dashboard, setDashboard] = useState<DashboardResponse | null>(null);
   const [dashboardError, setDashboardError] = useState<string | null>(null);
+  const [dashboardLoading, setDashboardLoading] = useState(true);
   const [lessonJob, setLessonJob] = useState<JobResponse | null>(null);
   const [newVocabJob, setNewVocabJob] = useState<JobResponse | null>(null);
   const [syncJob, setSyncJob] = useState<JobResponse | null>(null);
@@ -511,6 +630,8 @@ function HomePage() {
   const [deletingBatchPath, setDeletingBatchPath] = useState<string | null>(
     null,
   );
+  const [syncingBatchPath, setSyncingBatchPath] = useState<string | null>(null);
+  const [statusExpanded, setStatusExpanded] = useState(false);
 
   async function loadDashboard() {
     setDashboardError(null);
@@ -535,6 +656,8 @@ function HomePage() {
           ? "App backend is offline."
           : message || "Failed to load dashboard.",
       );
+    } finally {
+      setDashboardLoading(false);
     }
   }
 
@@ -565,6 +688,9 @@ function HomePage() {
             setNewVocabJob(nextJob);
           } else {
             setSyncJob(nextJob);
+            if (nextJob.status === "succeeded" || nextJob.status === "failed") {
+              setSyncingBatchPath(null);
+            }
           }
           if (nextJob.status === "succeeded") {
             void loadDashboard();
@@ -658,10 +784,12 @@ function HomePage() {
   async function submitSyncJob(inputPath: string) {
     setSyncError(null);
     try {
+      setSyncingBatchPath(inputPath);
       setSyncJob(
         await createSyncMediaJob({ input_path: inputPath, sync_first: true }),
       );
     } catch (error) {
+      setSyncingBatchPath(null);
       setSyncError(
         error instanceof Error ? error.message : "Failed to start media sync.",
       );
@@ -687,15 +815,17 @@ function HomePage() {
     }
   }
 
+  const statusSummary = systemStatusSummary(
+    dashboard?.status ?? null,
+    dashboardLoading,
+  );
+
   return (
-    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
-      <header className="mb-8">
+    <div className="mx-auto max-w-7xl px-3 py-5 sm:px-4 sm:py-7">
+      <header className="mb-6 sm:mb-7">
         <div>
-          <p className="font-display text-sm uppercase tracking-[0.3em] text-primary">
+          <h1 className="font-display text-3xl font-semibold text-primary sm:text-4xl">
             Korean Anki Pipeline
-          </p>
-          <h1 className="mt-2 font-display text-3xl font-semibold sm:text-4xl">
-            Home
           </h1>
           <p className="mt-2 max-w-2xl text-muted-foreground">
             Generate cards, review batches, sync media from Anki, and check
@@ -705,77 +835,265 @@ function HomePage() {
       </header>
 
       {dashboardError ? (
-        <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-red-700">
+        <div className="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-red-700 sm:mb-6">
           {dashboardError}
         </div>
       ) : null}
 
-      <div className="mb-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {serviceCard(
-          "App backend",
-          dashboard?.status.backend_ok ?? false,
-          "Python local service",
-          dashboard?.status.backend_ok ? null : (
-            <Button
-              type="button"
-              size="sm"
-              variant="outline"
-              className="gap-2"
-              onClick={() => void submitStartBackend()}
-              disabled={startingBackend}
-            >
-              {startingBackend ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Server className="h-4 w-4" />
-              )}
-              Start
-            </Button>
-          ),
+      <Card className="mb-6 sm:mb-7">
+        <CardHeader className="pb-4">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="space-y-2">
+              <CardTitle className="flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5" />
+                System status
+              </CardTitle>
+              <CardDescription>{statusSummary.detail}</CardDescription>
+            </div>
+            <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-end">
+              <div className="flex min-w-0 items-center gap-2">
+                {statusSummary.ok === null ? (
+                  <Badge variant="secondary" className="gap-2">
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    Checking
+                  </Badge>
+                ) : statusSummary.ok ? (
+                  <Badge className="gap-2 border-emerald-200 bg-emerald-100 text-emerald-900 hover:bg-emerald-100">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                    {statusSummary.label}
+                  </Badge>
+                ) : (
+                  <Badge className="gap-2 border-amber-200 bg-amber-100 text-amber-900 hover:bg-amber-100">
+                    <AlertTriangle className="h-3.5 w-3.5" />
+                    {statusSummary.label}
+                  </Badge>
+                )}
+                <Badge variant="outline">
+                  {statusSummary.ok === null
+                    ? "..."
+                    : `${statusSummary.onlineCount}/${statusSummary.totalCount} ready`}
+                </Badge>
+              </div>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="shrink-0"
+                onClick={() => setStatusExpanded((current) => !current)}
+              >
+                {statusExpanded ? (
+                  <>
+                    Hide details
+                    <ChevronUp className="ml-2 h-4 w-4" />
+                  </>
+                ) : (
+                  <>
+                    Show details
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+        {statusExpanded ? (
+          <CardContent className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {serviceCard(
+              "App backend",
+              dashboardLoading ? null : (dashboard?.status.backend_ok ?? false),
+              "Python local service",
+              dashboardLoading || dashboard?.status.backend_ok ? null : (
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  className="gap-2"
+                  onClick={() => void submitStartBackend()}
+                  disabled={startingBackend}
+                >
+                  {startingBackend ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Server className="h-4 w-4" />
+                  )}
+                  Start
+                </Button>
+              ),
+            )}
+            {serviceCard(
+              "AnkiConnect",
+              dashboardLoading
+                ? null
+                : (dashboard?.status.anki_connect_ok ?? false),
+              dashboard?.status.anki_connect_version
+                ? `Version ${dashboard.status.anki_connect_version}`
+                : "Anki Desktop",
+              dashboardLoading || dashboard?.status.anki_connect_ok ? null : (
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  className="gap-2"
+                  onClick={() => void submitOpenAnki()}
+                  disabled={openingAnki}
+                >
+                  {openingAnki ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Power className="h-4 w-4" />
+                  )}
+                  Open
+                </Button>
+              ),
+            )}
+            {serviceCard(
+              "OpenAI key",
+              dashboardLoading
+                ? null
+                : (dashboard?.status.openai_configured ?? false),
+              ".env",
+            )}
+          </CardContent>
+        ) : null}
+      </Card>
+
+      <div className="mb-6 grid grid-cols-2 gap-2 sm:mb-7 md:grid-cols-4">
+        {statCard(
+          "Local batches",
+          dashboard?.stats.local_batch_count ?? 0,
+          "Batches",
         )}
-        {serviceCard(
-          "AnkiConnect",
-          dashboard?.status.anki_connect_ok ?? false,
-          dashboard?.status.anki_connect_version
-            ? `Version ${dashboard.status.anki_connect_version}`
-            : "Anki Desktop",
-          dashboard?.status.anki_connect_ok ? null : (
-            <Button
-              type="button"
-              size="sm"
-              variant="outline"
-              className="gap-2"
-              onClick={() => void submitOpenAnki()}
-              disabled={openingAnki}
-            >
-              {openingAnki ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Power className="h-4 w-4" />
-              )}
-              Open
-            </Button>
-          ),
+        {statCard(
+          "Pending push",
+          dashboard?.stats.pending_push_count ?? 0,
+          "Pending",
         )}
-        {serviceCard(
-          "OpenAI key",
-          dashboard?.status.openai_configured ?? false,
-          ".env",
+        {statCard(
+          "Anki Notes",
+          dashboard?.stats.anki_note_count ?? 0,
+          "Anki Notes",
+        )}
+        {statCard(
+          "Anki Cards",
+          dashboard?.stats.anki_card_count ?? 0,
+          "Anki Cards",
         )}
       </div>
 
-      <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
-        {statCard("Local batches", dashboard?.stats.local_batch_count ?? 0)}
-        {statCard("Local notes", dashboard?.stats.local_note_count ?? 0)}
-        {statCard("Pending push", dashboard?.stats.pending_push_count ?? 0)}
-        {statCard("Audio notes", dashboard?.stats.audio_note_count ?? 0)}
-        {statCard("Anki notes", dashboard?.stats.anki_note_count ?? 0)}
-        {statCard("Anki cards", dashboard?.stats.anki_card_count ?? 0)}
+      <div className="grid gap-5 sm:gap-6">
+        <Card>
+          <CardHeader className="pb-3 sm:pb-4">
+            <CardTitle>Recent batches</CardTitle>
+            <CardDescription>
+              Open generated batches directly in the review flow.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {syncError ? (
+              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                {syncError}
+              </div>
+            ) : null}
+            {deleteError ? (
+              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                {deleteError}
+              </div>
+            ) : null}
+            {syncJob ? <JobPanel job={syncJob} /> : null}
+            {(dashboard?.recent_batches ?? []).map((batch) => {
+              const syncInProgress =
+                syncJob?.status === "queued" || syncJob?.status === "running";
+              const isBatchSyncing =
+                syncInProgress && syncingBatchPath === batch.path;
+
+              return (
+                <div
+                  key={batch.path}
+                  className="flex min-w-0 flex-col gap-4 overflow-hidden rounded-xl border border-border p-4 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div className="min-w-0 flex-1">
+                    <div className="truncate font-medium">{batch.title}</div>
+                    <div className="mt-1 truncate text-sm text-muted-foreground">
+                      {batch.topic} • {batch.lesson_date} •{" "}
+                      {batch.target_deck ?? "No deck"}
+                    </div>
+                    <div className="mt-2 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden">
+                      {pushStatusBadge(batch.push_status)}
+                      {hydrationStatusBadge(batch.media_hydrated)}
+                      {batch.lanes.map((lane) => (
+                        <Badge
+                          key={`${batch.path}-${lane}`}
+                          variant="outline"
+                          className="shrink-0"
+                        >
+                          {lane}
+                        </Badge>
+                      ))}
+                      <Badge variant="secondary" className="shrink-0">
+                        {batch.approved_notes}/{batch.notes} notes
+                      </Badge>
+                      {batch.audio_notes < batch.notes ? (
+                        <Badge variant="secondary" className="shrink-0">
+                          {batch.notes - batch.audio_notes} missing audio
+                        </Badge>
+                      ) : null}
+                      {batch.exact_duplicates > 0 ? (
+                        <Badge variant="secondary" className="shrink-0">
+                          {batch.exact_duplicates} blocked
+                        </Badge>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center">
+                    {batch.push_status === "not-pushed" ? (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="w-full sm:w-auto"
+                        onClick={() => void submitDeleteBatch(batch.path)}
+                        disabled={deletingBatchPath === batch.path}
+                      >
+                        {deletingBatchPath === batch.path ? (
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                          <Trash2 className="mr-2 h-4 w-4" />
+                        )}
+                        Delete
+                      </Button>
+                    ) : null}
+                    {batch.media_hydrated ? null : (
+                      <Button
+                        type="button"
+                        variant="secondary"
+                        className="w-full sm:w-auto"
+                        onClick={() => void submitSyncJob(batch.path)}
+                        disabled={syncInProgress}
+                      >
+                        {isBatchSyncing ? (
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                          <CloudDownload className="mr-2 h-4 w-4" />
+                        )}
+                        Hydrate
+                      </Button>
+                    )}
+                    <Button type="button" asChild className="w-full sm:w-auto">
+                      <a href={`/batch/${previewBatchPath(batch)}`}>
+                        Open
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
+          </CardContent>
+        </Card>
       </div>
 
-      <div className="mb-8 grid gap-6 lg:grid-cols-2">
+      <div className="mt-6 grid gap-5 sm:mt-7 sm:gap-6 lg:grid-cols-2">
         <Card className="order-2">
-          <CardHeader>
+          <CardHeader className="pb-3 sm:pb-4">
             <CardTitle className="flex items-center gap-2">
               <ImagePlus className="h-5 w-5" /> Generate from lesson
             </CardTitle>
@@ -865,7 +1183,7 @@ function HomePage() {
         </Card>
 
         <Card className="order-1">
-          <CardHeader>
+          <CardHeader className="pb-3 sm:pb-4">
             <CardTitle className="flex items-center gap-2">
               <Languages className="h-5 w-5" /> Generate new vocab
             </CardTitle>
@@ -923,114 +1241,6 @@ function HomePage() {
               Generate new vocab
             </Button>
             {newVocabJob ? <JobPanel job={newVocabJob} /> : null}
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent batches</CardTitle>
-            <CardDescription>
-              Open generated batches directly in the review flow.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {syncError ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-                {syncError}
-              </div>
-            ) : null}
-            {deleteError ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-                {deleteError}
-              </div>
-            ) : null}
-            {syncJob ? <JobPanel job={syncJob} /> : null}
-            {(dashboard?.recent_batches ?? []).map((batch) => (
-              <div
-                key={batch.path}
-                className="flex min-w-0 flex-col gap-4 overflow-hidden rounded-xl border border-border p-4 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <div className="min-w-0 flex-1">
-                  <div className="truncate font-medium">{batch.title}</div>
-                  <div className="mt-1 truncate text-sm text-muted-foreground">
-                    {batch.topic} • {batch.lesson_date} •{" "}
-                    {batch.target_deck ?? "No deck"}
-                  </div>
-                  <div className="mt-2 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden">
-                    {pushStatusBadge(batch.push_status)}
-                    {hydrationStatusBadge(batch.media_hydrated)}
-                    {batch.lanes.map((lane) => (
-                      <Badge
-                        key={`${batch.path}-${lane}`}
-                        variant="outline"
-                        className="shrink-0"
-                      >
-                        {lane}
-                      </Badge>
-                    ))}
-                    <Badge variant="secondary" className="shrink-0">
-                      {batch.approved_notes}/{batch.notes} notes
-                    </Badge>
-                    {batch.audio_notes < batch.notes ? (
-                      <Badge variant="secondary" className="shrink-0">
-                        {batch.notes - batch.audio_notes} missing audio
-                      </Badge>
-                    ) : null}
-                    {batch.exact_duplicates > 0 ? (
-                      <Badge variant="secondary" className="shrink-0">
-                        {batch.exact_duplicates} blocked
-                      </Badge>
-                    ) : null}
-                  </div>
-                </div>
-                <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center">
-                  {batch.push_status === "not-pushed" ? (
-                    <Button
-                      type="button"
-                      variant="outline"
-                      className="w-full sm:w-auto"
-                      onClick={() => void submitDeleteBatch(batch.path)}
-                      disabled={deletingBatchPath === batch.path}
-                    >
-                      {deletingBatchPath === batch.path ? (
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <Trash2 className="mr-2 h-4 w-4" />
-                      )}
-                      Delete
-                    </Button>
-                  ) : null}
-                  {batch.media_hydrated ? null : (
-                    <Button
-                      type="button"
-                      variant="secondary"
-                      className="w-full sm:w-auto"
-                      onClick={() => void submitSyncJob(batch.path)}
-                      disabled={
-                        syncJob?.status === "queued" ||
-                        syncJob?.status === "running"
-                      }
-                    >
-                      {syncJob?.status === "queued" ||
-                      syncJob?.status === "running" ? (
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <CloudDownload className="mr-2 h-4 w-4" />
-                      )}
-                      Hydrate
-                    </Button>
-                  )}
-                  <Button type="button" asChild className="w-full sm:w-auto">
-                    <a href={`/batch/${batch.path}`}>
-                      Open
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            ))}
           </CardContent>
         </Card>
       </div>
@@ -1193,6 +1403,14 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
   const [checkingPush, setCheckingPush] = useState(false);
   const [pushing, setPushing] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [visibleCardKinds, setVisibleCardKinds] = useState<
+    Record<PreviewFilterKind, boolean>
+  >({
+    recognition: true,
+    production: true,
+    listening: true,
+  });
+  const sourceBatchPath = dashboardBatch?.path ?? canonicalBatchPath(batchPath);
 
   function clearPushState() {
     setPushPlan(null);
@@ -1209,7 +1427,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
           setBatch(nextBatch);
           setDashboardBatch(
             dashboard.recent_batches.find(
-              (candidate) => candidate.path === batchPath,
+              (candidate) => matchesDashboardBatch(candidate, batchPath),
             ) ?? null,
           );
           setPageLoading(false);
@@ -1242,11 +1460,19 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
         setHydrateJob(nextJob);
         if (nextJob.status === "succeeded") {
           void fetchDashboard().then((dashboard) => {
-            setDashboardBatch(
-              dashboard.recent_batches.find(
-                (candidate) => candidate.path === batchPath,
-              ) ?? null,
-            );
+            const nextDashboardBatch =
+              dashboard.recent_batches.find((candidate) =>
+                matchesDashboardBatch(candidate, batchPath),
+              ) ?? null;
+            setDashboardBatch(nextDashboardBatch);
+            if (
+              nextDashboardBatch?.synced_batch_path &&
+              nextDashboardBatch.synced_batch_path !== batchPath
+            ) {
+              window.location.assign(
+                `/batch/${nextDashboardBatch.synced_batch_path}`,
+              );
+            }
           });
         }
       });
@@ -1268,13 +1494,11 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
       approvedCards,
     };
   }, [batch]);
-  const batchPushed =
-    dashboardBatch?.push_status === "pushed" ||
-    dashboardBatch?.push_status === "synced";
+  const batchPushed = dashboardBatch?.push_status === "pushed";
   const mediaHydrated = dashboardBatch?.media_hydrated ?? false;
 
   const notesByLane = useMemo(() => {
-    const grouped = new Map<string, GeneratedNote[]>();
+    const grouped = new Map<StudyLane, GeneratedNote[]>();
     for (const note of batch.notes) {
       const lane = note.lane ?? note.item.lane ?? "lesson";
       const current = grouped.get(lane) ?? [];
@@ -1283,6 +1507,15 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
     }
     return Array.from(grouped.entries());
   }, [batch]);
+  const laneKeys = useMemo(
+    () => notesByLane.map(([lane]) => lane),
+    [notesByLane],
+  );
+  const previewSection = useMemo(
+    () => previewSectionDetails(laneKeys),
+    [laneKeys],
+  );
+  const showLaneSections = notesByLane.length > 1;
 
   function updateNote(
     noteId: string,
@@ -1343,6 +1576,13 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
     }));
   }
 
+  function toggleVisibleCardKind(kind: PreviewFilterKind) {
+    setVisibleCardKinds((current) => ({
+      ...current,
+      [kind]: !current[kind],
+    }));
+  }
+
   async function runDryRun() {
     setCheckingPush(true);
     setPushError(null);
@@ -1363,7 +1603,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
     setPushing(true);
     setPushError(null);
     try {
-      setPushResult(await pushBatch(batch, batchPath));
+      setPushResult(await pushBatch(batch, sourceBatchPath));
       setPushPlan(null);
     } catch (error) {
       setPushError(
@@ -1378,7 +1618,10 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
     setHydrateError(null);
     try {
       setHydrateJob(
-        await createSyncMediaJob({ input_path: batchPath, sync_first: true }),
+        await createSyncMediaJob({
+          input_path: sourceBatchPath,
+          sync_first: true,
+        }),
       );
     } catch (error) {
       setHydrateError(
@@ -1395,7 +1638,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
     setDeleteError(null);
     setDeleting(true);
     try {
-      await deleteBatch(batchPath);
+      await deleteBatch(sourceBatchPath);
       window.location.assign("/");
     } catch (error) {
       setDeleteError(
@@ -1418,9 +1661,6 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
           <h1 className="mt-2 break-words font-display text-3xl font-semibold sm:text-4xl">
             {batch.metadata.title}
           </h1>
-          <p className="mt-2 max-w-2xl text-muted-foreground">
-            Review generated cards before pushing them to Anki.
-          </p>
         </div>
 
         <Card className="w-full md:min-w-[320px]">
@@ -1585,80 +1825,133 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
       </header>
 
       <div className="space-y-8">
-        {notesByLane.map(([lane, notes]) => (
-          <section key={lane} className="space-y-4">
-            <div className="flex items-center gap-3">
-              <h2 className="font-display text-2xl font-semibold">{lane}</h2>
-              <Badge variant="outline">{notes.length} notes</Badge>
+        <section className="space-y-3">
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="font-display text-2xl font-semibold">
+                {previewSection.title}
+              </h2>
+              <Badge variant="outline">{stats.notes} notes</Badge>
             </div>
+            <div>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {previewSection.description}
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {PREVIEW_FILTER_KINDS.map((kind) => {
+              const details = cardKindDetails(kind);
+              const enabled = visibleCardKinds[kind];
+              return (
+                <Button
+                  key={kind}
+                  type="button"
+                  size="sm"
+                  variant={enabled ? "default" : "outline"}
+                  className="h-8 shrink-0 rounded-full px-3 text-xs sm:h-9 sm:px-3.5 sm:text-sm"
+                  onClick={() => toggleVisibleCardKind(kind)}
+                >
+                  <span className="mr-1.5 sm:mr-2">{details.icon}</span>
+                  {details.label}
+                </Button>
+              );
+            })}
+          </div>
+        </section>
+        {notesByLane.map(([lane, notes]) => (
+          <section
+            key={lane}
+            className={showLaneSections ? "space-y-4" : "space-y-6"}
+          >
+            {showLaneSections ? (
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-3">
+                  <h3 className="font-display text-xl font-semibold sm:text-2xl">
+                    {laneSectionDetails(lane).title}
+                  </h3>
+                  <Badge variant="outline">{notes.length} notes</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {laneSectionDetails(lane).description}
+                </p>
+              </div>
+            ) : null}
             <div className="space-y-6">
-              {notes.map((note) => (
-                <Card key={note.item.id} className="overflow-hidden">
-                  <CardHeader className="border-b border-border bg-card/70">
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="min-w-0 flex-1 min-h-7 sm:min-h-9 flex items-center">
-                        <CardTitle className="text-[28px] leading-7 sm:text-xl sm:leading-9">
-                          {note.item.korean}
-                        </CardTitle>
-                      </div>
-                      {batchPushed ? null : (
-                        <Button
-                          type="button"
-                          variant={note.approved ? "default" : "outline"}
-                          size="sm"
-                          className="h-7 shrink-0 rounded-xl px-2.5 sm:h-9 sm:rounded-md sm:px-3"
-                          disabled={note.duplicate_status === "exact-duplicate"}
-                          onClick={() =>
-                            setNoteApproved(note.item.id, !note.approved)
-                          }
-                          aria-label={
-                            note.duplicate_status === "exact-duplicate"
+              {notes.map((note) => {
+                const visibleCards = note.cards.filter(
+                  (card) =>
+                    !isLocallyFilterableCardKind(card.kind) ||
+                    visibleCardKinds[card.kind],
+                );
+
+                return (
+                  <Card key={note.item.id} className="overflow-hidden">
+                    <CardHeader className="border-b border-border bg-card/70">
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="min-w-0 flex-1 min-h-7 sm:min-h-9 flex items-center">
+                          <CardTitle className="text-[28px] leading-7 sm:text-xl sm:leading-9">
+                            {note.item.korean}
+                          </CardTitle>
+                        </div>
+                        {batchPushed ? null : (
+                          <Button
+                            type="button"
+                            variant={note.approved ? "default" : "outline"}
+                            size="sm"
+                            className="h-7 shrink-0 rounded-xl px-2.5 sm:h-9 sm:rounded-md sm:px-3"
+                            disabled={note.duplicate_status === "exact-duplicate"}
+                            onClick={() =>
+                              setNoteApproved(note.item.id, !note.approved)
+                            }
+                            aria-label={
+                              note.duplicate_status === "exact-duplicate"
+                                ? "Blocked duplicate"
+                                : note.approved
+                                  ? "Approved"
+                                  : "Rejected"
+                            }
+                          >
+                            {note.duplicate_status === "exact-duplicate" ? (
+                              <AlertTriangle className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" />
+                            ) : note.approved ? (
+                              <CheckCircle2 className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" />
+                            ) : (
+                              <XCircle className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" />
+                            )}
+                            {note.duplicate_status === "exact-duplicate"
                               ? "Blocked duplicate"
                               : note.approved
                                 ? "Approved"
-                                : "Rejected"
-                          }
-                        >
-                          {note.duplicate_status === "exact-duplicate" ? (
-                            <AlertTriangle className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" />
-                          ) : note.approved ? (
-                            <CheckCircle2 className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" />
-                          ) : (
-                            <XCircle className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" />
-                          )}
-                          {note.duplicate_status === "exact-duplicate"
-                            ? "Blocked duplicate"
-                            : note.approved
-                              ? "Approved"
-                              : "Rejected"}
-                        </Button>
-                      )}
-                    </div>
-                    <CardDescription className="break-words">
-                      {note.item.source_ref ??
-                        batch.metadata.source_description}
-                    </CardDescription>
-                    <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden">
-                      <Badge variant="secondary" className="shrink-0">
-                        {note.item.item_type}
-                      </Badge>
-                      {visibleNoteTags(note).map((tag) => (
-                        <Badge key={tag} variant="outline" className="shrink-0">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    {note.inclusion_reason ? (
-                      <div className="rounded-md border border-border bg-background p-3 text-sm">
-                        <div className="mb-1 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                          Why this card
-                        </div>
-                        <div>{note.inclusion_reason}</div>
+                                : "Rejected"}
+                          </Button>
+                        )}
                       </div>
-                    ) : null}
-                  </CardHeader>
-                  <CardContent className="grid gap-6 pt-8 sm:pt-8 lg:grid-cols-[minmax(320px,380px)_1fr]">
-                    <div className="space-y-4">
+                      <CardDescription className="break-words">
+                        {note.item.source_ref ??
+                          batch.metadata.source_description}
+                      </CardDescription>
+                      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden">
+                        <Badge variant="secondary" className="shrink-0">
+                          {note.item.item_type}
+                        </Badge>
+                        {visibleNoteTags(note).map((tag) => (
+                          <Badge key={tag} variant="outline" className="shrink-0">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                      {note.inclusion_reason ? (
+                        <div className="rounded-md border border-border bg-background p-3 text-sm">
+                          <div className="mb-1 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                            Why this card
+                          </div>
+                          <div>{note.inclusion_reason}</div>
+                        </div>
+                      ) : null}
+                    </CardHeader>
+                    <CardContent className="grid gap-6 pt-8 sm:pt-8 lg:grid-cols-[minmax(320px,380px)_1fr]">
+                      <div className="space-y-4">
                       <div className="space-y-2">
                         <Label>Korean</Label>
                         <Input
@@ -1707,9 +2000,15 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
                           }
                         />
                       </div>
-                    </div>
-                    <div className="grid gap-4 md:grid-cols-2">
-                      {note.cards.map((card) => {
+                      </div>
+                      <div className="grid gap-4 md:grid-cols-2">
+                      {visibleCards.length === 0 ? (
+                        <div className="rounded-md border border-dashed border-border p-4 text-sm text-muted-foreground md:col-span-2">
+                          All preview card variants for this note are hidden by
+                          the current local filters.
+                        </div>
+                      ) : null}
+                      {visibleCards.map((card) => {
                         const kindDetails = cardKindDetails(card.kind);
 
                         return (
@@ -1759,10 +2058,11 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
                           </Card>
                         );
                       })}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </section>
         ))}

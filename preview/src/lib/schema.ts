@@ -11,7 +11,7 @@ export type StudyLane = "lesson" | "new-vocab" | "reading-speed" | "grammar" | "
 export type DuplicateStatus = "new" | "exact-duplicate" | "near-duplicate";
 export type JobStatus = "queued" | "running" | "succeeded" | "failed";
 export type JobKind = "lesson-generate" | "new-vocab" | "sync-media";
-export type BatchPushStatus = "not-pushed" | "pushed" | "synced";
+export type BatchPushStatus = "not-pushed" | "pushed";
 
 export interface ExampleSentence {
   korean: string;

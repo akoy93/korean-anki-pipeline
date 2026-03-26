@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-import cgi
+from dataclasses import dataclass
+from email.parser import BytesParser
+from email.policy import default
+from io import BytesIO
 import json
 import os
 import re
@@ -54,6 +57,78 @@ _SLUG_RE = re.compile(r"[^a-zA-Z0-9가-힣]+")
 _JOBS: dict[str, JobResponse] = {}
 _JOBS_LOCK = threading.Lock()
 _EXECUTOR = ThreadPoolExecutor(max_workers=2)
+
+
+@dataclass
+class MultipartField:
+    name: str
+    value: str | None = None
+    filename: str | None = None
+    file: BytesIO | None = None
+
+
+class MultipartForm:
+    def __init__(self, fields: dict[str, list[MultipartField]]) -> None:
+        self._fields = fields
+
+    def __contains__(self, key: str) -> bool:
+        return key in self._fields
+
+    def __getitem__(self, key: str) -> MultipartField | list[MultipartField]:
+        values = self._fields[key]
+        if len(values) == 1:
+            return values[0]
+        return values
+
+    def getvalue(self, key: str) -> str | list[str] | None:
+        values = self._fields.get(key)
+        if not values:
+            return None
+        text_values = [value.value for value in values if value.value is not None]
+        if not text_values:
+            return None
+        if len(text_values) == 1:
+            return text_values[0]
+        return text_values
+
+    @classmethod
+    def parse(cls, content_type: str, raw_body: bytes) -> MultipartForm:
+        parser = BytesParser(policy=default)
+        message = parser.parsebytes(
+            (
+                f"Content-Type: {content_type}\r\n"
+                "MIME-Version: 1.0\r\n"
+                "\r\n"
+            ).encode("utf-8")
+            + raw_body
+        )
+        if not message.is_multipart():
+            raise ValueError("Expected multipart form-data request.")
+
+        fields: dict[str, list[MultipartField]] = {}
+        for part in message.iter_parts():
+            if part.get_content_disposition() != "form-data":
+                continue
+
+            name = part.get_param("name", header="content-disposition")
+            if not isinstance(name, str) or not name:
+                continue
+
+            payload = part.get_payload(decode=True) or b""
+            filename = part.get_filename()
+            value = None
+            file = None
+            if filename is None:
+                charset = part.get_content_charset() or "utf-8"
+                value = payload.decode(charset)
+            else:
+                file = BytesIO(payload)
+
+            fields.setdefault(name, []).append(
+                MultipartField(name=name, value=value, filename=filename, file=file)
+            )
+
+        return cls(fields)
 
 
 def _slugify(value: str) -> str:
@@ -243,14 +318,14 @@ def _canonical_batch_path(batch_path: Path) -> Path:
     return batch_path
 
 
-def _batch_media_hydrated(batch: DashboardBatch) -> bool:
-    resolved_path = _resolve_project_path(batch.path)
+def _batch_media_hydrated(batch_path: Path) -> bool:
     try:
-        parsed_batch = CardBatch.model_validate_json(resolved_path.read_text(encoding="utf-8"))
+        parsed_batch = CardBatch.model_validate_json(batch_path.read_text(encoding="utf-8"))
     except Exception:  # noqa: BLE001
         return False
 
-    return any(note.item.audio is not None or note.item.image is not None for note in parsed_batch.notes)
+    referenced_media = _batch_referenced_media_paths(parsed_batch)
+    return all(path.exists() and path.is_file() for path in referenced_media)
 
 
 def _batch_referenced_media_paths(batch: CardBatch) -> set[Path]:
@@ -371,14 +446,15 @@ def _dashboard_response() -> DashboardResponse:
     for batch in recent_batches:
         canonical_path = _resolve_project_path(batch.path)
         synced_batch_path = synced_paths.get(canonical_path)
+        preview_batch_path = synced_batch_path or canonical_path
         push_status = "not-pushed"
         if batch.approved_notes > 0 and all(note.note_key in anki_note_keys for note in CardBatch.model_validate_json(canonical_path.read_text(encoding="utf-8")).notes if note.approved):
-            push_status = "synced" if synced_batch_path is not None else "pushed"
+            push_status = "pushed"
         resolved_batches.append(
             batch.model_copy(
                 update={
                     "push_status": push_status,
-                    "media_hydrated": _batch_media_hydrated(batch),
+                    "media_hydrated": _batch_media_hydrated(preview_batch_path),
                     "synced_batch_path": str(synced_batch_path.relative_to(project_root))
                     if synced_batch_path is not None
                     else None,
@@ -493,7 +569,7 @@ def _parse_bool_field(value: str | None, default: bool = False) -> bool:
     return value.lower() in {"1", "true", "yes", "on"}
 
 
-def _field_value(form: cgi.FieldStorage, key: str) -> str | None:
+def _field_value(form: MultipartForm, key: str) -> str | None:
     if key not in form:
         return None
     value = form.getvalue(key)
@@ -502,13 +578,16 @@ def _field_value(form: cgi.FieldStorage, key: str) -> str | None:
     return None
 
 
-def _save_upload(file_item: cgi.FieldStorage, output_path: Path) -> None:
+def _save_upload(file_item: MultipartField, output_path: Path) -> None:
+    if file_item.file is None:
+        raise ValueError("Uploaded field is missing file content.")
+    file_item.file.seek(0)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("wb") as handle:
         handle.write(file_item.file.read())
 
 
-def _lesson_generate_job(_job_id: str, form: cgi.FieldStorage) -> list[str]:
+def _lesson_generate_job(_job_id: str, form: MultipartForm) -> list[str]:
     lesson_date = _field_value(form, "lesson_date")
     title = _field_value(form, "title")
     topic = _field_value(form, "topic")
@@ -527,7 +606,7 @@ def _lesson_generate_job(_job_id: str, form: cgi.FieldStorage) -> list[str]:
     image_fields = form["images"] if "images" in form else []
     image_items = image_fields if isinstance(image_fields, list) else [image_fields]
     for index, image_item in enumerate(image_items, start=1):
-        if not isinstance(image_item, cgi.FieldStorage) or not image_item.filename:
+        if not isinstance(image_item, MultipartField) or not image_item.filename:
             continue
         image_path = raw_source_dir / f"{index:02d}-{Path(image_item.filename).name}"
         _save_upload(image_item, image_path)
@@ -702,17 +781,10 @@ class PushServiceHandler(BaseHTTPRequestHandler):
         length = int(self.headers.get("Content-Length", "0"))
         return self.rfile.read(length).decode("utf-8")
 
-    def _read_multipart(self) -> cgi.FieldStorage:
-        return cgi.FieldStorage(
-            fp=self.rfile,
-            headers=self.headers,
-            environ={
-                "REQUEST_METHOD": "POST",
-                "CONTENT_TYPE": self.headers.get("Content-Type", ""),
-                "CONTENT_LENGTH": self.headers.get("Content-Length", "0"),
-            },
-            keep_blank_values=True,
-        )
+    def _read_multipart(self) -> MultipartForm:
+        length = int(self.headers.get("Content-Length", "0"))
+        raw_body = self.rfile.read(length)
+        return MultipartForm.parse(self.headers.get("Content-Type", ""), raw_body)
 
     def do_GET(self) -> None:  # noqa: N802
         parsed = urlparse(self.path)

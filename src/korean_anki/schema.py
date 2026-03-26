@@ -23,7 +23,7 @@ RawSourceKind = Literal["image", "text"]
 QaSeverity = Literal["error", "warning"]
 JobStatus = Literal["queued", "running", "succeeded", "failed"]
 JobKind = Literal["lesson-generate", "new-vocab", "sync-media"]
-BatchPushStatus = Literal["not-pushed", "pushed", "synced"]
+BatchPushStatus = Literal["not-pushed", "pushed"]
 
 
 class StrictModel(BaseModel):
