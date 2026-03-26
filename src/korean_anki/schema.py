@@ -90,6 +90,37 @@ class LessonDocument(StrictModel):
     items: Annotated[list[LessonItem], Field(min_length=1)]
 
 
+class LessonExtractionMetadata(StrictModel):
+    lesson_id: str
+    title: str
+    topic: str
+    lesson_date: date
+    source_description: str
+    target_deck: str | None
+    tags: list[str]
+
+
+class LessonExtractionItem(StrictModel):
+    id: str
+    lesson_id: str
+    item_type: ItemType
+    korean: str
+    english: str
+    pronunciation: str | None
+    examples: list[ExampleSentence]
+    notes: str | None
+    tags: list[str]
+    source_ref: str | None
+    audio: None
+    image: None
+
+
+class LessonExtractionDocument(StrictModel):
+    schema_version: SchemaVersion
+    metadata: LessonExtractionMetadata
+    items: Annotated[list[LessonExtractionItem], Field(min_length=1)]
+
+
 class CardPreview(StrictModel):
     id: str
     item_id: str
@@ -174,6 +205,41 @@ class LessonTranscription(StrictModel):
     expected_section_count: int | None = None
     sections: Annotated[list[TranscriptionSection], Field(min_length=1)]
     notes: list[str] = Field(default_factory=list)
+
+
+class TranscriptionOutputEntry(StrictModel):
+    label: str
+    korean: str
+    english: str
+    pronunciation: str | None
+    notes: str | None
+
+
+class TranscriptionOutputSection(StrictModel):
+    id: str
+    title: str
+    item_type: ItemType
+    side: str | None
+    number_system: str | None
+    usage_notes: list[str]
+    expected_entry_count: int | None
+    target_deck: str | None
+    tags: list[str]
+    entries: Annotated[list[TranscriptionOutputEntry], Field(min_length=1)]
+
+
+class LessonTranscriptionOutput(StrictModel):
+    schema_version: SchemaVersion
+    lesson_id: str
+    title: str
+    lesson_date: date
+    source_summary: str
+    theme: str
+    goals: list[str]
+    raw_sources: Annotated[list[RawSourceAsset], Field(min_length=1)]
+    expected_section_count: int | None
+    sections: Annotated[list[TranscriptionOutputSection], Field(min_length=1)]
+    notes: list[str]
 
 
 class QaIssue(StrictModel):

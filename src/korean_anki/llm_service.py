@@ -16,20 +16,16 @@ from .openai_client import create_openai_client
 from .schema import (
     ExtractionRequest,
     ImageGenerationPlan,
+    LessonExtractionDocument,
     LessonDocument,
     LessonTranscription,
+    LessonTranscriptionOutput,
     NewVocabProposalBatch,
     PronunciationBatch,
     RawSourceAsset,
 )
 from .settings import DEFAULT_LLM_MODEL
-from .structured_outputs import (
-    image_decision_json_schema,
-    lesson_json_schema,
-    new_vocab_proposal_json_schema,
-    pronunciation_json_schema,
-    transcription_json_schema,
-)
+from .structured_outputs import response_json_schema
 
 
 def _build_user_text(request: ExtractionRequest) -> str:
@@ -58,6 +54,7 @@ def extract_lesson(request: ExtractionRequest) -> LessonDocument:
     content: list[dict[str, object]] = [{"type": "input_text", "text": _build_user_text(request)}]
     if request.image_path is not None:
         content.append({"type": "input_image", "image_url": _image_data_url(Path(request.image_path))})
+    lesson_format = {"type": "json_schema", **response_json_schema("lesson_document", LessonExtractionDocument)}
 
     response = client.responses.create(
         model=request.model,
@@ -65,10 +62,11 @@ def extract_lesson(request: ExtractionRequest) -> LessonDocument:
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": content},
         ],
-        text={"format": {"type": "json_schema", **lesson_json_schema()}},
+        text={"format": lesson_format},
         reasoning={"effort": "medium"},
     )
-    document = LessonDocument.model_validate_json(response.output_text)
+    extracted_document = LessonExtractionDocument.model_validate_json(response.output_text)
+    document = LessonDocument.model_validate(extracted_document.model_dump())
 
     if not request.run_qa:
         return document
@@ -86,10 +84,11 @@ def extract_lesson(request: ExtractionRequest) -> LessonDocument:
             },
             {"role": "user", "content": document.model_dump_json(indent=2)},
         ],
-        text={"format": {"type": "json_schema", **lesson_json_schema()}},
+        text={"format": lesson_format},
         reasoning={"effort": "high"},
     )
-    return LessonDocument.model_validate_json(qa_response.output_text)
+    qa_document = LessonExtractionDocument.model_validate_json(qa_response.output_text)
+    return LessonDocument.model_validate(qa_document.model_dump())
 
 
 def transcribe_sources(
@@ -102,6 +101,10 @@ def transcribe_sources(
     model: str = DEFAULT_LLM_MODEL,
 ) -> LessonTranscription:
     client = create_openai_client()
+    transcription_format = {
+        "type": "json_schema",
+        **response_json_schema("lesson_transcription", LessonTranscriptionOutput),
+    }
     content: list[dict[str, object]] = [
         {
             "type": "input_text",
@@ -134,10 +137,11 @@ def transcribe_sources(
             {"role": "system", "content": TRANSCRIPTION_SYSTEM_PROMPT},
             {"role": "user", "content": content},
         ],
-        text={"format": {"type": "json_schema", **transcription_json_schema()}},
+        text={"format": transcription_format},
         reasoning={"effort": "high"},
     )
-    transcription = LessonTranscription.model_validate_json(response.output_text)
+    transcription_output = LessonTranscriptionOutput.model_validate_json(response.output_text)
+    transcription = LessonTranscription.model_validate(transcription_output.model_dump())
     return transcription.model_copy(update={"raw_sources": raw_sources})
 
 
@@ -165,7 +169,7 @@ def generate_pronunciations(
                 ),
             },
         ],
-        text={"format": {"type": "json_schema", **pronunciation_json_schema()}},
+        text={"format": {"type": "json_schema", **response_json_schema("pronunciation_batch", PronunciationBatch)}},
         reasoning={"effort": "low"},
     )
     batch = PronunciationBatch.model_validate_json(response.output_text)
@@ -207,7 +211,7 @@ def plan_image_generation(
                 ),
             },
         ],
-        text={"format": {"type": "json_schema", **image_decision_json_schema()}},
+        text={"format": {"type": "json_schema", **response_json_schema("image_generation_plan", ImageGenerationPlan)}},
         reasoning={"effort": "low"},
     )
 
@@ -252,7 +256,7 @@ def propose_new_vocab(
             {"role": "system", "content": NEW_VOCAB_SYSTEM_PROMPT},
             {"role": "user", "content": "\n".join(lines)},
         ],
-        text={"format": {"type": "json_schema", **new_vocab_proposal_json_schema()}},
+        text={"format": {"type": "json_schema", **response_json_schema("new_vocab_proposal_batch", NewVocabProposalBatch)}},
         reasoning={"effort": "medium"},
     )
     return NewVocabProposalBatch.model_validate_json(response.output_text)
