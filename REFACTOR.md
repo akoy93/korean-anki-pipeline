@@ -19,6 +19,7 @@ The repo is in much better shape than it was before the earlier cleanup work. Th
 - backend jobs now persist across restarts
 - the preview app is no longer concentrated in a single `App.tsx` file
 - the home and batch flows now live in concrete feature slices instead of large page/controller hooks
+- `new_vocab.py` and `cards.py` are now compatibility surfaces over narrower domain modules
 - shared runtime defaults now live in `src/korean_anki/settings.py`
 
 Those were good refactors.
@@ -31,33 +32,7 @@ If I had to summarize the current problem in one sentence:
 
 ## Findings
 
-### P1. `new_vocab.py` and `cards.py` are still broad domain modules
-
-These are now the biggest "real logic" files in the backend.
-
-`src/korean_anki/new_vocab.py` still mixes:
-
-- topic/context loading
-- duplicate analysis
-- candidate scoring
-- proposal selection
-- item/document construction
-- pronunciation enrichment flow
-
-`src/korean_anki/cards.py` still mixes:
-
-- card rendering
-- note/card generation
-- duplicate-policy logic
-- preview-note refresh behavior
-- reading-speed special cases
-
-I would not split either file just to make them smaller. But if more feature work lands in those modules, I would break them at domain seams rather than by helper count. The likely seams are:
-
-- proposal selection vs document/batch construction in `new_vocab.py`
-- render templates vs note-generation/policy flow in `cards.py`
-
-### P2. The job system should stay simple and local-first
+### P1. The job system should stay simple and local-first
 
 The persisted job store is the right idea, but this app is still a local single-user tool. That means the job architecture should optimize for robustness and debuggability, not for generic queue semantics.
 
@@ -71,7 +46,7 @@ The persisted job store is the right idea, but this app is still a local single-
 
 That is still reasonable. The main caution is to avoid turning it into a general-purpose job framework. If future cleanup happens here, I would simplify toward explicit local job handlers rather than add more abstraction.
 
-### P3. `schema.py` is a watchpoint, not the top priority
+### P2. `schema.py` is a watchpoint, not the top priority
 
 `src/korean_anki/schema.py` is still broad, but it is no longer the most pressing architectural issue.
 
@@ -112,6 +87,12 @@ Until then, I would leave it alone.
 - the current use-case service modules
 - the current Anki infrastructure split
 - the current LLM infrastructure split
+- the domain-module split:
+  - `new_vocab_selection.py`
+  - `new_vocab_documents.py`
+  - `card_rendering.py`
+  - `note_generation.py`
+  - `new_vocab.py` and `cards.py` as thin compatibility surfaces
 - the local job persistence boundary in `job_store.py`
 - the concrete frontend feature slices:
   - home status, recent-batch actions, and generation forms
@@ -137,9 +118,8 @@ Until then, I would leave it alone.
 
 ## Refactor Order
 
-1. Revisit `new_vocab.py` and `cards.py` only if more feature work keeps expanding them.
-2. Keep the job system explicit and local-first; simplify toward concrete local handlers if `jobs.py` starts growing again.
-3. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Keep the job system explicit and local-first; simplify toward concrete local handlers if `jobs.py` starts growing again.
+2. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 

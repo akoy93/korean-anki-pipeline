@@ -657,8 +657,8 @@ class PushServiceTests(unittest.TestCase):
             patch("korean_anki.jobs.update_job"),
             patch("korean_anki.new_vocab_generation_service.study_state_snapshot", return_value=StudyState(anki_stats=AnkiStatsSnapshot())),
             patch("korean_anki.batch_generation_service.study_state_snapshot", return_value=StudyState(anki_stats=AnkiStatsSnapshot())),
-            patch("korean_anki.new_vocab.propose_new_vocab", return_value=proposal_batch),
-            patch("korean_anki.new_vocab.generate_pronunciations", return_value={"물": "mul"}) as mock_generate_pronunciations,
+            patch("korean_anki.new_vocab_documents.propose_new_vocab", return_value=proposal_batch),
+            patch("korean_anki.new_vocab_documents.generate_pronunciations", return_value={"물": "mul"}) as mock_generate_pronunciations,
             patch("korean_anki.new_vocab_generation_service.enrich_new_vocab_images", side_effect=lambda document, *_args, **_kwargs: document),
             patch("korean_anki.new_vocab_generation_service.enrich_audio", side_effect=lambda document, *_args, **_kwargs: document),
         ):

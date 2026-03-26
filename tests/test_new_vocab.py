@@ -194,8 +194,8 @@ class NewVocabTests(unittest.TestCase):
         )
 
         with (
-            patch("korean_anki.new_vocab.propose_new_vocab", return_value=proposal_batch) as propose,
-            patch("korean_anki.new_vocab.generate_pronunciations", return_value={}),
+            patch("korean_anki.new_vocab_documents.propose_new_vocab", return_value=proposal_batch) as propose,
+            patch("korean_anki.new_vocab_documents.generate_pronunciations", return_value={}),
         ):
             document = build_new_vocab_document_from_state(
                 state,
