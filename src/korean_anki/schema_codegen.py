@@ -3,32 +3,30 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Any, Literal, get_origin
+from typing import Any
 
 from pydantic import TypeAdapter
 
 from . import schema as backend_schema
-from .schema import StrictModel
 
+PREVIEW_CONTRACT_LITERAL_EXPORTS = (
+    "BatchPushStatus",
+    "JobKind",
+    "JobStatus",
+    "StudyLane",
+)
 
-def _literal_alias_names() -> list[str]:
-    names: list[str] = []
-    for name, value in vars(backend_schema).items():
-        if name.startswith("_"):
-            continue
-        if get_origin(value) is Literal:
-            names.append(name)
-    return names
-
-
-def _model_names() -> list[str]:
-    names: list[str] = []
-    for name, value in vars(backend_schema).items():
-        if name == "StrictModel":
-            continue
-        if isinstance(value, type) and issubclass(value, StrictModel):
-            names.append(name)
-    return names
+PREVIEW_CONTRACT_MODEL_EXPORTS = (
+    "CardBatch",
+    "CardPreview",
+    "DashboardBatch",
+    "DashboardResponse",
+    "DeleteBatchResult",
+    "GeneratedNote",
+    "JobResponse",
+    "LessonItem",
+    "PushResult",
+)
 
 
 def _strip_nested_schema_titles(value: Any) -> Any:
@@ -52,29 +50,59 @@ def _strip_nested_schema_titles(value: Any) -> Any:
     return value
 
 
+def _backend_schema_value(name: str) -> Any:
+    try:
+        return getattr(backend_schema, name)
+    except AttributeError as error:
+        raise RuntimeError(f"Backend schema export {name!r} was not found.") from error
+
+
+def _flatten_definition_schema(schema: dict[str, Any], contract_defs: dict[str, Any]) -> dict[str, Any]:
+    flattened = _strip_nested_schema_titles(schema)
+    nested_defs = flattened.pop("$defs", None)
+    if isinstance(nested_defs, dict):
+        for definition_name in sorted(nested_defs):
+            _store_contract_definition(contract_defs, definition_name, nested_defs[definition_name])
+    return flattened
+
+
+def _store_contract_definition(
+    contract_defs: dict[str, Any],
+    definition_name: str,
+    schema: dict[str, Any],
+) -> None:
+    flattened = _flatten_definition_schema(schema, contract_defs)
+    flattened["title"] = definition_name
+    existing = contract_defs.get(definition_name)
+    if existing is None:
+        contract_defs[definition_name] = flattened
+        return
+    if existing != flattened:
+        raise RuntimeError(
+            f"Preview contract definition {definition_name!r} was generated inconsistently."
+        )
+
+
 def build_preview_contract_schema() -> dict[str, Any]:
+    contract_defs: dict[str, Any] = {}
     contract: dict[str, Any] = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "title": "PreviewContract",
         "type": "object",
-        "$defs": {},
     }
 
-    for alias_name in _literal_alias_names():
-        alias_schema = TypeAdapter(getattr(backend_schema, alias_name)).json_schema(
+    for alias_name in PREVIEW_CONTRACT_LITERAL_EXPORTS:
+        alias_schema = TypeAdapter(_backend_schema_value(alias_name)).json_schema(
             ref_template="#/$defs/{model}"
         )
-        alias_schema = _strip_nested_schema_titles(alias_schema)
-        alias_schema["title"] = alias_name
-        contract["$defs"][alias_name] = alias_schema
+        _store_contract_definition(contract_defs, alias_name, alias_schema)
 
-    for model_name in _model_names():
-        model = getattr(backend_schema, model_name)
+    for model_name in PREVIEW_CONTRACT_MODEL_EXPORTS:
+        model = _backend_schema_value(model_name)
         model_schema = model.model_json_schema(ref_template="#/$defs/{model}")
-        model_schema = _strip_nested_schema_titles(model_schema)
-        model_schema["title"] = model_name
-        contract["$defs"][model_name] = model_schema
+        _store_contract_definition(contract_defs, model_name, model_schema)
 
+    contract["$defs"] = {name: contract_defs[name] for name in sorted(contract_defs)}
     return contract
 
 

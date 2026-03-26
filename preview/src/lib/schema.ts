@@ -3,56 +3,9 @@
 
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "SchemaVersion".
+ * via the `definition` "BatchPushStatus".
  */
-export type SchemaVersion = "1";
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "ItemType".
- */
-export type ItemType = "vocab" | "phrase" | "grammar" | "dialogue" | "number";
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "CardKind".
- */
-export type CardKind =
-  | "recognition"
-  | "production"
-  | "listening"
-  | "number-context"
-  | "read-aloud"
-  | "chunked-reading"
-  | "decodable-passage";
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "StudyLane".
- */
-export type StudyLane = "lesson" | "new-vocab" | "reading-speed" | "grammar" | "listening";
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "DuplicateStatus".
- */
-export type DuplicateStatus = "new" | "exact-duplicate" | "near-duplicate";
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "VocabAdjacencyKind".
- */
-export type VocabAdjacencyKind = "coverage-gap" | "lesson-adjacent";
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "RawSourceKind".
- */
-export type RawSourceKind = "image" | "text";
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "QaSeverity".
- */
-export type QaSeverity = "error" | "warning";
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "JobStatus".
- */
-export type JobStatus = "queued" | "running" | "succeeded" | "failed";
+export type BatchPushStatus = "not-pushed" | "pushed";
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
  * via the `definition` "JobKind".
@@ -60,27 +13,27 @@ export type JobStatus = "queued" | "running" | "succeeded" | "failed";
 export type JobKind = "lesson-generate" | "new-vocab" | "sync-media";
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "BatchPushStatus".
+ * via the `definition` "JobStatus".
  */
-export type BatchPushStatus = "not-pushed" | "pushed";
+export type JobStatus = "queued" | "running" | "succeeded" | "failed";
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "StudyLane".
+ */
+export type StudyLane = "lesson" | "new-vocab" | "reading-speed" | "grammar" | "listening";
 
 export interface PreviewContract {}
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "ExampleSentence".
+ * via the `definition` "CardBatch".
  */
-export interface ExampleSentence {
-  korean: string;
-  english: string;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "MediaAsset".
- */
-export interface MediaAsset {
-  path: string;
-  prompt?: string | null;
-  source_url?: string | null;
+export interface CardBatch {
+  schema_version?: "1";
+  metadata: LessonMetadata;
+  /**
+   * @minItems 1
+   */
+  notes: GeneratedNote[];
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
@@ -94,6 +47,26 @@ export interface LessonMetadata {
   source_description: string;
   target_deck?: string | null;
   tags?: string[];
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "GeneratedNote".
+ */
+export interface GeneratedNote {
+  item: LessonItem;
+  /**
+   * @minItems 1
+   */
+  cards: CardPreview[];
+  approved?: boolean;
+  note_key?: string;
+  lane?: "lesson" | "new-vocab" | "reading-speed" | "grammar" | "listening";
+  skill_tags?: string[];
+  duplicate_status?: "new" | "exact-duplicate" | "near-duplicate";
+  duplicate_note_key?: string | null;
+  duplicate_note_id?: number | null;
+  duplicate_source?: string | null;
+  inclusion_reason?: string;
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
@@ -118,15 +91,20 @@ export interface LessonItem {
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "LessonDocument".
+ * via the `definition` "ExampleSentence".
  */
-export interface LessonDocument {
-  schema_version?: "1";
-  metadata: LessonMetadata;
-  /**
-   * @minItems 1
-   */
-  items: LessonItem[];
+export interface ExampleSentence {
+  korean: string;
+  english: string;
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "MediaAsset".
+ */
+export interface MediaAsset {
+  path: string;
+  prompt?: string | null;
+  source_url?: string | null;
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
@@ -148,310 +126,6 @@ export interface CardPreview {
   audio_path?: string | null;
   image_path?: string | null;
   approved?: boolean;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "GeneratedNote".
- */
-export interface GeneratedNote {
-  item: LessonItem;
-  /**
-   * @minItems 1
-   */
-  cards: CardPreview[];
-  approved?: boolean;
-  note_key?: string;
-  lane?: "lesson" | "new-vocab" | "reading-speed" | "grammar" | "listening";
-  skill_tags?: string[];
-  duplicate_status?: "new" | "exact-duplicate" | "near-duplicate";
-  duplicate_note_key?: string | null;
-  duplicate_note_id?: number | null;
-  duplicate_source?: string | null;
-  inclusion_reason?: string;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "CardBatch".
- */
-export interface CardBatch {
-  schema_version?: "1";
-  metadata: LessonMetadata;
-  /**
-   * @minItems 1
-   */
-  notes: GeneratedNote[];
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "ExtractionRequest".
- */
-export interface ExtractionRequest {
-  lesson_id: string;
-  title: string;
-  topic: string;
-  lesson_date: string;
-  source_description: string;
-  item_type_default?: "vocab" | "phrase" | "grammar" | "dialogue" | "number";
-  text?: string | null;
-  image_path?: string | null;
-  model?: string;
-  qa_model?: string;
-  run_qa?: boolean;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "RawSourceAsset".
- */
-export interface RawSourceAsset {
-  kind: "image" | "text";
-  path: string;
-  description: string;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "TranscriptionEntry".
- */
-export interface TranscriptionEntry {
-  label: string;
-  korean: string;
-  english: string;
-  pronunciation?: string | null;
-  notes?: string | null;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "TranscriptionSection".
- */
-export interface TranscriptionSection {
-  id: string;
-  title: string;
-  item_type?: "vocab" | "phrase" | "grammar" | "dialogue" | "number";
-  side?: string | null;
-  number_system?: string | null;
-  usage_notes?: string[];
-  expected_entry_count?: number | null;
-  target_deck?: string | null;
-  tags?: string[];
-  /**
-   * @minItems 1
-   */
-  entries: TranscriptionEntry[];
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "LessonTranscription".
- */
-export interface LessonTranscription {
-  schema_version?: "1";
-  lesson_id: string;
-  title: string;
-  lesson_date: string;
-  source_summary: string;
-  theme: string;
-  goals?: string[];
-  /**
-   * @minItems 1
-   */
-  raw_sources: RawSourceAsset[];
-  expected_section_count?: number | null;
-  /**
-   * @minItems 1
-   */
-  sections: TranscriptionSection[];
-  notes?: string[];
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "QaIssue".
- */
-export interface QaIssue {
-  severity: "error" | "warning";
-  code: string;
-  message: string;
-  section_id?: string | null;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "QaReport".
- */
-export interface QaReport {
-  schema_version?: "1";
-  lesson_id: string;
-  passed: boolean;
-  issues?: QaIssue[];
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "DuplicateNote".
- */
-export interface DuplicateNote {
-  item_id: string;
-  korean: string;
-  english: string;
-  existing_note_id: number;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "PushRequest".
- */
-export interface PushRequest {
-  batch: CardBatch;
-  dry_run?: boolean;
-  deck_name?: string | null;
-  source_batch_path?: string | null;
-  anki_url?: string;
-  sync?: boolean;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "PushResult".
- */
-export interface PushResult {
-  deck_name: string;
-  approved_notes: number;
-  approved_cards: number;
-  duplicate_notes?: DuplicateNote[];
-  dry_run: boolean;
-  can_push: boolean;
-  notes_added?: number;
-  cards_created?: number;
-  pushed_note_ids?: number[];
-  sync_requested?: boolean;
-  sync_completed?: boolean;
-  reviewed_batch_path?: string | null;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "PreviewNoteRefreshRequest".
- */
-export interface PreviewNoteRefreshRequest {
-  note: GeneratedNote;
-  item: LessonItem;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "DeleteBatchRequest".
- */
-export interface DeleteBatchRequest {
-  batch_path: string;
-  anki_url?: string;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "DeleteBatchResult".
- */
-export interface DeleteBatchResult {
-  deleted_paths?: string[];
-  deleted_media_paths?: string[];
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "PronunciationSuggestion".
- */
-export interface PronunciationSuggestion {
-  korean: string;
-  pronunciation: string;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "PronunciationBatch".
- */
-export interface PronunciationBatch {
-  /**
-   * @minItems 1
-   */
-  items: PronunciationSuggestion[];
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "ImageGenerationDecision".
- */
-export interface ImageGenerationDecision {
-  item_id: string;
-  generate_image: boolean;
-  reason: string;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "ImageGenerationPlan".
- */
-export interface ImageGenerationPlan {
-  /**
-   * @minItems 1
-   */
-  decisions: ImageGenerationDecision[];
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "NewVocabProposal".
- */
-export interface NewVocabProposal {
-  candidate_id: string;
-  korean: string;
-  english: string;
-  topic_tag: string;
-  example_ko: string;
-  example_en: string;
-  proposal_reason: string;
-  image_prompt: string;
-  adjacency_kind: "coverage-gap" | "lesson-adjacent";
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "NewVocabProposalBatch".
- */
-export interface NewVocabProposalBatch {
-  /**
-   * @minItems 1
-   */
-  proposals: NewVocabProposal[];
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "PriorNote".
- */
-export interface PriorNote {
-  note_key: string;
-  korean: string;
-  english: string;
-  item_type: "vocab" | "phrase" | "grammar" | "dialogue" | "number";
-  lane?: "lesson" | "new-vocab" | "reading-speed" | "grammar" | "listening";
-  skill_tags?: string[];
-  source: string;
-  existing_note_id?: number | null;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "AnkiStatsSnapshot".
- */
-export interface AnkiStatsSnapshot {
-  note_count?: number;
-  card_count?: number;
-  by_template?: {
-    [k: string]: number;
-  };
-  by_tag?: {
-    [k: string]: number;
-  };
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "StudyState".
- */
-export interface StudyState {
-  generated_notes?: PriorNote[];
-  imported_notes?: PriorNote[];
-  anki_stats?: AnkiStatsSnapshot;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "ServiceStatus".
- */
-export interface ServiceStatus {
-  backend_ok?: boolean;
-  anki_connect_ok?: boolean;
-  anki_connect_version?: number | null;
-  openai_configured?: boolean;
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
@@ -486,6 +160,27 @@ export interface DashboardLessonContext {
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "DashboardResponse".
+ */
+export interface DashboardResponse {
+  status: ServiceStatus;
+  stats: DashboardStats;
+  recent_batches?: DashboardBatch[];
+  lesson_contexts?: DashboardLessonContext[];
+  syncable_files?: string[];
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "ServiceStatus".
+ */
+export interface ServiceStatus {
+  backend_ok?: boolean;
+  anki_connect_ok?: boolean;
+  anki_connect_version?: number | null;
+  openai_configured?: boolean;
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
  * via the `definition` "DashboardStats".
  */
 export interface DashboardStats {
@@ -506,38 +201,21 @@ export interface DashboardStats {
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "DashboardResponse".
+ * via the `definition` "DeleteBatchResult".
  */
-export interface DashboardResponse {
-  status: ServiceStatus;
-  stats: DashboardStats;
-  recent_batches?: DashboardBatch[];
-  lesson_contexts?: DashboardLessonContext[];
-  syncable_files?: string[];
+export interface DeleteBatchResult {
+  deleted_paths?: string[];
+  deleted_media_paths?: string[];
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "NewVocabJobRequest".
+ * via the `definition` "DuplicateNote".
  */
-export interface NewVocabJobRequest {
-  count?: number;
-  gap_ratio?: number;
-  lesson_context?: string | null;
-  with_audio?: boolean;
-  image_quality?: "auto" | "low" | "medium" | "high";
-  target_deck?: string;
-  anki_url?: string;
-}
-/**
- * This interface was referenced by `PreviewContract`'s JSON-Schema
- * via the `definition` "SyncMediaJobRequest".
- */
-export interface SyncMediaJobRequest {
-  input_path: string;
-  output_path?: string | null;
-  sync_first?: boolean;
-  media_dir?: string;
-  anki_url?: string;
+export interface DuplicateNote {
+  item_id: string;
+  korean: string;
+  english: string;
+  existing_note_id: number;
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
@@ -555,4 +233,22 @@ export interface JobResponse {
   logs?: string[];
   error?: string | null;
   output_paths?: string[];
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "PushResult".
+ */
+export interface PushResult {
+  deck_name: string;
+  approved_notes: number;
+  approved_cards: number;
+  duplicate_notes?: DuplicateNote[];
+  dry_run: boolean;
+  can_push: boolean;
+  notes_added?: number;
+  cards_created?: number;
+  pushed_note_ids?: number[];
+  sync_requested?: boolean;
+  sync_completed?: boolean;
+  reviewed_batch_path?: string | null;
 }

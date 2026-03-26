@@ -7,7 +7,7 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
-from korean_anki.schema_codegen import render_preview_contract_schema_json
+from korean_anki.schema_codegen import build_preview_contract_schema, render_preview_contract_schema_json
 from korean_anki.schema import CardPreview, GeneratedNote, LessonItem
 
 
@@ -62,6 +62,34 @@ class SchemaTests(unittest.TestCase):
             generated_path.read_text(encoding="utf-8"),
             render_preview_contract_schema_json(),
         )
+
+    def test_preview_contract_is_limited_to_frontend_transport_surface(self) -> None:
+        contract = build_preview_contract_schema()
+        definitions = contract["$defs"]
+
+        for expected_name in {
+            "BatchPushStatus",
+            "CardBatch",
+            "DashboardResponse",
+            "GeneratedNote",
+            "JobResponse",
+            "LessonItem",
+            "PushResult",
+            "StudyLane",
+        }:
+            self.assertIn(expected_name, definitions)
+
+        for unexpected_name in {
+            "ExtractionRequest",
+            "LessonDocument",
+            "LessonTranscription",
+            "NewVocabJobRequest",
+            "NewVocabProposalBatch",
+            "PushRequest",
+            "QaReport",
+            "SyncMediaJobRequest",
+        }:
+            self.assertNotIn(unexpected_name, definitions)
 
     def test_preview_typescript_schema_is_generated_from_contract(self) -> None:
         contract_path = Path("preview/src/lib/schema.contract.json").resolve()
