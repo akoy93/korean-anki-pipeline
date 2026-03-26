@@ -1,42 +1,18 @@
 import {
   AlertTriangle,
-  ArrowRight,
-  BookOpen,
   CheckCircle2,
-  CloudDownload,
-  ImagePlus,
-  Languages,
   Loader2,
-  Power,
-  ShieldCheck,
-  Trash2,
 } from "lucide-react";
 
-import { JobPanel } from "@/components/app/JobPanel";
+import { HomeLessonGenerationCard } from "@/components/home/HomeLessonGenerationCard";
+import { HomeNewVocabGenerationCard } from "@/components/home/HomeNewVocabGenerationCard";
+import { HomeRecentBatchesCard } from "@/components/home/HomeRecentBatchesCard";
+import { HomeSystemStatusCard } from "@/components/home/HomeSystemStatusCard";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { useHomePageModel } from "@/hooks/useHomePageModel";
+import { useHomeDashboardModel } from "@/hooks/useHomeDashboardModel";
 import {
   dashboardCanonicalBatchPath,
   DANGER_PANEL_CLASS,
-  SUCCESS_BADGE_CLASS,
-  WARNING_BADGE_CLASS,
-  expandCollapseButton,
-  hydrationStatusBadge,
-  previewBatchPath,
-  pushStatusBadge,
-  serviceCard,
   statCard,
 } from "@/lib/appUi";
 import type { JobResponse } from "@/lib/schema";
@@ -71,44 +47,12 @@ export function HomePage({
     dashboard,
     dashboardError,
     dashboardLoading,
-    deleteError,
-    deletingBatchPath,
-    lessonDate,
-    lessonError,
-    lessonImages,
-    lessonNotes,
-    lessonSummary,
-    lessonTitle,
-    lessonTopic,
-    newVocabContext,
-    newVocabCount,
-    newVocabError,
-    openingAnki,
-    statusExpanded,
     statusSummary,
-    syncError,
-    setLessonDate,
-    setLessonImages,
-    setLessonNotes,
-    setLessonSummary,
-    setLessonTitle,
-    setLessonTopic,
-    setNewVocabContext,
-    setNewVocabCount,
-    setStatusExpanded,
-    submitDeleteBatch,
-    submitLessonJob,
-    submitNewVocabJob,
-    submitOpenAnki,
-    submitSyncJob,
-  } = useHomePageModel({
+    loadDashboard,
+  } = useHomeDashboardModel({
     lessonJob,
     newVocabJob,
     syncJob,
-    setLessonJob,
-    setNewVocabJob,
-    setSyncJob,
-    setSyncingBatchPath,
   });
 
   return (
@@ -132,92 +76,12 @@ export function HomePage({
         </div>
       ) : null}
 
-      <Card className="mb-6 sm:mb-7">
-        <CardHeader className="pb-4">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-            <div className="space-y-2">
-              <CardTitle className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5" />
-                System status
-              </CardTitle>
-              <CardDescription>{statusSummary.detail}</CardDescription>
-            </div>
-            <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-end">
-              <div className="flex min-w-0 items-center gap-2">
-                {statusSummary.ok === null ? (
-                  <Badge variant="secondary" className="gap-2">
-                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                    Checking
-                  </Badge>
-                ) : statusSummary.ok ? (
-                  <Badge className={`gap-2 ${SUCCESS_BADGE_CLASS}`}>
-                    <CheckCircle2 className="h-3.5 w-3.5" />
-                    {statusSummary.label}
-                  </Badge>
-                ) : (
-                  <Badge className={`gap-2 ${WARNING_BADGE_CLASS}`}>
-                    <AlertTriangle className="h-3.5 w-3.5" />
-                    {statusSummary.label}
-                  </Badge>
-                )}
-                <Badge variant="outline">
-                  {statusSummary.ok === null
-                    ? "..."
-                    : `${statusSummary.onlineCount}/${statusSummary.totalCount} ready`}
-                </Badge>
-              </div>
-              {expandCollapseButton(statusExpanded, () =>
-                setStatusExpanded((current) => !current),
-              )}
-            </div>
-          </div>
-        </CardHeader>
-        {statusExpanded ? (
-          <CardContent className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {serviceCard(
-              "App backend",
-              dashboardLoading ? null : (dashboard?.status.backend_ok ?? false),
-              "Python local service",
-              null,
-            )}
-            {serviceCard(
-              "AnkiConnect",
-              dashboardLoading
-                ? null
-                : (dashboard?.status.anki_connect_ok ?? false),
-              dashboard?.status.anki_connect_version
-                ? `Version ${dashboard.status.anki_connect_version}`
-                : "Anki Desktop",
-              dashboardLoading ||
-                !(dashboard?.status.backend_ok ?? false) ||
-                dashboard?.status.anki_connect_ok ? null : (
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="outline"
-                  className="gap-2"
-                  onClick={() => void submitOpenAnki()}
-                  disabled={openingAnki}
-                >
-                  {openingAnki ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Power className="h-4 w-4" />
-                  )}
-                  Open
-                </Button>
-              ),
-            )}
-            {serviceCard(
-              "OpenAI key",
-              dashboardLoading
-                ? null
-                : (dashboard?.status.openai_configured ?? false),
-              ".env",
-            )}
-          </CardContent>
-        ) : null}
-      </Card>
+      <HomeSystemStatusCard
+        dashboard={dashboard}
+        dashboardLoading={dashboardLoading}
+        statusSummary={statusSummary}
+        onRefreshDashboard={loadDashboard}
+      />
 
       <div className="mb-6 grid grid-cols-2 gap-2 sm:mb-7 md:grid-cols-4">
         {statCard(
@@ -243,267 +107,26 @@ export function HomePage({
       </div>
 
       <div className="grid gap-5 sm:gap-6">
-        <Card>
-          <CardHeader className="pb-3 sm:pb-4">
-            <CardTitle>Recent batches</CardTitle>
-            <CardDescription>
-              Open generated batches directly in the review flow.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {syncError ? <div className={DANGER_PANEL_CLASS}>{syncError}</div> : null}
-            {deleteError ? (
-              <div className={DANGER_PANEL_CLASS}>{deleteError}</div>
-            ) : null}
-            {syncJob ? <JobPanel job={syncJob} /> : null}
-            {(dashboard?.recent_batches ?? []).map((batch) => {
-              const syncInProgress =
-                syncJob?.status === "queued" || syncJob?.status === "running";
-              const isBatchSyncing =
-                syncInProgress &&
-                syncingBatchPath === dashboardCanonicalBatchPath(batch);
-              const canonicalBatchPath = dashboardCanonicalBatchPath(batch);
-
-              return (
-                <div
-                  key={canonicalBatchPath}
-                  data-testid="recent-batch-row"
-                  data-batch-path={canonicalBatchPath}
-                  className="flex min-w-0 flex-col gap-4 overflow-hidden rounded-xl border border-border p-4 sm:flex-row sm:items-center sm:justify-between"
-                >
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate font-medium">{batch.title}</div>
-                    <div className="mt-1 truncate text-sm text-muted-foreground">
-                      {batch.topic} • {batch.lesson_date} •{" "}
-                      {batch.target_deck ?? "No deck"}
-                    </div>
-                    <div className="mt-2 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden">
-                      {pushStatusBadge(batch.push_status ?? "not-pushed")}
-                      {hydrationStatusBadge(batch.media_hydrated ?? false)}
-                      {(batch.lanes ?? []).map((lane) => (
-                        <Badge
-                          key={`${canonicalBatchPath}-${lane}`}
-                          variant="outline"
-                          className="shrink-0"
-                        >
-                          {lane}
-                        </Badge>
-                      ))}
-                      <Badge variant="secondary" className="shrink-0">
-                        {batch.approved_notes}/{batch.notes} notes
-                      </Badge>
-                      {batch.audio_notes < batch.notes ? (
-                        <Badge variant="secondary" className="shrink-0">
-                          {batch.notes - batch.audio_notes} missing audio
-                        </Badge>
-                      ) : null}
-                      {batch.exact_duplicates > 0 ? (
-                        <Badge variant="secondary" className="shrink-0">
-                          {batch.exact_duplicates} blocked
-                        </Badge>
-                      ) : null}
-                    </div>
-                  </div>
-                  <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center">
-                    {batch.push_status === "not-pushed" ? (
-                      <Button
-                        type="button"
-                        variant="outline"
-                        className="w-full sm:w-auto"
-                        onClick={() =>
-                          void submitDeleteBatch(canonicalBatchPath)
-                        }
-                        disabled={deletingBatchPath === canonicalBatchPath}
-                      >
-                        Delete
-                        {deletingBatchPath === canonicalBatchPath ? (
-                          <Loader2 className="ml-2 h-4 w-4 animate-spin" />
-                        ) : (
-                          <Trash2 className="ml-2 h-4 w-4" />
-                        )}
-                      </Button>
-                    ) : null}
-                    {batch.media_hydrated ? null : (
-                      <Button
-                        type="button"
-                        variant="secondary"
-                        className="w-full sm:w-auto"
-                        onClick={() =>
-                          void submitSyncJob(canonicalBatchPath)
-                        }
-                        disabled={syncInProgress}
-                      >
-                        {isBatchSyncing ? (
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        ) : (
-                          <CloudDownload className="mr-2 h-4 w-4" />
-                        )}
-                        Hydrate
-                      </Button>
-                    )}
-                    <Button type="button" asChild className="w-full sm:w-auto">
-                      <a href={`/batch/${previewBatchPath(batch)}`}>
-                        Open
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              );
-            })}
-          </CardContent>
-        </Card>
+        <HomeRecentBatchesCard
+          recentBatches={dashboard?.recent_batches ?? []}
+          syncJob={syncJob}
+          syncingBatchPath={syncingBatchPath}
+          setSyncJob={setSyncJob}
+          setSyncingBatchPath={setSyncingBatchPath}
+          onRefreshDashboard={loadDashboard}
+        />
       </div>
 
       <div className="mt-6 grid gap-5 sm:mt-7 sm:gap-6 lg:grid-cols-2">
-        <Card className="order-2">
-          <CardHeader className="pb-3 sm:pb-4">
-            <CardTitle className="flex items-center gap-2">
-              <ImagePlus className="h-5 w-5" /> Generate from lesson
-            </CardTitle>
-            <CardDescription>
-              Upload weekly lesson material and generate section batches.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <Label>Lesson date</Label>
-                <Input
-                  value={lessonDate}
-                  onChange={(event) => setLessonDate(event.target.value)}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label>Topic</Label>
-                <Input
-                  value={lessonTopic}
-                  onChange={(event) => setLessonTopic(event.target.value)}
-                  placeholder="Numbers"
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label>Title</Label>
-              <Input
-                value={lessonTitle}
-                onChange={(event) => setLessonTitle(event.target.value)}
-                placeholder="Numbers lesson"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label>Source summary</Label>
-              <Input
-                value={lessonSummary}
-                onChange={(event) => setLessonSummary(event.target.value)}
-                placeholder="Italki slide and notes"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label>Images</Label>
-              <Input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={(event) => setLessonImages(event.target.files)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label>Notes</Label>
-              <Textarea
-                value={lessonNotes}
-                onChange={(event) => setLessonNotes(event.target.value)}
-                placeholder="Optional raw notes"
-              />
-            </div>
-            {lessonError ? (
-              <div className={DANGER_PANEL_CLASS}>{lessonError}</div>
-            ) : null}
-            <Button
-              type="button"
-              onClick={() => void submitLessonJob()}
-              disabled={
-                !lessonTitle ||
-                !lessonTopic ||
-                !lessonSummary ||
-                !lessonImages ||
-                lessonImages.length === 0 ||
-                lessonJob?.status === "queued" ||
-                lessonJob?.status === "running"
-              }
-            >
-              {lessonJob?.status === "queued" ||
-              lessonJob?.status === "running" ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                <BookOpen className="mr-2 h-4 w-4" />
-              )}
-              Generate lesson cards
-            </Button>
-            {lessonJob ? <JobPanel job={lessonJob} /> : null}
-          </CardContent>
-        </Card>
-
-        <Card className="order-1">
-          <CardHeader className="pb-3 sm:pb-4">
-            <CardTitle className="flex items-center gap-2">
-              <Languages className="h-5 w-5" /> Generate new vocab
-            </CardTitle>
-            <CardDescription>
-              Create a supplemental batch with audio and images.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label>Count</Label>
-              <Input
-                type="number"
-                min="1"
-                max="50"
-                value={newVocabCount ?? ""}
-                onChange={(event) => {
-                  const value = event.target.value.trim();
-                  setNewVocabCount(value === "" ? null : Number(value));
-                }}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label>Lesson context</Label>
-              <select
-                className="h-10 w-full rounded-md border border-border bg-background py-0 pl-3 pr-10 text-sm"
-                value={newVocabContext}
-                onChange={(event) => setNewVocabContext(event.target.value)}
-              >
-                <option value="">None</option>
-                {(dashboard?.lesson_contexts ?? []).map((context) => (
-                  <option key={context.path} value={context.path}>
-                    {context.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            {newVocabError ? (
-              <div className={DANGER_PANEL_CLASS}>{newVocabError}</div>
-            ) : null}
-            <Button
-              type="button"
-              onClick={() => void submitNewVocabJob()}
-              disabled={
-                newVocabJob?.status === "queued" ||
-                newVocabJob?.status === "running"
-              }
-            >
-              {newVocabJob?.status === "queued" ||
-              newVocabJob?.status === "running" ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                <Languages className="mr-2 h-4 w-4" />
-              )}
-              Generate new vocab
-            </Button>
-            {newVocabJob ? <JobPanel job={newVocabJob} /> : null}
-          </CardContent>
-        </Card>
+        <HomeLessonGenerationCard
+          lessonJob={lessonJob}
+          setLessonJob={setLessonJob}
+        />
+        <HomeNewVocabGenerationCard
+          dashboard={dashboard}
+          newVocabJob={newVocabJob}
+          setNewVocabJob={setNewVocabJob}
+        />
       </div>
     </div>
   );

@@ -18,6 +18,7 @@ The repo is in much better shape than it was before the earlier cleanup work. Th
   - `service_support.py`
 - backend jobs now persist across restarts
 - the preview app is no longer concentrated in a single `App.tsx` file
+- the home and batch flows now live in concrete feature slices instead of large page/controller hooks
 - shared runtime defaults now live in `src/korean_anki/settings.py`
 
 Those were good refactors.
@@ -30,27 +31,7 @@ If I had to summarize the current problem in one sentence:
 
 ## Findings
 
-### P1. Frontend orchestration is still concentrated in large page-model hooks
-
-The frontend split improved things, but the main orchestration did not actually disappear. It moved into:
-
-- `preview/src/hooks/useBatchPreviewModel.ts`
-- `preview/src/hooks/useHomePageModel.ts`
-- still-large page files like `preview/src/pages/BatchPreviewPage.tsx` and `preview/src/pages/HomePage.tsx`
-
-That is better than the old `App.tsx`, but the same architectural smell still exists at a smaller scale.
-
-For this repo, I would not solve that by inventing more generic hooks. I would solve it by extracting a few concrete feature slices where the UI and behavior naturally belong together:
-
-- batch header and batch actions
-- push/check-push panel
-- note editor and note-refresh interactions
-- home-page recent-batch list actions
-- home-page generation forms
-
-The principle here should be: keep logic close to the UI unless it is genuinely shared or independently test-worthy.
-
-### P2. `new_vocab.py` and `cards.py` are still broad domain modules
+### P1. `new_vocab.py` and `cards.py` are still broad domain modules
 
 These are now the biggest "real logic" files in the backend.
 
@@ -132,6 +113,9 @@ Until then, I would leave it alone.
 - the current Anki infrastructure split
 - the current LLM infrastructure split
 - the local job persistence boundary in `job_store.py`
+- the concrete frontend feature slices:
+  - home status, recent-batch actions, and generation forms
+  - batch overview/actions and note-preview editing
 - `path_policy.py` as the source of truth for batch identity and media-path normalization
 - the Playwright regression suite as the main UI guardrail
 
@@ -148,13 +132,13 @@ Until then, I would leave it alone.
 ### Frontend
 
 - keep the current `pages/`, `components/`, `hooks/`, and `state/` layout
-- push more behavior into concrete feature components instead of growing controller hooks indefinitely
+- keep behavior close to concrete feature components instead of reintroducing large controller hooks
 - keep the frontend dependent on backend-issued identifiers and paths rather than reconstructing batch identity locally
 
 ## Refactor Order
 
-1. Reduce orchestration density in the frontend by extracting concrete feature slices from `useBatchPreviewModel`, `useHomePageModel`, `BatchPreviewPage.tsx`, and `HomePage.tsx`.
-2. Revisit `new_vocab.py` and `cards.py` only if more feature work keeps expanding them.
+1. Revisit `new_vocab.py` and `cards.py` only if more feature work keeps expanding them.
+2. Keep the job system explicit and local-first; simplify toward concrete local handlers if `jobs.py` starts growing again.
 3. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
