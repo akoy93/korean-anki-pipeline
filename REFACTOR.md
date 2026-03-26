@@ -8,36 +8,12 @@ The repo is still in a good place to refactor, but it has crossed the point wher
 
 The biggest remaining problems are:
 
-1. the same end-to-end workflows are orchestrated separately by the CLI and the HTTP service
-2. too much backend behavior is concentrated in a few oversized modules
+1. too much backend behavior is concentrated in a few oversized modules
+2. runtime behavior is still split between the Python backend and Vite middleware
 
-Those choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would not start with cosmetic file-splitting. I would first centralize the workflow logic and then split the service/backend boundaries more cleanly.
+Those choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would not start with cosmetic file-splitting. I would first split the service/backend boundaries more cleanly.
 
 ## Findings
-
-### P1. There is no real application-service layer
-
-Evidence:
-
-- CLI orchestration lives in `src/korean_anki/cli.py:230`, `src/korean_anki/cli.py:340`, `src/korean_anki/cli.py:410`, and `src/korean_anki/cli.py:431`.
-- HTTP/job orchestration lives again in `src/korean_anki/push_service.py:590`, `src/korean_anki/push_service.py:665`, `src/korean_anki/push_service.py:732`, and `src/korean_anki/push_service.py:830`.
-
-Why this matters:
-
-- The repo has domain modules, but not a proper use-case layer.
-- The CLI and the local service are two different entrypoints composing the same operations independently.
-- Every workflow change now has two orchestration surfaces to update.
-
-What should change:
-
-- Extract explicit application services for:
-  - lesson generation
-  - batch generation
-  - new-vocab generation
-  - media hydration
-  - push planning and execution
-  - dashboard building
-- The CLI and HTTP service should become thin adapters that call those services.
 
 ### P1. `push_service.py` is carrying too many responsibilities
 
@@ -311,18 +287,15 @@ What should change:
 
 ## Refactor Order
 
-1. Extract shared application services from the CLI and HTTP service.
-   Do not keep duplicating workflows in `cli.py` and `push_service.py`.
+1. Split `push_service.py` into transport, dashboard, jobs, and orchestration modules.
 
-2. Split `push_service.py` into transport, dashboard, jobs, and orchestration modules.
+2. Move Vite-only backend behavior into Python so the app has one backend surface.
 
-3. Move Vite-only backend behavior into Python so the app has one backend surface.
+3. Generate TypeScript API types from backend schema.
 
-4. Generate TypeScript API types from backend schema.
+4. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
 
-5. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
-
-6. Only after that, split `preview/src/App.tsx`.
+5. Only after that, split `preview/src/App.tsx`.
    If you do this first, you will mostly just spread the existing coupling across more files.
 
 ## Bottom Line
@@ -331,6 +304,6 @@ The codebase is not in bad shape, but it is at the exact point where further fea
 
 If I had to summarize the architectural problem in one sentence:
 
-> the repo has good domain concepts, but too much workflow logic is duplicated across entrypoints and too much backend responsibility is concentrated in a few modules
+> the repo has good domain concepts, but too much backend responsibility is concentrated in a few modules and too much runtime behavior is split across backend surfaces
 
 That is what I would fix first.

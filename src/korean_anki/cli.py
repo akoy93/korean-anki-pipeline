@@ -7,23 +7,19 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from .anki import DEFAULT_DECK, push_batch, sync_batch_media, sync_lesson_media
-from .cards import generate_batch
-from .llm import (
-    extract_lesson,
-    generate_pronunciations,
-    read_lesson,
-    read_transcription,
-    transcribe_sources,
-    write_json,
+from .application import (
+    build_lesson_documents_from_transcription,
+    default_synced_output_path,
+    generate_batch_from_lesson_file,
+    generate_new_vocab_batch,
+    generate_reading_speed_batch,
+    handle_push_request,
+    sync_media_file,
 )
-from .media import enrich_audio, enrich_images, enrich_new_vocab_images
-from .new_vocab import build_new_vocab_document_from_state
+from .llm import extract_lesson, read_transcription, transcribe_sources, write_json
 from .push_service import run_server
-from .reading_speed import build_reading_speed_document
-from .schema import CardBatch, ExtractionRequest, RawSourceAsset
-from .stages import build_lesson_documents, qa_transcription, write_lesson_documents
-from .study_state import build_study_state
+from .schema import CardBatch, ExtractionRequest, PushRequest, RawSourceAsset
+from .stages import qa_transcription
 
 
 def _parse_args() -> argparse.Namespace:
@@ -198,21 +194,12 @@ def _command_transcribe(args: argparse.Namespace) -> None:
 
 def _command_build_lessons(args: argparse.Namespace) -> None:
     transcription = read_transcription(Path(args.input))
-    pronunciation_lookup: dict[str, str] = {}
-    if not args.skip_pronunciation_fill:
-        missing_pronunciations = [
-            entry.korean
-            for section in transcription.sections
-            for entry in section.entries
-            if entry.pronunciation is None
-        ]
-        pronunciation_lookup = generate_pronunciations(
-            missing_pronunciations,
-            model=args.pronunciation_model,
-        )
-
-    documents = build_lesson_documents(transcription, pronunciation_lookup=pronunciation_lookup)
-    written = write_lesson_documents(documents, Path(args.output_dir))
+    written = build_lesson_documents_from_transcription(
+        transcription,
+        output_dir=Path(args.output_dir),
+        pronunciation_model=args.pronunciation_model,
+        skip_pronunciation_fill=args.skip_pronunciation_fill,
+    )
     print("\n".join(str(path) for path in written))
 
 
@@ -228,235 +215,81 @@ def _command_qa(args: argparse.Namespace) -> None:
 
 
 def _command_generate(args: argparse.Namespace) -> None:
-    document = read_lesson(Path(args.input))
-    media_dir = Path(args.media_dir)
-    output_path = Path(args.output)
-
-    if args.with_audio:
-        document = enrich_audio(document, media_dir / "audio")
-    if args.with_images:
-        document = enrich_images(document, media_dir / "images", image_quality=args.image_quality)
-
-    project_root = Path(args.project_root)
-    state = build_study_state(project_root, anki_url=args.anki_url, exclude_batch_path=output_path)
-    batch = generate_batch(document, study_state=state)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-    state_output = project_root / "state" / "study-state.json"
-    state_output.parent.mkdir(parents=True, exist_ok=True)
-    state_output.write_text(state.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-    plan_output = output_path.with_suffix(".generation-plan.json")
-    plan_output.write_text(
-        json.dumps(
-            {
-                "lesson_id": batch.metadata.lesson_id,
-                "notes": [
-                    note.model_dump(
-                        include={
-                            "item": {"id", "korean", "english", "item_type", "lane", "skill_tags"},
-                            "note_key": True,
-                            "lane": True,
-                            "skill_tags": True,
-                            "duplicate_status": True,
-                            "duplicate_note_key": True,
-                            "duplicate_note_id": True,
-                            "duplicate_source": True,
-                            "inclusion_reason": True,
-                            "approved": True,
-                        }
-                    )
-                    for note in batch.notes
-                ],
-            },
-            indent=2,
-            ensure_ascii=False,
-        )
-        + "\n",
-        encoding="utf-8",
+    generate_batch_from_lesson_file(
+        input_path=Path(args.input),
+        output_path=Path(args.output),
+        media_dir=Path(args.media_dir),
+        project_root=Path(args.project_root),
+        anki_url=args.anki_url,
+        with_audio=args.with_audio,
+        with_images=args.with_images,
+        image_quality=args.image_quality,
     )
 
 
 def _command_generate_reading_speed(args: argparse.Namespace) -> None:
-    project_root = Path(args.project_root)
-    output_path = Path(args.output)
-    state = build_study_state(project_root, anki_url=args.anki_url, exclude_batch_path=output_path)
-    document = build_reading_speed_document(
-        state,
+    generate_reading_speed_batch(
+        project_root=Path(args.project_root),
+        output_path=Path(args.output),
         lesson_id=args.lesson_id,
         title=args.title,
         topic=args.topic,
         lesson_date=date.fromisoformat(args.lesson_date),
         source_description=args.source_description,
         target_deck=args.target_deck,
+        media_dir=Path(args.media_dir),
+        anki_url=args.anki_url,
+        with_audio=args.with_audio,
         max_read_aloud=args.max_read_aloud,
         max_chunked=args.max_chunked,
         passage_word_count=args.passage_word_count,
     )
 
-    if args.with_audio:
-        document = enrich_audio(document, Path(args.media_dir) / "audio")
-
-    batch = generate_batch(document, study_state=state)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-    state_output = project_root / "state" / "study-state.json"
-    state_output.parent.mkdir(parents=True, exist_ok=True)
-    state_output.write_text(state.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-    plan_output = output_path.with_suffix(".generation-plan.json")
-    plan_output.write_text(
-        json.dumps(
-            {
-                "lesson_id": batch.metadata.lesson_id,
-                "notes": [
-                    note.model_dump(
-                        include={
-                            "item": {"id", "korean", "english", "item_type", "lane", "skill_tags"},
-                            "note_key": True,
-                            "lane": True,
-                            "skill_tags": True,
-                            "duplicate_status": True,
-                            "duplicate_note_key": True,
-                            "duplicate_note_id": True,
-                            "duplicate_source": True,
-                            "inclusion_reason": True,
-                            "approved": True,
-                        }
-                    )
-                    for note in batch.notes
-                ],
-            },
-            indent=2,
-            ensure_ascii=False,
-        )
-        + "\n",
-        encoding="utf-8",
-    )
-
 
 def _command_generate_new_vocab(args: argparse.Namespace) -> None:
-    project_root = Path(args.project_root)
-    output_path = Path(args.output)
-    state = build_study_state(project_root, anki_url=args.anki_url, exclude_batch_path=output_path)
-    document = build_new_vocab_document_from_state(
-        state,
+    generate_new_vocab_batch(
+        project_root=Path(args.project_root),
+        output_path=Path(args.output),
         lesson_id=args.lesson_id,
         title=args.title,
         lesson_date=date.fromisoformat(args.lesson_date),
         count=args.count,
         gap_ratio=args.gap_ratio,
-        lesson_context_path=Path(args.lesson_context) if args.lesson_context is not None else None,
         target_deck=args.target_deck,
-        model=args.model,
-    )
-    document = enrich_new_vocab_images(
-        document,
-        Path(args.media_dir) / "images",
+        lesson_context_path=Path(args.lesson_context) if args.lesson_context is not None else None,
+        media_dir=Path(args.media_dir),
+        anki_url=args.anki_url,
+        with_audio=args.with_audio,
         image_quality=args.image_quality,
-    )
-    if args.with_audio:
-        document = enrich_audio(document, Path(args.media_dir) / "audio")
-
-    batch = generate_batch(document, study_state=state)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-    state_output = project_root / "state" / "study-state.json"
-    state_output.parent.mkdir(parents=True, exist_ok=True)
-    state_output.write_text(state.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-    plan_output = output_path.with_suffix(".generation-plan.json")
-    plan_output.write_text(
-        json.dumps(
-            {
-                "lesson_id": batch.metadata.lesson_id,
-                "notes": [
-                    note.model_dump(
-                        include={
-                            "item": {
-                                "id",
-                                "korean",
-                                "english",
-                                "item_type",
-                                "lane",
-                                "skill_tags",
-                                "image_prompt",
-                            },
-                            "note_key": True,
-                            "lane": True,
-                            "skill_tags": True,
-                            "duplicate_status": True,
-                            "duplicate_note_key": True,
-                            "duplicate_note_id": True,
-                            "duplicate_source": True,
-                            "inclusion_reason": True,
-                            "approved": True,
-                        }
-                    )
-                    for note in batch.notes
-                ],
-            },
-            indent=2,
-            ensure_ascii=False,
-        )
-        + "\n",
-        encoding="utf-8",
+        model=args.model,
     )
 
 
 def _command_push(args: argparse.Namespace) -> None:
     batch = CardBatch.model_validate_json(Path(args.input).read_text(encoding="utf-8"))
-    deck_name = args.deck if args.deck is not None else batch.metadata.target_deck or DEFAULT_DECK
-    result = push_batch(
-        batch,
-        deck_name=deck_name,
-        anki_url=args.anki_url,
-        sync=not args.no_sync,
+    result = handle_push_request(
+        PushRequest(
+            batch=batch,
+            dry_run=False,
+            deck_name=args.deck,
+            anki_url=args.anki_url,
+            sync=not args.no_sync,
+        )
     )
     print(result.model_dump_json(indent=2, ensure_ascii=False))
 
 
-def _default_synced_output_path(input_path: Path) -> Path:
-    name = input_path.name
-    if name.endswith(".batch.json"):
-        return input_path.with_name(f"{name.removesuffix('.batch.json')}.synced.batch.json")
-    if name.endswith(".lesson.json"):
-        return input_path.with_name(f"{name.removesuffix('.lesson.json')}.synced.lesson.json")
-    return input_path.with_name(f"{name}.synced")
-
-
 def _command_sync_media(args: argparse.Namespace) -> None:
     input_path = Path(args.input)
-    output_path = Path(args.output) if args.output is not None else _default_synced_output_path(input_path)
-    raw_text = input_path.read_text(encoding="utf-8")
-
-    try:
-        batch = CardBatch.model_validate_json(raw_text)
-    except Exception:  # noqa: BLE001
-        batch = None
-
-    if batch is not None:
-        synced_batch, summary = sync_batch_media(
-            batch,
-            media_dir=Path(args.media_dir),
-            anki_url=args.anki_url,
-            sync_first=args.sync_first,
-        )
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(synced_batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    else:
-        synced_document, summary = sync_lesson_media(
-            read_lesson(input_path),
-            media_dir=Path(args.media_dir),
-            anki_url=args.anki_url,
-            sync_first=args.sync_first,
-        )
-        write_json(synced_document, output_path)
-
-    print(json.dumps({"output_path": str(output_path), **summary.__dict__}, indent=2))
+    result = sync_media_file(
+        input_path=input_path,
+        output_path=Path(args.output) if args.output is not None else default_synced_output_path(input_path),
+        media_dir=Path(args.media_dir),
+        project_root=Path.cwd().resolve(),
+        anki_url=args.anki_url,
+        sync_first=args.sync_first,
+    )
+    print(json.dumps({"output_path": str(result.output_path), **result.summary.__dict__}, indent=2))
 
 
 def main() -> None:

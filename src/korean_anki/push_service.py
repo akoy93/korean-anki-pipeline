@@ -6,13 +6,12 @@ from email.policy import default
 from io import BytesIO
 import json
 import os
-import re
 import tempfile
 import threading
 import uuid
 from concurrent.futures import ThreadPoolExecutor
 from collections.abc import Callable
-from datetime import date, datetime
+from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import cast
@@ -20,41 +19,34 @@ from urllib.parse import unquote, urlparse
 
 from pydantic import ValidationError
 
-from .anki import (
-    ANKI_MODEL_NAME,
-    AnkiConnectClient,
-    existing_model_note_keys,
-    plan_push,
-    push_batch,
-    sync_batch_media,
-    sync_lesson_media,
+from .application import (
+    batch_is_pushed as batch_is_pushed_service,
+    batch_media_hydrated as batch_media_hydrated_service,
+    batch_referenced_media_paths as batch_referenced_media_paths_service,
+    build_dashboard_response as build_dashboard_response_service,
+    build_service_status as build_service_status_service,
+    default_synced_output_path as default_synced_output_path_service,
+    delete_batch as delete_batch_service,
+    generate_lesson_batches_from_sources,
+    generate_new_vocab_batch,
+    handle_push_request,
+    normalize_batch_media_paths as normalize_batch_media_paths_service,
+    project_relative_path as project_relative_path_service,
+    sync_media_file,
+    unique_lesson_root as unique_lesson_root_service,
+    unique_new_vocab_output_path as unique_new_vocab_output_path_service,
 )
-from .cards import generate_batch, refresh_preview_note
-from .llm import generate_pronunciations, read_lesson, read_transcription, transcribe_sources, write_json
-from .media import enrich_audio, enrich_new_vocab_images
-from .new_vocab import build_new_vocab_document_from_state
+from .cards import refresh_preview_note
 from .schema import (
-    CardBatch,
-    DashboardBatch,
-    DashboardLessonContext,
-    DashboardResponse,
-    DashboardStats,
     DeleteBatchRequest,
-    DeleteBatchResult,
     JobResponse,
-    LessonTranscription,
     NewVocabJobRequest,
     PreviewNoteRefreshRequest,
     PushRequest,
-    PushResult,
     RawSourceAsset,
-    ServiceStatus,
     SyncMediaJobRequest,
 )
-from .stages import build_lesson_documents, qa_transcription, write_lesson_documents
-from .study_state import build_study_state
 
-_SLUG_RE = re.compile(r"[^a-zA-Z0-9가-힣]+")
 _JOBS: dict[str, JobResponse] = {}
 _JOBS_LOCK = threading.Lock()
 _EXECUTOR = ThreadPoolExecutor(max_workers=2)
@@ -131,12 +123,6 @@ class MultipartForm:
 
         return cls(fields)
 
-
-def _slugify(value: str) -> str:
-    slug = _SLUG_RE.sub("-", value).strip("-").lower()
-    return slug or "lesson"
-
-
 def _project_root() -> Path:
     return Path.cwd().resolve()
 
@@ -181,324 +167,51 @@ def _resolve_reviewed_batch_path(source_batch_path: str | None) -> tuple[int | N
 
 
 def _default_synced_output_path(input_path: Path) -> Path:
-    name = input_path.name
-    if name.endswith(".batch.json"):
-        return input_path.with_name(f"{name.removesuffix('.batch.json')}.synced.batch.json")
-    if name.endswith(".lesson.json"):
-        return input_path.with_name(f"{name.removesuffix('.lesson.json')}.synced.lesson.json")
-    return input_path.with_name(f"{name}.synced")
+    return default_synced_output_path_service(input_path)
 
 
 def _project_relative_path(path: str | None, project_root: Path) -> str | None:
-    if path is None:
-        return None
-
-    media_path = Path(path)
-    if not media_path.is_absolute():
-        return path
-
-    return str(media_path.relative_to(project_root))
+    return project_relative_path_service(path, project_root)
 
 
-def _normalize_batch_media_paths(batch: CardBatch, project_root: Path) -> CardBatch:
-    notes = []
-    for note in batch.notes:
-        audio = note.item.audio
-        image = note.item.image
-        item = note.item.model_copy(
-            update={
-                "audio": None
-                if audio is None
-                else audio.model_copy(update={"path": _project_relative_path(audio.path, project_root)}),
-                "image": None
-                if image is None
-                else image.model_copy(update={"path": _project_relative_path(image.path, project_root)}),
-            }
-        )
-        cards = [
-            card.model_copy(
-                update={
-                    "audio_path": _project_relative_path(card.audio_path, project_root),
-                    "image_path": _project_relative_path(card.image_path, project_root),
-                }
-            )
-            for card in note.cards
-        ]
-        notes.append(note.model_copy(update={"item": item, "cards": cards}))
-
-    return batch.model_copy(update={"notes": notes})
+def _normalize_batch_media_paths(batch, project_root: Path):
+    return normalize_batch_media_paths_service(batch, project_root)
 
 
 def _unique_new_vocab_output_path(project_root: Path) -> Path:
-    timestamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
-    output_path = project_root / "data/generated" / f"new-vocab-{timestamp}.batch.json"
-    suffix = 2
-    while output_path.exists():
-        output_path = project_root / "data/generated" / f"new-vocab-{timestamp}-{suffix}.batch.json"
-        suffix += 1
-    return output_path
+    return unique_new_vocab_output_path_service(project_root)
 
 
 def _unique_lesson_root(project_root: Path, lesson_date: str, topic: str) -> Path:
-    base_slug = f"{lesson_date}-{_slugify(topic)}"
-    lesson_root = project_root / "lessons" / base_slug
-    if not lesson_root.exists():
-        return lesson_root
-
-    timestamp = datetime.now().strftime("%H%M%S")
-    lesson_root = project_root / "lessons" / f"{base_slug}-{timestamp}"
-    suffix = 2
-    while lesson_root.exists():
-        lesson_root = project_root / "lessons" / f"{base_slug}-{timestamp}-{suffix}"
-        suffix += 1
-    return lesson_root
+    return unique_lesson_root_service(project_root, lesson_date, topic)
 
 
-def _service_status() -> ServiceStatus:
-    anki_connect_ok = False
-    anki_connect_version: int | None = None
-    try:
-      result = AnkiConnectClient().invoke("version")
-      if isinstance(result, int):
-          anki_connect_ok = True
-          anki_connect_version = result
-    except Exception:  # noqa: BLE001
-      anki_connect_ok = False
-
-    return ServiceStatus(
-        backend_ok=True,
-        anki_connect_ok=anki_connect_ok,
-        anki_connect_version=anki_connect_version,
-        openai_configured=bool(os.environ.get("OPENAI_API_KEY")),
-    )
-
-
-def _dashboard_batch(batch_path: Path) -> DashboardBatch | None:
-    try:
-        batch = CardBatch.model_validate_json(batch_path.read_text(encoding="utf-8"))
-    except Exception:  # noqa: BLE001
-        return None
-
-    approved_notes = [note for note in batch.notes if note.approved]
-    approved_cards = [card for note in approved_notes for card in note.cards if card.approved]
-    lanes = sorted({note.lane for note in batch.notes})
-
-    return DashboardBatch(
-        path=str(batch_path.relative_to(_project_root())),
-        title=batch.metadata.title,
-        topic=batch.metadata.topic,
-        lesson_date=batch.metadata.lesson_date,
-        target_deck=batch.metadata.target_deck,
-        notes=len(batch.notes),
-        cards=sum(len(note.cards) for note in batch.notes),
-        approved_notes=len(approved_notes),
-        approved_cards=len(approved_cards),
-        audio_notes=sum(1 for note in batch.notes if note.item.audio is not None),
-        image_notes=sum(1 for note in batch.notes if note.item.image is not None),
-        exact_duplicates=sum(1 for note in batch.notes if note.duplicate_status == "exact-duplicate"),
-        near_duplicates=sum(1 for note in batch.notes if note.duplicate_status == "near-duplicate"),
-        lanes=cast(list, lanes),
-    )
-
-
-def _dashboard_lesson_context(transcription_path: Path) -> DashboardLessonContext | None:
-    try:
-        transcription = LessonTranscription.model_validate_json(transcription_path.read_text(encoding="utf-8"))
-    except Exception:  # noqa: BLE001
-        return None
-
-    return DashboardLessonContext(
-        path=str(transcription_path.relative_to(_project_root())),
-        label=f"{transcription.lesson_date.isoformat()} • {transcription.title} • {transcription.theme}",
-    )
-
-
-def _canonical_batch_path(batch_path: Path) -> Path:
-    if batch_path.name.endswith(".synced.batch.json"):
-        return batch_path.with_name(f"{batch_path.name.removesuffix('.synced.batch.json')}.batch.json")
-    return batch_path
+def _service_status():
+    return build_service_status_service()
 
 
 def _batch_media_hydrated(batch_path: Path) -> bool:
-    try:
-        parsed_batch = CardBatch.model_validate_json(batch_path.read_text(encoding="utf-8"))
-    except Exception:  # noqa: BLE001
-        return False
-
-    referenced_media = _batch_referenced_media_paths(parsed_batch)
-    return all(path.exists() and path.is_file() for path in referenced_media)
+    return batch_media_hydrated_service(batch_path, project_root=_project_root())
 
 
-def _batch_referenced_media_paths(batch: CardBatch) -> set[Path]:
-    media_paths: set[Path] = set()
-    for note in batch.notes:
-        if note.item.audio is not None:
-            media_paths.add(_resolve_media_reference_path(note.item.audio.path))
-        if note.item.image is not None:
-            media_paths.add(_resolve_media_reference_path(note.item.image.path))
-        for card in note.cards:
-            if card.audio_path is not None:
-                media_paths.add(_resolve_media_reference_path(card.audio_path))
-            if card.image_path is not None:
-                media_paths.add(_resolve_media_reference_path(card.image_path))
-    return media_paths
+def _batch_referenced_media_paths(batch) -> set[Path]:
+    return batch_referenced_media_paths_service(batch, project_root=_project_root())
 
 
-def _batch_is_pushed(batch: CardBatch, *, anki_url: str) -> bool:
-    anki_note_keys = existing_model_note_keys(anki_url=anki_url)
-    approved_notes = [note for note in batch.notes if note.approved]
-    return len(approved_notes) > 0 and any(note.note_key in anki_note_keys for note in approved_notes)
+def _batch_is_pushed(batch, *, anki_url: str) -> bool:
+    return batch_is_pushed_service(batch, anki_url=anki_url)
 
 
-def _delete_batch(request: DeleteBatchRequest) -> DeleteBatchResult:
-    batch_path = _resolve_project_path(request.batch_path)
-    if not batch_path.name.endswith(".batch.json") or batch_path.name.endswith(".synced.batch.json"):
-        raise ValueError("Batch path must be a canonical .batch.json file.")
-    if not batch_path.exists():
-        raise ValueError("Batch file not found.")
-
-    batch = CardBatch.model_validate_json(batch_path.read_text(encoding="utf-8"))
-    if _batch_is_pushed(batch, anki_url=request.anki_url):
-        raise ValueError("Cannot delete a batch that has already been pushed to Anki.")
-
-    synced_batch_path = _default_synced_output_path(batch_path)
-    generation_plan_path = batch_path.with_suffix(".generation-plan.json")
-    deleted_paths: list[str] = []
-    for path in [batch_path, synced_batch_path, generation_plan_path]:
-        if path.exists():
-            path.unlink()
-            deleted_paths.append(str(path.relative_to(_project_root())))
-
-    candidate_media_paths = _batch_referenced_media_paths(batch)
-    referenced_elsewhere: set[Path] = set()
-    for other_batch_path in [
-        *_project_root().glob("lessons/**/generated/*.batch.json"),
-        *_project_root().glob("data/generated/*.batch.json"),
-    ]:
-        if other_batch_path == batch_path or other_batch_path == synced_batch_path:
-            continue
-        try:
-            other_batch = CardBatch.model_validate_json(other_batch_path.read_text(encoding="utf-8"))
-        except Exception:  # noqa: BLE001
-            continue
-        referenced_elsewhere.update(_batch_referenced_media_paths(other_batch))
-
-    deleted_media_paths: list[str] = []
-    for media_path in sorted(candidate_media_paths):
-        if media_path in referenced_elsewhere or not media_path.exists() or not media_path.is_file():
-            continue
-        media_path.unlink()
-        deleted_media_paths.append(str(media_path.relative_to(_project_root())))
-
-    return DeleteBatchResult(deleted_paths=deleted_paths, deleted_media_paths=deleted_media_paths)
-
-
-def _dashboard_response() -> DashboardResponse:
-    project_root = _project_root()
-    all_batch_paths = sorted(
-        [
-            *project_root.glob("lessons/**/generated/*.batch.json"),
-            *project_root.glob("data/generated/*.batch.json"),
-        ],
-        key=lambda path: path.stat().st_mtime,
-        reverse=True,
-    )
-    synced_paths = {
-        _canonical_batch_path(path): path
-        for path in all_batch_paths
-        if path.name.endswith(".synced.batch.json")
-    }
-    canonical_batch_paths = [path for path in all_batch_paths if not path.name.endswith(".synced.batch.json")]
-    recent_batches = [batch for path in canonical_batch_paths if (batch := _dashboard_batch(path)) is not None]
-
-    lane_counts: dict[str, int] = {}
-    for batch in recent_batches:
-        for lane in batch.lanes:
-            lane_counts[lane] = lane_counts.get(lane, 0) + batch.notes
-
-    anki_note_count = 0
-    anki_card_count = 0
-    anki_deck_counts: dict[str, int] = {}
-    anki_note_keys: set[str] = set()
-    try:
-        client = AnkiConnectClient()
-        note_ids = client.invoke("findNotes", query=f'note:"{ANKI_MODEL_NAME}"')
-        if isinstance(note_ids, list):
-            anki_note_count = len(note_ids)
-        card_ids = client.invoke("findCards", query=f'note:"{ANKI_MODEL_NAME}"')
-        if isinstance(card_ids, list):
-            anki_card_count = len(card_ids)
-        deck_names = client.invoke("deckNames")
-        if isinstance(deck_names, list):
-            for deck_name in deck_names:
-                if not isinstance(deck_name, str) or not deck_name.startswith("Korean::"):
-                    continue
-                deck_cards = client.invoke("findCards", query=f'deck:"{deck_name}" note:"{ANKI_MODEL_NAME}"')
-                if isinstance(deck_cards, list) and deck_cards:
-                    anki_deck_counts[deck_name] = len(deck_cards)
-        anki_note_keys = existing_model_note_keys()
-    except Exception:  # noqa: BLE001
-        anki_note_count = 0
-        anki_card_count = 0
-        anki_deck_counts = {}
-        anki_note_keys = set()
-
-    resolved_batches: list[DashboardBatch] = []
-    for batch in recent_batches:
-        canonical_path = _resolve_project_path(batch.path)
-        synced_batch_path = synced_paths.get(canonical_path)
-        preview_batch_path = synced_batch_path or canonical_path
-        push_status = "not-pushed"
-        if batch.approved_notes > 0 and all(note.note_key in anki_note_keys for note in CardBatch.model_validate_json(canonical_path.read_text(encoding="utf-8")).notes if note.approved):
-            push_status = "pushed"
-        resolved_batches.append(
-            batch.model_copy(
-                update={
-                    "push_status": push_status,
-                    "media_hydrated": _batch_media_hydrated(preview_batch_path),
-                    "synced_batch_path": str(synced_batch_path.relative_to(project_root))
-                    if synced_batch_path is not None
-                    else None,
-                }
-            )
-        )
-
-    lesson_contexts = [
-        context
-        for path in sorted(project_root.glob("lessons/*/transcription.json"), reverse=True)
-        if (context := _dashboard_lesson_context(path)) is not None
-    ]
-    syncable_files = sorted(
-        str(path.relative_to(project_root))
-        for path in [
-            *project_root.glob("lessons/**/generated/*.batch.json"),
-            *project_root.glob("data/generated/*.batch.json"),
-        ]
-        if not path.name.endswith(".synced.batch.json")
+def _delete_batch(request: DeleteBatchRequest):
+    return delete_batch_service(
+        _resolve_project_path(request.batch_path),
+        project_root=_project_root(),
+        anki_url=request.anki_url,
     )
 
-    return DashboardResponse(
-        status=_service_status(),
-        stats=DashboardStats(
-            local_batch_count=len(resolved_batches),
-            local_note_count=sum(batch.notes for batch in resolved_batches),
-            local_card_count=sum(batch.cards for batch in resolved_batches),
-            pending_push_count=sum(
-                1
-                for batch in resolved_batches
-                if batch.push_status == "not-pushed" and batch.approved_notes > 0 and batch.exact_duplicates == 0
-            ),
-            audio_note_count=sum(batch.audio_notes for batch in resolved_batches),
-            image_note_count=sum(batch.image_notes for batch in resolved_batches),
-            lane_counts=lane_counts,
-            anki_note_count=anki_note_count,
-            anki_card_count=anki_card_count,
-            anki_deck_counts=anki_deck_counts,
-        ),
-        recent_batches=resolved_batches[:20],
-        lesson_contexts=lesson_contexts,
-        syncable_files=syncable_files,
-    )
+
+def _dashboard_response():
+    return build_dashboard_response_service(project_root=_project_root())
 
 
 def _job_snapshot(job_id: str) -> JobResponse:
@@ -597,11 +310,8 @@ def _lesson_generate_job(_job_id: str, form: MultipartForm) -> list[str]:
         raise ValueError("lesson_date, title, topic, and source_summary are required.")
 
     lesson_root = _unique_lesson_root(_project_root(), lesson_date, topic)
-    lesson_slug = lesson_root.name
     raw_source_dir = lesson_root / "raw-sources"
-    generated_dir = lesson_root / "generated"
     raw_source_dir.mkdir(parents=True, exist_ok=True)
-    generated_dir.mkdir(parents=True, exist_ok=True)
 
     raw_sources: list[RawSourceAsset] = []
     image_fields = form["images"] if "images" in form else []
@@ -622,45 +332,17 @@ def _lesson_generate_job(_job_id: str, form: MultipartForm) -> list[str]:
     if not raw_sources:
         raise ValueError("At least one image is required.")
 
-    transcription = transcribe_sources(
-        lesson_id=f"italki-{lesson_slug}",
+    artifacts = generate_lesson_batches_from_sources(
+        project_root=_project_root(),
+        lesson_root=lesson_root,
         title=title,
         lesson_date=lesson_date,
+        topic=topic,
         source_summary=source_summary,
         raw_sources=raw_sources,
+        with_audio=_parse_bool_field(_field_value(form, "with_audio"), default=True),
     )
-    transcription_path = lesson_root / "transcription.json"
-    transcription_path.write_text(transcription.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-    qa_report = qa_transcription(transcription)
-    qa_path = lesson_root / "qa-report.json"
-    qa_path.write_text(qa_report.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    if not qa_report.passed:
-        raise ValueError("Lesson QA failed.")
-
-    missing_pronunciations = [
-        entry.korean
-        for section in transcription.sections
-        for entry in section.entries
-        if entry.pronunciation is None
-    ]
-    pronunciation_lookup = generate_pronunciations(missing_pronunciations)
-    documents = build_lesson_documents(transcription, pronunciation_lookup=pronunciation_lookup)
-    lesson_paths = write_lesson_documents(documents, generated_dir)
-
-    with_audio = _parse_bool_field(_field_value(form, "with_audio"), default=True)
-    output_paths: list[str] = []
-    for lesson_path in lesson_paths:
-        document = read_lesson(lesson_path)
-        if with_audio:
-            document = enrich_audio(document, _project_root() / "data/media/audio")
-        batch_path = lesson_path.with_suffix(".batch.json")
-        state = build_study_state(_project_root(), exclude_batch_path=batch_path)
-        batch = generate_batch(document, study_state=state)
-        batch_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        output_paths.append(str(batch_path.relative_to(_project_root())))
-
-    return output_paths
+    return [str(path.relative_to(_project_root())) for path in artifacts.batch_paths]
 
 
 def _new_vocab_job(job_id: str, raw_body: str) -> list[str]:
@@ -669,7 +351,7 @@ def _new_vocab_job(job_id: str, raw_body: str) -> list[str]:
     output_path = _unique_new_vocab_output_path(project_root)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     lesson_id = output_path.name.removesuffix(".batch.json")
-    progress_total = 0
+    progress_total = request.count * (5 if request.with_audio else 4)
     progress_current = 0
 
     def advance_progress(label: str, step: int = 1) -> None:
@@ -689,82 +371,40 @@ def _new_vocab_job(job_id: str, raw_body: str) -> list[str]:
         progress_label="Planning vocab candidates",
     )
 
-    state = build_study_state(project_root, anki_url=request.anki_url, exclude_batch_path=output_path)
-    document = build_new_vocab_document_from_state(
-        state,
+    generate_new_vocab_batch(
+        project_root=project_root,
+        output_path=output_path,
         lesson_id=lesson_id,
         title="New Vocab",
-        lesson_date=date.today(),
+        lesson_date=datetime.now().date(),
         count=request.count,
         gap_ratio=request.gap_ratio,
-        lesson_context_path=Path(request.lesson_context) if request.lesson_context is not None else None,
         target_deck=request.target_deck,
-    )
-    progress_total = len(document.items) * (5 if request.with_audio else 4)
-    _update_job(
-        job_id,
-        progress_current=0,
-        progress_total=progress_total,
-        progress_label="Generating images",
-    )
-    document = enrich_new_vocab_images(
-        document,
-        project_root / "data/media/images",
+        lesson_context_path=Path(request.lesson_context) if request.lesson_context is not None else None,
+        media_dir=project_root / "data/media",
+        anki_url=request.anki_url,
+        with_audio=request.with_audio,
         image_quality=request.image_quality,
-        on_item_complete=lambda: advance_progress("Generating images"),
-    )
-    if request.with_audio:
-        document = enrich_audio(
-            document,
-            project_root / "data/media/audio",
-            on_item_complete=lambda: advance_progress("Generating audio"),
-        )
-
-    batch = generate_batch(
-        document,
-        study_state=state,
+        on_image_complete=lambda: advance_progress("Generating images"),
+        on_audio_complete=lambda: advance_progress("Generating audio"),
         on_note_generated=lambda note: advance_progress("Generating cards", step=len(note.cards)),
     )
-    batch = _normalize_batch_media_paths(batch, project_root)
-    output_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return [str(output_path.relative_to(project_root))]
 
 
 def _sync_media_job(_job_id: str, raw_body: str) -> list[str]:
     request = SyncMediaJobRequest.model_validate_json(raw_body)
-    input_path = _resolve_project_path(request.input_path)
-    output_path = (
-        _resolve_project_path(request.output_path)
+    result = sync_media_file(
+        input_path=_resolve_project_path(request.input_path),
+        output_path=_resolve_project_path(request.output_path)
         if request.output_path is not None
-        else _default_synced_output_path(input_path)
+        else None,
+        media_dir=_project_root() / request.media_dir,
+        project_root=_project_root(),
+        anki_url=request.anki_url,
+        sync_first=request.sync_first,
     )
-    raw_text = input_path.read_text(encoding="utf-8")
-
-    try:
-        batch = CardBatch.model_validate_json(raw_text)
-    except Exception:  # noqa: BLE001
-        batch = None
-
-    if batch is not None:
-        synced_batch, _summary = sync_batch_media(
-            batch,
-            media_dir=_project_root() / request.media_dir,
-            anki_url=request.anki_url,
-            sync_first=request.sync_first,
-        )
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        synced_batch = _normalize_batch_media_paths(synced_batch, _project_root())
-        output_path.write_text(synced_batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    else:
-        synced_document, _summary = sync_lesson_media(
-            read_lesson(input_path),
-            media_dir=_project_root() / request.media_dir,
-            anki_url=request.anki_url,
-            sync_first=request.sync_first,
-        )
-        write_json(synced_document, output_path)
-
-    return [str(output_path.relative_to(_project_root()))]
+    return [str(result.output_path.relative_to(_project_root()))]
 
 
 class PushServiceHandler(BaseHTTPRequestHandler):
@@ -835,30 +475,15 @@ class PushServiceHandler(BaseHTTPRequestHandler):
         fd: int | None = None
         try:
             request = PushRequest.model_validate_json(self._read_body())
+            reviewed_batch_path: str | None = None
+            if not request.dry_run:
+                fd, reviewed_batch_path = _resolve_reviewed_batch_path(request.source_batch_path)
 
-            if request.dry_run:
-                result = plan_push(
-                    request.batch,
-                    deck_name=request.deck_name,
-                    anki_url=request.anki_url,
-                )
-                self._send_json(200, cast(dict[str, object], result.model_dump()))
-                return
-
-            fd, reviewed_batch_path = _resolve_reviewed_batch_path(request.source_batch_path)
-            reviewed_batch = _normalize_batch_media_paths(request.batch, _project_root())
-            Path(reviewed_batch_path).write_text(
-                reviewed_batch.model_dump_json(indent=2, ensure_ascii=False) + "\n",
-                encoding="utf-8",
+            result = handle_push_request(
+                request,
+                project_root=_project_root(),
+                reviewed_batch_path=reviewed_batch_path,
             )
-
-            result = push_batch(
-                request.batch,
-                deck_name=request.deck_name,
-                anki_url=request.anki_url,
-                sync=request.sync,
-            )
-            result = PushResult.model_validate(result.model_dump() | {"reviewed_batch_path": reviewed_batch_path})
             self._send_json(200, cast(dict[str, object], result.model_dump()))
         except ValidationError as error:
             self._send_json(400, {"error": "Invalid push request.", "details": error.errors()})
