@@ -33,7 +33,7 @@ from korean_anki.settings import (
     DEFAULT_NEW_VOCAB_WITH_AUDIO,
 )
 
-from korean_anki.cards import generate_note
+from korean_anki.note_generation import generate_note
 from support import make_batch, make_item
 
 

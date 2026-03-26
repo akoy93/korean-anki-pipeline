@@ -29,6 +29,7 @@ The big structural wins are real:
 - shared runtime defaults now live in `src/korean_anki/settings.py`
 - LLM structured-output contracts now come from backend-owned Pydantic models instead of handwritten JSON schema duplicates
 - the project-side snapshot/read-model path now rebuilds directly from the filesystem instead of depending on project version hashing plus snapshot-level caches
+- the old compatibility shims for `cards.py` and `new_vocab.py` are gone; callers now import the concrete modules directly
 
 Those were worthwhile refactors.
 
@@ -36,24 +37,11 @@ The repo still does not need another architecture rewrite. But the previous `REF
 
 If I had to summarize the current problem in one sentence:
 
-> the remaining complexity is no longer about bad boundaries, it is mostly about leftover indirection that a local-only app may not need
+> the remaining concerns are mostly watchpoints, not urgent architectural problems
 
 ## Findings
 
-### P1. Internal compatibility shims still exist and may no longer be worth keeping
-
-There are still tiny compatibility modules:
-
-- `src/korean_anki/cards.py`
-- `src/korean_anki/new_vocab.py`
-
-They mostly re-export symbols from the newer split modules.
-
-That is fine during migration, but this is a local-only single-repo app. Long-lived internal compatibility surfaces are usually not worth much here.
-
-If internal callers no longer need the old import paths, remove these modules and update imports directly. That reduces indirection and makes the real module ownership easier to read.
-
-### P2. The new frontend helper modules are better, but they can still drift into new catch-all files
+### Watchpoint. The new frontend helper modules are better, but they can still drift into new catch-all files
 
 The old `appUi.tsx` problem is fixed, but the replacement modules still need discipline:
 
@@ -128,7 +116,6 @@ Until then, leave it alone.
 - keep one explicit Python backend entry surface
 - prefer direct module ownership over reusable infrastructure
 - simplify cache/version machinery if real performance data does not justify it
-- remove migration shims once callers have moved
 - keep CLI and HTTP as thin adapters over concrete use-case modules
 
 ### Frontend
@@ -140,16 +127,15 @@ Until then, leave it alone.
 
 ## Refactor Order
 
-1. Remove the remaining internal compatibility shims (`cards.py`, `new_vocab.py`) once callers no longer need them.
-2. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 
 The repo does not need a new broad architecture phase.
 
-The most useful next work is simplification work:
+The most useful next work is incremental, not sweeping:
 
-- remove indirection that only exists because of earlier migration steps
 - keep local-only behavior straightforward unless there is a demonstrated need for more machinery
+- split files only when a real ownership boundary starts changing faster than its neighbors
 
-The previous risk was architectural drift. The current risk is subtler: carrying extra complexity after the main refactor phase is already done.
+The previous risk was architectural drift. The current risk is smaller: letting watchpoint files quietly grow back into catch-all modules.

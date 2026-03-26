@@ -4,16 +4,18 @@ import unittest
 from datetime import date
 from unittest.mock import patch
 
-from korean_anki.cards import generate_batch
-from korean_anki.new_vocab import (
-    LessonContext,
+from korean_anki.new_vocab_documents import (
     build_new_vocab_document,
     build_new_vocab_document_from_state,
+)
+from korean_anki.new_vocab_selection import (
+    LessonContext,
     choose_new_vocab_theme,
     new_vocab_batch_title,
     select_new_vocab_proposals,
     undercovered_topics,
 )
+from korean_anki.note_generation import generate_batch
 from korean_anki.schema import NewVocabProposal, NewVocabProposalBatch, PriorNote, StudyState
 
 

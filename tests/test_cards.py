@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from korean_anki.cards import generate_batch, generate_note, refresh_preview_note
+from korean_anki.note_generation import generate_batch, generate_note, refresh_preview_note
 from korean_anki.schema import ExampleSentence, MediaAsset, PriorNote, StudyState
 
 from support import make_document, make_item

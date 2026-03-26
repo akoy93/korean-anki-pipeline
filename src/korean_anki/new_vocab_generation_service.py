@@ -6,7 +6,7 @@ from typing import Callable
 
 from .batch_generation_service import BatchArtifacts, generate_batch_from_document
 from .media import enrich_audio, enrich_new_vocab_images
-from .new_vocab import build_new_vocab_document_from_state
+from .new_vocab_documents import build_new_vocab_document_from_state
 from .schema import GeneratedNote
 from .settings import DEFAULT_ANKI_URL, DEFAULT_LLM_MODEL, DEFAULT_NEW_VOCAB_IMAGE_QUALITY
 from .study_state_snapshots import study_state_snapshot

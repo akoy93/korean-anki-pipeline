@@ -6,7 +6,7 @@ from pathlib import Path
 from .anki_client import AnkiConnectClient
 from .anki_note_codec import note_key_for_fields
 from .anki_queries import StoredNoteMedia, existing_model_media_index
-from .cards import refresh_generated_note
+from .note_generation import refresh_generated_note
 from .schema import CardBatch, LessonDocument, LessonItem, MediaAsset
 from .settings import DEFAULT_ANKI_URL, DEFAULT_SYNC_MEDIA_SYNC_FIRST
 

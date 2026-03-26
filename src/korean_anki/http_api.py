@@ -15,7 +15,7 @@ from .anki_client import AnkiConnectClient
 from .anki_queries import existing_model_note_keys
 from .anki_repository import AnkiRepository
 from .batch_repository import BatchRepository
-from .cards import refresh_preview_note
+from .note_generation import refresh_preview_note
 from .dashboard_snapshots import (
     batch_media_hydrated,
     batch_push_status,

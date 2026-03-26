@@ -24,7 +24,7 @@ from korean_anki.settings import (
 )
 from korean_anki.sync_media_service import MediaSyncArtifacts
 
-from korean_anki.cards import generate_note
+from korean_anki.note_generation import generate_note
 
 from support import make_batch, make_item, make_transcription
 

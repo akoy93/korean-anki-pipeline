@@ -9,7 +9,7 @@ from unittest.mock import patch
 from korean_anki.anki_client import ANKI_MODEL_NAME, AnkiConnectClient
 from korean_anki.anki_media_sync import sync_batch_media, sync_lesson_media
 from korean_anki.anki_push_service import plan_push, push_batch
-from korean_anki.cards import generate_note
+from korean_anki.note_generation import generate_note
 from korean_anki.schema import LessonDocument, MediaAsset
 
 from support import make_batch, make_item, make_metadata

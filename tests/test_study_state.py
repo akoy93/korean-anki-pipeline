@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 from korean_anki.batch_repository import BatchRepository
-from korean_anki.cards import generate_batch
+from korean_anki.note_generation import generate_batch
 from korean_anki.note_keys import normalize_text, note_key_for_item
 from korean_anki.study_state_snapshots import study_state_snapshot
 

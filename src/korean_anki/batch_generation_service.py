@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Callable
 
-from .cards import generate_batch
+from .note_generation import generate_batch
 from .lesson_io import read_lesson
 from .media import enrich_audio, enrich_images
 from .path_policy import normalize_batch_media_paths
