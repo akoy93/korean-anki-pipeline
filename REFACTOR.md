@@ -19,33 +19,11 @@ That said, the previous version of this document was too optimistic. The codebas
 
 The main remaining issues now are:
 
-1. `repositories.py` has become a new infrastructure catch-all
-2. synced/canonical/media path semantics are still duplicated across backend and frontend
-3. the preview pages still carry too much controller logic
+1. synced/canonical/media path semantics are still duplicated across backend and frontend
+2. the preview pages still carry too much controller logic
+3. runtime defaults are still repeated across schema, CLI, services, and frontend code
 
 ## Findings
-
-### P1. Split `repositories.py` into store-specific adapters plus cache policy
-
-`src/korean_anki/repositories.py` is now the main backend module under architectural pressure.
-
-It does at least five separate jobs:
-
-- batch repository behavior
-- lesson repository behavior
-- Anki repository behavior
-- imported-note decoding and dashboard-stat assembly
-- cache invalidation, marker files, TTL, and snapshot version policy
-
-That is too much for one module. The code is still readable, but the responsibilities are no longer clean. A "repository" file should not also be the place where filesystem stamp files, Anki availability change detection, and cache invalidation policy live.
-
-What I would do:
-
-- split `repositories.py` into `batch_repository.py`, `lesson_repository.py`, and `anki_repository.py`
-- move marker-file, TTL, and `lru_cache` invalidation policy into a separate cache/snapshot support module
-- keep imported-note decoding close to Anki infrastructure, not mixed into all repository concerns
-
-The current module works, but it is the same pattern the repo already had to clean up elsewhere: a useful refactor that later became a second catch-all.
 
 ### P1. Unify batch identity and path semantics
 
@@ -53,7 +31,7 @@ The repo still has too many places that understand the difference between canoni
 
 That logic is currently spread across:
 
-- `src/korean_anki/repositories.py`
+- `src/korean_anki/batch_repository.py`
 - `src/korean_anki/snapshots.py`
 - `src/korean_anki/service_support.py`
 - `src/korean_anki/path_policy.py`
@@ -137,6 +115,11 @@ This is a watchpoint, not an urgent refactor.
 - one backend surface in Python via `http_api.py`
 - the standard contract path of `schema.py` -> `schema.contract.json` -> `schema.ts`
 - the narrower preview contract boundary that now exports only frontend-facing transport models
+- the repository split:
+  - `batch_repository.py`
+  - `lesson_repository.py`
+  - `anki_repository.py`
+  - `snapshot_cache.py`
 - the current use-case service split:
   - `batch_generation_service.py`
   - `lesson_generation_service.py`
@@ -168,10 +151,7 @@ This is a watchpoint, not an urgent refactor.
   - explicit frontend/API contract export list
   - keep internal workflow models separate from preview transport models
 - `repositories/`
-  - `batch_repository.py`
-  - `lesson_repository.py`
-  - `anki_repository.py`
-  - `snapshot_cache.py`
+  - keep the current split between `batch_repository.py`, `lesson_repository.py`, `anki_repository.py`, and `snapshot_cache.py`
 - `path_identity.py` or similar
   - canonical batch path resolution
   - synced batch path resolution
@@ -191,11 +171,10 @@ This is a watchpoint, not an urgent refactor.
 
 ## Refactor Order
 
-1. Split `repositories.py` into repository modules and cache/version policy.
-2. Consolidate synced/canonical/media path semantics behind one backend boundary.
-3. Extract controller hooks from `HomePage.tsx` and `BatchPreviewPage.tsx`.
-4. Centralize shared runtime defaults.
-5. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Consolidate synced/canonical/media path semantics behind one backend boundary.
+2. Extract controller hooks from `HomePage.tsx` and `BatchPreviewPage.tsx`.
+3. Centralize shared runtime defaults.
+4. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 

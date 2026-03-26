@@ -4,7 +4,9 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Callable, cast
 
-from .repositories import AnkiRepository, BatchRepository, LessonRepository
+from .anki_repository import AnkiRepository
+from .batch_repository import BatchRepository
+from .lesson_repository import LessonRepository
 from .schema import (
     CardBatch,
     DashboardBatch,

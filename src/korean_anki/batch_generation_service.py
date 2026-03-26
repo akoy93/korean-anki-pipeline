@@ -10,8 +10,8 @@ from .cards import generate_batch
 from .lesson_io import read_lesson
 from .media import enrich_audio, enrich_images
 from .reading_speed import build_reading_speed_document
-from .repositories import invalidate_project_snapshots
 from .schema import CardBatch, GeneratedNote, LessonDocument, StudyState
+from .snapshot_cache import invalidate_project_snapshots
 from .service_support import normalize_batch_media_paths
 from .study_state import build_study_state
 
