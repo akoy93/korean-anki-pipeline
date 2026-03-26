@@ -8,6 +8,7 @@ from .batch_generation_service import BatchArtifacts, generate_batch_from_docume
 from .media import enrich_audio, enrich_new_vocab_images
 from .new_vocab import build_new_vocab_document_from_state
 from .schema import GeneratedNote
+from .settings import DEFAULT_ANKI_URL, DEFAULT_LLM_MODEL, DEFAULT_NEW_VOCAB_IMAGE_QUALITY
 from .study_state import build_study_state
 
 
@@ -23,10 +24,10 @@ def generate_new_vocab_batch(
     target_deck: str,
     lesson_context_path: Path | None,
     media_dir: Path,
-    anki_url: str = "http://127.0.0.1:8765",
+    anki_url: str = DEFAULT_ANKI_URL,
     with_audio: bool = False,
-    image_quality: str = "low",
-    model: str = "gpt-5.4",
+    image_quality: str = DEFAULT_NEW_VOCAB_IMAGE_QUALITY,
+    model: str = DEFAULT_LLM_MODEL,
     on_image_complete: Callable[[], None] | None = None,
     on_audio_complete: Callable[[], None] | None = None,
     on_note_generated: Callable[[GeneratedNote], None] | None = None,

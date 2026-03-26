@@ -9,13 +9,14 @@ from .batch_repository import BatchRepository
 from .note_keys import normalize_text, note_key_for_item
 from .schema import AnkiStatsSnapshot, PriorNote, StudyState
 from .snapshots import study_state_snapshot
+from .settings import DEFAULT_ANKI_URL
 
 
 def generated_history(project_root: Path, exclude_batch_path: Path | None = None) -> list[PriorNote]:
     return BatchRepository(project_root).generated_history(exclude_batch_path=exclude_batch_path)
 
 
-def imported_anki_history(anki_url: str = "http://127.0.0.1:8765") -> tuple[list[PriorNote], AnkiStatsSnapshot]:
+def imported_anki_history(anki_url: str = DEFAULT_ANKI_URL) -> tuple[list[PriorNote], AnkiStatsSnapshot]:
     return AnkiRepository(
         anki_url,
         client_factory=AnkiConnectClient,
@@ -25,7 +26,7 @@ def imported_anki_history(anki_url: str = "http://127.0.0.1:8765") -> tuple[list
 
 def build_study_state(
     project_root: Path,
-    anki_url: str = "http://127.0.0.1:8765",
+    anki_url: str = DEFAULT_ANKI_URL,
     exclude_batch_path: Path | None = None,
 ) -> StudyState:
     return study_state_snapshot(

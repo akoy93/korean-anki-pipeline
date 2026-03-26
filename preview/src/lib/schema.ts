@@ -179,6 +179,7 @@ export interface DashboardResponse {
   recent_batches?: DashboardBatch[];
   lesson_contexts?: DashboardLessonContext[];
   syncable_files?: string[];
+  defaults?: PreviewDefaults;
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
@@ -209,6 +210,32 @@ export interface DashboardStats {
   anki_deck_counts?: {
     [k: string]: number;
   };
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "PreviewDefaults".
+ */
+export interface PreviewDefaults {
+  lesson_generate?: LessonGenerateDefaults;
+  new_vocab?: NewVocabDefaults;
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "LessonGenerateDefaults".
+ */
+export interface LessonGenerateDefaults {
+  with_audio?: boolean;
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "NewVocabDefaults".
+ */
+export interface NewVocabDefaults {
+  count?: number;
+  gap_ratio?: number;
+  with_audio?: boolean;
+  image_quality?: "auto" | "low" | "medium" | "high";
+  target_deck?: string;
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema

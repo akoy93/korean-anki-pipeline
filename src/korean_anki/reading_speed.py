@@ -4,6 +4,13 @@ from collections.abc import Iterable
 from datetime import date
 
 from .schema import LessonDocument, LessonItem, LessonMetadata, PriorNote, StudyState
+from .settings import (
+    DEFAULT_READING_SPEED_MAX_CHUNKED,
+    DEFAULT_READING_SPEED_MAX_READ_ALOUD,
+    DEFAULT_READING_SPEED_PASSAGE_WORD_COUNT,
+    DEFAULT_READING_SPEED_TARGET_DECK,
+    DEFAULT_READING_SPEED_TOPIC,
+)
 from .study_state import normalize_text
 
 
@@ -87,13 +94,13 @@ def build_reading_speed_document(
     *,
     lesson_id: str,
     title: str,
-    topic: str = "Reading Speed",
+    topic: str = DEFAULT_READING_SPEED_TOPIC,
     lesson_date: date,
     source_description: str,
-    target_deck: str | None = "Korean::Reading Speed",
-    max_read_aloud: int = 20,
-    max_chunked: int = 10,
-    passage_word_count: int = 5,
+    target_deck: str | None = DEFAULT_READING_SPEED_TARGET_DECK,
+    max_read_aloud: int = DEFAULT_READING_SPEED_MAX_READ_ALOUD,
+    max_chunked: int = DEFAULT_READING_SPEED_MAX_CHUNKED,
+    passage_word_count: int = DEFAULT_READING_SPEED_PASSAGE_WORD_COUNT,
 ) -> LessonDocument:
     bank = known_word_bank(study_state)
     if not bank:

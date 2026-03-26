@@ -8,6 +8,7 @@ from .lesson_io import read_lesson, write_json
 from .path_policy import default_synced_output_path
 from .schema import CardBatch
 from .snapshot_cache import invalidate_project_snapshots
+from .settings import DEFAULT_ANKI_URL, DEFAULT_SYNC_MEDIA_SYNC_FIRST
 from .service_support import normalize_batch_media_paths
 
 
@@ -23,8 +24,8 @@ def sync_media_file(
     output_path: Path | None = None,
     media_dir: Path,
     project_root: Path,
-    anki_url: str = "http://127.0.0.1:8765",
-    sync_first: bool = False,
+    anki_url: str = DEFAULT_ANKI_URL,
+    sync_first: bool = DEFAULT_SYNC_MEDIA_SYNC_FIRST,
 ) -> MediaSyncArtifacts:
     resolved_output_path = output_path or default_synced_output_path(input_path)
     raw_text = input_path.read_text(encoding="utf-8")

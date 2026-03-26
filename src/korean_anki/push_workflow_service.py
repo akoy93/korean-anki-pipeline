@@ -10,6 +10,7 @@ from .batch_repository import BatchRepository
 from .path_policy import default_synced_output_path
 from .schema import CardBatch, DeleteBatchResult, PushRequest, PushResult
 from .snapshot_cache import invalidate_anki_snapshots, invalidate_project_snapshots
+from .settings import DEFAULT_ANKI_URL
 from .service_support import normalize_batch_media_paths
 from .snapshots import batch_media_hydrated as snapshot_batch_media_hydrated
 from .snapshots import batch_referenced_media_paths as snapshot_batch_referenced_media_paths
@@ -74,7 +75,7 @@ def batch_is_pushed(batch: CardBatch, *, anki_url: str) -> bool:
     return len(approved_notes) > 0 and any(note.note_key in anki_note_keys for note in approved_notes)
 
 
-def delete_batch(batch_path: Path, *, project_root: Path, anki_url: str = "http://127.0.0.1:8765") -> DeleteBatchResult:
+def delete_batch(batch_path: Path, *, project_root: Path, anki_url: str = DEFAULT_ANKI_URL) -> DeleteBatchResult:
     if not batch_path.name.endswith(".batch.json") or batch_path.name.endswith(".synced.batch.json"):
         raise ValueError("Batch path must be a canonical .batch.json file.")
     if not batch_path.exists():

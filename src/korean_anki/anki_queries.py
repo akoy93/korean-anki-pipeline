@@ -5,6 +5,7 @@ from typing import TypedDict
 
 from .anki_client import ANKI_MODEL_NAME, AnkiConnectClient
 from .anki_note_codec import extract_audio_filename, extract_image_filename, note_key_for_fields, parse_item_type
+from .settings import DEFAULT_ANKI_URL
 
 
 class StoredNoteMedia(TypedDict):
@@ -13,7 +14,7 @@ class StoredNoteMedia(TypedDict):
     image_filename: str | None
 
 
-def existing_model_notes(anki_url: str = "http://127.0.0.1:8765") -> dict[str, list[tuple[str, int]]]:
+def existing_model_notes(anki_url: str = DEFAULT_ANKI_URL) -> dict[str, list[tuple[str, int]]]:
     client = AnkiConnectClient(url=anki_url)
     query = f'note:"{ANKI_MODEL_NAME}"'
     existing_note_ids = client.invoke("findNotes", query=query)
@@ -92,6 +93,6 @@ def existing_model_media_index(client: AnkiConnectClient) -> dict[str, StoredNot
     return media_index
 
 
-def existing_model_note_keys(anki_url: str = "http://127.0.0.1:8765") -> set[str]:
+def existing_model_note_keys(anki_url: str = DEFAULT_ANKI_URL) -> set[str]:
     client = AnkiConnectClient(url=anki_url)
     return set(existing_model_media_index(client).keys())

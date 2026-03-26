@@ -22,6 +22,7 @@ from .schema import (
     PronunciationBatch,
     RawSourceAsset,
 )
+from .settings import DEFAULT_LLM_MODEL
 from .structured_outputs import (
     image_decision_json_schema,
     lesson_json_schema,
@@ -98,7 +99,7 @@ def transcribe_sources(
     lesson_date: str,
     source_summary: str,
     raw_sources: list[RawSourceAsset],
-    model: str = "gpt-5.4",
+    model: str = DEFAULT_LLM_MODEL,
 ) -> LessonTranscription:
     client = create_openai_client()
     content: list[dict[str, object]] = [
@@ -142,7 +143,7 @@ def transcribe_sources(
 
 def generate_pronunciations(
     korean_texts: list[str],
-    model: str = "gpt-5.4",
+    model: str = DEFAULT_LLM_MODEL,
 ) -> dict[str, str]:
     unique_texts = list(dict.fromkeys(text for text in korean_texts if text.strip()))
     if not unique_texts:
@@ -173,7 +174,7 @@ def generate_pronunciations(
 
 def plan_image_generation(
     document: LessonDocument,
-    model: str = "gpt-5.4",
+    model: str = DEFAULT_LLM_MODEL,
 ) -> dict[str, bool]:
     candidates = [
         item
@@ -221,7 +222,7 @@ def plan_image_generation(
 
 def propose_new_vocab(
     *,
-    model: str = "gpt-5.4",
+    model: str = DEFAULT_LLM_MODEL,
     candidate_count: int,
     batch_theme: str,
     target_gap_topics: list[str],

@@ -6,6 +6,7 @@ from pathlib import Path
 from .batch_generation_service import generate_batch_from_lesson_file
 from .llm_service import generate_pronunciations, transcribe_sources
 from .schema import LessonTranscription, RawSourceAsset
+from .settings import DEFAULT_ANKI_URL, DEFAULT_LLM_MODEL, DEFAULT_MEDIA_DIR
 from .service_support import unique_lesson_root
 from .stages import build_lesson_documents, qa_transcription, write_lesson_documents
 
@@ -23,7 +24,7 @@ def build_lesson_documents_from_transcription(
     transcription: LessonTranscription,
     *,
     output_dir: Path,
-    pronunciation_model: str = "gpt-5.4",
+    pronunciation_model: str = DEFAULT_LLM_MODEL,
     skip_pronunciation_fill: bool = False,
 ) -> list[Path]:
     pronunciation_lookup: dict[str, str] = {}
@@ -53,9 +54,9 @@ def generate_lesson_batches_from_sources(
     source_summary: str,
     raw_sources: list[RawSourceAsset],
     with_audio: bool = True,
-    transcription_model: str = "gpt-5.4",
-    pronunciation_model: str = "gpt-5.4",
-    anki_url: str = "http://127.0.0.1:8765",
+    transcription_model: str = DEFAULT_LLM_MODEL,
+    pronunciation_model: str = DEFAULT_LLM_MODEL,
+    anki_url: str = DEFAULT_ANKI_URL,
 ) -> LessonGenerationArtifacts:
     lesson_root = lesson_root or unique_lesson_root(project_root, lesson_date, topic)
     generated_dir = lesson_root / "generated"
@@ -89,7 +90,7 @@ def generate_lesson_batches_from_sources(
         artifacts = generate_batch_from_lesson_file(
             input_path=lesson_path,
             output_path=lesson_path.with_suffix(".batch.json"),
-            media_dir=project_root / "data/media",
+            media_dir=project_root / DEFAULT_MEDIA_DIR,
             project_root=project_root,
             anki_url=anki_url,
             with_audio=with_audio,

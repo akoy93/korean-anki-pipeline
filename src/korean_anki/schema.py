@@ -5,6 +5,21 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
+from .settings import (
+    DEFAULT_ANKI_URL,
+    DEFAULT_EXTRACTION_ITEM_TYPE,
+    DEFAULT_LESSON_AUDIO,
+    DEFAULT_LLM_MODEL,
+    DEFAULT_MEDIA_DIR,
+    DEFAULT_NEW_VOCAB_COUNT,
+    DEFAULT_NEW_VOCAB_GAP_RATIO,
+    DEFAULT_NEW_VOCAB_IMAGE_QUALITY,
+    DEFAULT_NEW_VOCAB_TARGET_DECK,
+    DEFAULT_NEW_VOCAB_WITH_AUDIO,
+    DEFAULT_QA_MODEL,
+    DEFAULT_SYNC_MEDIA_SYNC_FIRST,
+)
+
 SchemaVersion = Literal["1"]
 ItemType = Literal["vocab", "phrase", "grammar", "dialogue", "number"]
 CardKind = Literal[
@@ -112,11 +127,11 @@ class ExtractionRequest(StrictModel):
     topic: str
     lesson_date: date
     source_description: str
-    item_type_default: ItemType = "vocab"
+    item_type_default: ItemType = DEFAULT_EXTRACTION_ITEM_TYPE
     text: str | None = None
     image_path: str | None = None
-    model: str = "gpt-5.4"
-    qa_model: str = "gpt-5.4-pro"
+    model: str = DEFAULT_LLM_MODEL
+    qa_model: str = DEFAULT_QA_MODEL
     run_qa: bool = False
 
 
@@ -187,7 +202,7 @@ class PushRequest(StrictModel):
     dry_run: bool = True
     deck_name: str | None = None
     source_batch_path: str | None = None
-    anki_url: str = "http://127.0.0.1:8765"
+    anki_url: str = DEFAULT_ANKI_URL
     sync: bool = True
 
 
@@ -213,7 +228,7 @@ class PreviewNoteRefreshRequest(StrictModel):
 
 class DeleteBatchRequest(StrictModel):
     batch_path: str
-    anki_url: str = "http://127.0.0.1:8765"
+    anki_url: str = DEFAULT_ANKI_URL
 
 
 class DeleteBatchResult(StrictModel):
@@ -326,12 +341,30 @@ class DashboardStats(StrictModel):
     anki_deck_counts: dict[str, int] = Field(default_factory=dict)
 
 
+class LessonGenerateDefaults(StrictModel):
+    with_audio: bool = DEFAULT_LESSON_AUDIO
+
+
+class NewVocabDefaults(StrictModel):
+    count: int = DEFAULT_NEW_VOCAB_COUNT
+    gap_ratio: float = DEFAULT_NEW_VOCAB_GAP_RATIO
+    with_audio: bool = DEFAULT_NEW_VOCAB_WITH_AUDIO
+    image_quality: Literal["auto", "low", "medium", "high"] = DEFAULT_NEW_VOCAB_IMAGE_QUALITY
+    target_deck: str = DEFAULT_NEW_VOCAB_TARGET_DECK
+
+
+class PreviewDefaults(StrictModel):
+    lesson_generate: LessonGenerateDefaults = Field(default_factory=LessonGenerateDefaults)
+    new_vocab: NewVocabDefaults = Field(default_factory=NewVocabDefaults)
+
+
 class DashboardResponse(StrictModel):
     status: ServiceStatus
     stats: DashboardStats
     recent_batches: list[DashboardBatch] = Field(default_factory=list)
     lesson_contexts: list[DashboardLessonContext] = Field(default_factory=list)
     syncable_files: list[str] = Field(default_factory=list)
+    defaults: PreviewDefaults = Field(default_factory=PreviewDefaults)
 
 
 class BatchPreviewResponse(StrictModel):
@@ -342,21 +375,21 @@ class BatchPreviewResponse(StrictModel):
 
 
 class NewVocabJobRequest(StrictModel):
-    count: int = 20
-    gap_ratio: float = 0.6
+    count: int = DEFAULT_NEW_VOCAB_COUNT
+    gap_ratio: float = DEFAULT_NEW_VOCAB_GAP_RATIO
     lesson_context: str | None = None
-    with_audio: bool = True
-    image_quality: Literal["auto", "low", "medium", "high"] = "low"
-    target_deck: str = "Korean::New Vocab"
-    anki_url: str = "http://127.0.0.1:8765"
+    with_audio: bool = DEFAULT_NEW_VOCAB_WITH_AUDIO
+    image_quality: Literal["auto", "low", "medium", "high"] = DEFAULT_NEW_VOCAB_IMAGE_QUALITY
+    target_deck: str = DEFAULT_NEW_VOCAB_TARGET_DECK
+    anki_url: str = DEFAULT_ANKI_URL
 
 
 class SyncMediaJobRequest(StrictModel):
     input_path: str
     output_path: str | None = None
-    sync_first: bool = True
-    media_dir: str = "data/media"
-    anki_url: str = "http://127.0.0.1:8765"
+    sync_first: bool = DEFAULT_SYNC_MEDIA_SYNC_FIRST
+    media_dir: str = DEFAULT_MEDIA_DIR
+    anki_url: str = DEFAULT_ANKI_URL
 
 
 class JobResponse(StrictModel):

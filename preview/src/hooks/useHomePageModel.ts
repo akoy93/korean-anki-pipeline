@@ -52,7 +52,7 @@ export function useHomePageModel({
   const [lessonSummary, setLessonSummary] = useState("");
   const [lessonNotes, setLessonNotes] = useState("");
   const [lessonImages, setLessonImages] = useState<FileList | null>(null);
-  const [newVocabCount, setNewVocabCount] = useState(20);
+  const [newVocabCount, setNewVocabCount] = useState<number | null>(null);
   const [newVocabContext, setNewVocabContext] = useState("");
   const [openingAnki, setOpeningAnki] = useState(false);
   const [deletingBatchPath, setDeletingBatchPath] = useState<string | null>(
@@ -84,6 +84,12 @@ export function useHomePageModel({
     previousJobActivityRef.current = current;
   }, [lessonJob, loadDashboard, newVocabJob, syncJob]);
 
+  useEffect(() => {
+    if (newVocabCount === null && dashboard?.defaults?.new_vocab?.count !== undefined) {
+      setNewVocabCount(dashboard.defaults.new_vocab.count);
+    }
+  }, [dashboard?.defaults?.new_vocab?.count, newVocabCount]);
+
   async function submitOpenAnki() {
     setDashboardError(null);
     setOpeningAnki(true);
@@ -110,7 +116,6 @@ export function useHomePageModel({
       formData.append("topic", lessonTopic);
       formData.append("source_summary", lessonSummary);
       formData.append("notes_text", lessonNotes);
-      formData.append("with_audio", "true");
       Array.from(lessonImages ?? []).forEach((file) =>
         formData.append("images", file),
       );
@@ -127,15 +132,18 @@ export function useHomePageModel({
   async function submitNewVocabJob() {
     setNewVocabError(null);
     try {
+      const payload: {
+        count?: number;
+        lesson_context?: string | null;
+      } = {};
+      if (newVocabCount !== null) {
+        payload.count = newVocabCount;
+      }
+      if (newVocabContext.trim()) {
+        payload.lesson_context = newVocabContext;
+      }
       setNewVocabJob(
-        await createNewVocabJob({
-          count: newVocabCount,
-          gap_ratio: 0.6,
-          lesson_context: newVocabContext || null,
-          with_audio: true,
-          image_quality: "low",
-          target_deck: "Korean::New Vocab",
-        }),
+        await createNewVocabJob(payload),
       );
     } catch (error) {
       setNewVocabError(

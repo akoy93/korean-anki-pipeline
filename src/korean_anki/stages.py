@@ -14,13 +14,14 @@ from .schema import (
     QaReport,
     TranscriptionEntry,
 )
+from .settings import DEFAULT_LESSON_DECK
 
 _POSITIONAL_TAGS = frozenset({"left-column", "right-column"})
 
 
 def _default_deck(transcription: LessonTranscription, section_title: str) -> str:
     normalized = section_title.replace(" ", "-").replace("/", "-")
-    return f"Korean::Lessons::{transcription.lesson_id}::{normalized}"
+    return f"{DEFAULT_LESSON_DECK}::{transcription.lesson_id}::{normalized}"
 
 
 def _study_tags(tags: list[str]) -> list[str]:

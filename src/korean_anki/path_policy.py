@@ -5,6 +5,8 @@ import os
 from pathlib import Path
 import tempfile
 
+from .settings import DEFAULT_MEDIA_DIR
+
 
 @dataclass(frozen=True)
 class BatchPathIdentity:
@@ -20,7 +22,7 @@ def project_root() -> Path:
 
 def media_root(*, project_root_path: Path | None = None) -> Path:
     root = (project_root_path or project_root()).resolve()
-    return (root / "data" / "media").resolve()
+    return (root / DEFAULT_MEDIA_DIR).resolve()
 
 
 def job_state_root(*, project_root_path: Path | None = None) -> Path:

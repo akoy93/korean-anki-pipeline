@@ -285,6 +285,9 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "defaults": {
+          "$ref": "#/$defs/PreviewDefaults"
         }
       },
       "required": [
@@ -601,6 +604,17 @@
       "type": "string",
       "title": "JobStatus"
     },
+    "LessonGenerateDefaults": {
+      "additionalProperties": false,
+      "properties": {
+        "with_audio": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object",
+      "title": "LessonGenerateDefaults"
+    },
     "LessonItem": {
       "additionalProperties": false,
       "properties": {
@@ -816,6 +830,52 @@
       ],
       "type": "object",
       "title": "MediaAsset"
+    },
+    "NewVocabDefaults": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "default": 20,
+          "type": "integer"
+        },
+        "gap_ratio": {
+          "default": 0.6,
+          "type": "number"
+        },
+        "with_audio": {
+          "default": true,
+          "type": "boolean"
+        },
+        "image_quality": {
+          "default": "low",
+          "enum": [
+            "auto",
+            "low",
+            "medium",
+            "high"
+          ],
+          "type": "string"
+        },
+        "target_deck": {
+          "default": "Korean::New Vocab",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "title": "NewVocabDefaults"
+    },
+    "PreviewDefaults": {
+      "additionalProperties": false,
+      "properties": {
+        "lesson_generate": {
+          "$ref": "#/$defs/LessonGenerateDefaults"
+        },
+        "new_vocab": {
+          "$ref": "#/$defs/NewVocabDefaults"
+        }
+      },
+      "type": "object",
+      "title": "PreviewDefaults"
     },
     "PushResult": {
       "additionalProperties": false,

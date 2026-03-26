@@ -20,6 +20,7 @@ from .schema import (
     PreviewNoteRefreshRequest,
     PushRequest,
 )
+from .settings import DEFAULT_PREVIEW_HOST, DEFAULT_PREVIEW_PORT
 
 
 class PushServiceHandler(BaseHTTPRequestHandler):
@@ -263,7 +264,7 @@ class PushServiceHandler(BaseHTTPRequestHandler):
         print(f"[push-service] {self.address_string()} - {format % args}")
 
 
-def run_server(host: str = "127.0.0.1", port: int = 8767) -> None:
+def run_server(host: str = DEFAULT_PREVIEW_HOST, port: int = DEFAULT_PREVIEW_PORT) -> None:
     server = ThreadingHTTPServer((host, port), PushServiceHandler)
     print(f"Push service listening on http://{host}:{port}")
     print(

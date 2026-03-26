@@ -17,6 +17,13 @@ from openai import OpenAI
 
 from .llm_service import plan_image_generation
 from .schema import LessonDocument, LessonItem, MediaAsset
+from .settings import (
+    DEFAULT_GENERATE_IMAGE_QUALITY,
+    DEFAULT_IMAGE_MODEL,
+    DEFAULT_LLM_MODEL,
+    DEFAULT_NEW_VOCAB_IMAGE_QUALITY,
+    DEFAULT_TTS_MODEL,
+)
 
 ImageQuality = Literal["auto", "low", "medium", "high"]
 
@@ -138,7 +145,7 @@ def enrich_audio(
         client = OpenAI()
         for _ in range(_AUDIO_MAX_ATTEMPTS):
             speech = client.audio.speech.create(
-                model="gpt-4o-mini-tts",
+                model=DEFAULT_TTS_MODEL,
                 voice=voice,
                 input=item.korean,
                 instructions="Speak naturally in Korean at a clear study pace.",
@@ -161,8 +168,8 @@ def enrich_audio(
 def enrich_images(
     document: LessonDocument,
     output_dir: Path,
-    decision_model: str = "gpt-5.4",
-    image_quality: ImageQuality = "auto",
+    decision_model: str = DEFAULT_LLM_MODEL,
+    image_quality: ImageQuality = DEFAULT_GENERATE_IMAGE_QUALITY,
     max_workers: int = _IMAGE_MAX_WORKERS,
     on_item_complete: Callable[[], None] | None = None,
 ) -> LessonDocument:
@@ -185,7 +192,7 @@ def enrich_images(
         )
         client = OpenAI()
         result = client.images.generate(
-            model="gpt-image-1.5",
+            model=DEFAULT_IMAGE_MODEL,
             prompt=prompt,
             quality=image_quality,
             size="1024x1024",
@@ -210,7 +217,7 @@ def enrich_images(
 def enrich_new_vocab_images(
     document: LessonDocument,
     output_dir: Path,
-    image_quality: ImageQuality = "low",
+    image_quality: ImageQuality = DEFAULT_NEW_VOCAB_IMAGE_QUALITY,
     max_workers: int = _IMAGE_MAX_WORKERS,
     on_item_complete: Callable[[], None] | None = None,
 ) -> LessonDocument:
@@ -224,7 +231,7 @@ def enrich_new_vocab_images(
         prompt = f"{base_prompt} {_NEW_VOCAB_IMAGE_STYLE}"
         client = OpenAI()
         result = client.images.generate(
-            model="gpt-image-1.5",
+            model=DEFAULT_IMAGE_MODEL,
             prompt=prompt,
             quality=image_quality,
             size="1024x1024",

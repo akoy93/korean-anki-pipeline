@@ -20,6 +20,27 @@ from .http_api import run_server
 from .lesson_io import read_transcription, write_json
 from .llm_service import extract_lesson, transcribe_sources
 from .schema import CardBatch, ExtractionRequest, PushRequest, RawSourceAsset
+from .settings import (
+    DEFAULT_ANKI_URL,
+    DEFAULT_EXTRACTION_ITEM_TYPE,
+    DEFAULT_GENERATE_IMAGE_QUALITY,
+    DEFAULT_LLM_MODEL,
+    DEFAULT_MEDIA_DIR,
+    DEFAULT_NEW_VOCAB_COUNT,
+    DEFAULT_NEW_VOCAB_GAP_RATIO,
+    DEFAULT_NEW_VOCAB_IMAGE_QUALITY,
+    DEFAULT_NEW_VOCAB_TARGET_DECK,
+    DEFAULT_NEW_VOCAB_TITLE,
+    DEFAULT_PREVIEW_HOST,
+    DEFAULT_PREVIEW_PORT,
+    DEFAULT_QA_MODEL,
+    DEFAULT_READING_SPEED_MAX_CHUNKED,
+    DEFAULT_READING_SPEED_MAX_READ_ALOUD,
+    DEFAULT_READING_SPEED_PASSAGE_WORD_COUNT,
+    DEFAULT_READING_SPEED_SOURCE_DESCRIPTION,
+    DEFAULT_READING_SPEED_TARGET_DECK,
+    DEFAULT_READING_SPEED_TOPIC,
+)
 from .stages import qa_transcription
 
 
@@ -33,13 +54,13 @@ def _parse_args() -> argparse.Namespace:
     extract.add_argument("--topic", required=True)
     extract.add_argument("--lesson-date", default=date.today().isoformat())
     extract.add_argument("--source-description", required=True)
-    extract.add_argument("--item-type-default", choices=["vocab", "phrase", "grammar", "dialogue", "number"], default="vocab")
+    extract.add_argument("--item-type-default", choices=["vocab", "phrase", "grammar", "dialogue", "number"], default=DEFAULT_EXTRACTION_ITEM_TYPE)
     extract.add_argument("--text")
     extract.add_argument("--text-file")
     extract.add_argument("--image")
     extract.add_argument("--output", required=True)
-    extract.add_argument("--model", default="gpt-5.4")
-    extract.add_argument("--qa-model", default="gpt-5.4-pro")
+    extract.add_argument("--model", default=DEFAULT_LLM_MODEL)
+    extract.add_argument("--qa-model", default=DEFAULT_QA_MODEL)
     extract.add_argument("--run-qa", action="store_true")
 
     transcribe = subparsers.add_parser("transcribe", help="Stage 1: transcribe raw sources into a faithful structured source document.")
@@ -50,12 +71,12 @@ def _parse_args() -> argparse.Namespace:
     transcribe.add_argument("--image", action="append", default=[])
     transcribe.add_argument("--notes-file", action="append", default=[])
     transcribe.add_argument("--output", required=True)
-    transcribe.add_argument("--model", default="gpt-5.4")
+    transcribe.add_argument("--model", default=DEFAULT_LLM_MODEL)
 
     build_lessons = subparsers.add_parser("build-lessons", help="Stage 2: build one lesson JSON per transcribed section.")
     build_lessons.add_argument("--input", required=True)
     build_lessons.add_argument("--output-dir", required=True)
-    build_lessons.add_argument("--pronunciation-model", default="gpt-5.4")
+    build_lessons.add_argument("--pronunciation-model", default=DEFAULT_LLM_MODEL)
     build_lessons.add_argument("--skip-pronunciation-fill", action="store_true")
 
     qa = subparsers.add_parser("qa", help="Stage 3: run deterministic QA checks on a transcription.")
@@ -70,11 +91,11 @@ def _parse_args() -> argparse.Namespace:
     generate.add_argument(
         "--image-quality",
         choices=["auto", "low", "medium", "high"],
-        default="auto",
+        default=DEFAULT_GENERATE_IMAGE_QUALITY,
     )
-    generate.add_argument("--media-dir", default="data/media")
+    generate.add_argument("--media-dir", default=DEFAULT_MEDIA_DIR)
     generate.add_argument("--project-root", default=".")
-    generate.add_argument("--anki-url", default="http://127.0.0.1:8765")
+    generate.add_argument("--anki-url", default=DEFAULT_ANKI_URL)
 
     reading_speed = subparsers.add_parser(
         "generate-reading-speed",
@@ -82,49 +103,49 @@ def _parse_args() -> argparse.Namespace:
     )
     reading_speed.add_argument("--lesson-id", required=True)
     reading_speed.add_argument("--title", required=True)
-    reading_speed.add_argument("--topic", default="Reading Speed")
+    reading_speed.add_argument("--topic", default=DEFAULT_READING_SPEED_TOPIC)
     reading_speed.add_argument("--lesson-date", default=date.today().isoformat())
     reading_speed.add_argument(
         "--source-description",
-        default="Reading-speed batch generated from known-word bank",
+        default=DEFAULT_READING_SPEED_SOURCE_DESCRIPTION,
     )
-    reading_speed.add_argument("--target-deck", default="Korean::Reading Speed")
+    reading_speed.add_argument("--target-deck", default=DEFAULT_READING_SPEED_TARGET_DECK)
     reading_speed.add_argument("--output", required=True)
     reading_speed.add_argument("--with-audio", action="store_true")
-    reading_speed.add_argument("--media-dir", default="data/media")
+    reading_speed.add_argument("--media-dir", default=DEFAULT_MEDIA_DIR)
     reading_speed.add_argument("--project-root", default=".")
-    reading_speed.add_argument("--anki-url", default="http://127.0.0.1:8765")
-    reading_speed.add_argument("--max-read-aloud", type=int, default=20)
-    reading_speed.add_argument("--max-chunked", type=int, default=10)
-    reading_speed.add_argument("--passage-word-count", type=int, default=5)
+    reading_speed.add_argument("--anki-url", default=DEFAULT_ANKI_URL)
+    reading_speed.add_argument("--max-read-aloud", type=int, default=DEFAULT_READING_SPEED_MAX_READ_ALOUD)
+    reading_speed.add_argument("--max-chunked", type=int, default=DEFAULT_READING_SPEED_MAX_CHUNKED)
+    reading_speed.add_argument("--passage-word-count", type=int, default=DEFAULT_READING_SPEED_PASSAGE_WORD_COUNT)
 
     new_vocab = subparsers.add_parser(
         "generate-new-vocab",
         help="Generate a supplemental new-vocab batch from LLM proposals plus local guardrails.",
     )
     new_vocab.add_argument("--lesson-id", default=f"new-vocab-{date.today().isoformat()}")
-    new_vocab.add_argument("--title", default="New Vocab")
+    new_vocab.add_argument("--title", default=DEFAULT_NEW_VOCAB_TITLE)
     new_vocab.add_argument("--lesson-date", default=date.today().isoformat())
     new_vocab.add_argument("--output", required=True)
-    new_vocab.add_argument("--count", type=int, default=20)
-    new_vocab.add_argument("--gap-ratio", type=float, default=0.6)
-    new_vocab.add_argument("--target-deck", default="Korean::New Vocab")
+    new_vocab.add_argument("--count", type=int, default=DEFAULT_NEW_VOCAB_COUNT)
+    new_vocab.add_argument("--gap-ratio", type=float, default=DEFAULT_NEW_VOCAB_GAP_RATIO)
+    new_vocab.add_argument("--target-deck", default=DEFAULT_NEW_VOCAB_TARGET_DECK)
     new_vocab.add_argument("--lesson-context", default=None)
     new_vocab.add_argument("--with-audio", action="store_true")
     new_vocab.add_argument(
         "--image-quality",
         choices=["auto", "low", "medium", "high"],
-        default="low",
+        default=DEFAULT_NEW_VOCAB_IMAGE_QUALITY,
     )
-    new_vocab.add_argument("--media-dir", default="data/media")
+    new_vocab.add_argument("--media-dir", default=DEFAULT_MEDIA_DIR)
     new_vocab.add_argument("--project-root", default=".")
-    new_vocab.add_argument("--anki-url", default="http://127.0.0.1:8765")
-    new_vocab.add_argument("--model", default="gpt-5.4")
+    new_vocab.add_argument("--anki-url", default=DEFAULT_ANKI_URL)
+    new_vocab.add_argument("--model", default=DEFAULT_LLM_MODEL)
 
     push = subparsers.add_parser("push", help="Push approved cards to Anki Desktop via AnkiConnect.")
     push.add_argument("--input", required=True)
     push.add_argument("--deck", default=None)
-    push.add_argument("--anki-url", default="http://127.0.0.1:8765")
+    push.add_argument("--anki-url", default=DEFAULT_ANKI_URL)
     push.add_argument("--no-sync", action="store_true")
 
     sync_media = subparsers.add_parser(
@@ -133,13 +154,13 @@ def _parse_args() -> argparse.Namespace:
     )
     sync_media.add_argument("--input", required=True)
     sync_media.add_argument("--output", default=None)
-    sync_media.add_argument("--media-dir", default="data/media")
-    sync_media.add_argument("--anki-url", default="http://127.0.0.1:8765")
+    sync_media.add_argument("--media-dir", default=DEFAULT_MEDIA_DIR)
+    sync_media.add_argument("--anki-url", default=DEFAULT_ANKI_URL)
     sync_media.add_argument("--sync-first", action="store_true")
 
     serve = subparsers.add_parser("serve", help="Run the local-only Python HTTP service for preview push actions.")
-    serve.add_argument("--host", default="127.0.0.1")
-    serve.add_argument("--port", type=int, default=8767)
+    serve.add_argument("--host", default=DEFAULT_PREVIEW_HOST)
+    serve.add_argument("--port", type=int, default=DEFAULT_PREVIEW_PORT)
 
     return parser.parse_args()
 

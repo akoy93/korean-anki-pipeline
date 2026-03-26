@@ -22,6 +22,14 @@ from korean_anki.schema import (
     ServiceStatus,
     StudyState,
 )
+from korean_anki.settings import (
+    DEFAULT_LESSON_AUDIO,
+    DEFAULT_NEW_VOCAB_COUNT,
+    DEFAULT_NEW_VOCAB_GAP_RATIO,
+    DEFAULT_NEW_VOCAB_IMAGE_QUALITY,
+    DEFAULT_NEW_VOCAB_TARGET_DECK,
+    DEFAULT_NEW_VOCAB_WITH_AUDIO,
+)
 
 from korean_anki.cards import generate_note
 from support import make_batch, make_item
@@ -263,6 +271,12 @@ class PushServiceTests(unittest.TestCase):
         self.assertTrue(any(path.endswith(".batch.json") for path in payload["syncable_files"]))
         self.assertFalse(any(path.endswith(".lesson.json") for path in payload["syncable_files"]))
         self.assertFalse(any(path.endswith(".synced.batch.json") for path in payload["syncable_files"]))
+        self.assertEqual(payload["defaults"]["lesson_generate"]["with_audio"], DEFAULT_LESSON_AUDIO)
+        self.assertEqual(payload["defaults"]["new_vocab"]["count"], DEFAULT_NEW_VOCAB_COUNT)
+        self.assertEqual(payload["defaults"]["new_vocab"]["gap_ratio"], DEFAULT_NEW_VOCAB_GAP_RATIO)
+        self.assertEqual(payload["defaults"]["new_vocab"]["with_audio"], DEFAULT_NEW_VOCAB_WITH_AUDIO)
+        self.assertEqual(payload["defaults"]["new_vocab"]["image_quality"], DEFAULT_NEW_VOCAB_IMAGE_QUALITY)
+        self.assertEqual(payload["defaults"]["new_vocab"]["target_deck"], DEFAULT_NEW_VOCAB_TARGET_DECK)
 
     def test_dashboard_marks_missing_local_media_as_not_hydrated(self) -> None:
         class FakeDashboardAnkiClient:

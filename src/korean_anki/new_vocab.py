@@ -18,6 +18,14 @@ from .schema import (
     StudyState,
     VocabAdjacencyKind,
 )
+from .settings import (
+    DEFAULT_LLM_MODEL,
+    DEFAULT_NEW_VOCAB_COUNT,
+    DEFAULT_NEW_VOCAB_GAP_RATIO,
+    DEFAULT_NEW_VOCAB_TARGET_DECK,
+    DEFAULT_NEW_VOCAB_TITLE,
+    DEFAULT_NEW_VOCAB_TOPIC,
+)
 from .study_state import normalize_text
 
 A1_TOPIC_INVENTORY = [
@@ -322,10 +330,10 @@ def build_new_vocab_document(
     lesson_id: str,
     title: str,
     lesson_date: date,
-    count: int = 20,
-    gap_ratio: float = 0.6,
+    count: int = DEFAULT_NEW_VOCAB_COUNT,
+    gap_ratio: float = DEFAULT_NEW_VOCAB_GAP_RATIO,
     lesson_context: LessonContext | None = None,
-    target_deck: str = "Korean::New Vocab",
+    target_deck: str = DEFAULT_NEW_VOCAB_TARGET_DECK,
 ) -> LessonDocument:
     selected = select_new_vocab_proposals(
         proposals,
@@ -350,7 +358,7 @@ def build_new_vocab_document(
     metadata = LessonMetadata(
         lesson_id=lesson_id,
         title=title,
-        topic="New Vocab",
+        topic=DEFAULT_NEW_VOCAB_TOPIC,
         lesson_date=lesson_date,
         source_description=(
             "Supplemental A1 vocab selected from coverage gaps"
@@ -373,7 +381,7 @@ def build_new_vocab_document_from_state(
     gap_ratio: float,
     lesson_context_path: Path | None,
     target_deck: str,
-    model: str = "gpt-5.4",
+    model: str = DEFAULT_LLM_MODEL,
 ) -> LessonDocument:
     lesson_context = load_lesson_context(lesson_context_path) if lesson_context_path is not None else None
     theme_topic = choose_new_vocab_theme(state, lesson_context)
@@ -395,7 +403,7 @@ def build_new_vocab_document_from_state(
         proposal_batch.proposals,
         state,
         lesson_id=lesson_id,
-        title=new_vocab_batch_title(theme_topic) if title == "New Vocab" else title,
+        title=new_vocab_batch_title(theme_topic) if title == DEFAULT_NEW_VOCAB_TITLE else title,
         lesson_date=lesson_date,
         count=count,
         gap_ratio=gap_ratio,

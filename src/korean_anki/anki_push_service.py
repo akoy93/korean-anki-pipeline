@@ -4,12 +4,13 @@ from .anki_client import AnkiConnectClient
 from .anki_note_codec import approved_card_count, approved_notes, build_note_payload, target_deck
 from .anki_queries import existing_model_notes
 from .schema import CardBatch, DuplicateNote, PushResult
+from .settings import DEFAULT_ANKI_URL
 
 
 def find_duplicate_notes(
     batch: CardBatch,
     deck_name: str | None = None,
-    anki_url: str = "http://127.0.0.1:8765",
+    anki_url: str = DEFAULT_ANKI_URL,
 ) -> list[DuplicateNote]:
     del deck_name
     existing_by_korean = existing_model_notes(anki_url=anki_url)
@@ -33,7 +34,7 @@ def find_duplicate_notes(
     return duplicates
 
 
-def _homograph_item_ids(batch: CardBatch, anki_url: str = "http://127.0.0.1:8765") -> set[str]:
+def _homograph_item_ids(batch: CardBatch, anki_url: str = DEFAULT_ANKI_URL) -> set[str]:
     existing_by_korean = existing_model_notes(anki_url=anki_url)
     homograph_ids: set[str] = set()
     for note in approved_notes(batch):
@@ -49,7 +50,7 @@ def _homograph_item_ids(batch: CardBatch, anki_url: str = "http://127.0.0.1:8765
 def plan_push(
     batch: CardBatch,
     deck_name: str | None = None,
-    anki_url: str = "http://127.0.0.1:8765",
+    anki_url: str = DEFAULT_ANKI_URL,
 ) -> PushResult:
     resolved_deck = target_deck(batch, deck_name)
     approved = approved_notes(batch)
@@ -69,7 +70,7 @@ def plan_push(
 def push_batch(
     batch: CardBatch,
     deck_name: str | None = None,
-    anki_url: str = "http://127.0.0.1:8765",
+    anki_url: str = DEFAULT_ANKI_URL,
     sync: bool = True,
 ) -> PushResult:
     client = AnkiConnectClient(url=anki_url)

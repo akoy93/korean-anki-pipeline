@@ -381,6 +381,18 @@ export function makeDashboardResponse({
     syncable_files: recentBatches
       .map((batch) => batch.canonical_batch_path)
       .filter((path) => !path.endsWith(".synced.batch.json")),
+    defaults: {
+      lesson_generate: {
+        with_audio: true,
+      },
+      new_vocab: {
+        count: 20,
+        gap_ratio: 0.6,
+        with_audio: true,
+        image_quality: "low",
+        target_deck: "Korean::New Vocab",
+      },
+    },
   };
 }
 

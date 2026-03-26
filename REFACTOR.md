@@ -14,39 +14,19 @@ The repo is substantially healthier than it was before the earlier cleanup work.
 - backend jobs now persist across restarts
 - the preview app is no longer concentrated in a single `App.tsx` file
 - `HomePage.tsx` and `BatchPreviewPage.tsx` now use dedicated controller hooks instead of mixing page render code with most async orchestration
+- shared runtime defaults now live in `src/korean_anki/settings.py`, and the preview consumes backend-issued defaults instead of hardcoding its new-vocab request defaults
 
 Those were the right refactors.
 
 That said, the previous version of this document was too optimistic. The codebase is not in bad shape, but there are still real architectural cleanup opportunities. They are smaller than the earlier cross-runtime drift problems, but they are still worth addressing before another large round of feature work.
 
-The main remaining issues now are:
+The main remaining issue now is:
 
-1. runtime defaults are still repeated across schema, CLI, services, and frontend code
-2. `schema.py` is still a watchpoint if the model surface keeps growing
+1. `schema.py` is still a watchpoint if the model surface keeps growing
 
 ## Findings
 
-### P1. Centralize runtime defaults and configuration
-
-There are still many repeated defaults scattered across schema, CLI, services, and frontend code:
-
-- Anki URL
-- media root
-- default OpenAI models
-- default deck names
-- image quality defaults
-
-The repetition is not catastrophic, but it is enough to create silent drift. It also makes it harder to answer simple questions like "what is the real default new-vocab deck?" without checking multiple modules.
-
-What I would do:
-
-- introduce a small `settings.py` or `defaults.py`
-- keep user-facing defaults there
-- let CLI/schema/API layers reference those shared constants instead of re-stating them
-
-This is a cleanup for coherence more than correctness, but it will reduce incidental churn.
-
-### P2. Consider splitting `schema.py` if it grows further
+### P1. Consider splitting `schema.py` if it grows further
 
 `src/korean_anki/schema.py` is still manageable today, but it mixes:
 
@@ -73,6 +53,7 @@ This is a watchpoint, not an urgent refactor.
 - one backend surface in Python via `http_api.py`
 - the standard contract path of `schema.py` -> `schema.contract.json` -> `schema.ts`
 - the narrower preview contract boundary that now exports only frontend-facing transport models
+- the shared runtime-defaults boundary in `settings.py`
 - the repository split:
   - `batch_repository.py`
   - `lesson_repository.py`
@@ -126,14 +107,13 @@ This is a watchpoint, not an urgent refactor.
 
 ## Refactor Order
 
-1. Centralize shared runtime defaults.
-2. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 
 The codebase is in good enough shape to keep building on, but it is not "done" architecturally.
 
-The earlier refactors removed the worst sources of drift. The remaining work is more about tightening boundaries than rescuing the design. That is a better place to be, but it still leaves real opportunities for improvement.
+The earlier refactors removed the worst sources of drift. The remaining work is now mostly about keeping healthy boundaries healthy as the model surface grows.
 
 If I had to summarize the current architectural problem in one sentence:
 

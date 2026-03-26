@@ -15,6 +15,7 @@ from . import path_policy
 from .lesson_generation_service import generate_lesson_batches_from_sources
 from .new_vocab_generation_service import generate_new_vocab_batch
 from .schema import JobResponse, NewVocabJobRequest, RawSourceAsset, SyncMediaJobRequest
+from .settings import DEFAULT_LESSON_AUDIO, DEFAULT_MEDIA_DIR, DEFAULT_NEW_VOCAB_TITLE
 from .service_support import unique_lesson_root, unique_new_vocab_output_path
 from .sync_media_service import sync_media_file
 
@@ -215,7 +216,7 @@ def lesson_generate_job(_job_id: str, form: MultipartForm) -> list[str]:
         topic=topic,
         source_summary=source_summary,
         raw_sources=raw_sources,
-        with_audio=parse_bool_field(field_value(form, "with_audio"), default=True),
+        with_audio=parse_bool_field(field_value(form, "with_audio"), default=DEFAULT_LESSON_AUDIO),
     )
     return [str(path.relative_to(project_root)) for path in artifacts.batch_paths]
 
@@ -250,13 +251,13 @@ def new_vocab_job(job_id: str, raw_body: str) -> list[str]:
         project_root=project_root,
         output_path=output_path,
         lesson_id=lesson_id,
-        title="New Vocab",
+        title=DEFAULT_NEW_VOCAB_TITLE,
         lesson_date=datetime.now().date(),
         count=request.count,
         gap_ratio=request.gap_ratio,
         target_deck=request.target_deck,
         lesson_context_path=Path(request.lesson_context) if request.lesson_context is not None else None,
-        media_dir=project_root / "data/media",
+        media_dir=project_root / DEFAULT_MEDIA_DIR,
         anki_url=request.anki_url,
         with_audio=request.with_audio,
         image_quality=request.image_quality,

@@ -6,8 +6,10 @@ from typing import TypedDict
 
 import requests
 
+from .settings import DEFAULT_ANKI_URL, DEFAULT_LESSON_DECK
+
 ANKI_MODEL_NAME = "Korean Lesson Item"
-DEFAULT_DECK = "Korean::Lessons"
+DEFAULT_DECK = DEFAULT_LESSON_DECK
 
 ANKI_FIELDS = [
     "Korean",
@@ -168,7 +170,7 @@ img { max-width: 280px; max-height: 280px; margin-top: 12px; }
 
 
 class AnkiConnectClient:
-    def __init__(self, url: str = "http://127.0.0.1:8765") -> None:
+    def __init__(self, url: str = DEFAULT_ANKI_URL) -> None:
         self.url = url
 
     def invoke(self, action: str, **params: object) -> object:

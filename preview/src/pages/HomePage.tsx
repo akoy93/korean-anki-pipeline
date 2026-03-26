@@ -450,7 +450,7 @@ export function HomePage({
               <Languages className="h-5 w-5" /> Generate new vocab
             </CardTitle>
             <CardDescription>
-              Create a supplemental 20-card batch with audio and images.
+              Create a supplemental batch with audio and images.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -460,10 +460,11 @@ export function HomePage({
                 type="number"
                 min="1"
                 max="50"
-                value={newVocabCount}
-                onChange={(event) =>
-                  setNewVocabCount(Number(event.target.value))
-                }
+                value={newVocabCount ?? ""}
+                onChange={(event) => {
+                  const value = event.target.value.trim();
+                  setNewVocabCount(value === "" ? null : Number(value));
+                }}
               />
             </div>
             <div className="space-y-2">

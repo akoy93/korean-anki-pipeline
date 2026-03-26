@@ -12,6 +12,16 @@ from unittest.mock import patch
 from korean_anki import cli
 from korean_anki.anki_media_sync import MediaSyncSummary
 from korean_anki.schema import PushResult
+from korean_anki.settings import (
+    DEFAULT_ANKI_URL,
+    DEFAULT_LLM_MODEL,
+    DEFAULT_MEDIA_DIR,
+    DEFAULT_NEW_VOCAB_COUNT,
+    DEFAULT_NEW_VOCAB_GAP_RATIO,
+    DEFAULT_NEW_VOCAB_IMAGE_QUALITY,
+    DEFAULT_NEW_VOCAB_TARGET_DECK,
+    DEFAULT_NEW_VOCAB_TITLE,
+)
 from korean_anki.sync_media_service import MediaSyncArtifacts
 
 from korean_anki.cards import generate_note
@@ -20,6 +30,19 @@ from support import make_batch, make_item, make_transcription
 
 
 class CliTests(unittest.TestCase):
+    def test_parse_args_uses_shared_new_vocab_defaults(self) -> None:
+        with patch("sys.argv", ["korean-anki", "generate-new-vocab", "--output", "out.batch.json"]):
+            args = cli._parse_args()
+
+        self.assertEqual(args.count, DEFAULT_NEW_VOCAB_COUNT)
+        self.assertEqual(args.gap_ratio, DEFAULT_NEW_VOCAB_GAP_RATIO)
+        self.assertEqual(args.title, DEFAULT_NEW_VOCAB_TITLE)
+        self.assertEqual(args.target_deck, DEFAULT_NEW_VOCAB_TARGET_DECK)
+        self.assertEqual(args.image_quality, DEFAULT_NEW_VOCAB_IMAGE_QUALITY)
+        self.assertEqual(args.media_dir, DEFAULT_MEDIA_DIR)
+        self.assertEqual(args.anki_url, DEFAULT_ANKI_URL)
+        self.assertEqual(args.model, DEFAULT_LLM_MODEL)
+
     def test_command_build_lessons_delegates_to_application_service(self) -> None:
         args = argparse.Namespace(
             input="transcription.json",

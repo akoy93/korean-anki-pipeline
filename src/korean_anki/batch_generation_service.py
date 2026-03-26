@@ -12,6 +12,7 @@ from .media import enrich_audio, enrich_images
 from .reading_speed import build_reading_speed_document
 from .schema import CardBatch, GeneratedNote, LessonDocument, StudyState
 from .snapshot_cache import invalidate_project_snapshots
+from .settings import DEFAULT_ANKI_URL, DEFAULT_GENERATE_IMAGE_QUALITY
 from .service_support import normalize_batch_media_paths
 from .study_state import build_study_state
 
@@ -94,7 +95,7 @@ def generate_batch_from_document(
     *,
     output_path: Path,
     project_root: Path,
-    anki_url: str = "http://127.0.0.1:8765",
+    anki_url: str = DEFAULT_ANKI_URL,
     include_image_prompt: bool = False,
     normalize_media_paths_for_output: bool = True,
     on_note_generated: Callable[[GeneratedNote], None] | None = None,
@@ -121,10 +122,10 @@ def generate_batch_from_lesson_file(
     output_path: Path,
     media_dir: Path,
     project_root: Path,
-    anki_url: str = "http://127.0.0.1:8765",
+    anki_url: str = DEFAULT_ANKI_URL,
     with_audio: bool = False,
     with_images: bool = False,
-    image_quality: str = "auto",
+    image_quality: str = DEFAULT_GENERATE_IMAGE_QUALITY,
 ) -> BatchArtifacts:
     document = read_lesson(input_path)
     if with_audio:
@@ -153,7 +154,7 @@ def generate_reading_speed_batch(
     max_chunked: int,
     passage_word_count: int,
     media_dir: Path,
-    anki_url: str = "http://127.0.0.1:8765",
+    anki_url: str = DEFAULT_ANKI_URL,
     with_audio: bool = False,
 ) -> BatchArtifacts:
     state = build_study_state(project_root, anki_url=anki_url, exclude_batch_path=output_path)

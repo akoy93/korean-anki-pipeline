@@ -151,12 +151,12 @@ export async function createLessonGenerateJob(formData: FormData): Promise<JobRe
 }
 
 export async function createNewVocabJob(payload: {
-  count: number;
-  gap_ratio: number;
-  lesson_context: string | null;
-  with_audio: boolean;
-  image_quality: string;
-  target_deck: string;
+  count?: number;
+  gap_ratio?: number;
+  lesson_context?: string | null;
+  with_audio?: boolean;
+  image_quality?: string;
+  target_deck?: string;
 }): Promise<JobResponse> {
   const response = await fetch("/api/jobs/new-vocab", {
     method: "POST",

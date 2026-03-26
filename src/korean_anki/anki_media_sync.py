@@ -8,6 +8,7 @@ from .anki_note_codec import note_key_for_fields
 from .anki_queries import StoredNoteMedia, existing_model_media_index
 from .cards import refresh_generated_note
 from .schema import CardBatch, LessonDocument, LessonItem, MediaAsset
+from .settings import DEFAULT_ANKI_URL, DEFAULT_SYNC_MEDIA_SYNC_FIRST
 
 
 @dataclass(frozen=True)
@@ -66,8 +67,8 @@ def sync_lesson_media(
     document: LessonDocument,
     *,
     media_dir: Path,
-    anki_url: str = "http://127.0.0.1:8765",
-    sync_first: bool = False,
+    anki_url: str = DEFAULT_ANKI_URL,
+    sync_first: bool = DEFAULT_SYNC_MEDIA_SYNC_FIRST,
 ) -> tuple[LessonDocument, MediaSyncSummary]:
     client = AnkiConnectClient(url=anki_url)
     if sync_first:
@@ -104,8 +105,8 @@ def sync_batch_media(
     batch: CardBatch,
     *,
     media_dir: Path,
-    anki_url: str = "http://127.0.0.1:8765",
-    sync_first: bool = False,
+    anki_url: str = DEFAULT_ANKI_URL,
+    sync_first: bool = DEFAULT_SYNC_MEDIA_SYNC_FIRST,
 ) -> tuple[CardBatch, MediaSyncSummary]:
     client = AnkiConnectClient(url=anki_url)
     if sync_first:
