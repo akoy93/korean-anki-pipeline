@@ -6,7 +6,7 @@ Date: 2026-03-26
 
 The repo is in better shape than it was a few refactors ago.
 
-Six important cleanup items are already done:
+Seven important cleanup items are already done:
 
 - the preview app now uses one real backend surface in Python instead of splitting runtime behavior between Python and Vite
 - preview TypeScript contracts are now generated from `src/korean_anki/schema.py` instead of being hand-maintained separately
@@ -14,40 +14,19 @@ Six important cleanup items are already done:
 - the old `application.py` catch-all module has been removed and replaced by narrower use-case modules such as `batch_generation_service.py`, `lesson_generation_service.py`, `new_vocab_generation_service.py`, `sync_media_service.py`, `push_workflow_service.py`, and `dashboard_service.py`
 - the old Anki integration monolith has been split into `anki_client.py`, `anki_note_codec.py`, `anki_queries.py`, `anki_media_sync.py`, and `anki_push_service.py`
 - the old LLM monolith has been split into `openai_client.py`, `llm_prompts.py`, `structured_outputs.py`, `lesson_io.py`, and `llm_service.py`
+- backend job state now has an explicit local persistence boundary in `src/korean_anki/job_store.py`, with durable job snapshots under `state/jobs/` and restart-time repair of interrupted jobs
 
 Those were the right fixes. They removed multiple sources of drift that would have kept compounding.
 
-The biggest remaining architectural problems are now:
+The biggest remaining architectural problem is now:
 
-1. backend job state is still process-local and restart-fragile
-2. the custom preview type generator should stay narrow and not turn into a second API-description system
+1. the custom preview type generator should stay narrow and not turn into a second API-description system
 
-If I were continuing the cleanup, I would not jump to cosmetic file splitting first. The data-access layer is now in better shape, so the next wins are splitting the remaining wide orchestration and infrastructure modules around those newer boundaries.
+If I were continuing the cleanup, I would not jump into broad reorganizations for their own sake. The remaining architectural risk is smaller now, and it is mostly about keeping the contract-generation layer intentionally simple.
 
 ## Findings
 
-### P1. Backend job state is still in-memory and restart-fragile
-
-Evidence:
-
-- Global job state is still `_JOBS` in `src/korean_anki/jobs.py:90`.
-- Concurrency is still a process-local `ThreadPoolExecutor` in `src/korean_anki/jobs.py:92`.
-- Lifecycle entrypoints are still `job_snapshot()`, `update_job()`, and `submit_job()` in `src/korean_anki/jobs.py:95`, `src/korean_anki/jobs.py:100`, and `src/korean_anki/jobs.py:152`.
-
-Why this matters:
-
-- For a local-only tool, this is acceptable for now.
-- It is still operationally fragile:
-  - backend restarts lose job state
-  - there is no durable event log
-  - there is no recovery story for interrupted jobs
-
-What should change:
-
-- Keep the local-only model, but make job persistence an explicit subsystem.
-- Even a tiny JSON-backed job store or append-only event log would be a better boundary than hidden globals once restart semantics matter.
-
-### P2. The preview type generation is the right direction, but the generator should stay narrow
+### P1. The preview type generation is the right direction, but the generator should stay narrow
 
 Evidence:
 
@@ -70,6 +49,7 @@ What should change:
 - One backend surface in Python via `http_api.py`. That refactor was correct.
 - Generated preview types from `schema.py`. That also was correct.
 - The new preview split into `pages/`, `components/app/`, `hooks/`, and `state/`.
+- The new local job store in `job_store.py`.
 - The local-first design. This does not need to become a distributed system.
 - Pydantic as the backend schema source of truth.
 - The Playwright regression suite as a guardrail for continued cleanup.
@@ -97,6 +77,7 @@ What should change:
   - `structured_outputs.py`
   - `lesson_io.py`
   - `llm_service.py`
+  - `job_store.py`
 
 ## Recommended Target Shape
 
@@ -126,9 +107,6 @@ What should change:
   - `structured_outputs.py`
   - `lesson_io.py`
   - `llm_service.py`
-  - `batch_repository.py`
-  - `lesson_repository.py`
-  - `study_state_repository.py`
   - `job_store.py`
 - `interfaces/`
   - `cli.py`
@@ -144,18 +122,16 @@ What should change:
 
 ## Refactor Order
 
-1. Add a durable local job store if backend restarts and job recovery start mattering to your workflow.
-
-2. Keep `schema_codegen.py` narrow, or replace it with a more standard emitted contract if the preview/backend surface grows materially.
+1. Keep `schema_codegen.py` narrow, or replace it with a more standard emitted contract if the preview/backend surface grows materially.
 
 ## Bottom Line
 
 The codebase is not in bad shape. The recent refactors fixed the right things.
 
-The remaining cost is no longer “obvious drift between two frontends,” “Vite secretly acting like a backend,” “one giant infrastructure module hiding multiple concerns,” or “a single preview app file carrying the whole UI.” The remaining cost is mostly a few intentionally local operational shortcuts.
+The remaining cost is no longer “obvious drift between two frontends,” “Vite secretly acting like a backend,” “one giant infrastructure module hiding multiple concerns,” “a single preview app file carrying the whole UI,” or “job state disappearing on backend restart.” The remaining cost is now comparatively small and mostly about keeping supporting code intentionally narrow.
 
 If I had to summarize the architectural problem in one sentence:
 
-> the repo now has much better backend and frontend boundaries, but its remaining cost is a few intentionally undurable local subsystems
+> the repo now has much better backend and frontend boundaries, and its main remaining architectural risk is letting small support layers grow past their intended scope
 
 That is what I would fix next.

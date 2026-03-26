@@ -502,9 +502,9 @@ class PushServiceTests(unittest.TestCase):
                 "/api/jobs/new-vocab",
                 {"count": 20, "gap_ratio": 0.6, "lesson_context": None, "with_audio": True, "image_quality": "low"},
             )
+            finished = self._wait_for_job(base_url, str(payload["id"]))
 
         self.assertEqual(payload["kind"], "new-vocab")
-        finished = self._wait_for_job(base_url, str(payload["id"]))
         self.assertEqual(finished["status"], "succeeded")
         self.assertEqual(finished["output_paths"], ["data/generated/new-vocab.batch.json"])
 
@@ -580,9 +580,9 @@ class PushServiceTests(unittest.TestCase):
                 "/api/jobs/sync-media",
                 {"input_path": "data/samples/numbers.batch.json", "sync_first": True},
             )
+            finished = self._wait_for_job(base_url, str(payload["id"]))
 
         self.assertEqual(payload["kind"], "sync-media")
-        finished = self._wait_for_job(base_url, str(payload["id"]))
         self.assertEqual(finished["status"], "succeeded")
         self.assertEqual(finished["output_paths"], ["data/generated/sample.synced.batch.json"])
 
@@ -721,9 +721,9 @@ class PushServiceTests(unittest.TestCase):
         ):
             with urllib.request.urlopen(request, timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
+            finished = self._wait_for_job(base_url, str(payload["id"]))
 
         self.assertEqual(payload["kind"], "lesson-generate")
-        finished = self._wait_for_job(base_url, str(payload["id"]))
         self.assertEqual(finished["status"], "succeeded")
         self.assertEqual(
             finished["output_paths"],

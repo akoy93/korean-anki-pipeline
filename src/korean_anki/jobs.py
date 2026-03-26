@@ -9,8 +9,8 @@ from email.policy import default
 from io import BytesIO
 from pathlib import Path
 import threading
-import uuid
 
+from .job_store import JobStore
 from . import path_policy
 from .lesson_generation_service import generate_lesson_batches_from_sources
 from .new_vocab_generation_service import generate_new_vocab_batch
@@ -90,15 +90,23 @@ class MultipartForm:
 
         return cls(fields)
 
-
-_JOBS: dict[str, JobResponse] = {}
-_JOBS_LOCK = threading.Lock()
+_JOB_STORES: dict[Path, JobStore] = {}
+_JOB_STORES_LOCK = threading.Lock()
 _EXECUTOR = ThreadPoolExecutor(max_workers=2)
 
 
+def _job_store() -> JobStore:
+    project_root = path_policy.project_root().resolve()
+    with _JOB_STORES_LOCK:
+        store = _JOB_STORES.get(project_root)
+        if store is None:
+            store = JobStore(path_policy.job_state_root(project_root_path=project_root))
+            _JOB_STORES[project_root] = store
+        return store
+
+
 def job_snapshot(job_id: str) -> JobResponse:
-    with _JOBS_LOCK:
-        return _JOBS[job_id]
+    return _job_store().get(job_id)
 
 
 def update_job(
@@ -112,36 +120,20 @@ def update_job(
     progress_total: int | None = None,
     progress_label: str | None = None,
 ) -> None:
-    with _JOBS_LOCK:
-        current = _JOBS[job_id]
-        logs = [*current.logs]
-        if log is not None:
-            logs.append(log)
-        _JOBS[job_id] = current.model_copy(
-            update={
-                "status": status or current.status,
-                "logs": logs,
-                "error": error if error is not None else current.error,
-                "output_paths": output_paths if output_paths is not None else current.output_paths,
-                "progress_current": progress_current if progress_current is not None else current.progress_current,
-                "progress_total": progress_total if progress_total is not None else current.progress_total,
-                "progress_label": progress_label if progress_label is not None else current.progress_label,
-                "updated_at": datetime.now(),
-            }
-        )
+    _job_store().update(
+        job_id,
+        status=status,
+        log=log,
+        error=error,
+        output_paths=output_paths,
+        progress_current=progress_current,
+        progress_total=progress_total,
+        progress_label=progress_label,
+    )
 
 
 def _create_job(kind: str) -> JobResponse:
-    job = JobResponse(
-        id=uuid.uuid4().hex,
-        kind=kind,
-        status="queued",
-        created_at=datetime.now(),
-        updated_at=datetime.now(),
-    )
-    with _JOBS_LOCK:
-        _JOBS[job.id] = job
-    return job
+    return _job_store().create(kind)
 
 
 def _run_job(job_id: str, run: Callable[[str], list[str]]) -> None:

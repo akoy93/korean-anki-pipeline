@@ -14,6 +14,11 @@ def media_root(*, project_root_path: Path | None = None) -> Path:
     return (root / "data" / "media").resolve()
 
 
+def job_state_root(*, project_root_path: Path | None = None) -> Path:
+    root = (project_root_path or project_root()).resolve()
+    return (root / "state" / "jobs").resolve()
+
+
 def resolve_project_path(relative_path: str, *, project_root_path: Path | None = None) -> Path:
     if Path(relative_path).is_absolute():
         raise ValueError("Use a project-relative path.")
