@@ -71,7 +71,7 @@ class PushServiceTests(unittest.TestCase):
         self.addCleanup(self._stop_server, server, thread)
 
         with patch(
-            "korean_anki.push_service._service_status",
+            "korean_anki.dashboard_service.service_status",
             return_value=ServiceStatus(
                 backend_ok=True,
                 anki_connect_ok=True,
@@ -188,7 +188,7 @@ class PushServiceTests(unittest.TestCase):
         self.addCleanup(self._stop_server, server, thread)
 
         with (
-            patch("korean_anki.push_service._project_root", return_value=project_root.resolve()),
+            patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
             patch("korean_anki.application.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
             patch("korean_anki.application.existing_model_note_keys", return_value=set()),
         ):
@@ -249,7 +249,7 @@ class PushServiceTests(unittest.TestCase):
         self.addCleanup(self._stop_server, server, thread)
 
         with (
-            patch("korean_anki.push_service._project_root", return_value=project_root.resolve()),
+            patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
             patch("korean_anki.application.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
             patch("korean_anki.application.existing_model_note_keys", return_value=set()),
         ):
@@ -297,7 +297,7 @@ class PushServiceTests(unittest.TestCase):
         self.addCleanup(self._stop_server, server, thread)
 
         with (
-            patch("korean_anki.push_service._project_root", return_value=project_root.resolve()),
+            patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
             patch("korean_anki.application.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
             patch("korean_anki.application.existing_model_note_keys", return_value={batch.notes[0].note_key}),
         ):
@@ -434,7 +434,7 @@ class PushServiceTests(unittest.TestCase):
         server, base_url, thread = self._start_server()
         self.addCleanup(self._stop_server, server, thread)
 
-        with patch("korean_anki.push_service._new_vocab_job", return_value=["data/generated/new-vocab.batch.json"]):
+        with patch("korean_anki.jobs.new_vocab_job", return_value=["data/generated/new-vocab.batch.json"]):
             payload = self._post_json(
                 base_url,
                 "/api/jobs/new-vocab",
@@ -468,8 +468,8 @@ class PushServiceTests(unittest.TestCase):
         )
 
         with (
-            patch("korean_anki.push_service._project_root", return_value=project_root),
-            patch("korean_anki.push_service._update_job"),
+            patch("korean_anki.path_policy.project_root", return_value=project_root),
+            patch("korean_anki.jobs.update_job"),
             patch(
                 "korean_anki.application.build_study_state",
                 return_value=StudyState(anki_stats=AnkiStatsSnapshot()),
@@ -514,7 +514,7 @@ class PushServiceTests(unittest.TestCase):
         server, base_url, thread = self._start_server()
         self.addCleanup(self._stop_server, server, thread)
 
-        with patch("korean_anki.push_service._sync_media_job", return_value=["data/generated/sample.synced.batch.json"]):
+        with patch("korean_anki.jobs.sync_media_job", return_value=["data/generated/sample.synced.batch.json"]):
             payload = self._post_json(
                 base_url,
                 "/api/jobs/sync-media",
@@ -569,7 +569,7 @@ class PushServiceTests(unittest.TestCase):
         self.addCleanup(self._stop_server, server, thread)
 
         with (
-            patch("korean_anki.push_service._project_root", return_value=project_root.resolve()),
+            patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
             patch("korean_anki.application.existing_model_note_keys", return_value=set()),
         ):
             payload = self._post_json(
@@ -609,7 +609,7 @@ class PushServiceTests(unittest.TestCase):
         self.addCleanup(self._stop_server, server, thread)
 
         with (
-            patch("korean_anki.push_service._project_root", return_value=project_root.resolve()),
+            patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
             patch("korean_anki.application.existing_model_note_keys", return_value={batch.notes[0].note_key}),
         ):
             with self.assertRaises(urllib.error.HTTPError) as context:
@@ -652,7 +652,7 @@ class PushServiceTests(unittest.TestCase):
         )
 
         with patch(
-            "korean_anki.push_service._lesson_generate_job",
+            "korean_anki.jobs.lesson_generate_job",
             return_value=["lessons/2026-03-24-numbers/generated/section.batch.json"],
         ):
             with urllib.request.urlopen(request, timeout=5) as response:

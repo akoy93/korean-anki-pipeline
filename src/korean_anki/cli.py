@@ -16,8 +16,8 @@ from .application import (
     handle_push_request,
     sync_media_file,
 )
+from .http_api import run_server
 from .llm import extract_lesson, read_transcription, transcribe_sources, write_json
-from .push_service import run_server
 from .schema import CardBatch, ExtractionRequest, PushRequest, RawSourceAsset
 from .stages import qa_transcription
 

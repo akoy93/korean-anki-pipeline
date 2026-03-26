@@ -8,44 +8,14 @@ The repo is still in a good place to refactor, but it has crossed the point wher
 
 The biggest remaining problems are:
 
-1. too much backend behavior is concentrated in a few oversized modules
-2. runtime behavior is still split between the Python backend and Vite middleware
+1. runtime behavior is still split between the Python backend and Vite middleware
+2. backend and frontend contracts are still duplicated manually
 
-Those choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would not start with cosmetic file-splitting. I would first split the service/backend boundaries more cleanly.
+Those choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would not start with cosmetic file-splitting. I would first consolidate the runtime backend surface.
 
 ## Findings
 
-### P1. `push_service.py` is carrying too many responsibilities
-
-Evidence:
-
-- Path/security helpers start at `src/korean_anki/push_service.py:139`.
-- Dashboard assembly is in `src/korean_anki/push_service.py:395`.
-- Job registry and scheduling are in `src/korean_anki/push_service.py:503` through `src/korean_anki/push_service.py:562`.
-- Lesson/new-vocab/sync job implementations are in `src/korean_anki/push_service.py:590`, `src/korean_anki/push_service.py:665`, and `src/korean_anki/push_service.py:732`.
-- HTTP transport starts at `src/korean_anki/push_service.py:769`.
-
-Why this matters:
-
-- This file is simultaneously:
-  - a request parser
-  - a router
-  - a job queue
-  - a dashboard aggregator
-  - a filesystem policy module
-  - an orchestration layer
-- That is why changes in the preview backend tend to feel “fragile.”
-
-What should change:
-
-- Split it into at least:
-  - `http_api.py` or `server.py` for transport
-  - `jobs.py` for job lifecycle and polling
-  - `dashboard_service.py`
-  - `batch_service.py`
-  - `path_policy.py`
-
-### P2. Runtime behavior is split between the Python backend and Vite middleware
+### P1. Runtime behavior is split between the Python backend and Vite middleware
 
 Evidence:
 
@@ -64,7 +34,7 @@ What should change:
 - Keep Vite as a frontend dev server only.
 - If you want a frontend-side convenience proxy in development, make it a proxy only, not a second backend.
 
-### P2. Backend and frontend contracts are duplicated manually
+### P1. Backend and frontend contracts are duplicated manually
 
 Evidence:
 
@@ -89,7 +59,7 @@ Evidence:
 - The home page polls dashboard state every 5 seconds in `preview/src/App.tsx:1004`.
 - Batch pages fetch both batch and dashboard together in `preview/src/App.tsx:1821`.
 - Job polling happens again in `preview/src/App.tsx:1855` and `preview/src/App.tsx:2541`.
-- `_dashboard_response()` scans files and makes several AnkiConnect calls in `src/korean_anki/push_service.py:395`, with repeated `findNotes`, `findCards`, `deckNames`, and `existing_model_note_keys()` calls at `src/korean_anki/push_service.py:424`, `src/korean_anki/push_service.py:427`, `src/korean_anki/push_service.py:430`, and `src/korean_anki/push_service.py:438`.
+- `dashboard_response()` still delegates to a full rebuild of dashboard state via `src/korean_anki/dashboard_service.py` into `src/korean_anki/application.py`, which scans batch files and makes several AnkiConnect calls.
 
 Why this matters:
 
@@ -222,8 +192,8 @@ What should change:
 
 Evidence:
 
-- In-memory global job state lives in `src/korean_anki/push_service.py:57` through `src/korean_anki/push_service.py:59`.
-- Job lifecycle is built on `_JOBS` plus a threadpool at `src/korean_anki/push_service.py:503`, `src/korean_anki/push_service.py:546`, and `src/korean_anki/push_service.py:562`.
+- In-memory global job state now lives in `src/korean_anki/jobs.py`.
+- Job lifecycle is still built on `_JOBS` plus a threadpool inside `src/korean_anki/jobs.py`.
 
 Why this matters:
 
@@ -287,15 +257,13 @@ What should change:
 
 ## Refactor Order
 
-1. Split `push_service.py` into transport, dashboard, jobs, and orchestration modules.
+1. Move Vite-only backend behavior into Python so the app has one backend surface.
 
-2. Move Vite-only backend behavior into Python so the app has one backend surface.
+2. Generate TypeScript API types from backend schema.
 
-3. Generate TypeScript API types from backend schema.
+3. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
 
-4. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
-
-5. Only after that, split `preview/src/App.tsx`.
+4. Only after that, split `preview/src/App.tsx`.
    If you do this first, you will mostly just spread the existing coupling across more files.
 
 ## Bottom Line
@@ -304,6 +272,6 @@ The codebase is not in bad shape, but it is at the exact point where further fea
 
 If I had to summarize the architectural problem in one sentence:
 
-> the repo has good domain concepts, but too much backend responsibility is concentrated in a few modules and too much runtime behavior is split across backend surfaces
+> the repo has good domain concepts, but too much runtime behavior is split across backend surfaces and too much shared contract/state shape is maintained twice
 
 That is what I would fix first.

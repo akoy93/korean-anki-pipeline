@@ -1,0 +1,1636 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "new-vocab-2026-03-26-110847",
+    "title": "Weather Basics",
+    "topic": "New Vocab",
+    "lesson_date": "2026-03-26",
+    "source_description": "Supplemental A1 vocab selected from coverage gaps",
+    "target_deck": "Korean::New Vocab",
+    "tags": [
+      "new-vocab"
+    ]
+  },
+  "notes": [
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-001",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "가을",
+        "english": "autumn",
+        "pronunciation": "ga-eul",
+        "examples": [
+          {
+            "korean": "가을은 선선해요.",
+            "english": "Autumn is pleasantly cool."
+          }
+        ],
+        "notes": "Coverage gap: weather. High-utility season word used constantly with weather descriptions.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of autumn in Korea with colorful leaves in a contemporary neighborhood park path, Korean adults walking naturally, crisp air feeling, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-001.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-001.png",
+          "prompt": "Polished digital illustration of autumn in Korea with colorful leaves in a contemporary neighborhood park path, Korean adults walking naturally, crisp air feeling, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-001-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-001",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>가을</div>",
+          "back_html": "<div class='answer answer-en'>autumn</div><div class='answer answer-ko'>가을</div><div class='pronunciation'>ga-eul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가을은 선선해요.</div><div class='example-en'>Autumn is pleasantly cool.</div></li></ul></section><div class='notes'>Coverage gap: weather. High-utility season word used constantly with weather descriptions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-001.png' alt='autumn' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-001-production",
+          "item_id": "new-vocab-2026-03-26-110847-001",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>autumn</div>",
+          "back_html": "<div class='answer answer-ko'>가을</div><div class='answer answer-en'>autumn</div><div class='pronunciation'>ga-eul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가을은 선선해요.</div><div class='example-en'>Autumn is pleasantly cool.</div></li></ul></section><div class='notes'>Coverage gap: weather. High-utility season word used constantly with weather descriptions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-001.png' alt='autumn' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-001-listening",
+          "item_id": "new-vocab-2026-03-26-110847-001",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-001.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>가을</div><div class='answer answer-en'>autumn</div><div class='pronunciation'>ga-eul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가을은 선선해요.</div><div class='example-en'>Autumn is pleasantly cool.</div></li></ul></section><div class='notes'>Coverage gap: weather. High-utility season word used constantly with weather descriptions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-001.png' alt='autumn' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-001.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:가을:autumn",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-002",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "개다",
+        "english": "to clear up",
+        "pronunciation": "gae-da",
+        "examples": [
+          {
+            "korean": "곧 하늘이 개어요.",
+            "english": "The sky will clear up soon."
+          }
+        ],
+        "notes": "Coverage gap: weather. Useful weather-change verb often heard after rain.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of storm clouds opening to reveal blue sky over a Korean city after rain, sunlight breaking through, optimistic mood, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-002.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-002.png",
+          "prompt": "Polished digital illustration of storm clouds opening to reveal blue sky over a Korean city after rain, sunlight breaking through, optimistic mood, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-002-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-002",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>개다</div>",
+          "back_html": "<div class='answer answer-en'>to clear up</div><div class='answer answer-ko'>개다</div><div class='pronunciation'>gae-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>곧 하늘이 개어요.</div><div class='example-en'>The sky will clear up soon.</div></li></ul></section><div class='notes'>Coverage gap: weather. Useful weather-change verb often heard after rain.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-002.png' alt='to clear up' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-002-production",
+          "item_id": "new-vocab-2026-03-26-110847-002",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>to clear up</div>",
+          "back_html": "<div class='answer answer-ko'>개다</div><div class='answer answer-en'>to clear up</div><div class='pronunciation'>gae-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>곧 하늘이 개어요.</div><div class='example-en'>The sky will clear up soon.</div></li></ul></section><div class='notes'>Coverage gap: weather. Useful weather-change verb often heard after rain.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-002.png' alt='to clear up' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-002-listening",
+          "item_id": "new-vocab-2026-03-26-110847-002",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-002.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>개다</div><div class='answer answer-en'>to clear up</div><div class='pronunciation'>gae-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>곧 하늘이 개어요.</div><div class='example-en'>The sky will clear up soon.</div></li></ul></section><div class='notes'>Coverage gap: weather. Useful weather-change verb often heard after rain.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-002.png' alt='to clear up' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-002.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:개다:to clear up",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-003",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "건조하다",
+        "english": "to be dry",
+        "pronunciation": "geon-jo-ha-da",
+        "examples": [
+          {
+            "korean": "공기가 건조해요.",
+            "english": "The air is dry."
+          }
+        ],
+        "notes": "Coverage gap: weather. Common basic weather adjective, especially useful in winter and indoor talk.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of a dry winter day in Korea with clear pale sky, bare branches and crisp air, modern residential surroundings, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-003.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-003.png",
+          "prompt": "Polished digital illustration of a dry winter day in Korea with clear pale sky, bare branches and crisp air, modern residential surroundings, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-003-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-003",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>건조하다</div>",
+          "back_html": "<div class='answer answer-en'>to be dry</div><div class='answer answer-ko'>건조하다</div><div class='pronunciation'>geon-jo-ha-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>공기가 건조해요.</div><div class='example-en'>The air is dry.</div></li></ul></section><div class='notes'>Coverage gap: weather. Common basic weather adjective, especially useful in winter and indoor talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-003.png' alt='to be dry' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-003-production",
+          "item_id": "new-vocab-2026-03-26-110847-003",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>to be dry</div>",
+          "back_html": "<div class='answer answer-ko'>건조하다</div><div class='answer answer-en'>to be dry</div><div class='pronunciation'>geon-jo-ha-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>공기가 건조해요.</div><div class='example-en'>The air is dry.</div></li></ul></section><div class='notes'>Coverage gap: weather. Common basic weather adjective, especially useful in winter and indoor talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-003.png' alt='to be dry' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-003-listening",
+          "item_id": "new-vocab-2026-03-26-110847-003",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-003.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>건조하다</div><div class='answer answer-en'>to be dry</div><div class='pronunciation'>geon-jo-ha-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>공기가 건조해요.</div><div class='example-en'>The air is dry.</div></li></ul></section><div class='notes'>Coverage gap: weather. Common basic weather adjective, especially useful in winter and indoor talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-003.png' alt='to be dry' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-003.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:건조하다:to be dry",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-004",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "겨울",
+        "english": "winter",
+        "pronunciation": "gyeo-ul",
+        "examples": [
+          {
+            "korean": "겨울은 추워요.",
+            "english": "Winter is cold."
+          }
+        ],
+        "notes": "Coverage gap: weather. Basic season term necessary for weather and daily planning talk.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of winter in a modern Korean residential area, bare trees, bundled Korean adults, pale cold light and light snow on the ground, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-004.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-004.png",
+          "prompt": "Polished digital illustration of winter in a modern Korean residential area, bare trees, bundled Korean adults, pale cold light and light snow on the ground, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-004-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-004",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>겨울</div>",
+          "back_html": "<div class='answer answer-en'>winter</div><div class='answer answer-ko'>겨울</div><div class='pronunciation'>gyeo-ul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>겨울은 추워요.</div><div class='example-en'>Winter is cold.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic season term necessary for weather and daily planning talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-004.png' alt='winter' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-004-production",
+          "item_id": "new-vocab-2026-03-26-110847-004",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>winter</div>",
+          "back_html": "<div class='answer answer-ko'>겨울</div><div class='answer answer-en'>winter</div><div class='pronunciation'>gyeo-ul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>겨울은 추워요.</div><div class='example-en'>Winter is cold.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic season term necessary for weather and daily planning talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-004.png' alt='winter' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-004-listening",
+          "item_id": "new-vocab-2026-03-26-110847-004",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-004.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>겨울</div><div class='answer answer-en'>winter</div><div class='pronunciation'>gyeo-ul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>겨울은 추워요.</div><div class='example-en'>Winter is cold.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic season term necessary for weather and daily planning talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-004.png' alt='winter' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-004.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:겨울:winter",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-005",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "구름",
+        "english": "cloud",
+        "pronunciation": "gu-reum",
+        "examples": [
+          {
+            "korean": "구름이 많아요.",
+            "english": "There are many clouds."
+          }
+        ],
+        "notes": "Coverage gap: weather. Basic weather noun that supports simple descriptions of the sky.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of large soft clouds over Seoul rooftops and distant hills, bright atmospheric perspective, clean contemporary scene, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-005.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-005.png",
+          "prompt": "Polished digital illustration of large soft clouds over Seoul rooftops and distant hills, bright atmospheric perspective, clean contemporary scene, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-005-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-005",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>구름</div>",
+          "back_html": "<div class='answer answer-en'>cloud</div><div class='answer answer-ko'>구름</div><div class='pronunciation'>gu-reum</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>구름이 많아요.</div><div class='example-en'>There are many clouds.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic weather noun that supports simple descriptions of the sky.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-005.png' alt='cloud' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-005-production",
+          "item_id": "new-vocab-2026-03-26-110847-005",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>cloud</div>",
+          "back_html": "<div class='answer answer-ko'>구름</div><div class='answer answer-en'>cloud</div><div class='pronunciation'>gu-reum</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>구름이 많아요.</div><div class='example-en'>There are many clouds.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic weather noun that supports simple descriptions of the sky.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-005.png' alt='cloud' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-005-listening",
+          "item_id": "new-vocab-2026-03-26-110847-005",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-005.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>구름</div><div class='answer answer-en'>cloud</div><div class='pronunciation'>gu-reum</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>구름이 많아요.</div><div class='example-en'>There are many clouds.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic weather noun that supports simple descriptions of the sky.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-005.png' alt='cloud' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-005.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:구름:cloud",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-006",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "날씨",
+        "english": "weather",
+        "pronunciation": "nal-ssi",
+        "examples": [
+          {
+            "korean": "날씨가 좋아요.",
+            "english": "The weather is nice."
+          }
+        ],
+        "notes": "Coverage gap: weather. Core beginner weather noun used every day to ask and talk about conditions.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of a contemporary Seoul neighborhood under pleasant balanced weather, blue sky with a few clouds, clean streets and modern buildings, warm natural lighting, engaging for an adult learner, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-006.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-006.png",
+          "prompt": "Polished digital illustration of a contemporary Seoul neighborhood under pleasant balanced weather, blue sky with a few clouds, clean streets and modern buildings, warm natural lighting, engaging for an adult learner, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-006-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-006",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>날씨</div>",
+          "back_html": "<div class='answer answer-en'>weather</div><div class='answer answer-ko'>날씨</div><div class='pronunciation'>nal-ssi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>날씨가 좋아요.</div><div class='example-en'>The weather is nice.</div></li></ul></section><div class='notes'>Coverage gap: weather. Core beginner weather noun used every day to ask and talk about conditions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-006.png' alt='weather' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-006-production",
+          "item_id": "new-vocab-2026-03-26-110847-006",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>weather</div>",
+          "back_html": "<div class='answer answer-ko'>날씨</div><div class='answer answer-en'>weather</div><div class='pronunciation'>nal-ssi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>날씨가 좋아요.</div><div class='example-en'>The weather is nice.</div></li></ul></section><div class='notes'>Coverage gap: weather. Core beginner weather noun used every day to ask and talk about conditions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-006.png' alt='weather' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-006-listening",
+          "item_id": "new-vocab-2026-03-26-110847-006",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-006.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>날씨</div><div class='answer answer-en'>weather</div><div class='pronunciation'>nal-ssi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>날씨가 좋아요.</div><div class='example-en'>The weather is nice.</div></li></ul></section><div class='notes'>Coverage gap: weather. Core beginner weather noun used every day to ask and talk about conditions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-006.png' alt='weather' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-006.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:날씨:weather",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-007",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "녹다",
+        "english": "to melt",
+        "pronunciation": "nok-da",
+        "examples": [
+          {
+            "korean": "얼음이 녹아요.",
+            "english": "The ice melts."
+          }
+        ],
+        "notes": "Coverage gap: weather. Common opposite of 얼다, useful for changing weather conditions.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of ice melting under sunlight in a Korean neighborhood, small droplets and reflective puddles, natural seasonal transition, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-007.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-007.png",
+          "prompt": "Polished digital illustration of ice melting under sunlight in a Korean neighborhood, small droplets and reflective puddles, natural seasonal transition, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-007-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-007",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>녹다</div>",
+          "back_html": "<div class='answer answer-en'>to melt</div><div class='answer answer-ko'>녹다</div><div class='pronunciation'>nok-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>얼음이 녹아요.</div><div class='example-en'>The ice melts.</div></li></ul></section><div class='notes'>Coverage gap: weather. Common opposite of 얼다, useful for changing weather conditions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-007.png' alt='to melt' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-007-production",
+          "item_id": "new-vocab-2026-03-26-110847-007",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>to melt</div>",
+          "back_html": "<div class='answer answer-ko'>녹다</div><div class='answer answer-en'>to melt</div><div class='pronunciation'>nok-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>얼음이 녹아요.</div><div class='example-en'>The ice melts.</div></li></ul></section><div class='notes'>Coverage gap: weather. Common opposite of 얼다, useful for changing weather conditions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-007.png' alt='to melt' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-007-listening",
+          "item_id": "new-vocab-2026-03-26-110847-007",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-007.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>녹다</div><div class='answer answer-en'>to melt</div><div class='pronunciation'>nok-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>얼음이 녹아요.</div><div class='example-en'>The ice melts.</div></li></ul></section><div class='notes'>Coverage gap: weather. Common opposite of 얼다, useful for changing weather conditions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-007.png' alt='to melt' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-007.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:녹다:to melt",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-008",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "눈",
+        "english": "snow",
+        "pronunciation": "nun",
+        "examples": [
+          {
+            "korean": "눈이 와요.",
+            "english": "It's snowing."
+          }
+        ],
+        "notes": "Coverage gap: weather. High-frequency basic weather noun, especially useful in winter talk.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of soft snow falling in a contemporary Korean apartment neighborhood, parked cars and bare trees dusted with snow, calm winter mood, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-008.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-008.png",
+          "prompt": "Polished digital illustration of soft snow falling in a contemporary Korean apartment neighborhood, parked cars and bare trees dusted with snow, calm winter mood, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-008-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-008",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>눈</div>",
+          "back_html": "<div class='answer answer-en'>snow</div><div class='answer answer-ko'>눈</div><div class='pronunciation'>nun</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>눈이 와요.</div><div class='example-en'>It&#x27;s snowing.</div></li></ul></section><div class='notes'>Coverage gap: weather. High-frequency basic weather noun, especially useful in winter talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-008.png' alt='snow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-008-production",
+          "item_id": "new-vocab-2026-03-26-110847-008",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>snow</div>",
+          "back_html": "<div class='answer answer-ko'>눈</div><div class='answer answer-en'>snow</div><div class='pronunciation'>nun</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>눈이 와요.</div><div class='example-en'>It&#x27;s snowing.</div></li></ul></section><div class='notes'>Coverage gap: weather. High-frequency basic weather noun, especially useful in winter talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-008.png' alt='snow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-008-listening",
+          "item_id": "new-vocab-2026-03-26-110847-008",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-008.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>눈</div><div class='answer answer-en'>snow</div><div class='pronunciation'>nun</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>눈이 와요.</div><div class='example-en'>It&#x27;s snowing.</div></li></ul></section><div class='notes'>Coverage gap: weather. High-frequency basic weather noun, especially useful in winter talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-008.png' alt='snow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-008.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:눈:snow",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-009",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "눈사람",
+        "english": "snowman",
+        "pronunciation": "nun-sa-ram",
+        "examples": [
+          {
+            "korean": "눈사람이 커요.",
+            "english": "The snowman is big."
+          }
+        ],
+        "notes": "Coverage gap: weather. Beginner-friendly winter word that is easy to visualize and remember.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of a large snowman in a Korean apartment courtyard after snowfall, soft winter light and contemporary surroundings, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-009.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-009.png",
+          "prompt": "Polished digital illustration of a large snowman in a Korean apartment courtyard after snowfall, soft winter light and contemporary surroundings, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-009-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-009",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>눈사람</div>",
+          "back_html": "<div class='answer answer-en'>snowman</div><div class='answer answer-ko'>눈사람</div><div class='pronunciation'>nun-sa-ram</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>눈사람이 커요.</div><div class='example-en'>The snowman is big.</div></li></ul></section><div class='notes'>Coverage gap: weather. Beginner-friendly winter word that is easy to visualize and remember.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-009.png' alt='snowman' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-009-production",
+          "item_id": "new-vocab-2026-03-26-110847-009",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>snowman</div>",
+          "back_html": "<div class='answer answer-ko'>눈사람</div><div class='answer answer-en'>snowman</div><div class='pronunciation'>nun-sa-ram</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>눈사람이 커요.</div><div class='example-en'>The snowman is big.</div></li></ul></section><div class='notes'>Coverage gap: weather. Beginner-friendly winter word that is easy to visualize and remember.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-009.png' alt='snowman' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-009-listening",
+          "item_id": "new-vocab-2026-03-26-110847-009",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-009.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>눈사람</div><div class='answer answer-en'>snowman</div><div class='pronunciation'>nun-sa-ram</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>눈사람이 커요.</div><div class='example-en'>The snowman is big.</div></li></ul></section><div class='notes'>Coverage gap: weather. Beginner-friendly winter word that is easy to visualize and remember.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-009.png' alt='snowman' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-009.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:눈사람:snowman",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-010",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "눈송이",
+        "english": "snowflake",
+        "pronunciation": "nun-song-i",
+        "examples": [
+          {
+            "korean": "눈송이가 예뻐요.",
+            "english": "Snowflakes are pretty."
+          }
+        ],
+        "notes": "Coverage gap: weather. Useful basic snow vocabulary that supports rich but simple weather description.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of delicate snowflakes falling close to view over a Korean city scene, detailed crystalline shapes and soft background blur, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-010.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-010.png",
+          "prompt": "Polished digital illustration of delicate snowflakes falling close to view over a Korean city scene, detailed crystalline shapes and soft background blur, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-010-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-010",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>눈송이</div>",
+          "back_html": "<div class='answer answer-en'>snowflake</div><div class='answer answer-ko'>눈송이</div><div class='pronunciation'>nun-song-i</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>눈송이가 예뻐요.</div><div class='example-en'>Snowflakes are pretty.</div></li></ul></section><div class='notes'>Coverage gap: weather. Useful basic snow vocabulary that supports rich but simple weather description.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-010.png' alt='snowflake' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-010-production",
+          "item_id": "new-vocab-2026-03-26-110847-010",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>snowflake</div>",
+          "back_html": "<div class='answer answer-ko'>눈송이</div><div class='answer answer-en'>snowflake</div><div class='pronunciation'>nun-song-i</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>눈송이가 예뻐요.</div><div class='example-en'>Snowflakes are pretty.</div></li></ul></section><div class='notes'>Coverage gap: weather. Useful basic snow vocabulary that supports rich but simple weather description.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-010.png' alt='snowflake' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-010-listening",
+          "item_id": "new-vocab-2026-03-26-110847-010",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-010.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>눈송이</div><div class='answer answer-en'>snowflake</div><div class='pronunciation'>nun-song-i</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>눈송이가 예뻐요.</div><div class='example-en'>Snowflakes are pretty.</div></li></ul></section><div class='notes'>Coverage gap: weather. Useful basic snow vocabulary that supports rich but simple weather description.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-010.png' alt='snowflake' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-010.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:눈송이:snowflake",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-011",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "덥다",
+        "english": "to be hot",
+        "pronunciation": "deop-da",
+        "examples": [
+          {
+            "korean": "교실이 더워요.",
+            "english": "The classroom is hot."
+          }
+        ],
+        "notes": "Coverage gap: weather. Essential opposite of 춥다 and very common in daily weather talk.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of a warm classroom in Korea with sunlight streaming in and a Korean adult fanning themselves lightly, modern setting, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-011.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-011.png",
+          "prompt": "Polished digital illustration of a warm classroom in Korea with sunlight streaming in and a Korean adult fanning themselves lightly, modern setting, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-011-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-011",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>덥다</div>",
+          "back_html": "<div class='answer answer-en'>to be hot</div><div class='answer answer-ko'>덥다</div><div class='pronunciation'>deop-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>교실이 더워요.</div><div class='example-en'>The classroom is hot.</div></li></ul></section><div class='notes'>Coverage gap: weather. Essential opposite of 춥다 and very common in daily weather talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-011.png' alt='to be hot' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-011-production",
+          "item_id": "new-vocab-2026-03-26-110847-011",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>to be hot</div>",
+          "back_html": "<div class='answer answer-ko'>덥다</div><div class='answer answer-en'>to be hot</div><div class='pronunciation'>deop-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>교실이 더워요.</div><div class='example-en'>The classroom is hot.</div></li></ul></section><div class='notes'>Coverage gap: weather. Essential opposite of 춥다 and very common in daily weather talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-011.png' alt='to be hot' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-011-listening",
+          "item_id": "new-vocab-2026-03-26-110847-011",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-011.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>덥다</div><div class='answer answer-en'>to be hot</div><div class='pronunciation'>deop-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>교실이 더워요.</div><div class='example-en'>The classroom is hot.</div></li></ul></section><div class='notes'>Coverage gap: weather. Essential opposite of 춥다 and very common in daily weather talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-011.png' alt='to be hot' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-011.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:덥다:to be hot",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-012",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "따뜻하다",
+        "english": "to be warm",
+        "pronunciation": "tta-tteut-ha-da",
+        "examples": [
+          {
+            "korean": "방이 따뜻해요.",
+            "english": "The room is warm."
+          }
+        ],
+        "notes": "Coverage gap: weather. Very common beginner adjective for mild weather and comfortable temperature.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of a cozy warm Korean room with soft lighting and a window showing mild weather outside, inviting adult-learning style, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-012.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-012.png",
+          "prompt": "Polished digital illustration of a cozy warm Korean room with soft lighting and a window showing mild weather outside, inviting adult-learning style, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-012-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-012",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>따뜻하다</div>",
+          "back_html": "<div class='answer answer-en'>to be warm</div><div class='answer answer-ko'>따뜻하다</div><div class='pronunciation'>tta-tteut-ha-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>방이 따뜻해요.</div><div class='example-en'>The room is warm.</div></li></ul></section><div class='notes'>Coverage gap: weather. Very common beginner adjective for mild weather and comfortable temperature.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-012.png' alt='to be warm' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-012-production",
+          "item_id": "new-vocab-2026-03-26-110847-012",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>to be warm</div>",
+          "back_html": "<div class='answer answer-ko'>따뜻하다</div><div class='answer answer-en'>to be warm</div><div class='pronunciation'>tta-tteut-ha-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>방이 따뜻해요.</div><div class='example-en'>The room is warm.</div></li></ul></section><div class='notes'>Coverage gap: weather. Very common beginner adjective for mild weather and comfortable temperature.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-012.png' alt='to be warm' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-012-listening",
+          "item_id": "new-vocab-2026-03-26-110847-012",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-012.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>따뜻하다</div><div class='answer answer-en'>to be warm</div><div class='pronunciation'>tta-tteut-ha-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>방이 따뜻해요.</div><div class='example-en'>The room is warm.</div></li></ul></section><div class='notes'>Coverage gap: weather. Very common beginner adjective for mild weather and comfortable temperature.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-012.png' alt='to be warm' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-012.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:따뜻하다:to be warm",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-013",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "맑다",
+        "english": "to be clear",
+        "pronunciation": "mak-da",
+        "examples": [
+          {
+            "korean": "하늘이 맑아요.",
+            "english": "The sky is clear."
+          }
+        ],
+        "notes": "Coverage gap: weather. Basic adjective for good weather and clear skies.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of a crystal-clear day over Seoul with vivid blue sky and sharp sunlight, clean modern city details, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-013.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-013.png",
+          "prompt": "Polished digital illustration of a crystal-clear day over Seoul with vivid blue sky and sharp sunlight, clean modern city details, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-013-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-013",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>맑다</div>",
+          "back_html": "<div class='answer answer-en'>to be clear</div><div class='answer answer-ko'>맑다</div><div class='pronunciation'>mak-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>하늘이 맑아요.</div><div class='example-en'>The sky is clear.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic adjective for good weather and clear skies.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-013.png' alt='to be clear' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-013-production",
+          "item_id": "new-vocab-2026-03-26-110847-013",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>to be clear</div>",
+          "back_html": "<div class='answer answer-ko'>맑다</div><div class='answer answer-en'>to be clear</div><div class='pronunciation'>mak-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>하늘이 맑아요.</div><div class='example-en'>The sky is clear.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic adjective for good weather and clear skies.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-013.png' alt='to be clear' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-013-listening",
+          "item_id": "new-vocab-2026-03-26-110847-013",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-013.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>맑다</div><div class='answer answer-en'>to be clear</div><div class='pronunciation'>mak-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>하늘이 맑아요.</div><div class='example-en'>The sky is clear.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic adjective for good weather and clear skies.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-013.png' alt='to be clear' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-013.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:맑다:to be clear",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-014",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "무지개",
+        "english": "rainbow",
+        "pronunciation": "mu-ji-gae",
+        "examples": [
+          {
+            "korean": "무지개가 예뻐요.",
+            "english": "The rainbow is pretty."
+          }
+        ],
+        "notes": "Coverage gap: weather. Simple, memorable weather noun that is visually clear for beginners.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of a vivid rainbow over a modern Korean neighborhood after rain, wet streets reflecting light, uplifting atmosphere, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-014.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-014.png",
+          "prompt": "Polished digital illustration of a vivid rainbow over a modern Korean neighborhood after rain, wet streets reflecting light, uplifting atmosphere, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-014-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-014",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>무지개</div>",
+          "back_html": "<div class='answer answer-en'>rainbow</div><div class='answer answer-ko'>무지개</div><div class='pronunciation'>mu-ji-gae</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>무지개가 예뻐요.</div><div class='example-en'>The rainbow is pretty.</div></li></ul></section><div class='notes'>Coverage gap: weather. Simple, memorable weather noun that is visually clear for beginners.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-014.png' alt='rainbow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-014-production",
+          "item_id": "new-vocab-2026-03-26-110847-014",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>rainbow</div>",
+          "back_html": "<div class='answer answer-ko'>무지개</div><div class='answer answer-en'>rainbow</div><div class='pronunciation'>mu-ji-gae</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>무지개가 예뻐요.</div><div class='example-en'>The rainbow is pretty.</div></li></ul></section><div class='notes'>Coverage gap: weather. Simple, memorable weather noun that is visually clear for beginners.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-014.png' alt='rainbow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-014-listening",
+          "item_id": "new-vocab-2026-03-26-110847-014",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-014.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>무지개</div><div class='answer answer-en'>rainbow</div><div class='pronunciation'>mu-ji-gae</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>무지개가 예뻐요.</div><div class='example-en'>The rainbow is pretty.</div></li></ul></section><div class='notes'>Coverage gap: weather. Simple, memorable weather noun that is visually clear for beginners.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-014.png' alt='rainbow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-014.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:무지개:rainbow",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-015",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "바람",
+        "english": "wind",
+        "pronunciation": "ba-ram",
+        "examples": [
+          {
+            "korean": "바람이 불어요.",
+            "english": "The wind is blowing."
+          }
+        ],
+        "notes": "Coverage gap: weather. Very common weather word that learners can use immediately in simple sentences.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of strong wind moving tree branches and coats on a modern Seoul sidewalk, Korean pedestrians bracing naturally, dynamic motion, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-015.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-015.png",
+          "prompt": "Polished digital illustration of strong wind moving tree branches and coats on a modern Seoul sidewalk, Korean pedestrians bracing naturally, dynamic motion, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-015-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-015",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>바람</div>",
+          "back_html": "<div class='answer answer-en'>wind</div><div class='answer answer-ko'>바람</div><div class='pronunciation'>ba-ram</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>바람이 불어요.</div><div class='example-en'>The wind is blowing.</div></li></ul></section><div class='notes'>Coverage gap: weather. Very common weather word that learners can use immediately in simple sentences.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-015.png' alt='wind' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-015-production",
+          "item_id": "new-vocab-2026-03-26-110847-015",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>wind</div>",
+          "back_html": "<div class='answer answer-ko'>바람</div><div class='answer answer-en'>wind</div><div class='pronunciation'>ba-ram</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>바람이 불어요.</div><div class='example-en'>The wind is blowing.</div></li></ul></section><div class='notes'>Coverage gap: weather. Very common weather word that learners can use immediately in simple sentences.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-015.png' alt='wind' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-015-listening",
+          "item_id": "new-vocab-2026-03-26-110847-015",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-015.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>바람</div><div class='answer answer-en'>wind</div><div class='pronunciation'>ba-ram</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>바람이 불어요.</div><div class='example-en'>The wind is blowing.</div></li></ul></section><div class='notes'>Coverage gap: weather. Very common weather word that learners can use immediately in simple sentences.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-015.png' alt='wind' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-015.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:바람:wind",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-016",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "번개",
+        "english": "lightning",
+        "pronunciation": "beon-gae",
+        "examples": [
+          {
+            "korean": "번개가 보여요.",
+            "english": "I can see lightning."
+          }
+        ],
+        "notes": "Coverage gap: weather. Useful storm word that pairs naturally with basic weather descriptions.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of bright lightning across dark clouds above a modern Seoul skyline, strong contrast and realistic storm mood, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-016.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-016.png",
+          "prompt": "Polished digital illustration of bright lightning across dark clouds above a modern Seoul skyline, strong contrast and realistic storm mood, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-016-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-016",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>번개</div>",
+          "back_html": "<div class='answer answer-en'>lightning</div><div class='answer answer-ko'>번개</div><div class='pronunciation'>beon-gae</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>번개가 보여요.</div><div class='example-en'>I can see lightning.</div></li></ul></section><div class='notes'>Coverage gap: weather. Useful storm word that pairs naturally with basic weather descriptions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-016.png' alt='lightning' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-016-production",
+          "item_id": "new-vocab-2026-03-26-110847-016",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>lightning</div>",
+          "back_html": "<div class='answer answer-ko'>번개</div><div class='answer answer-en'>lightning</div><div class='pronunciation'>beon-gae</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>번개가 보여요.</div><div class='example-en'>I can see lightning.</div></li></ul></section><div class='notes'>Coverage gap: weather. Useful storm word that pairs naturally with basic weather descriptions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-016.png' alt='lightning' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-016-listening",
+          "item_id": "new-vocab-2026-03-26-110847-016",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-016.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>번개</div><div class='answer answer-en'>lightning</div><div class='pronunciation'>beon-gae</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>번개가 보여요.</div><div class='example-en'>I can see lightning.</div></li></ul></section><div class='notes'>Coverage gap: weather. Useful storm word that pairs naturally with basic weather descriptions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-016.png' alt='lightning' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-016.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:번개:lightning",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-017",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "봄",
+        "english": "spring",
+        "pronunciation": "bom",
+        "examples": [
+          {
+            "korean": "봄은 따뜻해요.",
+            "english": "Spring is warm."
+          }
+        ],
+        "notes": "Coverage gap: weather. Core season word strongly tied to basic weather discussions.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of spring in Korea with cherry blossoms along a city walkway, Korean adults in light jackets, bright soft daylight, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-017.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-017.png",
+          "prompt": "Polished digital illustration of spring in Korea with cherry blossoms along a city walkway, Korean adults in light jackets, bright soft daylight, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-017-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-017",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>봄</div>",
+          "back_html": "<div class='answer answer-en'>spring</div><div class='answer answer-ko'>봄</div><div class='pronunciation'>bom</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>봄은 따뜻해요.</div><div class='example-en'>Spring is warm.</div></li></ul></section><div class='notes'>Coverage gap: weather. Core season word strongly tied to basic weather discussions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-017.png' alt='spring' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-017-production",
+          "item_id": "new-vocab-2026-03-26-110847-017",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>spring</div>",
+          "back_html": "<div class='answer answer-ko'>봄</div><div class='answer answer-en'>spring</div><div class='pronunciation'>bom</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>봄은 따뜻해요.</div><div class='example-en'>Spring is warm.</div></li></ul></section><div class='notes'>Coverage gap: weather. Core season word strongly tied to basic weather discussions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-017.png' alt='spring' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-017-listening",
+          "item_id": "new-vocab-2026-03-26-110847-017",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-017.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>봄</div><div class='answer answer-en'>spring</div><div class='pronunciation'>bom</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>봄은 따뜻해요.</div><div class='example-en'>Spring is warm.</div></li></ul></section><div class='notes'>Coverage gap: weather. Core season word strongly tied to basic weather discussions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-017.png' alt='spring' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-017.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:봄:spring",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-018",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "불다",
+        "english": "to blow",
+        "pronunciation": "bul-da",
+        "examples": [
+          {
+            "korean": "바람이 많이 불어요.",
+            "english": "The wind blows a lot."
+          }
+        ],
+        "notes": "Coverage gap: weather. Basic verb strongly tied to wind and everyday weather descriptions.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of wind blowing through a Seoul sidewalk with coats, hair, and tree leaves moving naturally, contemporary Korean setting, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-018.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-018.png",
+          "prompt": "Polished digital illustration of wind blowing through a Seoul sidewalk with coats, hair, and tree leaves moving naturally, contemporary Korean setting, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-018-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-018",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>불다</div>",
+          "back_html": "<div class='answer answer-en'>to blow</div><div class='answer answer-ko'>불다</div><div class='pronunciation'>bul-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>바람이 많이 불어요.</div><div class='example-en'>The wind blows a lot.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic verb strongly tied to wind and everyday weather descriptions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-018.png' alt='to blow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-018-production",
+          "item_id": "new-vocab-2026-03-26-110847-018",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>to blow</div>",
+          "back_html": "<div class='answer answer-ko'>불다</div><div class='answer answer-en'>to blow</div><div class='pronunciation'>bul-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>바람이 많이 불어요.</div><div class='example-en'>The wind blows a lot.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic verb strongly tied to wind and everyday weather descriptions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-018.png' alt='to blow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-018-listening",
+          "item_id": "new-vocab-2026-03-26-110847-018",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-018.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>불다</div><div class='answer answer-en'>to blow</div><div class='pronunciation'>bul-da</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>바람이 많이 불어요.</div><div class='example-en'>The wind blows a lot.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic verb strongly tied to wind and everyday weather descriptions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-018.png' alt='to blow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-018.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:불다:to blow",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-019",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "비",
+        "english": "rain",
+        "pronunciation": "bi",
+        "examples": [
+          {
+            "korean": "비가 와요.",
+            "english": "It's raining."
+          }
+        ],
+        "notes": "Coverage gap: weather. Essential A1 weather word for daily conversation, forecasts, and planning.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of rain falling on a modern Korean city street, shiny wet pavement, Korean adults walking with umbrellas, natural contemporary Korean setting, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-019.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-019.png",
+          "prompt": "Polished digital illustration of rain falling on a modern Korean city street, shiny wet pavement, Korean adults walking with umbrellas, natural contemporary Korean setting, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-019-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-019",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>비</div>",
+          "back_html": "<div class='answer answer-en'>rain</div><div class='answer answer-ko'>비</div><div class='pronunciation'>bi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>비가 와요.</div><div class='example-en'>It&#x27;s raining.</div></li></ul></section><div class='notes'>Coverage gap: weather. Essential A1 weather word for daily conversation, forecasts, and planning.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-019.png' alt='rain' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-019-production",
+          "item_id": "new-vocab-2026-03-26-110847-019",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>rain</div>",
+          "back_html": "<div class='answer answer-ko'>비</div><div class='answer answer-en'>rain</div><div class='pronunciation'>bi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>비가 와요.</div><div class='example-en'>It&#x27;s raining.</div></li></ul></section><div class='notes'>Coverage gap: weather. Essential A1 weather word for daily conversation, forecasts, and planning.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-019.png' alt='rain' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-019-listening",
+          "item_id": "new-vocab-2026-03-26-110847-019",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-019.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>비</div><div class='answer answer-en'>rain</div><div class='pronunciation'>bi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>비가 와요.</div><div class='example-en'>It&#x27;s raining.</div></li></ul></section><div class='notes'>Coverage gap: weather. Essential A1 weather word for daily conversation, forecasts, and planning.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-019.png' alt='rain' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-019.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:비:rain",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-110847-020",
+        "lesson_id": "new-vocab-2026-03-26-110847",
+        "item_type": "vocab",
+        "korean": "비옷",
+        "english": "raincoat",
+        "pronunciation": "bi-ot",
+        "examples": [
+          {
+            "korean": "비옷을 입어요.",
+            "english": "I wear a raincoat."
+          }
+        ],
+        "notes": "Coverage gap: weather. Common weather item that fits beginner daily-life conversations.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished digital illustration of a Korean adult putting on a raincoat before going outside in a modern apartment entryway, natural contemporary Korean setting, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-110847-020.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-110847-020.png",
+          "prompt": "Polished digital illustration of a Korean adult putting on a raincoat before going outside in a modern apartment entryway, natural contemporary Korean setting, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-110847-020-recognition",
+          "item_id": "new-vocab-2026-03-26-110847-020",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>비옷</div>",
+          "back_html": "<div class='answer answer-en'>raincoat</div><div class='answer answer-ko'>비옷</div><div class='pronunciation'>bi-ot</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>비옷을 입어요.</div><div class='example-en'>I wear a raincoat.</div></li></ul></section><div class='notes'>Coverage gap: weather. Common weather item that fits beginner daily-life conversations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-020.png' alt='raincoat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-020-production",
+          "item_id": "new-vocab-2026-03-26-110847-020",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>raincoat</div>",
+          "back_html": "<div class='answer answer-ko'>비옷</div><div class='answer answer-en'>raincoat</div><div class='pronunciation'>bi-ot</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>비옷을 입어요.</div><div class='example-en'>I wear a raincoat.</div></li></ul></section><div class='notes'>Coverage gap: weather. Common weather item that fits beginner daily-life conversations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-020.png' alt='raincoat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-110847-020-listening",
+          "item_id": "new-vocab-2026-03-26-110847-020",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-110847-020.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>비옷</div><div class='answer answer-en'>raincoat</div><div class='pronunciation'>bi-ot</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>비옷을 입어요.</div><div class='example-en'>I wear a raincoat.</div></li></ul></section><div class='notes'>Coverage gap: weather. Common weather item that fits beginner daily-life conversations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-110847-020.png' alt='raincoat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-110847-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-110847-020.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:비옷:raincoat",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    }
+  ]
+}
