@@ -6,88 +6,28 @@ Date: 2026-03-26
 
 The repo is in better shape than it was a few refactors ago.
 
-Four important cleanup items are already done:
+Six important cleanup items are already done:
 
 - the preview app now uses one real backend surface in Python instead of splitting runtime behavior between Python and Vite
 - preview TypeScript contracts are now generated from `src/korean_anki/schema.py` instead of being hand-maintained separately
 - batch/transcription reads and derived dashboard/study-state snapshots now have explicit repository and snapshot layers in `src/korean_anki/repositories.py` and `src/korean_anki/snapshots.py`
 - the old `application.py` catch-all module has been removed and replaced by narrower use-case modules such as `batch_generation_service.py`, `lesson_generation_service.py`, `new_vocab_generation_service.py`, `sync_media_service.py`, `push_workflow_service.py`, and `dashboard_service.py`
+- the old Anki integration monolith has been split into `anki_client.py`, `anki_note_codec.py`, `anki_queries.py`, `anki_media_sync.py`, and `anki_push_service.py`
+- the old LLM monolith has been split into `openai_client.py`, `llm_prompts.py`, `structured_outputs.py`, `lesson_io.py`, and `llm_service.py`
 
 Those were the right fixes. They removed multiple sources of drift that would have kept compounding.
 
 The biggest remaining architectural problems are now:
 
-1. `anki.py` and `llm.py` are still too broad for the responsibilities they carry
-2. `App.tsx` is still too concentrated now that the backend seams are cleaner
-3. backend job state is still process-local and restart-fragile
+1. `App.tsx` is still too concentrated now that the backend seams are cleaner
+2. backend job state is still process-local and restart-fragile
+3. the custom preview type generator should stay narrow and not turn into a second API-description system
 
 If I were continuing the cleanup, I would not jump to cosmetic file splitting first. The data-access layer is now in better shape, so the next wins are splitting the remaining wide orchestration and infrastructure modules around those newer boundaries.
 
 ## Findings
 
-### P1. `anki.py` is still too broad and still shows a leaky boundary
-
-Evidence:
-
-- `src/korean_anki/anki.py` is 705 lines.
-- Transport lives in `src/korean_anki/anki.py:198`.
-- Note payload shaping lives in `src/korean_anki/anki.py:307`.
-- Existing-note discovery lives in `src/korean_anki/anki.py:366` and `src/korean_anki/anki.py:445`.
-- Media sync lives in `src/korean_anki/anki.py:494` and `src/korean_anki/anki.py:532`.
-- Duplicate detection and push planning live in `src/korean_anki/anki.py:572` and `src/korean_anki/anki.py:611`.
-- Final push execution lives in `src/korean_anki/anki.py:631`.
-- `sync_batch_media()` still lazy-imports card refresh logic from another module in `src/korean_anki/anki.py:539`.
-
-Why this matters:
-
-- `anki.py` still combines too many concerns:
-  - HTTP transport
-  - note/model serialization
-  - media download/write logic
-  - duplicate detection
-  - push planning
-  - push execution
-- The lazy import is a clear sign that module boundaries are still awkward.
-
-What should change:
-
-- Split it into narrower modules such as:
-  - `anki_client.py`
-  - `anki_note_codec.py`
-  - `anki_queries.py`
-  - `anki_media_sync.py`
-  - `anki_push_service.py`
-- Then keep the public orchestration boundary in the application layer, not in a single wide infrastructure module.
-
-### P2. `llm.py` still mixes prompt contracts, API transport, and file helpers
-
-Evidence:
-
-- Handwritten structured-output schemas live in `src/korean_anki/llm.py:78` and `src/korean_anki/llm.py:165`.
-- OpenAI client creation and request orchestration are repeated in `src/korean_anki/llm.py:376`, `src/korean_anki/llm.py:442`, `src/korean_anki/llm.py:500`, `src/korean_anki/llm.py:540`, and `src/korean_anki/llm.py:591`.
-- File helpers still live in the same module at `src/korean_anki/llm.py:624`, `src/korean_anki/llm.py:629`, and `src/korean_anki/llm.py:633`.
-
-Why this matters:
-
-- The frontend contract duplication is fixed, but there is still internal schema duplication here.
-- `llm.py` currently serves as:
-  - prompt library
-  - schema adapter
-  - OpenAI client wrapper
-  - lesson/transcription file helper
-- Recreating `OpenAI()` inside each function also makes client configuration and testing more scattered than necessary.
-
-What should change:
-
-- Split it into:
-  - `openai_client.py`
-  - `prompts/`
-  - `structured_outputs.py`
-  - `lesson_io.py`
-- Use one clearer place for model defaults and client construction.
-- If possible, derive structured-output schemas from the backend Pydantic models instead of handwriting every JSON schema separately.
-
-### P2. The frontend is still too concentrated in `App.tsx`
+### P1. The frontend is still too concentrated in `App.tsx`
 
 Evidence:
 
@@ -123,7 +63,7 @@ What should change:
   - `state/jobNotifications.ts`
 - Do this after the repository and backend module boundaries are cleaner, not before.
 
-### P3. Backend job state is still in-memory and restart-fragile
+### P2. Backend job state is still in-memory and restart-fragile
 
 Evidence:
 
@@ -182,6 +122,17 @@ What should change:
   - `sync_media_service.py`
   - `push_workflow_service.py`
   - `dashboard_service.py`
+- The newer infrastructure split:
+  - `anki_client.py`
+  - `anki_note_codec.py`
+  - `anki_queries.py`
+  - `anki_media_sync.py`
+  - `anki_push_service.py`
+  - `openai_client.py`
+  - `llm_prompts.py`
+  - `structured_outputs.py`
+  - `lesson_io.py`
+  - `llm_service.py`
 
 ## Recommended Target Shape
 
@@ -207,6 +158,10 @@ What should change:
   - `anki_media_sync.py`
   - `anki_push_service.py`
   - `openai_client.py`
+  - `llm_prompts.py`
+  - `structured_outputs.py`
+  - `lesson_io.py`
+  - `llm_service.py`
   - `batch_repository.py`
   - `lesson_repository.py`
   - `study_state_repository.py`
@@ -225,21 +180,21 @@ What should change:
 
 ## Refactor Order
 
-1. Split `anki.py` and `llm.py` into narrower infrastructure modules.
-
-2. Only after that, split `preview/src/App.tsx`.
+1. Split `preview/src/App.tsx`.
    If you do this first, you will mostly just spread existing coupling across more files.
 
-3. Add a durable local job store if backend restarts and job recovery start mattering to your workflow.
+2. Add a durable local job store if backend restarts and job recovery start mattering to your workflow.
+
+3. Keep `schema_codegen.py` narrow, or replace it with a more standard emitted contract if the preview/backend surface grows materially.
 
 ## Bottom Line
 
 The codebase is not in bad shape. The recent refactors fixed the right things.
 
-The remaining cost is no longer “obvious drift between two frontends” or “Vite secretly acting like a backend.” The remaining cost is that the core orchestration and infrastructure boundaries are still too wide.
+The remaining cost is no longer “obvious drift between two frontends,” “Vite secretly acting like a backend,” or “one giant infrastructure module hiding multiple concerns.” The remaining cost is concentrated frontend state and a few intentionally local operational shortcuts.
 
 If I had to summarize the architectural problem in one sentence:
 
-> the repo now has better external boundaries and better state access, but its internal orchestration and infrastructure boundaries are still too wide
+> the repo now has much better backend boundaries, but its remaining cost is concentrated frontend state and a few intentionally undurable local subsystems
 
 That is what I would fix next.

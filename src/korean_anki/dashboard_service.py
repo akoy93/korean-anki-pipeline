@@ -3,7 +3,8 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from .anki import AnkiConnectClient, existing_model_note_keys
+from .anki_client import AnkiConnectClient
+from .anki_queries import existing_model_note_keys
 from . import path_policy
 from .repositories import AnkiRepository
 from .schema import DashboardResponse, ServiceStatus

@@ -9,7 +9,7 @@ import threading
 import time
 from typing import Callable
 
-from .anki import ANKI_MODEL_NAME, AnkiConnectClient
+from .anki_client import ANKI_MODEL_NAME, AnkiConnectClient
 from .note_keys import normalize_text, prior_note_from_item
 from .schema import AnkiStatsSnapshot, CardBatch, DashboardLessonContext, LessonTranscription, PriorNote
 

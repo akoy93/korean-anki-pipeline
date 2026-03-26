@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from .batch_generation_service import generate_batch_from_lesson_file
-from .llm import generate_pronunciations, transcribe_sources
+from .llm_service import generate_pronunciations, transcribe_sources
 from .schema import LessonTranscription, RawSourceAsset
 from .service_support import unique_lesson_root
 from .stages import build_lesson_documents, qa_transcription, write_lesson_documents

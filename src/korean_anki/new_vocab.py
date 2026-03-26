@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 
-from .llm import generate_pronunciations, propose_new_vocab
+from .llm_service import generate_pronunciations, propose_new_vocab
 from .schema import (
     ExampleSentence,
     LessonDocument,

@@ -17,7 +17,8 @@ from .push_workflow_service import handle_push_request
 from .service_support import default_synced_output_path
 from .sync_media_service import sync_media_file
 from .http_api import run_server
-from .llm import extract_lesson, read_transcription, transcribe_sources, write_json
+from .lesson_io import read_transcription, write_json
+from .llm_service import extract_lesson, transcribe_sources
 from .schema import CardBatch, ExtractionRequest, PushRequest, RawSourceAsset
 from .stages import qa_transcription
 

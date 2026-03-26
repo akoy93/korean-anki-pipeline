@@ -15,7 +15,7 @@ from array import array
 
 from openai import OpenAI
 
-from .llm import plan_image_generation
+from .llm_service import plan_image_generation
 from .schema import LessonDocument, LessonItem, MediaAsset
 
 ImageQuality = Literal["auto", "low", "medium", "high"]

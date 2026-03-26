@@ -2,10 +2,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from .anki import AnkiConnectClient, existing_model_note_keys
+from .anki_client import AnkiConnectClient
+from .anki_queries import existing_model_note_keys
 from .note_keys import normalize_text, note_key_for_item
 from .repositories import AnkiRepository, BatchRepository
-from .schema import PriorNote, StudyState
+from .schema import AnkiStatsSnapshot, PriorNote, StudyState
 from .snapshots import study_state_snapshot
 
 

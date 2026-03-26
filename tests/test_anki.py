@@ -6,9 +6,11 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from korean_anki import anki
+from korean_anki.anki_client import ANKI_MODEL_NAME, AnkiConnectClient
+from korean_anki.anki_media_sync import sync_batch_media, sync_lesson_media
+from korean_anki.anki_push_service import plan_push, push_batch
 from korean_anki.cards import generate_note
-from korean_anki.schema import MediaAsset
+from korean_anki.schema import LessonDocument, MediaAsset
 
 from support import make_batch, make_item, make_metadata
 
@@ -42,7 +44,7 @@ class FakeAnkiConnectClient:
         if action == "notesInfo":
             return self.notes_info
         if action == "modelNames":
-            return [anki.ANKI_MODEL_NAME]
+            return [ANKI_MODEL_NAME]
         if action == "createDeck":
             return None
         if action == "createModel":
@@ -108,8 +110,11 @@ class AnkiTests(unittest.TestCase):
             }
         ]
 
-        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
-            result = anki.plan_push(batch)
+        with (
+            patch("korean_anki.anki_push_service.AnkiConnectClient", FakeAnkiConnectClient),
+            patch("korean_anki.anki_queries.AnkiConnectClient", FakeAnkiConnectClient),
+        ):
+            result = plan_push(batch)
 
         self.assertEqual(result.deck_name, "Korean::Lessons::Basics")
         self.assertEqual(result.approved_notes, 1)
@@ -137,8 +142,11 @@ class AnkiTests(unittest.TestCase):
         batch = make_batch([generate_note(item)], metadata=make_metadata(target_deck="Korean::Lessons::Greetings"))
         FakeAnkiConnectClient.add_notes_result = [456]
 
-        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
-            result = anki.push_batch(batch)
+        with (
+            patch("korean_anki.anki_push_service.AnkiConnectClient", FakeAnkiConnectClient),
+            patch("korean_anki.anki_queries.AnkiConnectClient", FakeAnkiConnectClient),
+        ):
+            result = push_batch(batch)
 
         self.assertEqual(result.notes_added, 1)
         self.assertEqual(result.cards_created, 3)
@@ -170,9 +178,12 @@ class AnkiTests(unittest.TestCase):
             }
         ]
 
-        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
+        with (
+            patch("korean_anki.anki_push_service.AnkiConnectClient", FakeAnkiConnectClient),
+            patch("korean_anki.anki_queries.AnkiConnectClient", FakeAnkiConnectClient),
+        ):
             with self.assertRaisesRegex(RuntimeError, "Duplicate notes already exist"):
-                anki.push_batch(batch)
+                push_batch(batch)
 
         calls = [call[0] for client in FakeAnkiConnectClient.instances for call in client.calls]
         self.assertNotIn("addNotes", calls)
@@ -190,15 +201,18 @@ class AnkiTests(unittest.TestCase):
             }
         ]
 
-        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
-            result = anki.plan_push(batch)
+        with (
+            patch("korean_anki.anki_push_service.AnkiConnectClient", FakeAnkiConnectClient),
+            patch("korean_anki.anki_queries.AnkiConnectClient", FakeAnkiConnectClient),
+        ):
+            result = plan_push(batch)
 
         self.assertTrue(result.can_push)
         self.assertEqual(result.duplicate_notes, [])
 
         plan_client = FakeAnkiConnectClient.instances[0]
         find_notes_call = next(call for call in plan_client.calls if call[0] == "findNotes")
-        self.assertEqual(find_notes_call[1]["query"], f'note:"{anki.ANKI_MODEL_NAME}"')
+        self.assertEqual(find_notes_call[1]["query"], f'note:"{ANKI_MODEL_NAME}"')
 
     def test_push_batch_marks_homographs_as_allowed_duplicates_for_anki(self) -> None:
         batch = make_batch([generate_note(make_item(korean="일", english="one"))])
@@ -214,8 +228,11 @@ class AnkiTests(unittest.TestCase):
         ]
         FakeAnkiConnectClient.add_notes_result = [789]
 
-        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
-            result = anki.push_batch(batch, sync=False)
+        with (
+            patch("korean_anki.anki_push_service.AnkiConnectClient", FakeAnkiConnectClient),
+            patch("korean_anki.anki_queries.AnkiConnectClient", FakeAnkiConnectClient),
+        ):
+            result = push_batch(batch, sync=False)
 
         self.assertEqual(result.notes_added, 1)
         self.assertEqual(result.pushed_note_ids, [789])
@@ -242,8 +259,11 @@ class AnkiTests(unittest.TestCase):
         )
         FakeAnkiConnectClient.add_notes_result = [789]
 
-        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
-            result = anki.push_batch(batch)
+        with (
+            patch("korean_anki.anki_push_service.AnkiConnectClient", FakeAnkiConnectClient),
+            patch("korean_anki.anki_queries.AnkiConnectClient", FakeAnkiConnectClient),
+        ):
+            result = push_batch(batch)
 
         self.assertEqual(result.notes_added, 1)
         self.assertEqual(result.cards_created, 2)
@@ -261,7 +281,7 @@ class AnkiTests(unittest.TestCase):
 
     def test_sync_lesson_media_downloads_assets_from_anki(self) -> None:
         output_dir = Path("tests/tmp-sync-lesson")
-        document = anki.LessonDocument(
+        document = LessonDocument(
             metadata=make_metadata(),
             items=[
                 make_item(
@@ -291,8 +311,8 @@ class AnkiTests(unittest.TestCase):
             "today.png": b"image-bytes",
         }
 
-        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
-            updated, summary = anki.sync_lesson_media(document, media_dir=output_dir, sync_first=True)
+        with patch("korean_anki.anki_media_sync.AnkiConnectClient", FakeAnkiConnectClient):
+            updated, summary = sync_lesson_media(document, media_dir=output_dir, sync_first=True)
 
         self.assertEqual(summary.matched_notes, 1)
         self.assertEqual(summary.missing_notes, 0)
@@ -326,8 +346,8 @@ class AnkiTests(unittest.TestCase):
         ]
         FakeAnkiConnectClient.media_files = {"today.mp3": b"audio-bytes"}
 
-        with patch("korean_anki.anki.AnkiConnectClient", FakeAnkiConnectClient):
-            updated, summary = anki.sync_batch_media(batch, media_dir=output_dir)
+        with patch("korean_anki.anki_media_sync.AnkiConnectClient", FakeAnkiConnectClient):
+            updated, summary = sync_batch_media(batch, media_dir=output_dir)
 
         listening_after = next(card for card in updated.notes[0].cards if card.kind == "listening")
         self.assertEqual(summary.matched_notes, 1)
@@ -339,14 +359,14 @@ class AnkiTests(unittest.TestCase):
         self.addCleanup(lambda: shutil.rmtree(output_dir, ignore_errors=True))
 
     def test_ensure_model_upgrades_existing_model_with_reading_speed_fields_and_templates(self) -> None:
-        class UpgradeClient(anki.AnkiConnectClient):
+        class UpgradeClient(AnkiConnectClient):
             def __init__(self) -> None:
                 self.calls: list[tuple[str, dict[str, object]]] = []
 
             def invoke(self, action: str, **params: object) -> object:
                 self.calls.append((action, params))
                 if action == "modelNames":
-                    return [anki.ANKI_MODEL_NAME]
+                    return [ANKI_MODEL_NAME]
                 if action == "modelFieldNames":
                     return [
                         "Korean",

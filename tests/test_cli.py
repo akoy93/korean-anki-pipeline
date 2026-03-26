@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 
 from korean_anki import cli
-from korean_anki.anki import MediaSyncSummary
+from korean_anki.anki_media_sync import MediaSyncSummary
 from korean_anki.schema import PushResult
 from korean_anki.sync_media_service import MediaSyncArtifacts
 

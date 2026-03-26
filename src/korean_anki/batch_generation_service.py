@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Callable
 
 from .cards import generate_batch
-from .llm import read_lesson
+from .lesson_io import read_lesson
 from .media import enrich_audio, enrich_images
 from .reading_speed import build_reading_speed_document
 from .repositories import invalidate_project_snapshots

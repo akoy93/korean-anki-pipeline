@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from .anki import MediaSyncSummary, sync_batch_media, sync_lesson_media
-from .llm import read_lesson, write_json
+from .anki_media_sync import MediaSyncSummary, sync_batch_media, sync_lesson_media
+from .lesson_io import read_lesson, write_json
 from .repositories import invalidate_project_snapshots
 from .schema import CardBatch
 from .service_support import default_synced_output_path, normalize_batch_media_paths
