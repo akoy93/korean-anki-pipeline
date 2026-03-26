@@ -177,3 +177,21 @@ test("ready push flow shows success after push completes", async ({ page }) => {
   await page.getByRole("button", { name: "Push to Anki" }).click();
   await expect(page.getByText("Pushed 2 notes / 4 cards.")).toBeVisible();
 });
+
+test("missing batch does not render stale sample content under the error", async ({
+  page,
+}) => {
+  const api = new MockPreviewApi({
+    dashboard: makeDashboardResponse({
+      recentBatches: [makeDashboardBatch(NUMBERS_BATCH_PATH, makeNumbersBatch())],
+    }),
+  });
+  await api.install(page);
+
+  await page.goto("/batch/data/generated/missing.synced.batch.json");
+
+  await expect(page.getByText("Unknown batch: data/generated/missing.synced.batch.json")).toBeVisible();
+  await expect(page.locator("h1")).toHaveText("Batch");
+  await expect(page.getByText("하나")).toHaveCount(0);
+  await expect(page.locator('[data-testid="note-card"]')).toHaveCount(0);
+});

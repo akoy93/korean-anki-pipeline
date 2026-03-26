@@ -68,7 +68,21 @@ import type {
 
 import sampleBatch from "../../data/samples/numbers.batch.json";
 
-const initialBatch = sampleBatch as CardBatch;
+const sampleFallbackBatch = sampleBatch as CardBatch;
+const EMPTY_BATCH: CardBatch = {
+  ...sampleFallbackBatch,
+  metadata: {
+    ...sampleFallbackBatch.metadata,
+    lesson_id: "",
+    title: "Batch",
+    topic: "",
+    lesson_date: "",
+    source_description: "",
+    target_deck: null,
+    tags: [],
+  },
+  notes: [],
+};
 const JOB_STATE_STORAGE_KEY = "korean-anki-preview-job-state-v1";
 const THEME_STORAGE_KEY = "korean-anki-preview-theme-v1";
 
@@ -121,6 +135,17 @@ function readPersistedTheme(): ThemeMode {
   return window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light";
+}
+
+function createEmptyBatch(): CardBatch {
+  return {
+    ...EMPTY_BATCH,
+    metadata: {
+      ...EMPTY_BATCH.metadata,
+      tags: [...(EMPTY_BATCH.metadata.tags ?? [])],
+    },
+    notes: [],
+  };
 }
 
 function applyTheme(theme: ThemeMode) {
@@ -1616,7 +1641,7 @@ function BatchPreviewPage({
   theme: ThemeMode;
   onToggleTheme: () => void;
 }) {
-  const [batch, setBatch] = useState<CardBatch>(initialBatch);
+  const [batch, setBatch] = useState<CardBatch>(() => createEmptyBatch());
   const [dashboardBatch, setDashboardBatch] = useState<DashboardBatch | null>(
     null,
   );
@@ -1655,6 +1680,9 @@ function BatchPreviewPage({
   useEffect(() => {
     let cancelled = false;
     setPageLoading(true);
+    setLoadError(null);
+    setDashboardBatch(null);
+    setBatch(createEmptyBatch());
     void Promise.all([fetchBatch(batchPath), fetchDashboard()])
       .then(([nextBatch, dashboard]) => {
         if (!cancelled) {
@@ -1674,6 +1702,8 @@ function BatchPreviewPage({
       })
       .catch((error) => {
         if (!cancelled) {
+          setBatch(createEmptyBatch());
+          setDashboardBatch(null);
           setLoadError(
             error instanceof Error ? error.message : "Failed to load batch.",
           );
@@ -1937,7 +1967,7 @@ function BatchPreviewPage({
       data-batch-path={batchPath}
       className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8"
     >
-      <header className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <header className="mb-8 space-y-6">
         <div>
           <div className="flex items-center justify-between gap-3">
             <a
@@ -1953,7 +1983,7 @@ function BatchPreviewPage({
           </h1>
         </div>
 
-        <Card className="w-full md:min-w-[320px]">
+        <Card className="w-full">
           <CardHeader className="pb-3">
             <CardTitle className="text-lg">Batch</CardTitle>
             <CardDescription>
