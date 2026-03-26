@@ -38,6 +38,7 @@ import {
   fetchJob,
   openAnki,
   pushBatch,
+  refreshPreviewNote,
   startBackend,
 } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
@@ -245,160 +246,8 @@ function writePersistedJobState(state: PersistedJobState) {
   window.localStorage.setItem(JOB_STATE_STORAGE_KEY, JSON.stringify(state));
 }
 
-function escapeHtml(value: string): string {
-  return value
-    .split("&")
-    .join("&amp;")
-    .split("<")
-    .join("&lt;")
-    .split(">")
-    .join("&gt;")
-    .split('"')
-    .join("&quot;")
-    .split("'")
-    .join("&#39;");
-}
-
-function chunkHangul(value: string): string {
-  return value
-    .split(" ")
-    .map((segment) => segment.split("").join("·"))
-    .join(" ");
-}
-
 function mediaFileName(path: string): string {
   return path.split("/").pop() ?? path;
-}
-
-function renderBackCommon(item: LessonItem): string {
-  const pronunciation = item.pronunciation
-    ? `<div class='pronunciation'>${escapeHtml(item.pronunciation)}</div>`
-    : "";
-  const examples =
-    item.examples.length > 0
-      ? `<section class='examples'><h4>Examples</h4><ul>${item.examples
-          .map(
-            (example) =>
-              `<li><div class='example-ko'>${escapeHtml(example.korean)}</div><div class='example-en'>${escapeHtml(
-                example.english,
-              )}</div></li>`,
-          )
-          .join("")}</ul></section>`
-      : "";
-  const notes = item.notes
-    ? `<div class='notes'>${escapeHtml(item.notes)}</div>`
-    : "";
-  const sourceRef = item.source_ref
-    ? `<div class='source-ref'>Source: ${escapeHtml(item.source_ref)}</div>`
-    : "";
-  const image = item.image
-    ? `<div class='image-wrap'><img src='/media/images/${escapeHtml(item.image.path.split("/").pop() ?? item.image.path)}' alt='${escapeHtml(item.english)}' /></div>`
-    : "";
-
-  return `${pronunciation}${examples}${notes}${sourceRef}${image}`;
-}
-
-function renderCardsForItem(
-  item: LessonItem,
-  previousCards: CardPreview[],
-): CardPreview[] {
-  const approvalByKind = new Map(
-    previousCards.map((card) => [card.kind, card.approved] as const),
-  );
-  if (item.lane === "reading-speed") {
-    if (item.skill_tags?.includes("passage")) {
-      return [
-        {
-          id: `${item.id}-decodable-passage`,
-          item_id: item.id,
-          kind: "decodable-passage",
-          front_html: `<div class='prompt prompt-context'>Read this tiny passage smoothly.</div><div class='prompt prompt-ko'>${escapeHtml(item.korean)}</div>`,
-          back_html: `<div class='answer answer-en'>${escapeHtml(item.english)}</div>${renderBackCommon(item)}`,
-          audio_path: item.audio?.path ?? null,
-          image_path: null,
-          approved: approvalByKind.get("decodable-passage") ?? true,
-        },
-      ];
-    }
-
-    const cards: CardPreview[] = [
-      {
-        id: `${item.id}-read-aloud`,
-        item_id: item.id,
-        kind: "read-aloud",
-        front_html: `<div class='prompt prompt-context'>Read aloud before revealing anything else.</div><div class='prompt prompt-ko'>${escapeHtml(item.korean)}</div>`,
-        back_html: `<div class='answer answer-ko'>${escapeHtml(item.korean)}</div><div class='answer answer-en'>${escapeHtml(item.english)}</div>${renderBackCommon(item)}`,
-        audio_path: item.audio?.path ?? null,
-        image_path: null,
-        approved: approvalByKind.get("read-aloud") ?? true,
-      },
-    ];
-
-    if (item.skill_tags?.includes("chunked")) {
-      cards.push({
-        id: `${item.id}-chunked-reading`,
-        item_id: item.id,
-        kind: "chunked-reading",
-        front_html: `<div class='prompt prompt-context'>Sound out the chunks, then blend the full word.</div><div class='prompt prompt-ko'>${escapeHtml(chunkHangul(item.korean))}</div>`,
-        back_html: `<div class='answer answer-ko'>${escapeHtml(item.korean)}</div><div class='answer answer-en'>${escapeHtml(item.english)}</div>${renderBackCommon(item)}`,
-        audio_path: item.audio?.path ?? null,
-        image_path: null,
-        approved: approvalByKind.get("chunked-reading") ?? true,
-      });
-    }
-
-    return cards;
-  }
-
-  const cards: CardPreview[] = [
-    {
-      id: `${item.id}-recognition`,
-      item_id: item.id,
-      kind: "recognition",
-      front_html: `<div class='prompt prompt-ko'>${escapeHtml(item.korean)}</div>`,
-      back_html: `<div class='answer answer-en'>${escapeHtml(item.english)}</div><div class='answer answer-ko'>${escapeHtml(item.korean)}</div>${renderBackCommon(item)}`,
-      audio_path: item.audio?.path ?? null,
-      image_path: item.image?.path ?? null,
-      approved: approvalByKind.get("recognition") ?? true,
-    },
-    {
-      id: `${item.id}-production`,
-      item_id: item.id,
-      kind: "production",
-      front_html: `<div class='prompt prompt-en'>${escapeHtml(item.english)}</div>`,
-      back_html: `<div class='answer answer-ko'>${escapeHtml(item.korean)}</div><div class='answer answer-en'>${escapeHtml(item.english)}</div>${renderBackCommon(item)}`,
-      audio_path: item.audio?.path ?? null,
-      image_path: item.image?.path ?? null,
-      approved: approvalByKind.get("production") ?? true,
-    },
-    {
-      id: `${item.id}-listening`,
-      item_id: item.id,
-      kind: "listening",
-      front_html: item.audio
-        ? `<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/${escapeHtml(item.audio.path.split("/").pop() ?? item.audio.path)}'></audio>`
-        : "<div class='prompt prompt-listening'>Audio not generated yet.</div><div class='prompt prompt-hint'>Run generate with --with-audio to enable this card.</div>",
-      back_html: `<div class='answer answer-ko'>${escapeHtml(item.korean)}</div><div class='answer answer-en'>${escapeHtml(item.english)}</div>${renderBackCommon(item)}`,
-      audio_path: item.audio?.path ?? null,
-      image_path: item.image?.path ?? null,
-      approved: approvalByKind.get("listening") ?? Boolean(item.audio),
-    },
-  ];
-
-  if (item.item_type === "number" && item.notes) {
-    cards.push({
-      id: `${item.id}-number-context`,
-      item_id: item.id,
-      kind: "number-context",
-      front_html: `<div class='prompt prompt-context'>In what context is this number form used?</div><div class='prompt prompt-ko'>${escapeHtml(item.korean)}</div>`,
-      back_html: `<div class='answer answer-en'>${escapeHtml(item.english)}</div><div class='notes'>${escapeHtml(item.notes)}</div>`,
-      audio_path: item.audio?.path ?? null,
-      image_path: item.image?.path ?? null,
-      approved: approvalByKind.get("number-context") ?? true,
-    });
-  }
-
-  return cards;
 }
 
 function ThemeToggle({
@@ -1790,6 +1639,7 @@ function BatchPreviewPage({
   );
   const [pageLoading, setPageLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [refreshError, setRefreshError] = useState<string | null>(null);
   const [hydrateJob, setHydrateJob] = useState<JobResponse | null>(null);
   const [hydrateError, setHydrateError] = useState<string | null>(null);
   const [deleteError, setDeleteError] = useState<string | null>(null);
@@ -1807,6 +1657,10 @@ function BatchPreviewPage({
     listening: true,
     "number-context": true,
   });
+  const [refreshingNoteIds, setRefreshingNoteIds] = useState<
+    Record<string, boolean>
+  >({});
+  const noteRefreshRequestIdsRef = useRef<Record<string, number>>({});
   const sourceBatchPath = dashboardBatch?.path ?? canonicalBatchPath(batchPath);
 
   function clearPushState() {
@@ -1827,6 +1681,9 @@ function BatchPreviewPage({
               (candidate) => matchesDashboardBatch(candidate, batchPath),
             ) ?? null,
           );
+          setRefreshError(null);
+          setRefreshingNoteIds({});
+          noteRefreshRequestIdsRef.current = {};
           setPageLoading(false);
           clearPushState();
         }
@@ -1942,33 +1799,66 @@ function BatchPreviewPage({
     noteId: string,
     updater: (item: LessonItem) => LessonItem,
   ) {
-    updateNote(noteId, (current) => {
-      const item = updater(current.item);
-      const regeneratedCards = renderCardsForItem(
-        item,
-        current.duplicate_status === "exact-duplicate" ? [] : current.cards,
-      ).map((card) => ({
-        ...card,
-        approved:
-          current.approved &&
-          (card.kind !== "listening" || item.audio !== null),
-      }));
+    const currentNote = batch.notes.find((note) => note.item.id === noteId);
+    if (currentNote === undefined) {
+      return;
+    }
 
-      return {
-        ...current,
-        item,
-        cards: regeneratedCards,
-        approved:
-          current.duplicate_status === "exact-duplicate"
-            ? true
-            : current.approved,
-        duplicate_status: "new",
-        duplicate_note_key: null,
-        duplicate_note_id: null,
-        duplicate_source: null,
-        inclusion_reason: "Edited in preview",
-      };
-    });
+    const nextItem = updater(currentNote.item);
+    clearPushState();
+    setRefreshError(null);
+    setBatch((current) => ({
+      ...current,
+      notes: current.notes.map((note) => {
+        if (note.item.id !== noteId) {
+          return note;
+        }
+        return {
+          ...note,
+          item: nextItem,
+        };
+      }),
+    }));
+
+    const requestId = (noteRefreshRequestIdsRef.current[noteId] ?? 0) + 1;
+    noteRefreshRequestIdsRef.current[noteId] = requestId;
+    setRefreshingNoteIds((current) => ({
+      ...current,
+      [noteId]: true,
+    }));
+
+    void refreshPreviewNote(currentNote, nextItem)
+      .then((refreshedNote) => {
+        if (noteRefreshRequestIdsRef.current[noteId] !== requestId) {
+          return;
+        }
+
+        setBatch((current) => ({
+          ...current,
+          notes: current.notes.map((note) =>
+            note.item.id === noteId ? refreshedNote : note,
+          ),
+        }));
+      })
+      .catch((error) => {
+        if (noteRefreshRequestIdsRef.current[noteId] !== requestId) {
+          return;
+        }
+        setRefreshError(
+          error instanceof Error
+            ? error.message
+            : "Failed to refresh preview cards.",
+        );
+      })
+      .finally(() => {
+        if (noteRefreshRequestIdsRef.current[noteId] !== requestId) {
+          return;
+        }
+        setRefreshingNoteIds((current) => {
+          const { [noteId]: _ignored, ...remaining } = current;
+          return remaining;
+        });
+      });
   }
 
   function setNoteApproved(noteId: string, approved: boolean) {
@@ -2089,6 +1979,11 @@ function BatchPreviewPage({
             {loadError ? (
               <div className={DANGER_PANEL_CLASS}>
                 {loadError}
+              </div>
+            ) : null}
+            {refreshError ? (
+              <div className={DANGER_PANEL_CLASS}>
+                {refreshError}
               </div>
             ) : null}
             <div className="rounded-md border border-border p-3 text-sm">
@@ -2309,10 +2204,13 @@ function BatchPreviewPage({
                   >
                     <CardHeader className="border-b border-border bg-card/70">
                       <div className="flex items-center justify-between gap-3">
-                        <div className="min-w-0 flex-1 min-h-7 sm:min-h-9 flex items-center">
+                        <div className="min-w-0 flex-1 min-h-7 sm:min-h-9 flex items-center gap-2">
                           <CardTitle className="text-[28px] leading-7 sm:text-xl sm:leading-9">
                             {note.item.korean}
                           </CardTitle>
+                          {refreshingNoteIds[note.item.id] ? (
+                            <Loader2 className="h-4 w-4 shrink-0 animate-spin text-muted-foreground" />
+                          ) : null}
                         </div>
                         {batchPushed ? null : (
                           <Button

@@ -195,6 +195,10 @@ export default defineConfig({
       "/api/delete-batch": {
         target: "http://127.0.0.1:8767",
         changeOrigin: true
+      },
+      "/api/preview-note": {
+        target: "http://127.0.0.1:8767",
+        changeOrigin: true
       }
     }
   }

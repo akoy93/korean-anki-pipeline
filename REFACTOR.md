@@ -6,33 +6,14 @@ Date: 2026-03-26
 
 The repo is still in a good place to refactor, but it has crossed the point where architectural drift is now the main source of future cost.
 
-The two biggest problems are:
+The biggest remaining problems are:
 
-1. card-generation and preview behavior are duplicated across Python and React
-2. the same end-to-end workflows are orchestrated separately by the CLI and the HTTP service
+1. the same end-to-end workflows are orchestrated separately by the CLI and the HTTP service
+2. too much backend behavior is concentrated in a few oversized modules
 
-Those two choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would not start with cosmetic file-splitting. I would first centralize the workflow logic and make card generation single-source.
+Those choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would not start with cosmetic file-splitting. I would first centralize the workflow logic and then split the service/backend boundaries more cleanly.
 
 ## Findings
-
-### P1. Card construction logic is duplicated across backend and frontend
-
-Evidence:
-
-- Backend card generation lives in `src/korean_anki/cards.py:25`, `src/korean_anki/cards.py:45`, `src/korean_anki/cards.py:61`, `src/korean_anki/cards.py:116`, `src/korean_anki/cards.py:244`, and `src/korean_anki/cards.py:310`.
-- The preview app reimplements the same rules in `preview/src/App.tsx:273` and `preview/src/App.tsx:301`.
-
-Why this matters:
-
-- This is the highest-risk source of behavioral drift.
-- Any change to listening-card approval, reading-speed cards, image/audio rendering, or number-context behavior now has two implementations to keep in sync.
-- The frontend is effectively acting as a second card engine.
-
-What should change:
-
-- Make one layer the source of truth for card generation and card refresh.
-- Preferred direction: the backend owns preview-card generation, and the frontend consumes already-built card HTML and metadata.
-- If local client-side regeneration is truly required, move card definitions into a shared declarative format and generate both Python and frontend behavior from that.
 
 ### P1. There is no real application-service layer
 
@@ -247,7 +228,6 @@ Why this matters:
   - polling
   - persistence
   - notification logic
-  - domain-ish card regeneration
   - theming
 - That raises the cost of every UI change.
 
@@ -331,21 +311,18 @@ What should change:
 
 ## Refactor Order
 
-1. Make card generation single-source.
-   This is the most important architectural fix.
-
-2. Extract shared application services from the CLI and HTTP service.
+1. Extract shared application services from the CLI and HTTP service.
    Do not keep duplicating workflows in `cli.py` and `push_service.py`.
 
-3. Split `push_service.py` into transport, dashboard, jobs, and orchestration modules.
+2. Split `push_service.py` into transport, dashboard, jobs, and orchestration modules.
 
-4. Move Vite-only backend behavior into Python so the app has one backend surface.
+3. Move Vite-only backend behavior into Python so the app has one backend surface.
 
-5. Generate TypeScript API types from backend schema.
+4. Generate TypeScript API types from backend schema.
 
-6. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
+5. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
 
-7. Only after that, split `preview/src/App.tsx`.
+6. Only after that, split `preview/src/App.tsx`.
    If you do this first, you will mostly just spread the existing coupling across more files.
 
 ## Bottom Line
@@ -354,6 +331,6 @@ The codebase is not in bad shape, but it is at the exact point where further fea
 
 If I had to summarize the architectural problem in one sentence:
 
-> the repo has good domain concepts, but too much workflow logic is duplicated across entrypoints and too much UI/domain behavior is duplicated across languages
+> the repo has good domain concepts, but too much workflow logic is duplicated across entrypoints and too much backend responsibility is concentrated in a few modules
 
 That is what I would fix first.

@@ -92,6 +92,30 @@ class PushServiceTests(unittest.TestCase):
             },
         )
 
+    def test_preview_note_endpoint_refreshes_cards_with_backend_logic(self) -> None:
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        item = make_item(item_id="preview-1", korean="오늘", english="today", audio=None, image=None)
+        note = generate_note(item)
+
+        payload = self._post_json(
+            base_url,
+            "/api/preview-note",
+            {
+                "note": note.model_dump(mode="json"),
+                "item": item.model_copy(update={"english": "this day"}).model_dump(mode="json"),
+            },
+        )
+
+        self.assertEqual(payload["item"]["english"], "this day")
+        self.assertEqual(payload["duplicate_status"], "new")
+        self.assertEqual(payload["inclusion_reason"], "Edited in preview")
+        recognition = next(card for card in payload["cards"] if card["kind"] == "recognition")
+        listening = next(card for card in payload["cards"] if card["kind"] == "listening")
+        self.assertIn("this day", recognition["back_html"])
+        self.assertFalse(listening["approved"])
+
     def test_dashboard_endpoint_aggregates_batches_and_anki_counts(self) -> None:
         class FakeDashboardAnkiClient:
             def invoke(self, action: str, **params: object) -> object:

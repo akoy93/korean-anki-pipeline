@@ -333,6 +333,36 @@ def refresh_generated_note(note: GeneratedNote, item: LessonItem) -> GeneratedNo
     return note.model_copy(update={"item": item, "cards": updated_cards})
 
 
+def refresh_preview_note(note: GeneratedNote, item: LessonItem) -> GeneratedNote:
+    if note.duplicate_status == "exact-duplicate":
+        regenerated = generate_note(item)
+        note_approved = True
+    else:
+        regenerated = refresh_generated_note(note, item)
+        note_approved = note.approved
+
+    cards = [
+        card.model_copy(
+            update={
+                "approved": note_approved and (card.kind != "listening" or item.audio is not None),
+            }
+        )
+        for card in regenerated.cards
+    ]
+
+    return regenerated.model_copy(
+        update={
+            "approved": note_approved,
+            "cards": cards,
+            "duplicate_status": "new",
+            "duplicate_note_key": None,
+            "duplicate_note_id": None,
+            "duplicate_source": None,
+            "inclusion_reason": "Edited in preview",
+        }
+    )
+
+
 def generate_batch(
     document: LessonDocument,
     study_state: StudyState | None = None,

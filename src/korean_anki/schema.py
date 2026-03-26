@@ -206,6 +206,11 @@ class PushResult(StrictModel):
     reviewed_batch_path: str | None = None
 
 
+class PreviewNoteRefreshRequest(StrictModel):
+    note: GeneratedNote
+    item: LessonItem
+
+
 class DeleteBatchRequest(StrictModel):
     batch_path: str
     anki_url: str = "http://127.0.0.1:8765"

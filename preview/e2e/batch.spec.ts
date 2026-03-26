@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import type { GeneratedNote, LessonItem } from "../src/lib/schema";
 
 import {
   NUMBERS_BATCH_PATH,
@@ -10,6 +11,54 @@ import {
   makeWeatherBatch,
 } from "./support/fixtures";
 import { MockPreviewApi } from "./support/mockApi";
+
+function requestCount(api: MockPreviewApi, path: string, method = "POST") {
+  return api.capturedRequests.filter(
+    (request) => request.method === method && request.path === path,
+  ).length;
+}
+
+function mockRefreshedNote(note: GeneratedNote, item: LessonItem): GeneratedNote {
+  return {
+    ...note,
+    item,
+    approved: note.duplicate_status === "exact-duplicate" ? true : note.approved,
+    duplicate_status: "new",
+    duplicate_note_key: null,
+    duplicate_note_id: null,
+    duplicate_source: null,
+    inclusion_reason: "Edited in preview",
+    cards: note.cards.map((card) => {
+      switch (card.kind) {
+        case "recognition":
+          return {
+            ...card,
+            front_html: `<div>${item.korean}</div>`,
+            back_html: `<div>${item.english}</div><div>${item.korean}</div>`,
+          };
+        case "production":
+          return {
+            ...card,
+            front_html: `<div>${item.english}</div>`,
+            back_html: `<div>${item.korean}</div><div>${item.english}</div>`,
+          };
+        case "listening":
+          return {
+            ...card,
+            back_html: `<div>${item.korean}</div><div>${item.english}</div>`,
+          };
+        case "number-context":
+          return {
+            ...card,
+            front_html: `<div>In what context is this number form used?</div><div>${item.korean}</div>`,
+            back_html: `<div>${item.english}</div><div>${item.notes ?? ""}</div>`,
+          };
+        default:
+          return card;
+      }
+    }),
+  };
+}
 
 test("batch preview filters cards locally and updates preview content after edits", async ({
   page,
@@ -23,6 +72,7 @@ test("batch preview filters cards locally and updates preview content after edit
       [NUMBERS_BATCH_PATH]: numbersBatch,
     },
   });
+  api.onRefreshNote((note, item) => mockRefreshedNote(note, item));
   await api.install(page);
 
   await page.goto(`/batch/${NUMBERS_BATCH_PATH}`);
@@ -50,6 +100,7 @@ test("batch preview filters cards locally and updates preview content after edit
   await expect(noteCard.locator('[data-testid="preview-card"]')).toHaveCount(1);
 
   await noteCard.locator("input").nth(1).fill("today (updated)");
+  await expect.poll(() => requestCount(api, "/api/preview-note")).toBe(1);
   await expect(noteCard.getByText("today (updated)")).toBeVisible();
 });
 

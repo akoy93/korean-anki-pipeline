@@ -2,7 +2,9 @@ import type {
   CardBatch,
   DashboardResponse,
   DeleteBatchResult,
+  GeneratedNote,
   JobResponse,
+  LessonItem,
   PushResult,
 } from "@/lib/schema";
 
@@ -88,6 +90,23 @@ export async function deleteBatch(batchPath: string): Promise<DeleteBatchResult>
     }),
   });
   return readJson<DeleteBatchResult>(response);
+}
+
+export async function refreshPreviewNote(
+  note: GeneratedNote,
+  item: LessonItem,
+): Promise<GeneratedNote> {
+  const response = await fetch("/api/preview-note", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      note,
+      item,
+    }),
+  });
+  return readJson<GeneratedNote>(response);
 }
 
 export async function createLessonGenerateJob(formData: FormData): Promise<JobResponse> {

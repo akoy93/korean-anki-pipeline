@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from korean_anki.cards import generate_batch, generate_note
+from korean_anki.cards import generate_batch, generate_note, refresh_preview_note
 from korean_anki.schema import ExampleSentence, MediaAsset, PriorNote, StudyState
 
 from support import make_document, make_item
@@ -150,6 +150,56 @@ class CardGenerationTests(unittest.TestCase):
         self.assertEqual(note.duplicate_status, "new")
         self.assertTrue(note.approved)
         self.assertTrue(all(card.approved for card in note.cards if card.kind != "listening"))
+
+    def test_refresh_preview_note_clears_duplicate_block_and_rebuilds_cards(self) -> None:
+        prior = PriorNote(
+            note_key="vocab:안녕하세요:hello",
+            korean="안녕하세요",
+            english="hello",
+            item_type="vocab",
+            lane="lesson",
+            source="prior.batch.json",
+            existing_note_id=42,
+        )
+        duplicate_item = make_item(item_id="dup-1", korean="안녕하세요", english="hello", audio=None, image=None)
+        blocked_note = generate_note(duplicate_item, prior_notes=[prior])
+
+        refreshed = refresh_preview_note(
+            blocked_note,
+            duplicate_item.model_copy(update={"english": "hi"}),
+        )
+
+        self.assertEqual(refreshed.item.english, "hi")
+        self.assertEqual(refreshed.duplicate_status, "new")
+        self.assertTrue(refreshed.approved)
+        self.assertEqual(refreshed.inclusion_reason, "Edited in preview")
+        recognition = next(card for card in refreshed.cards if card.kind == "recognition")
+        listening = next(card for card in refreshed.cards if card.kind == "listening")
+        self.assertIn("hi", recognition.back_html)
+        self.assertFalse(listening.approved)
+
+    def test_refresh_preview_note_preserves_rejected_note_state(self) -> None:
+        item = make_item(item_id="reject-1", audio=None, image=None)
+        note = generate_note(item)
+        rejected = note.model_copy(
+            update={
+                "approved": False,
+                "cards": [
+                    card.model_copy(update={"approved": False})
+                    for card in note.cards
+                ],
+            }
+        )
+
+        refreshed = refresh_preview_note(
+            rejected,
+            item.model_copy(update={"english": "greetings"}),
+        )
+
+        self.assertFalse(refreshed.approved)
+        self.assertTrue(all(not card.approved for card in refreshed.cards))
+        production = next(card for card in refreshed.cards if card.kind == "production")
+        self.assertIn("greetings", production.front_html)
 
 
 if __name__ == "__main__":

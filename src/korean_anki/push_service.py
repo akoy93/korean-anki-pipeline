@@ -29,7 +29,7 @@ from .anki import (
     sync_batch_media,
     sync_lesson_media,
 )
-from .cards import generate_batch
+from .cards import generate_batch, refresh_preview_note
 from .llm import generate_pronunciations, read_lesson, read_transcription, transcribe_sources, write_json
 from .media import enrich_audio, enrich_new_vocab_images
 from .new_vocab import build_new_vocab_document_from_state
@@ -44,6 +44,7 @@ from .schema import (
     JobResponse,
     LessonTranscription,
     NewVocabJobRequest,
+    PreviewNoteRefreshRequest,
     PushRequest,
     PushResult,
     RawSourceAsset,
@@ -816,6 +817,9 @@ class PushServiceHandler(BaseHTTPRequestHandler):
         if parsed.path == "/api/delete-batch":
             self._handle_delete_batch()
             return
+        if parsed.path == "/api/preview-note":
+            self._handle_preview_note_refresh()
+            return
         if parsed.path == "/api/jobs/lesson-generate":
             self._handle_lesson_generate_job()
             return
@@ -876,6 +880,16 @@ class PushServiceHandler(BaseHTTPRequestHandler):
             self._send_json(400, {"error": "Invalid delete request.", "details": error.errors()})
         except Exception as error:  # noqa: BLE001
             self._send_json(409, {"error": str(error)})
+
+    def _handle_preview_note_refresh(self) -> None:
+        try:
+            request = PreviewNoteRefreshRequest.model_validate_json(self._read_body())
+            refreshed_note = refresh_preview_note(request.note, request.item)
+            self._send_json(200, cast(dict[str, object], refreshed_note.model_dump()))
+        except ValidationError as error:
+            self._send_json(400, {"error": "Invalid preview-note request.", "details": error.errors()})
+        except Exception as error:  # noqa: BLE001
+            self._send_json(400, {"error": str(error)})
 
     def _handle_lesson_generate_job(self) -> None:
         try:

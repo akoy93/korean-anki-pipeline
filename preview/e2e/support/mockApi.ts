@@ -4,7 +4,9 @@ import type {
   CardBatch,
   DashboardResponse,
   DeleteBatchResult,
+  GeneratedNote,
   JobResponse,
+  LessonItem,
   PushResult,
 } from "../../src/lib/schema";
 
@@ -73,6 +75,9 @@ export class MockPreviewApi {
   private pushResponses: PushResult[] = [];
   private deleteHandler:
     | ((batchPath: string) => DeleteBatchResult)
+    | undefined;
+  private refreshNoteHandler:
+    | ((note: GeneratedNote, item: LessonItem) => GeneratedNote)
     | undefined;
   private startBackendHandler: (() => void) | undefined;
   private openAnkiHandler: (() => void) | undefined;
@@ -148,6 +153,10 @@ export class MockPreviewApi {
 
   onDelete(handler: (batchPath: string) => DeleteBatchResult) {
     this.deleteHandler = handler;
+  }
+
+  onRefreshNote(handler: (note: GeneratedNote, item: LessonItem) => GeneratedNote) {
+    this.refreshNoteHandler = handler;
   }
 
   onStartBackend(handler: () => void) {
@@ -295,6 +304,29 @@ export class MockPreviewApi {
               deleted_media_paths: [],
             };
         await fulfillJson(route, 200, clone(result));
+        return;
+      }
+
+      if (method === "POST" && path === "/api/preview-note") {
+        const payload = body as { note?: GeneratedNote; item?: LessonItem } | null;
+        if (payload?.note === undefined || payload.item === undefined) {
+          await fulfillJson(route, 400, {
+            error: "Missing note or item.",
+          });
+          return;
+        }
+        if (this.refreshNoteHandler === undefined) {
+          await fulfillJson(route, 500, {
+            error: "No mock preview-note response configured.",
+          });
+          return;
+        }
+
+        await fulfillJson(
+          route,
+          200,
+          clone(this.refreshNoteHandler(payload.note, payload.item)),
+        );
         return;
       }
 
