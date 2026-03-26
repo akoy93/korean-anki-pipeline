@@ -26,6 +26,7 @@ The big structural wins are real:
   - `job_handlers.py`
 - the preview frontend is no longer concentrated in a single `App.tsx`
 - the batch preview surface is now split into concrete subcomponents instead of one large editing file
+- the old broad `schema.py` file is gone; the backend models now live in `src/korean_anki/schema/` by usage boundary
 - shared runtime defaults now live in `src/korean_anki/settings.py`
 - LLM structured-output contracts now come from backend-owned Pydantic models instead of handwritten JSON schema duplicates
 - the project-side snapshot/read-model path now rebuilds directly from the filesystem instead of depending on project version hashing plus snapshot-level caches
@@ -63,35 +64,10 @@ The right bias is:
 - keep them small and close to the feature slice
 - extract only when a real second responsibility starts changing independently
 
-### Watchpoint. `schema.py` is still broad, but it is not the urgent problem
-
-`src/korean_anki/schema.py` is still the largest backend file.
-
-It mixes:
-
-- lesson/document domain models
-- generated card models
-- dashboard/read models
-- job request/response models
-- extraction/transcription/QA models
-
-That is still not ideal in a pure architectural sense. But in this repo, splitting it prematurely would likely create more churn than clarity.
-
-I would only split it if one boundary starts changing materially faster than the others, or if routine work starts paying a real navigation cost because the file keeps growing.
-
-If that happens, split it by actual usage boundary:
-
-- domain models
-- API transport models
-- background job models
-- extraction/transcription models
-
-Until then, leave it alone.
-
 ## What I Would Keep
 
 - one backend surface in Python via `http_api.py`
-- the standard contract path of `schema.py` -> `schema.contract.json` -> `schema.ts`
+- the standard contract path of `schema/` -> `schema.contract.json` -> `schema.ts`
 - the narrower preview contract boundary that only exports frontend-facing transport models
 - the shared runtime-defaults boundary in `settings.py`
 - the current Anki infrastructure split
@@ -127,15 +103,18 @@ Until then, leave it alone.
 
 ## Refactor Order
 
-1. Revisit splitting `schema.py` only if the model surface keeps growing.
+No urgent refactor items remain.
+
+The remaining work should stay watchpoint-driven:
+
+- keep `preview/src/lib/batchUi.tsx` and `preview/src/lib/homeUi.tsx` from quietly turning into new catch-all files
+- keep local-only behavior straightforward unless there is a demonstrated need for more machinery
+- split files only when a real ownership boundary starts changing faster than its neighbors
 
 ## Bottom Line
 
 The repo does not need a new broad architecture phase.
 
-The most useful next work is incremental, not sweeping:
+The most useful next work is incremental, not sweeping.
 
-- keep local-only behavior straightforward unless there is a demonstrated need for more machinery
-- split files only when a real ownership boundary starts changing faster than its neighbors
-
-The previous risk was architectural drift. The current risk is smaller: letting watchpoint files quietly grow back into catch-all modules.
+The current risk is smaller than before: letting the remaining watchpoint files quietly grow back into catch-all modules.
