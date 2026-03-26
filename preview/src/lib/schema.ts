@@ -25,6 +25,16 @@ export type StudyLane = "lesson" | "new-vocab" | "reading-speed" | "grammar" | "
 export interface PreviewContract {}
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "BatchPreviewResponse".
+ */
+export interface BatchPreviewResponse {
+  batch: CardBatch;
+  canonical_batch_path: string;
+  preview_batch_path: string;
+  synced_batch_path?: string | null;
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
  * via the `definition` "CardBatch".
  */
 export interface CardBatch {
@@ -132,7 +142,8 @@ export interface CardPreview {
  * via the `definition` "DashboardBatch".
  */
 export interface DashboardBatch {
-  path: string;
+  canonical_batch_path: string;
+  preview_batch_path: string;
   title: string;
   topic: string;
   lesson_date: string;

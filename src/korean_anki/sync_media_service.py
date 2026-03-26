@@ -5,9 +5,10 @@ from pathlib import Path
 
 from .anki_media_sync import MediaSyncSummary, sync_batch_media, sync_lesson_media
 from .lesson_io import read_lesson, write_json
+from .path_policy import default_synced_output_path
 from .schema import CardBatch
 from .snapshot_cache import invalidate_project_snapshots
-from .service_support import default_synced_output_path, normalize_batch_media_paths
+from .service_support import normalize_batch_media_paths
 
 
 @dataclass(frozen=True)

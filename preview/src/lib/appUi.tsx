@@ -165,20 +165,20 @@ export function hydrationStatusBadge(mediaHydrated: boolean) {
 }
 
 export function previewBatchPath(batch: DashboardBatch) {
-  return batch.synced_batch_path ?? batch.path;
+  const legacyPath = (batch as DashboardBatch & { path?: string }).path;
+  return batch.preview_batch_path ?? batch.synced_batch_path ?? dashboardCanonicalBatchPath(batch) ?? legacyPath ?? "";
+}
+
+export function dashboardCanonicalBatchPath(batch: DashboardBatch) {
+  const legacyPath = (batch as DashboardBatch & { path?: string }).path;
+  return batch.canonical_batch_path ?? legacyPath ?? batch.preview_batch_path ?? batch.synced_batch_path ?? "";
 }
 
 export function matchesDashboardBatch(
   candidate: DashboardBatch,
-  batchPath: string,
+  canonicalBatchPath: string,
 ) {
-  return candidate.path === batchPath || candidate.synced_batch_path === batchPath;
-}
-
-export function canonicalBatchPath(batchPath: string) {
-  return batchPath.endsWith(".synced.batch.json")
-    ? `${batchPath.slice(0, -".synced.batch.json".length)}.batch.json`
-    : batchPath;
+  return dashboardCanonicalBatchPath(candidate) === canonicalBatchPath;
 }
 
 export type PreviewFilterKind =

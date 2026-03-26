@@ -13,8 +13,8 @@ from .batch_generation_service import (
 )
 from .lesson_generation_service import build_lesson_documents_from_transcription
 from .new_vocab_generation_service import generate_new_vocab_batch
+from .path_policy import default_synced_output_path
 from .push_workflow_service import handle_push_request
-from .service_support import default_synced_output_path
 from .sync_media_service import sync_media_file
 from .http_api import run_server
 from .lesson_io import read_transcription, write_json

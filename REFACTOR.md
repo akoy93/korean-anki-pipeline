@@ -9,6 +9,7 @@ The repo is substantially healthier than it was before the earlier cleanup work.
 - the preview app now talks to one real Python backend instead of splitting runtime behavior between Python and Vite
 - preview types are generated from backend schema instead of being hand-maintained
 - repositories and snapshots exist as explicit read boundaries
+- batch identity and preview path semantics now come from one backend path-policy boundary instead of being reconstructed in the UI
 - the old `application.py`, `anki.py`, and `llm.py` catch-all modules are gone
 - backend jobs now persist across restarts
 - the preview app is no longer concentrated in a single `App.tsx` file
@@ -19,36 +20,13 @@ That said, the previous version of this document was too optimistic. The codebas
 
 The main remaining issues now are:
 
-1. synced/canonical/media path semantics are still duplicated across backend and frontend
-2. the preview pages still carry too much controller logic
-3. runtime defaults are still repeated across schema, CLI, services, and frontend code
+1. the preview pages still carry too much controller logic
+2. runtime defaults are still repeated across schema, CLI, services, and frontend code
+3. `schema.py` is still a watchpoint if the model surface keeps growing
 
 ## Findings
 
-### P1. Unify batch identity and path semantics
-
-The repo still has too many places that understand the difference between canonical batches, synced batches, preview batches, and media paths.
-
-That logic is currently spread across:
-
-- `src/korean_anki/batch_repository.py`
-- `src/korean_anki/snapshots.py`
-- `src/korean_anki/service_support.py`
-- `src/korean_anki/path_policy.py`
-- `preview/src/lib/appUi.tsx`
-
-This is not theoretical. A recent live bug around opening the Daily Routines batch and seeing stale Numbers content was exactly the kind of failure this duplication produces.
-
-What I would do:
-
-- make the backend the source of truth for preview batch identity
-- return explicit canonical and preview batch references from the API instead of having the frontend derive them
-- centralize synced/canonical/media-path transforms in one backend module
-- keep the frontend to simple routing and display decisions, not path-shape reconstruction
-
-This is a good example of a smaller bug source that will keep reappearing if the semantics stay distributed.
-
-### P2. Extract page controllers from `HomePage.tsx` and `BatchPreviewPage.tsx`
+### P1. Extract page controllers from `HomePage.tsx` and `BatchPreviewPage.tsx`
 
 The preview shell split was worthwhile, but the two page modules are still carrying too much orchestration.
 
@@ -66,7 +44,7 @@ What I would do:
 - move batch-edit, hydrate, delete, dry-run, and push flows into dedicated hooks or action modules
 - keep the page files mostly focused on composition and rendering
 
-I would not treat this as urgent before the three backend-facing items above, but it is the clearest frontend cleanup target now.
+I would treat this as the clearest remaining cleanup target now.
 
 ### P2. Centralize runtime defaults and configuration
 
@@ -152,11 +130,8 @@ This is a watchpoint, not an urgent refactor.
   - keep internal workflow models separate from preview transport models
 - `repositories/`
   - keep the current split between `batch_repository.py`, `lesson_repository.py`, `anki_repository.py`, and `snapshot_cache.py`
-- `path_identity.py` or similar
-  - canonical batch path resolution
-  - synced batch path resolution
-  - preview batch identity
-  - media reference normalization
+- `path_policy.py`
+  - keep canonical batch resolution, preview batch identity, and media-path normalization there
 - `services/`
   - keep the existing use-case service modules
 - `interfaces/`
@@ -171,10 +146,9 @@ This is a watchpoint, not an urgent refactor.
 
 ## Refactor Order
 
-1. Consolidate synced/canonical/media path semantics behind one backend boundary.
-2. Extract controller hooks from `HomePage.tsx` and `BatchPreviewPage.tsx`.
-3. Centralize shared runtime defaults.
-4. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Extract controller hooks from `HomePage.tsx` and `BatchPreviewPage.tsx`.
+2. Centralize shared runtime defaults.
+3. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 

@@ -288,7 +288,8 @@ class ServiceStatus(StrictModel):
 
 
 class DashboardBatch(StrictModel):
-    path: str
+    canonical_batch_path: str
+    preview_batch_path: str
     title: str
     topic: str
     lesson_date: date
@@ -331,6 +332,13 @@ class DashboardResponse(StrictModel):
     recent_batches: list[DashboardBatch] = Field(default_factory=list)
     lesson_contexts: list[DashboardLessonContext] = Field(default_factory=list)
     syncable_files: list[str] = Field(default_factory=list)
+
+
+class BatchPreviewResponse(StrictModel):
+    batch: CardBatch
+    canonical_batch_path: str
+    preview_batch_path: str
+    synced_batch_path: str | None = None
 
 
 class NewVocabJobRequest(StrictModel):

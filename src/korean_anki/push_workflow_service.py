@@ -7,9 +7,10 @@ from .anki_push_service import plan_push, push_batch
 from .anki_queries import existing_model_note_keys
 from .anki_repository import AnkiRepository
 from .batch_repository import BatchRepository
+from .path_policy import default_synced_output_path
 from .schema import CardBatch, DeleteBatchResult, PushRequest, PushResult
 from .snapshot_cache import invalidate_anki_snapshots, invalidate_project_snapshots
-from .service_support import default_synced_output_path, normalize_batch_media_paths
+from .service_support import normalize_batch_media_paths
 from .snapshots import batch_media_hydrated as snapshot_batch_media_hydrated
 from .snapshots import batch_referenced_media_paths as snapshot_batch_referenced_media_paths
 

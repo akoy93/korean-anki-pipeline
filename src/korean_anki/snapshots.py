@@ -4,6 +4,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Callable, cast
 
+from . import path_policy
 from .anki_repository import AnkiRepository
 from .batch_repository import BatchRepository
 from .lesson_repository import LessonRepository
@@ -33,7 +34,8 @@ def _dashboard_batch(
     lanes = sorted({note.lane for note in batch.notes})
 
     return DashboardBatch(
-        path=str(batch_path.relative_to(project_root)),
+        canonical_batch_path=str(batch_path.relative_to(project_root)),
+        preview_batch_path=str(batch_path.relative_to(project_root)),
         title=batch.metadata.title,
         topic=batch.metadata.topic,
         lesson_date=batch.metadata.lesson_date,
@@ -46,35 +48,43 @@ def _dashboard_batch(
         image_notes=sum(1 for note in batch.notes if note.item.image is not None),
         exact_duplicates=sum(1 for note in batch.notes if note.duplicate_status == "exact-duplicate"),
         near_duplicates=sum(1 for note in batch.notes if note.duplicate_status == "near-duplicate"),
+        synced_batch_path=None,
         lanes=cast(list, lanes),
     )
-
-
-def canonical_batch_path(batch_path: Path) -> Path:
-    if batch_path.name.endswith(".synced.batch.json"):
-        return batch_path.with_name(f"{batch_path.name.removesuffix('.synced.batch.json')}.batch.json")
-    return batch_path
-
-
-def resolve_media_reference_path(path: str, *, project_root: Path) -> Path:
-    media_path = Path(path)
-    if media_path.is_absolute():
-        return media_path
-    return project_root / path
 
 
 def batch_referenced_media_paths(batch: CardBatch, *, project_root: Path) -> set[Path]:
     media_paths: set[Path] = set()
     for note in batch.notes:
         if note.item.audio is not None:
-            media_paths.add(resolve_media_reference_path(note.item.audio.path, project_root=project_root))
+            media_paths.add(
+                path_policy.resolve_media_reference_path(
+                    note.item.audio.path,
+                    project_root_path=project_root,
+                )
+            )
         if note.item.image is not None:
-            media_paths.add(resolve_media_reference_path(note.item.image.path, project_root=project_root))
+            media_paths.add(
+                path_policy.resolve_media_reference_path(
+                    note.item.image.path,
+                    project_root_path=project_root,
+                )
+            )
         for card in note.cards:
             if card.audio_path is not None:
-                media_paths.add(resolve_media_reference_path(card.audio_path, project_root=project_root))
+                media_paths.add(
+                    path_policy.resolve_media_reference_path(
+                        card.audio_path,
+                        project_root_path=project_root,
+                    )
+                )
             if card.image_path is not None:
-                media_paths.add(resolve_media_reference_path(card.image_path, project_root=project_root))
+                media_paths.add(
+                    path_policy.resolve_media_reference_path(
+                        card.image_path,
+                        project_root_path=project_root,
+                    )
+                )
     return media_paths
 
 
@@ -169,7 +179,6 @@ def _cached_dashboard_response(
         note_keys_loader=note_keys_loader,
     )
 
-    synced_paths = batch_repository.synced_paths()
     recent_batches = [
         batch
         for path in batch_repository.canonical_batch_paths()
@@ -186,9 +195,10 @@ def _cached_dashboard_response(
 
     resolved_batches: list[DashboardBatch] = []
     for batch in recent_batches:
-        canonical_path = root / batch.path
-        synced_batch_path = synced_paths.get(canonical_path)
-        preview_batch_path = synced_batch_path or canonical_path
+        canonical_path = root / batch.canonical_batch_path
+        batch_paths = path_policy.batch_path_identity(canonical_path)
+        synced_batch_path = batch_paths.synced_path
+        preview_batch_path = batch_paths.preview_path
         push_status = "not-pushed"
         canonical_batch = batch_repository.load_batch(canonical_path)
         approved_notes = [note for note in canonical_batch.notes if note.approved]
@@ -203,6 +213,7 @@ def _cached_dashboard_response(
                         project_root=root,
                         batch_repository=batch_repository,
                     ),
+                    "preview_batch_path": str(preview_batch_path.relative_to(root)),
                     "synced_batch_path": str(synced_batch_path.relative_to(root))
                     if synced_batch_path is not None
                     else None,

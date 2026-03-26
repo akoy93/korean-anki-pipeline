@@ -13,7 +13,13 @@ from pydantic import ValidationError
 from . import dashboard_service, jobs, path_policy
 from .cards import refresh_preview_note
 from .push_workflow_service import delete_batch, handle_push_request
-from .schema import CardBatch, DeleteBatchRequest, PreviewNoteRefreshRequest, PushRequest
+from .schema import (
+    BatchPreviewResponse,
+    CardBatch,
+    DeleteBatchRequest,
+    PreviewNoteRefreshRequest,
+    PushRequest,
+)
 
 
 class PushServiceHandler(BaseHTTPRequestHandler):
@@ -172,21 +178,38 @@ class PushServiceHandler(BaseHTTPRequestHandler):
             self._send_json(400, {"error": "Only .batch.json files are supported."})
             return
 
+        project_root = path_policy.project_root()
         try:
             resolved_path = path_policy.resolve_project_path(
                 requested_path,
-                project_root_path=path_policy.project_root(),
+                project_root_path=project_root,
             )
         except ValueError as error:
             self._send_json(403 if "escapes" in str(error) else 400, {"error": str(error)})
             return
 
-        if not resolved_path.exists() or not resolved_path.is_file():
+        try:
+            batch_paths = path_policy.batch_path_identity(resolved_path)
+        except FileNotFoundError:
             self._send_json(404, {"error": "Batch file not found."})
+            return
+        except ValueError as error:
+            self._send_json(400, {"error": str(error)})
             return
 
         try:
-            batch = CardBatch.model_validate_json(resolved_path.read_text(encoding="utf-8"))
+            batch = BatchPreviewResponse(
+                batch=CardBatch.model_validate_json(
+                    batch_paths.preview_path.read_text(encoding="utf-8")
+                ),
+                canonical_batch_path=str(batch_paths.canonical_path.relative_to(project_root)),
+                preview_batch_path=str(batch_paths.preview_path.relative_to(project_root)),
+                synced_batch_path=(
+                    str(batch_paths.synced_path.relative_to(project_root))
+                    if batch_paths.synced_path is not None
+                    else None
+                ),
+            )
         except (OSError, ValidationError) as error:
             self._send_json(500, {"error": str(error)})
             return

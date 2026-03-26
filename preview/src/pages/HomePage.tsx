@@ -29,6 +29,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useDashboard } from "@/hooks/useDashboard";
 import {
+  dashboardCanonicalBatchPath,
   DANGER_PANEL_CLASS,
   SUCCESS_BADGE_CLASS,
   WARNING_BADGE_CLASS,
@@ -378,13 +379,15 @@ export function HomePage({
               const syncInProgress =
                 syncJob?.status === "queued" || syncJob?.status === "running";
               const isBatchSyncing =
-                syncInProgress && syncingBatchPath === batch.path;
+                syncInProgress &&
+                syncingBatchPath === dashboardCanonicalBatchPath(batch);
+              const canonicalBatchPath = dashboardCanonicalBatchPath(batch);
 
               return (
                 <div
-                  key={batch.path}
+                  key={canonicalBatchPath}
                   data-testid="recent-batch-row"
-                  data-batch-path={batch.path}
+                  data-batch-path={canonicalBatchPath}
                   className="flex min-w-0 flex-col gap-4 overflow-hidden rounded-xl border border-border p-4 sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div className="min-w-0 flex-1">
@@ -398,7 +401,7 @@ export function HomePage({
                       {hydrationStatusBadge(batch.media_hydrated ?? false)}
                       {(batch.lanes ?? []).map((lane) => (
                         <Badge
-                          key={`${batch.path}-${lane}`}
+                          key={`${canonicalBatchPath}-${lane}`}
                           variant="outline"
                           className="shrink-0"
                         >
@@ -426,11 +429,13 @@ export function HomePage({
                         type="button"
                         variant="outline"
                         className="w-full sm:w-auto"
-                        onClick={() => void submitDeleteBatch(batch.path)}
-                        disabled={deletingBatchPath === batch.path}
+                        onClick={() =>
+                          void submitDeleteBatch(canonicalBatchPath)
+                        }
+                        disabled={deletingBatchPath === canonicalBatchPath}
                       >
                         Delete
-                        {deletingBatchPath === batch.path ? (
+                        {deletingBatchPath === canonicalBatchPath ? (
                           <Loader2 className="ml-2 h-4 w-4 animate-spin" />
                         ) : (
                           <Trash2 className="ml-2 h-4 w-4" />
@@ -442,7 +447,9 @@ export function HomePage({
                         type="button"
                         variant="secondary"
                         className="w-full sm:w-auto"
-                        onClick={() => void submitSyncJob(batch.path)}
+                        onClick={() =>
+                          void submitSyncJob(canonicalBatchPath)
+                        }
                         disabled={syncInProgress}
                       >
                         {isBatchSyncing ? (

@@ -40,12 +40,12 @@ import {
   PREVIEW_FILTER_KINDS,
   SUCCESS_PANEL_CLASS,
   WARNING_PANEL_CLASS,
-  canonicalBatchPath,
   cardKindDetails,
   hydrationStatusBadge,
   isLocallyFilterableCardKind,
   laneSectionDetails,
   matchesDashboardBatch,
+  previewBatchPath,
   previewSectionDetails,
   pushStatusBadge,
   type PreviewFilterKind,
@@ -104,6 +104,8 @@ export function BatchPreviewPage({
   const [dashboardBatch, setDashboardBatch] = useState<DashboardBatch | null>(
     null,
   );
+  const [canonicalBatchPath, setCanonicalBatchPath] = useState(batchPath);
+  const [loadedBatchPath, setLoadedBatchPath] = useState(batchPath);
   const [pageLoading, setPageLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [refreshError, setRefreshError] = useState<string | null>(null);
@@ -128,7 +130,7 @@ export function BatchPreviewPage({
     Record<string, boolean>
   >({});
   const noteRefreshRequestIdsRef = useRef<Record<string, number>>({});
-  const sourceBatchPath = dashboardBatch?.path ?? canonicalBatchPath(batchPath);
+  const sourceBatchPath = canonicalBatchPath;
 
   function clearPushState() {
     setPushPlan(null);
@@ -141,15 +143,19 @@ export function BatchPreviewPage({
     setPageLoading(true);
     setLoadError(null);
     setDashboardBatch(null);
+    setCanonicalBatchPath(batchPath);
+    setLoadedBatchPath(batchPath);
     setBatch(createEmptyBatch());
     void Promise.all([fetchBatch(batchPath), fetchDashboard()])
-      .then(([nextBatch, dashboard]) => {
+      .then(([nextPreview, dashboard]) => {
         if (!cancelled) {
           const recentBatches = dashboard.recent_batches ?? [];
-          setBatch(nextBatch);
+          setBatch(nextPreview.batch);
+          setCanonicalBatchPath(nextPreview.canonical_batch_path);
+          setLoadedBatchPath(nextPreview.preview_batch_path);
           setDashboardBatch(
             recentBatches.find((candidate) =>
-              matchesDashboardBatch(candidate, batchPath),
+              matchesDashboardBatch(candidate, nextPreview.canonical_batch_path),
             ) ?? null,
           );
           setRefreshError(null);
@@ -163,6 +169,8 @@ export function BatchPreviewPage({
         if (!cancelled) {
           setBatch(createEmptyBatch());
           setDashboardBatch(null);
+          setCanonicalBatchPath(batchPath);
+          setLoadedBatchPath(batchPath);
           setLoadError(
             error instanceof Error ? error.message : "Failed to load batch.",
           );
@@ -190,15 +198,18 @@ export function BatchPreviewPage({
             const recentBatches = dashboard.recent_batches ?? [];
             const nextDashboardBatch =
               recentBatches.find((candidate) =>
-                matchesDashboardBatch(candidate, batchPath),
+                matchesDashboardBatch(candidate, canonicalBatchPath),
               ) ?? null;
             setDashboardBatch(nextDashboardBatch);
+            const nextPreviewBatchPath =
+              nextDashboardBatch === null ? null : previewBatchPath(nextDashboardBatch);
             if (
-              nextDashboardBatch?.synced_batch_path &&
-              nextDashboardBatch.synced_batch_path !== batchPath
+              nextPreviewBatchPath !== null &&
+              nextPreviewBatchPath !== "" &&
+              nextPreviewBatchPath !== loadedBatchPath
             ) {
               window.location.assign(
-                `/batch/${nextDashboardBatch.synced_batch_path}`,
+                `/batch/${nextPreviewBatchPath}`,
               );
             }
           });
@@ -207,7 +218,7 @@ export function BatchPreviewPage({
     }, 750);
 
     return () => window.clearInterval(intervalId);
-  }, [batchPath, hydrateJob]);
+  }, [canonicalBatchPath, hydrateJob, loadedBatchPath]);
 
   const stats = useMemo(() => {
     const totalCards = batch.notes.flatMap((note) => note.cards).length;
@@ -423,7 +434,7 @@ export function BatchPreviewPage({
   return (
     <div
       data-testid="batch-preview-page"
-      data-batch-path={batchPath}
+      data-batch-path={loadedBatchPath}
       className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8"
     >
       <header className="mb-8 space-y-6">
@@ -456,7 +467,7 @@ export function BatchPreviewPage({
             ) : null}
             <div className="rounded-md border border-border p-3 text-sm">
               <div className="text-muted-foreground">Loaded from</div>
-              <div className="mt-1 break-all font-medium">{batchPath}</div>
+              <div className="mt-1 break-all font-medium">{loadedBatchPath}</div>
             </div>
             {batch.metadata.target_deck ? (
               <div className="rounded-md border border-border p-3 text-sm">

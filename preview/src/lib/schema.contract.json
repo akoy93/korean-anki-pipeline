@@ -3,6 +3,38 @@
   "title": "PreviewContract",
   "type": "object",
   "$defs": {
+    "BatchPreviewResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "batch": {
+          "$ref": "#/$defs/CardBatch"
+        },
+        "canonical_batch_path": {
+          "type": "string"
+        },
+        "preview_batch_path": {
+          "type": "string"
+        },
+        "synced_batch_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "batch",
+        "canonical_batch_path",
+        "preview_batch_path"
+      ],
+      "type": "object",
+      "title": "BatchPreviewResponse"
+    },
     "BatchPushStatus": {
       "enum": [
         "not-pushed",
@@ -104,7 +136,10 @@
     "DashboardBatch": {
       "additionalProperties": false,
       "properties": {
-        "path": {
+        "canonical_batch_path": {
+          "type": "string"
+        },
+        "preview_batch_path": {
           "type": "string"
         },
         "title": {
@@ -190,7 +225,8 @@
         }
       },
       "required": [
-        "path",
+        "canonical_batch_path",
+        "preview_batch_path",
         "title",
         "topic",
         "lesson_date",

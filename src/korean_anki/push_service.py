@@ -11,9 +11,7 @@ from .push_workflow_service import (
     delete_batch,
 )
 from .service_support import (
-    default_synced_output_path,
     normalize_batch_media_paths,
-    project_relative_path,
     unique_lesson_root,
     unique_new_vocab_output_path,
 )
@@ -39,11 +37,11 @@ def _resolve_reviewed_batch_path(source_batch_path: str | None) -> tuple[int | N
 
 
 def _default_synced_output_path(input_path: Path) -> Path:
-    return default_synced_output_path(input_path)
+    return path_policy.default_synced_output_path(input_path)
 
 
 def _project_relative_path(path: str | None, project_root: Path) -> str | None:
-    return project_relative_path(path, project_root)
+    return path_policy.project_relative_path(path, project_root)
 
 
 def _normalize_batch_media_paths(batch, project_root: Path):

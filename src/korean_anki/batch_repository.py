@@ -4,6 +4,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from .note_keys import prior_note_from_item
+from . import path_policy
 from .schema import CardBatch, PriorNote
 from .snapshot_cache import invalidate_project_snapshots, project_snapshot_version
 
@@ -31,13 +32,13 @@ class BatchRepository:
         return cached.model_copy(deep=True)
 
     def canonical_batch_path(self, batch_path: Path) -> Path:
-        return canonical_batch_path(batch_path)
+        return path_policy.canonical_batch_path(batch_path)
 
     def synced_paths(self) -> dict[Path, Path]:
         return {
             self.canonical_batch_path(path): path
             for path in self.batch_paths()
-            if path.name.endswith(".synced.batch.json")
+            if path_policy.is_synced_batch_path(path)
         }
 
     def canonical_batch_paths(self) -> list[Path]:
@@ -56,14 +57,6 @@ class BatchRepository:
 
     def syncable_files(self) -> list[str]:
         return list(_cached_syncable_files(str(self.project_root), self.snapshot_version))
-
-
-def canonical_batch_path(batch_path: Path) -> Path:
-    if batch_path.name.endswith(".synced.batch.json"):
-        return batch_path.with_name(f"{batch_path.name.removesuffix('.synced.batch.json')}.batch.json")
-    return batch_path
-
-
 @lru_cache(maxsize=None)
 def _cached_batch_paths(project_root: str, version: int) -> tuple[str, ...]:
     root = Path(project_root)

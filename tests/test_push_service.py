@@ -86,8 +86,38 @@ class PushServiceTests(unittest.TestCase):
             ) as response:
                 payload = json.loads(response.read().decode("utf-8"))
 
-        self.assertEqual(payload["metadata"]["title"], batch.metadata.title)
-        self.assertEqual(payload["notes"][0]["item"]["korean"], "오늘")
+        self.assertEqual(payload["canonical_batch_path"], "data/generated/sample.batch.json")
+        self.assertEqual(payload["preview_batch_path"], "data/generated/sample.batch.json")
+        self.assertIsNone(payload["synced_batch_path"])
+        self.assertEqual(payload["batch"]["metadata"]["title"], batch.metadata.title)
+        self.assertEqual(payload["batch"]["notes"][0]["item"]["korean"], "오늘")
+
+    def test_batch_endpoint_falls_back_to_canonical_when_synced_path_is_missing(self) -> None:
+        project_root = Path(self._testMethodName)
+        canonical_path = project_root / "data/generated/sample.batch.json"
+        canonical_path.parent.mkdir(parents=True, exist_ok=True)
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        batch = make_batch([generate_note(make_item(korean="오늘", english="today"))])
+        canonical_path.write_text(
+            batch.model_dump_json(indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()):
+            with urllib.request.urlopen(
+                f"{base_url}/api/batch?path=data/generated/sample.synced.batch.json",
+                timeout=5,
+            ) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        self.assertEqual(payload["canonical_batch_path"], "data/generated/sample.batch.json")
+        self.assertEqual(payload["preview_batch_path"], "data/generated/sample.batch.json")
+        self.assertIsNone(payload["synced_batch_path"])
+        self.assertEqual(payload["batch"]["notes"][0]["item"]["korean"], "오늘")
 
     def test_media_endpoint_serves_files_from_data_media(self) -> None:
         project_root = Path(self._testMethodName)
@@ -211,8 +241,21 @@ class PushServiceTests(unittest.TestCase):
         self.assertEqual(payload["stats"]["anki_note_count"], 2)
         self.assertEqual(payload["stats"]["anki_card_count"], 3)
         self.assertEqual(payload["stats"]["anki_deck_counts"]["Korean::Lessons::Numbers::Sino"], 2)
-        self.assertTrue(any(batch["path"].endswith(".batch.json") for batch in payload["recent_batches"]))
-        self.assertFalse(any(batch["path"].endswith(".synced.batch.json") for batch in payload["recent_batches"]))
+        self.assertTrue(
+            any(
+                batch["canonical_batch_path"].endswith(".batch.json")
+                for batch in payload["recent_batches"]
+            )
+        )
+        self.assertFalse(
+            any(
+                batch["canonical_batch_path"].endswith(".synced.batch.json")
+                for batch in payload["recent_batches"]
+            )
+        )
+        self.assertTrue(
+            all("preview_batch_path" in batch for batch in payload["recent_batches"])
+        )
         self.assertTrue(all("push_status" in batch for batch in payload["recent_batches"]))
         self.assertTrue(all("media_hydrated" in batch for batch in payload["recent_batches"]))
         self.assertTrue(any(context["path"].endswith("transcription.json") for context in payload["lesson_contexts"]))
@@ -260,9 +303,13 @@ class PushServiceTests(unittest.TestCase):
         dashboard_batch = next(
             batch
             for batch in payload["recent_batches"]
-            if batch["path"] == "data/generated/sample.batch.json"
+            if batch["canonical_batch_path"] == "data/generated/sample.batch.json"
         )
         self.assertFalse(dashboard_batch["media_hydrated"])
+        self.assertEqual(
+            dashboard_batch["preview_batch_path"],
+            "data/generated/sample.batch.json",
+        )
         self.assertIsNone(dashboard_batch["synced_batch_path"])
 
     def test_dashboard_uses_synced_batch_for_hydration_status(self) -> None:
@@ -321,9 +368,13 @@ class PushServiceTests(unittest.TestCase):
         dashboard_batch = next(
             batch
             for batch in payload["recent_batches"]
-            if batch["path"] == "data/generated/sample.batch.json"
+            if batch["canonical_batch_path"] == "data/generated/sample.batch.json"
         )
         self.assertTrue(dashboard_batch["media_hydrated"])
+        self.assertEqual(
+            dashboard_batch["preview_batch_path"],
+            "data/generated/sample.synced.batch.json",
+        )
         self.assertEqual(
             dashboard_batch["synced_batch_path"],
             "data/generated/sample.synced.batch.json",
@@ -369,9 +420,13 @@ class PushServiceTests(unittest.TestCase):
         dashboard_batch = next(
             batch
             for batch in payload["recent_batches"]
-            if batch["path"] == "data/generated/sample.batch.json"
+            if batch["canonical_batch_path"] == "data/generated/sample.batch.json"
         )
         self.assertEqual(dashboard_batch["push_status"], "pushed")
+        self.assertEqual(
+            dashboard_batch["preview_batch_path"],
+            "data/generated/sample.synced.batch.json",
+        )
         self.assertEqual(
             dashboard_batch["synced_batch_path"],
             "data/generated/sample.synced.batch.json",

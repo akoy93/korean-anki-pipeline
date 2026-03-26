@@ -1,4 +1,5 @@
 import type {
+  BatchPreviewResponse,
   CardBatch,
   DashboardResponse,
   DeleteBatchResult,
@@ -33,9 +34,9 @@ export async function openAnki(): Promise<{ ok: boolean }> {
   return readJson<{ ok: boolean }>(response);
 }
 
-export async function fetchBatch(path: string): Promise<CardBatch> {
+export async function fetchBatch(path: string): Promise<BatchPreviewResponse> {
   const response = await fetch(`/api/batch?path=${encodeURIComponent(path)}`);
-  return readJson<CardBatch>(response);
+  return readJson<BatchPreviewResponse>(response);
 }
 
 export async function checkPush(batch: CardBatch): Promise<PushResult> {

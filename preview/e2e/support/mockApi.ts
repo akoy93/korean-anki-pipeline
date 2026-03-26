@@ -1,6 +1,7 @@
 import type { Page, Route } from "@playwright/test";
 
 import type {
+  BatchPreviewResponse,
   CardBatch,
   DashboardResponse,
   DeleteBatchResult,
@@ -31,6 +32,23 @@ type JobSequence = {
 
 function clone<T>(value: T): T {
   return structuredClone(value);
+}
+
+function isSyncedBatchPath(path: string) {
+  return path.endsWith(".synced.batch.json");
+}
+
+function canonicalBatchPath(path: string) {
+  return isSyncedBatchPath(path)
+    ? `${path.slice(0, -".synced.batch.json".length)}.batch.json`
+    : path;
+}
+
+function syncedBatchPath(path: string) {
+  const canonicalPath = canonicalBatchPath(path);
+  return canonicalPath.endsWith(".batch.json")
+    ? `${canonicalPath.slice(0, -".batch.json".length)}.synced.batch.json`
+    : canonicalPath;
 }
 
 async function fulfillJson(
@@ -206,12 +224,32 @@ export class MockPreviewApi {
           await fulfillJson(route, 400, { error: "Missing path query parameter." });
           return;
         }
-        const batch = this.batches.get(requestedPath);
-        if (batch === undefined) {
-          await fulfillJson(route, 404, { error: `Unknown batch: ${requestedPath}` });
+        const canonicalPath = canonicalBatchPath(requestedPath);
+        const resolvedSyncedPath = syncedBatchPath(canonicalPath);
+        const previewPath = this.batches.has(resolvedSyncedPath)
+          ? resolvedSyncedPath
+          : this.batches.has(canonicalPath)
+            ? canonicalPath
+            : this.batches.has(requestedPath)
+              ? requestedPath
+              : null;
+        if (previewPath === null) {
+          await fulfillJson(route, 404, { error: "Batch file not found." });
           return;
         }
-        await fulfillJson(route, 200, clone(batch));
+        const batch = this.batches.get(previewPath);
+        if (batch === undefined) {
+          await fulfillJson(route, 404, { error: "Batch file not found." });
+          return;
+        }
+        const payload: BatchPreviewResponse = {
+          batch: clone(batch),
+          canonical_batch_path: canonicalPath,
+          preview_batch_path: previewPath,
+          synced_batch_path:
+            previewPath === resolvedSyncedPath ? resolvedSyncedPath : null,
+        };
+        await fulfillJson(route, 200, payload);
         return;
       }
 

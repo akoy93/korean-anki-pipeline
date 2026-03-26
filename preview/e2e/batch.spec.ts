@@ -190,7 +190,7 @@ test("missing batch does not render stale sample content under the error", async
 
   await page.goto("/batch/data/generated/missing.synced.batch.json");
 
-  await expect(page.getByText("Unknown batch: data/generated/missing.synced.batch.json")).toBeVisible();
+  await expect(page.getByText("Batch file not found.")).toBeVisible();
   await expect(page.locator("h1")).toHaveText("Batch");
   await expect(page.getByText("하나")).toHaveCount(0);
   await expect(page.locator('[data-testid="note-card"]')).toHaveCount(0);

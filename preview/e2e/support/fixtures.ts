@@ -298,7 +298,8 @@ export function makeDashboardBatch(
   const lanes = [...new Set(batch.notes.map((note) => note.lane ?? "lesson"))];
 
   return {
-    path,
+    canonical_batch_path: path,
+    preview_batch_path: syncedBatchPath ?? path,
     title: batch.metadata.title,
     topic: batch.metadata.topic,
     lesson_date: batch.metadata.lesson_date,
@@ -378,7 +379,7 @@ export function makeDashboardResponse({
       },
     ],
     syncable_files: recentBatches
-      .map((batch) => batch.path)
+      .map((batch) => batch.canonical_batch_path)
       .filter((path) => !path.endsWith(".synced.batch.json")),
   };
 }

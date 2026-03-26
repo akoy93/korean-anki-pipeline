@@ -17,6 +17,7 @@ PREVIEW_CONTRACT_LITERAL_EXPORTS = (
 )
 
 PREVIEW_CONTRACT_MODEL_EXPORTS = (
+    "BatchPreviewResponse",
     "CardBatch",
     "CardPreview",
     "DashboardBatch",

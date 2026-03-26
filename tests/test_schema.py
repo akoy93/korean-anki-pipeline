@@ -68,6 +68,7 @@ class SchemaTests(unittest.TestCase):
         definitions = contract["$defs"]
 
         for expected_name in {
+            "BatchPreviewResponse",
             "BatchPushStatus",
             "CardBatch",
             "DashboardResponse",
