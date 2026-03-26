@@ -11,6 +11,10 @@ from urllib.parse import parse_qs, unquote, urlparse
 from pydantic import ValidationError
 
 from . import dashboard_service, jobs, path_policy
+from .anki_client import AnkiConnectClient
+from .anki_queries import existing_model_note_keys
+from .anki_repository import AnkiRepository
+from .batch_repository import BatchRepository
 from .cards import refresh_preview_note
 from .push_workflow_service import delete_batch, handle_push_request
 from .schema import (
@@ -20,7 +24,8 @@ from .schema import (
     PreviewNoteRefreshRequest,
     PushRequest,
 )
-from .settings import DEFAULT_PREVIEW_HOST, DEFAULT_PREVIEW_PORT
+from .snapshots import batch_media_hydrated, batch_push_status
+from .settings import DEFAULT_ANKI_URL, DEFAULT_PREVIEW_HOST, DEFAULT_PREVIEW_PORT
 
 
 class PushServiceHandler(BaseHTTPRequestHandler):
@@ -199,6 +204,7 @@ class PushServiceHandler(BaseHTTPRequestHandler):
             return
 
         try:
+            batch_repository = BatchRepository(project_root)
             batch = BatchPreviewResponse(
                 batch=CardBatch.model_validate_json(
                     batch_paths.preview_path.read_text(encoding="utf-8")
@@ -209,6 +215,19 @@ class PushServiceHandler(BaseHTTPRequestHandler):
                     str(batch_paths.synced_path.relative_to(project_root))
                     if batch_paths.synced_path is not None
                     else None
+                ),
+                push_status=batch_push_status(
+                    batch_repository.load_batch(batch_paths.canonical_path),
+                    note_keys=AnkiRepository(
+                        DEFAULT_ANKI_URL,
+                        client_factory=AnkiConnectClient,
+                        note_keys_loader=existing_model_note_keys,
+                    ).note_keys(),
+                ),
+                media_hydrated=batch_media_hydrated(
+                    batch_paths.preview_path,
+                    project_root=project_root,
+                    batch_repository=batch_repository,
                 ),
             )
         except (OSError, ValidationError) as error:

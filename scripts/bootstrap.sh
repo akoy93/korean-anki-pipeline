@@ -4,6 +4,7 @@ set -euo pipefail
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 log_dir="$repo_root/.logs"
+preview_host="${KOREAN_ANKI_PREVIEW_DEV_HOST:-0.0.0.0}"
 
 is_port_open() {
   local port="$1"
@@ -52,11 +53,11 @@ fi
 if ! is_port_open 5173; then
   (
     cd preview
-    nohup pnpm dev --host 127.0.0.1 >"$log_dir/preview.log" 2>&1 &
+    nohup pnpm dev --host "$preview_host" >"$log_dir/preview.log" 2>&1 &
   )
-  echo "Started preview app on http://127.0.0.1:5173"
+  echo "Started preview app on http://$preview_host:5173"
 else
-  echo "Preview app already running on http://127.0.0.1:5173"
+  echo "Preview app already running on port 5173"
 fi
 
 if ! is_port_open 8765; then

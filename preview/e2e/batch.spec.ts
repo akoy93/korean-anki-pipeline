@@ -2,10 +2,12 @@ import { expect, test } from "@playwright/test";
 import type { GeneratedNote, LessonItem } from "../src/lib/schema";
 
 import {
+  DAILY_BATCH_PATH,
   NUMBERS_BATCH_PATH,
   WEATHER_BATCH_PATH,
   makeDashboardBatch,
   makeDashboardResponse,
+  makeDailyBatch,
   makeNumbersBatch,
   makePushResult,
   makeWeatherBatch,
@@ -199,6 +201,38 @@ test("batch preview remains compatible with a legacy raw batch response", async 
   await expect(
     page.locator('[data-testid="note-card"][data-note-id="weather-001"]'),
   ).toBeVisible();
+});
+
+test("older pushed and hydrated batches hide local action buttons", async ({
+  page,
+}) => {
+  const dailyBatch = makeDailyBatch();
+  const api = new MockPreviewApi({
+    dashboard: makeDashboardResponse({
+      recentBatches: [makeDashboardBatch(WEATHER_BATCH_PATH, makeWeatherBatch())],
+    }),
+    batches: {
+      [DAILY_BATCH_PATH]: dailyBatch,
+    },
+    batchPreviewStatuses: {
+      [DAILY_BATCH_PATH]: {
+        pushStatus: "pushed",
+        mediaHydrated: true,
+      },
+    },
+  });
+  await api.install(page);
+
+  await page.goto(`/batch/${DAILY_BATCH_PATH}`);
+
+  await expect(
+    page.getByRole("heading", { name: "Daily Routines Basics" }),
+  ).toBeVisible();
+  await expect(page.getByText("Pushed")).toBeVisible();
+  await expect(page.getByText("Hydrated")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Delete batch" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Hydrate media" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Check push" })).toHaveCount(0);
 });
 
 test("missing batch does not render stale sample content under the error", async ({

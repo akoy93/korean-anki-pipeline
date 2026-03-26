@@ -372,6 +372,8 @@ class BatchPreviewResponse(StrictModel):
     canonical_batch_path: str
     preview_batch_path: str
     synced_batch_path: str | None = None
+    push_status: BatchPushStatus | None = None
+    media_hydrated: bool | None = None
 
 
 class NewVocabJobRequest(StrictModel):

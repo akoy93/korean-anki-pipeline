@@ -13,11 +13,11 @@ import {
 import {
   isLocallyFilterableCardKind,
   PREVIEW_FILTER_KINDS,
-  previewBatchPath,
   previewSectionDetails,
   type PreviewFilterKind,
 } from "@/lib/appUi";
 import type {
+  BatchPushStatus,
   CardBatch,
   DashboardBatch,
   GeneratedNote,
@@ -61,6 +61,8 @@ export function useBatchPreviewModel(batchPath: string) {
   const [dashboardBatch, setDashboardBatch] = useState<DashboardBatch | null>(
     null,
   );
+  const [pushStatus, setPushStatus] = useState<BatchPushStatus>("not-pushed");
+  const [resolvedMediaHydrated, setResolvedMediaHydrated] = useState(false);
   const [canonicalBatchPath, setCanonicalBatchPath] = useState(batchPath);
   const [loadedBatchPath, setLoadedBatchPath] = useState(batchPath);
   const [pageLoading, setPageLoading] = useState(true);
@@ -99,6 +101,8 @@ export function useBatchPreviewModel(batchPath: string) {
     setPageLoading(true);
     setLoadError(null);
     setDashboardBatch(null);
+    setPushStatus("not-pushed");
+    setResolvedMediaHydrated(false);
     setCanonicalBatchPath(batchPath);
     setLoadedBatchPath(batchPath);
     setBatch(createEmptyBatch());
@@ -106,15 +110,25 @@ export function useBatchPreviewModel(batchPath: string) {
       .then(([nextPreview, dashboard]) => {
         if (!cancelled) {
           const recentBatches = dashboard.recent_batches ?? [];
-          setBatch(nextPreview.batch);
-          setCanonicalBatchPath(nextPreview.canonical_batch_path);
-          setLoadedBatchPath(nextPreview.preview_batch_path);
-          setDashboardBatch(
+          const matchingDashboardBatch =
             recentBatches.find(
               (candidate) =>
                 candidate.canonical_batch_path ===
                 nextPreview.canonical_batch_path,
-            ) ?? null,
+            ) ?? null;
+          setBatch(nextPreview.batch);
+          setCanonicalBatchPath(nextPreview.canonical_batch_path);
+          setLoadedBatchPath(nextPreview.preview_batch_path);
+          setDashboardBatch(matchingDashboardBatch);
+          setPushStatus(
+            nextPreview.push_status ??
+              matchingDashboardBatch?.push_status ??
+              "not-pushed",
+          );
+          setResolvedMediaHydrated(
+            nextPreview.media_hydrated ??
+              matchingDashboardBatch?.media_hydrated ??
+              false,
           );
           setRefreshError(null);
           setRefreshingNoteIds({});
@@ -127,6 +141,8 @@ export function useBatchPreviewModel(batchPath: string) {
         if (!cancelled) {
           setBatch(createEmptyBatch());
           setDashboardBatch(null);
+          setPushStatus("not-pushed");
+          setResolvedMediaHydrated(false);
           setCanonicalBatchPath(batchPath);
           setLoadedBatchPath(batchPath);
           setLoadError(
@@ -152,24 +168,33 @@ export function useBatchPreviewModel(batchPath: string) {
       void fetchJob(hydrateJob.id).then((nextJob) => {
         setHydrateJob(nextJob);
         if (nextJob.status === "succeeded") {
-          void fetchDashboard().then((dashboard) => {
+          void Promise.all([
+            fetchBatch(canonicalBatchPath),
+            fetchDashboard(),
+          ]).then(([nextPreview, dashboard]) => {
             const recentBatches = dashboard.recent_batches ?? [];
             const nextDashboardBatch =
               recentBatches.find(
                 (candidate) =>
-                  candidate.canonical_batch_path === canonicalBatchPath,
+                  candidate.canonical_batch_path ===
+                  nextPreview.canonical_batch_path,
               ) ?? null;
+            setBatch(nextPreview.batch);
+            setCanonicalBatchPath(nextPreview.canonical_batch_path);
+            setLoadedBatchPath(nextPreview.preview_batch_path);
             setDashboardBatch(nextDashboardBatch);
-            const nextPreviewBatchPath =
-              nextDashboardBatch === null
-                ? null
-                : previewBatchPath(nextDashboardBatch);
-            if (
-              nextPreviewBatchPath !== null &&
-              nextPreviewBatchPath !== "" &&
-              nextPreviewBatchPath !== loadedBatchPath
-            ) {
-              window.location.assign(`/batch/${nextPreviewBatchPath}`);
+            setPushStatus(
+              nextPreview.push_status ??
+                nextDashboardBatch?.push_status ??
+                "not-pushed",
+            );
+            setResolvedMediaHydrated(
+              nextPreview.media_hydrated ??
+                nextDashboardBatch?.media_hydrated ??
+                false,
+            );
+            if (nextPreview.preview_batch_path !== loadedBatchPath) {
+              window.location.assign(`/batch/${nextPreview.preview_batch_path}`);
             }
           });
         }
@@ -192,8 +217,8 @@ export function useBatchPreviewModel(batchPath: string) {
       approvedCards,
     };
   }, [batch]);
-  const batchPushed = dashboardBatch?.push_status === "pushed";
-  const mediaHydrated = dashboardBatch?.media_hydrated ?? false;
+  const batchPushed = pushStatus === "pushed";
+  const mediaHydrated = resolvedMediaHydrated;
 
   const notesByLane = useMemo(() => {
     const grouped = new Map<StudyLane, GeneratedNote[]>();
@@ -347,6 +372,15 @@ export function useBatchPreviewModel(batchPath: string) {
     try {
       setPushResult(await pushBatch(batch, canonicalBatchPath));
       setPushPlan(null);
+      setPushStatus("pushed");
+      setDashboardBatch((current) =>
+        current === null
+          ? current
+          : {
+              ...current,
+              push_status: "pushed",
+            },
+      );
     } catch (error) {
       setPushError(
         error instanceof Error ? error.message : "Failed to push to Anki.",
@@ -408,6 +442,7 @@ export function useBatchPreviewModel(batchPath: string) {
     pageLoading,
     previewSection,
     pushError,
+    pushStatus,
     pushPlan,
     pushResult,
     pushing,

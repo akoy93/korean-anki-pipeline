@@ -9,6 +9,7 @@ from .anki_repository import AnkiRepository
 from .batch_repository import BatchRepository
 from .lesson_repository import LessonRepository
 from .schema import (
+    BatchPushStatus,
     CardBatch,
     DashboardBatch,
     DashboardResponse,
@@ -102,6 +103,13 @@ def batch_media_hydrated(
 
     referenced_media = batch_referenced_media_paths(parsed_batch, project_root=project_root)
     return all(path.exists() and path.is_file() for path in referenced_media)
+
+
+def batch_push_status(batch: CardBatch, *, note_keys: set[str]) -> BatchPushStatus:
+    approved_notes = [note for note in batch.notes if note.approved]
+    if approved_notes and all(note.note_key in note_keys for note in approved_notes):
+        return "pushed"
+    return "not-pushed"
 
 
 @lru_cache(maxsize=None)
@@ -199,15 +207,14 @@ def _cached_dashboard_response(
         batch_paths = path_policy.batch_path_identity(canonical_path)
         synced_batch_path = batch_paths.synced_path
         preview_batch_path = batch_paths.preview_path
-        push_status = "not-pushed"
         canonical_batch = batch_repository.load_batch(canonical_path)
-        approved_notes = [note for note in canonical_batch.notes if note.approved]
-        if approved_notes and all(note.note_key in note_keys for note in approved_notes):
-            push_status = "pushed"
         resolved_batches.append(
             batch.model_copy(
                 update={
-                    "push_status": push_status,
+                    "push_status": batch_push_status(
+                        canonical_batch,
+                        note_keys=note_keys,
+                    ),
                     "media_hydrated": batch_media_hydrated(
                         preview_batch_path,
                         project_root=root,

@@ -58,7 +58,6 @@ export function BatchPreviewPage({
     checkingPush,
     deleteError,
     deleting,
-    dashboardBatch,
     hydrateError,
     hydrateJob,
     loadedBatchPath,
@@ -68,6 +67,7 @@ export function BatchPreviewPage({
     pageLoading,
     previewSection,
     pushError,
+    pushStatus,
     pushPlan,
     pushResult,
     pushing,
@@ -130,8 +130,8 @@ export function BatchPreviewPage({
               </div>
             ) : null}
             <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden">
-              {pushStatusBadge(dashboardBatch?.push_status ?? "not-pushed")}
-              {hydrationStatusBadge(dashboardBatch?.media_hydrated ?? false)}
+              {pushStatusBadge(pushStatus)}
+              {hydrationStatusBadge(mediaHydrated)}
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div className="rounded-md bg-muted p-3">

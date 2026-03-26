@@ -25,6 +25,32 @@
             }
           ],
           "default": null
+        },
+        "push_status": {
+          "anyOf": [
+            {
+              "enum": [
+                "not-pushed",
+                "pushed"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "media_hydrated": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         }
       },
       "required": [

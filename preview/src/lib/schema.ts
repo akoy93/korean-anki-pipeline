@@ -32,6 +32,8 @@ export interface BatchPreviewResponse {
   canonical_batch_path: string;
   preview_batch_path: string;
   synced_batch_path?: string | null;
+  push_status?: ("not-pushed" | "pushed") | null;
+  media_hydrated?: boolean | null;
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema

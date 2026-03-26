@@ -1,6 +1,7 @@
 import type { Page, Route } from "@playwright/test";
 
 import type {
+  BatchPushStatus,
   BatchPreviewResponse,
   CardBatch,
   DashboardResponse,
@@ -78,6 +79,10 @@ function parseBody(route: Route): unknown {
 export class MockPreviewApi {
   dashboard: DashboardResponse;
   batches = new Map<string, CardBatch>();
+  batchPreviewStatuses = new Map<
+    string,
+    { pushStatus?: BatchPushStatus; mediaHydrated?: boolean }
+  >();
   capturedRequests: CapturedRequest[] = [];
   dashboardDelayMs = 0;
   legacyBatchResponses = false;
@@ -103,11 +108,16 @@ export class MockPreviewApi {
   constructor({
     dashboard,
     batches = {},
+    batchPreviewStatuses = {},
     dashboardDelayMs = 0,
     legacyBatchResponses = false,
   }: {
     dashboard: DashboardResponse;
     batches?: Record<string, CardBatch>;
+    batchPreviewStatuses?: Record<
+      string,
+      { pushStatus?: BatchPushStatus; mediaHydrated?: boolean }
+    >;
     dashboardDelayMs?: number;
     legacyBatchResponses?: boolean;
   }) {
@@ -116,6 +126,9 @@ export class MockPreviewApi {
     this.legacyBatchResponses = legacyBatchResponses;
     for (const [path, batch] of Object.entries(batches)) {
       this.batches.set(path, clone(batch));
+    }
+    for (const [path, status] of Object.entries(batchPreviewStatuses)) {
+      this.batchPreviewStatuses.set(path, clone(status));
     }
   }
 
@@ -246,6 +259,14 @@ export class MockPreviewApi {
           await fulfillJson(route, 404, { error: "Batch file not found." });
           return;
         }
+        const matchingDashboardBatch =
+          this.dashboard.recent_batches?.find(
+            (candidate) => candidate.canonical_batch_path === canonicalPath,
+          ) ?? null;
+        const previewStatus =
+          this.batchPreviewStatuses.get(requestedPath) ??
+          this.batchPreviewStatuses.get(previewPath) ??
+          this.batchPreviewStatuses.get(canonicalPath);
         const payload: BatchPreviewResponse | CardBatch = this.legacyBatchResponses
           ? clone(batch)
           : {
@@ -254,6 +275,14 @@ export class MockPreviewApi {
               preview_batch_path: previewPath,
               synced_batch_path:
                 previewPath === resolvedSyncedPath ? resolvedSyncedPath : null,
+              push_status:
+                previewStatus?.pushStatus ??
+                matchingDashboardBatch?.push_status ??
+                "not-pushed",
+              media_hydrated:
+                previewStatus?.mediaHydrated ??
+                matchingDashboardBatch?.media_hydrated ??
+                false,
             };
         await fulfillJson(route, 200, payload);
         return;

@@ -127,6 +127,58 @@ class PushServiceTests(unittest.TestCase):
         self.assertIsNone(payload["synced_batch_path"])
         self.assertEqual(payload["batch"]["notes"][0]["item"]["korean"], "오늘")
 
+    def test_batch_endpoint_includes_push_and_hydration_status_for_non_recent_batch(self) -> None:
+        project_root = Path(self._testMethodName)
+        canonical_path = project_root / "data/generated/sample.batch.json"
+        synced_path = project_root / "data/generated/sample.synced.batch.json"
+        audio_path = project_root / "data/media/audio/sample.mp3"
+        image_path = project_root / "data/media/images/sample.png"
+        canonical_path.parent.mkdir(parents=True, exist_ok=True)
+        audio_path.parent.mkdir(parents=True, exist_ok=True)
+        image_path.parent.mkdir(parents=True, exist_ok=True)
+        audio_path.write_bytes(b"audio")
+        image_path.write_bytes(b"image")
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        canonical_batch = make_batch([generate_note(make_item(audio=None, image=None))])
+        synced_batch = make_batch(
+            [
+                generate_note(
+                    make_item(
+                        audio=MediaAsset(path="data/media/audio/sample.mp3"),
+                        image=MediaAsset(path="data/media/images/sample.png"),
+                    )
+                )
+            ]
+        )
+        canonical_path.write_text(
+            canonical_batch.model_dump_json(indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        synced_path.write_text(
+            synced_batch.model_dump_json(indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with (
+            patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
+            patch("korean_anki.http_api.AnkiRepository.note_keys", return_value={canonical_batch.notes[0].note_key}),
+        ):
+            with urllib.request.urlopen(
+                f"{base_url}/api/batch?path=data/generated/sample.synced.batch.json",
+                timeout=5,
+            ) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        self.assertEqual(payload["canonical_batch_path"], "data/generated/sample.batch.json")
+        self.assertEqual(payload["preview_batch_path"], "data/generated/sample.synced.batch.json")
+        self.assertEqual(payload["synced_batch_path"], "data/generated/sample.synced.batch.json")
+        self.assertEqual(payload["push_status"], "pushed")
+        self.assertTrue(payload["media_hydrated"])
+
     def test_media_endpoint_serves_files_from_data_media(self) -> None:
         project_root = Path(self._testMethodName)
         media_path = project_root / "data/media/audio/sample.mp3"
