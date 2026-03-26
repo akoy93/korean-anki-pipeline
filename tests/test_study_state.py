@@ -59,6 +59,32 @@ class StudyStateTests(unittest.TestCase):
         self.assertEqual([note.korean for note in first_state.generated_notes], ["일"])
         self.assertEqual([note.korean for note in second_state.generated_notes], ["이", "일"])
 
+    def test_build_study_state_refreshes_when_batch_is_deleted(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            project_root = Path(temp_dir)
+            generated_dir = project_root / "data" / "generated"
+            generated_dir.mkdir(parents=True)
+
+            first_batch = generate_batch(
+                make_document([make_item(item_id="real-1", korean="일", english="one")])
+            )
+            second_batch = generate_batch(
+                make_document([make_item(item_id="real-2", korean="이", english="two")])
+            )
+
+            first_path = generated_dir / "first.batch.json"
+            second_path = generated_dir / "second.batch.json"
+            first_path.write_text(first_batch.model_dump_json(), encoding="utf-8")
+            second_path.write_text(second_batch.model_dump_json(), encoding="utf-8")
+
+            first_state = study_state_snapshot(project_root=project_root, exclude_batch_path=None)
+
+            second_path.unlink()
+            second_state = study_state_snapshot(project_root=project_root, exclude_batch_path=None)
+
+        self.assertEqual([note.korean for note in first_state.generated_notes], ["이", "일"])
+        self.assertEqual([note.korean for note in second_state.generated_notes], ["일"])
+
 
 if __name__ == "__main__":
     unittest.main()

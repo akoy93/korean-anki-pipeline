@@ -6,7 +6,7 @@ from pathlib import Path
 from .note_keys import prior_note_from_item
 from . import path_policy
 from .schema import CardBatch, PriorNote
-from .snapshot_cache import invalidate_project_snapshots, project_snapshot_version
+from .snapshot_cache import project_snapshot_version
 
 
 class BatchRepository:
@@ -16,9 +16,6 @@ class BatchRepository:
     @property
     def snapshot_version(self) -> int:
         return project_snapshot_version(self.project_root)
-
-    def invalidate(self) -> None:
-        invalidate_project_snapshots(self.project_root)
 
     def batch_paths(self) -> list[Path]:
         return [Path(path) for path in _cached_batch_paths(str(self.project_root), self.snapshot_version)]

@@ -12,7 +12,6 @@ from .media import enrich_audio, enrich_images
 from .path_policy import normalize_batch_media_paths
 from .reading_speed import build_reading_speed_document
 from .schema import CardBatch, GeneratedNote, LessonDocument, StudyState
-from .snapshot_cache import invalidate_project_snapshots
 from .settings import DEFAULT_ANKI_URL, DEFAULT_GENERATE_IMAGE_QUALITY
 from .study_state_snapshots import study_state_snapshot
 
@@ -79,7 +78,6 @@ def _write_batch_artifacts(
         + "\n",
         encoding="utf-8",
     )
-    invalidate_project_snapshots(project_root)
 
     return BatchArtifacts(
         batch=batch_to_write,

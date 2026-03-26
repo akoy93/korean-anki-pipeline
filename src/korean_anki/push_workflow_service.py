@@ -11,7 +11,7 @@ from .dashboard_snapshots import batch_media_hydrated as snapshot_batch_media_hy
 from .dashboard_snapshots import batch_referenced_media_paths as snapshot_batch_referenced_media_paths
 from .path_policy import default_synced_output_path, normalize_batch_media_paths
 from .schema import CardBatch, DeleteBatchResult, PushRequest, PushResult
-from .snapshot_cache import invalidate_anki_snapshots, invalidate_project_snapshots
+from .snapshot_cache import invalidate_anki_snapshots
 from .settings import DEFAULT_ANKI_URL
 
 
@@ -49,8 +49,6 @@ def handle_push_request(
         sync=request.sync,
     )
     invalidate_anki_snapshots(request.anki_url)
-    if project_root is not None:
-        invalidate_project_snapshots(project_root)
     if reviewed_batch_path is None:
         return result
     return PushResult.model_validate(result.model_dump() | {"reviewed_batch_path": reviewed_batch_path})
@@ -111,5 +109,4 @@ def delete_batch(batch_path: Path, *, project_root: Path, anki_url: str = DEFAUL
         media_path.unlink()
         deleted_media_paths.append(str(media_path.relative_to(project_root)))
 
-    invalidate_project_snapshots(project_root)
     return DeleteBatchResult(deleted_paths=deleted_paths, deleted_media_paths=deleted_media_paths)

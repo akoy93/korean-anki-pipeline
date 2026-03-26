@@ -4,43 +4,90 @@ Date: 2026-03-26
 
 ## Executive Summary
 
-The repo is in much better shape than it was before the earlier cleanup work. The major correctness and drift problems have already been addressed:
+The codebase is in a much better state than it was before the earlier cleanup work.
 
-- the preview app now talks to one real Python backend instead of splitting runtime behavior between Python and Vite
+The big correctness and drift problems are already gone:
+
+- the preview app talks to one real Python backend instead of splitting runtime behavior between Python and Vite
 - preview types are generated from backend schema instead of being hand-maintained
-- repositories and explicit dashboard/study-state snapshot modules exist as read boundaries
-- batch identity and preview path semantics now come from one backend path-policy boundary instead of being reconstructed in the UI
-- the old `application.py`, `anki.py`, and `llm.py` catch-all modules are gone
-- the thin compatibility layers are now gone too:
+- batch identity and preview path semantics come from one backend path-policy boundary
+- the old catch-all modules are gone:
+  - `application.py`
+  - `anki.py`
+  - `llm.py`
+- the old thin facades are gone too:
   - `push_service.py`
   - `dashboard_service.py`
   - `study_state.py`
   - `service_support.py`
 - backend jobs now persist across restarts
-- `jobs.py` now only owns local job submission and store/progress integration
-- multipart decoding and concrete job handlers now live in:
+- `jobs.py` is now much narrower and only owns local job submission plus store/progress integration
+- multipart parsing and concrete job workflows now live in:
   - `multipart_form.py`
   - `job_handlers.py`
-- the preview app is no longer concentrated in a single `App.tsx` file
-- the home and batch flows now live in concrete feature slices instead of large page/controller hooks
-- `new_vocab.py` and `cards.py` are now compatibility surfaces over narrower domain modules
+- project snapshots are now filesystem-driven instead of depending on cross-process marker files and explicit project invalidation hooks
+- the preview frontend is no longer concentrated in a single `App.tsx`
+- the home and batch flows now live in concrete feature slices instead of giant page/controller hooks
+- `new_vocab.py` and `cards.py` no longer carry the full implementation burden
 - shared runtime defaults now live in `src/korean_anki/settings.py`
 
 Those were good refactors.
 
-The next architectural risk is different. This is a local-only app, so simplicity matters more than abstract purity. The worst layering mistakes have already been removed. The remaining risks are now concentrated in a few broad controllers and read-model modules rather than in cross-module drift.
+The repo does not need another architectural rewrite. The remaining work is mostly simplification work: remove complexity that is not paying for itself, especially complexity that made sense during cleanup but is a little heavy for a local-only app.
 
 If I had to summarize the current problem in one sentence:
 
-> the repo is healthier, and the next cleanup should focus on the few modules that still own too much orchestration
+> the architecture is mostly fine now, but a few subsystems are still more clever than this local-only app needs
 
 ## Findings
 
-### P1. `schema.py` is a watchpoint, not an urgent split
+### P1. The preview client still carries compatibility and fallback code that probably no longer pays for itself
 
-`src/korean_anki/schema.py` is still broad, but it is no longer the most pressing architectural issue.
+The frontend transport layer has improved, but there is still code that exists mostly to tolerate older shapes or to avoid empty-state handling:
 
-It currently mixes:
+- `preview/src/lib/api.ts` still accepts a legacy raw `CardBatch` response from `/api/batch`
+- `preview/src/hooks/useBatchPreviewData.ts` still imports `data/samples/numbers.batch.json` just to synthesize an empty fallback batch shape
+
+For a distributed app, that kind of compatibility logic would be normal.
+
+For this repo, it is less compelling:
+
+- the frontend and backend ship together
+- the app is local-only
+- mixed-version compatibility is mostly a developer convenience during restarts, not a product requirement
+
+That means every compatibility fallback should justify itself. Some may still be worth keeping, but the default posture should be to delete them once they stop preventing real pain.
+
+The sample-batch fallback is the clearest smell. It couples production UI state to demo/test data and makes the batch loader harder to reason about than it needs to be.
+
+### P2. The batch preview editing surface is still the densest frontend area
+
+The broad page-controller hooks are gone, which was the right move. But the actual editing surface is still concentrated in a few large modules:
+
+- `preview/src/components/batch/BatchNotesSection.tsx`
+- `preview/src/components/batch/BatchOverviewCard.tsx`
+- `preview/src/lib/appUi.tsx`
+
+This is not automatically bad. The question is whether the current boundaries match the actual UI responsibilities.
+
+Right now:
+
+- `BatchNotesSection.tsx` mixes note editing, local card filtering, preview rendering, approval UI, duplicate messaging, and per-card media behavior
+- `appUi.tsx` is partly a style token file, partly a UI factory file, partly a domain-label lookup table, and partly a formatting helper module
+
+For a local-only app, I would not split these just to make files shorter. But I would split them the moment new feature work lands there, because they are already near the point where small UX changes require too much context loading.
+
+The right bias here is:
+
+- keep feature logic close to the feature
+- avoid introducing another abstraction layer
+- extract only concrete subcomponents or lookup modules when a change repeatedly touches unrelated concerns in the same file
+
+### P3. `schema.py` is still broad, but it is a watchpoint, not the urgent problem
+
+`src/korean_anki/schema.py` is still the largest backend file.
+
+It mixes:
 
 - lesson/document domain models
 - generated card models
@@ -48,14 +95,16 @@ It currently mixes:
 - job request/response models
 - extraction/transcription/QA models
 
-That is acceptable at the current scale. I would only split it if one of those boundaries starts changing rapidly enough that the file becomes hard to reason about.
+That is still not ideal in a pure architectural sense. But in this repo, splitting it prematurely would likely create more file churn than real clarity.
 
-If that happens, split by boundary:
+I would only split it if one of these boundaries starts changing much faster than the others, or if reading the file starts materially slowing down routine work.
 
-- domain schemas
-- API transport schemas
-- background job schemas
-- extraction/transcription schemas
+If that happens, split it by actual usage boundary:
+
+- domain models
+- API transport models
+- background job models
+- extraction/transcription models
 
 Until then, I would leave it alone.
 
@@ -63,7 +112,7 @@ Until then, I would leave it alone.
 
 - one backend surface in Python via `http_api.py`
 - the standard contract path of `schema.py` -> `schema.contract.json` -> `schema.ts`
-- the narrower preview contract boundary that now exports only frontend-facing transport models
+- the narrower preview contract boundary that only exports frontend-facing transport models
 - the shared runtime-defaults boundary in `settings.py`
 - the repository split:
   - `batch_repository.py`
@@ -73,24 +122,27 @@ Until then, I would leave it alone.
 - the explicit snapshot split:
   - `study_state_snapshots.py`
   - `dashboard_snapshots.py`
-- the direct backend surface without thin compatibility facades
-- the current use-case service modules
-- the current Anki infrastructure split
-- the current LLM infrastructure split
-- the domain-module split:
-  - `new_vocab_selection.py`
-  - `new_vocab_documents.py`
-  - `card_rendering.py`
-  - `note_generation.py`
-  - `new_vocab.py` and `cards.py` as thin compatibility surfaces
-- the local job persistence boundary in `job_store.py`
 - the current local job split:
   - `jobs.py`
   - `job_handlers.py`
   - `multipart_form.py`
-- the concrete frontend feature slices:
-  - home status, recent-batch actions, and generation forms
-  - batch overview/actions and note-preview editing
+  - `job_store.py`
+- the current simplified snapshot boundary:
+  - `snapshot_cache.py`
+  - `study_state_snapshots.py`
+  - `dashboard_snapshots.py`
+- the current Anki infrastructure split
+- the current LLM infrastructure split
+- the current domain split:
+  - `new_vocab_selection.py`
+  - `new_vocab_documents.py`
+  - `card_rendering.py`
+  - `note_generation.py`
+- the current preview feature-slice layout:
+  - `pages/`
+  - `components/`
+  - `hooks/`
+  - `state/`
 - `path_policy.py` as the source of truth for batch identity and media-path normalization
 - the Playwright regression suite as the main UI guardrail
 
@@ -99,29 +151,32 @@ Until then, I would leave it alone.
 ### Backend
 
 - keep one real backend entry surface
-- prefer direct module ownership over compatibility shims and forwarding facades
-- keep repositories, path policy, and use-case services
-- keep the explicit split between study-state snapshots and dashboard/read models
-- avoid introducing more "support" or "manager" buckets unless they represent a real domain boundary
+- keep direct module ownership instead of reintroducing facades
+- prefer obvious local behavior over reusable infrastructure
+- simplify cache/version machinery if possible rather than adding another layer on top of it
+- keep CLI and HTTP as thin adapters over concrete use-case modules
 
 ### Frontend
 
-- keep the current `pages/`, `components/`, `hooks/`, and `state/` layout
-- keep behavior close to concrete feature components instead of reintroducing large controller hooks
-- keep the frontend dependent on backend-issued identifiers and paths rather than reconstructing batch identity locally
+- keep the current feature-slice layout
+- keep the frontend dependent on backend-issued identifiers and paths
+- remove compatibility/fallback paths once they stop solving a real local workflow problem
+- extract concrete subcomponents when feature work repeatedly collides in the same file, but avoid abstract UI frameworks
 
 ## Refactor Order
 
-1. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Remove frontend compatibility and sample-data fallbacks that no longer buy enough value.
+2. Split dense batch-preview UI modules only when further feature work lands there.
+3. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 
-The repo does not need a big rewrite.
+The repo does not need a large new architecture phase.
 
-The biggest architectural mistakes are already behind it. The next round of cleanup should be disciplined and conservative:
+The most useful next work is simplification work:
 
-- remove layers that are not paying for themselves
-- keep local-only workflows simple
-- avoid generic abstractions unless they clearly reduce real complexity
+- reduce cleverness where a local-only app can afford straightforward behavior
+- remove compatibility code that is no longer justified
+- split files only where that lowers real cognitive load
 
-The previous risk was "too much logic in too few places." The current risk is smaller now: mostly watchpoints rather than urgent architectural debt.
+The previous risk was major architectural drift. The current risk is smaller: a few subsystems are now just complex enough to deserve simplification before they quietly become the next hard-to-change parts of the app.

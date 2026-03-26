@@ -4,7 +4,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from .schema import DashboardLessonContext, LessonTranscription
-from .snapshot_cache import invalidate_project_snapshots, project_snapshot_version
+from .snapshot_cache import project_snapshot_version
 
 
 class LessonRepository:
@@ -14,9 +14,6 @@ class LessonRepository:
     @property
     def snapshot_version(self) -> int:
         return project_snapshot_version(self.project_root)
-
-    def invalidate(self) -> None:
-        invalidate_project_snapshots(self.project_root)
 
     def lesson_contexts(self) -> list[DashboardLessonContext]:
         return [

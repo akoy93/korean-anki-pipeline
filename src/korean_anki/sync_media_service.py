@@ -7,7 +7,6 @@ from .anki_media_sync import MediaSyncSummary, sync_batch_media, sync_lesson_med
 from .lesson_io import read_lesson, write_json
 from .path_policy import default_synced_output_path, normalize_batch_media_paths
 from .schema import CardBatch
-from .snapshot_cache import invalidate_project_snapshots
 from .settings import DEFAULT_ANKI_URL, DEFAULT_SYNC_MEDIA_SYNC_FIRST
 
 
@@ -53,5 +52,5 @@ def sync_media_file(
         )
         write_json(synced_document, resolved_output_path)
 
-    invalidate_project_snapshots(project_root)
+    del project_root
     return MediaSyncArtifacts(output_path=resolved_output_path, summary=summary)
