@@ -138,6 +138,15 @@ Run the Python regression suite from the repo root:
 PYTHONPATH=src python3 -m unittest discover -s tests -v
 ```
 
+Run the browser-level preview regression suite from `preview/`:
+
+```bash
+cd preview
+corepack pnpm test:e2e
+```
+
+Those Playwright tests run the real React app against mocked `/api/*` responses, so they cover the current home-page and batch-review UX without requiring live OpenAI, Anki Desktop, or AnkiConnect.
+
 ## Weekly lesson folder pattern
 
 For each lesson, create:

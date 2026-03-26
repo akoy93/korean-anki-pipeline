@@ -1335,6 +1335,8 @@ function HomePage({
               return (
                 <div
                   key={batch.path}
+                  data-testid="recent-batch-row"
+                  data-batch-path={batch.path}
                   className="flex min-w-0 flex-col gap-4 overflow-hidden rounded-xl border border-border p-4 sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div className="min-w-0 flex-1">
@@ -1731,7 +1733,10 @@ function JobCompletionNotice({
   onOpen: () => void;
 }) {
   return (
-    <div className="fixed inset-x-3 bottom-3 z-50 sm:inset-x-auto sm:right-4 sm:w-[min(420px,calc(100vw-2rem))]">
+    <div
+      data-testid="job-completion-notice"
+      className="fixed inset-x-3 bottom-3 z-50 sm:inset-x-auto sm:right-4 sm:w-[min(420px,calc(100vw-2rem))]"
+    >
       <Card className="border-border/80 bg-background/95 shadow-lg backdrop-blur">
         <CardContent className="space-y-3 p-4">
           <div className="flex items-start justify-between gap-3">
@@ -2052,7 +2057,11 @@ function BatchPreviewPage({
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
+    <div
+      data-testid="batch-preview-page"
+      data-batch-path={batchPath}
+      className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8"
+    >
       <header className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
           <div className="flex items-center justify-between gap-3">
@@ -2292,7 +2301,12 @@ function BatchPreviewPage({
                 );
 
                 return (
-                  <Card key={note.item.id} className="overflow-hidden">
+                  <Card
+                    key={note.item.id}
+                    data-testid="note-card"
+                    data-note-id={note.item.id}
+                    className="overflow-hidden"
+                  >
                     <CardHeader className="border-b border-border bg-card/70">
                       <div className="flex items-center justify-between gap-3">
                         <div className="min-w-0 flex-1 min-h-7 sm:min-h-9 flex items-center">
@@ -2418,7 +2432,12 @@ function BatchPreviewPage({
                         const kindDetails = cardKindDetails(card.kind);
 
                         return (
-                          <Card key={card.id} className="border-border/80">
+                          <Card
+                            key={card.id}
+                            data-testid="preview-card"
+                            data-card-id={card.id}
+                            className="border-border/80"
+                          >
                             <CardHeader className="pb-3">
                               <div className="flex items-center gap-3">
                                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
