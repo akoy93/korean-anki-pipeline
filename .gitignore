@@ -17,4 +17,4 @@ data/media/
 *.synced.batch.json
 *.synced.lesson.json
 *.generation-plan.json
-state/
+/state/

@@ -19,51 +19,14 @@ Those were the right fixes. They removed multiple sources of drift that would ha
 
 The biggest remaining architectural problems are now:
 
-1. `App.tsx` is still too concentrated now that the backend seams are cleaner
-2. backend job state is still process-local and restart-fragile
-3. the custom preview type generator should stay narrow and not turn into a second API-description system
+1. backend job state is still process-local and restart-fragile
+2. the custom preview type generator should stay narrow and not turn into a second API-description system
 
 If I were continuing the cleanup, I would not jump to cosmetic file splitting first. The data-access layer is now in better shape, so the next wins are splitting the remaining wide orchestration and infrastructure modules around those newer boundaries.
 
 ## Findings
 
-### P1. The frontend is still too concentrated in `App.tsx`
-
-Evidence:
-
-- `preview/src/App.tsx` is 2495 lines.
-- Home-page logic starts at `preview/src/App.tsx:793`.
-- Job UI logic lives inside the same file at `preview/src/App.tsx:1408`.
-- Batch preview logic starts at `preview/src/App.tsx:1610`.
-- App shell and route selection live in `preview/src/App.tsx:2387`.
-- Manual route parsing still depends on `window.location.pathname` in `preview/src/App.tsx:2393` and `preview/src/App.tsx:2453`.
-- Local-storage persistence is also in the same file at `preview/src/App.tsx:111`, `preview/src/App.tsx:203`, and `preview/src/App.tsx:2411`.
-
-Why this matters:
-
-- The backend boundaries are cleaner than before, so frontend concentration is now more visible.
-- `App.tsx` is still carrying:
-  - shell/routing
-  - page composition
-  - polling
-  - persisted job state
-  - notifications
-  - theme state
-  - batch editing and push flows
-- That slows down every UI change because too much behavior shares one file and one state surface.
-
-What should change:
-
-- Split by page and hook, not by arbitrary component count:
-  - `pages/HomePage.tsx`
-  - `pages/BatchPreviewPage.tsx`
-  - `hooks/useDashboard.ts`
-  - `hooks/useJobs.ts`
-  - `state/theme.ts`
-  - `state/jobNotifications.ts`
-- Do this after the repository and backend module boundaries are cleaner, not before.
-
-### P2. Backend job state is still in-memory and restart-fragile
+### P1. Backend job state is still in-memory and restart-fragile
 
 Evidence:
 
@@ -84,7 +47,7 @@ What should change:
 - Keep the local-only model, but make job persistence an explicit subsystem.
 - Even a tiny JSON-backed job store or append-only event log would be a better boundary than hidden globals once restart semantics matter.
 
-### P3. The preview type generation is the right direction, but the generator should stay narrow
+### P2. The preview type generation is the right direction, but the generator should stay narrow
 
 Evidence:
 
@@ -106,6 +69,7 @@ What should change:
 
 - One backend surface in Python via `http_api.py`. That refactor was correct.
 - Generated preview types from `schema.py`. That also was correct.
+- The new preview split into `pages/`, `components/app/`, `hooks/`, and `state/`.
 - The local-first design. This does not need to become a distributed system.
 - Pydantic as the backend schema source of truth.
 - The Playwright regression suite as a guardrail for continued cleanup.
@@ -180,21 +144,18 @@ What should change:
 
 ## Refactor Order
 
-1. Split `preview/src/App.tsx`.
-   If you do this first, you will mostly just spread existing coupling across more files.
+1. Add a durable local job store if backend restarts and job recovery start mattering to your workflow.
 
-2. Add a durable local job store if backend restarts and job recovery start mattering to your workflow.
-
-3. Keep `schema_codegen.py` narrow, or replace it with a more standard emitted contract if the preview/backend surface grows materially.
+2. Keep `schema_codegen.py` narrow, or replace it with a more standard emitted contract if the preview/backend surface grows materially.
 
 ## Bottom Line
 
 The codebase is not in bad shape. The recent refactors fixed the right things.
 
-The remaining cost is no longer “obvious drift between two frontends,” “Vite secretly acting like a backend,” or “one giant infrastructure module hiding multiple concerns.” The remaining cost is concentrated frontend state and a few intentionally local operational shortcuts.
+The remaining cost is no longer “obvious drift between two frontends,” “Vite secretly acting like a backend,” “one giant infrastructure module hiding multiple concerns,” or “a single preview app file carrying the whole UI.” The remaining cost is mostly a few intentionally local operational shortcuts.
 
 If I had to summarize the architectural problem in one sentence:
 
-> the repo now has much better backend boundaries, but its remaining cost is concentrated frontend state and a few intentionally undurable local subsystems
+> the repo now has much better backend and frontend boundaries, but its remaining cost is a few intentionally undurable local subsystems
 
 That is what I would fix next.
