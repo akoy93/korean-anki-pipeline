@@ -291,8 +291,8 @@ class PushServiceTests(unittest.TestCase):
         self.addCleanup(self._stop_server, server, thread)
 
         with (
-            patch("korean_anki.snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.snapshots.existing_model_note_keys", return_value=set()),
+            patch("korean_anki.dashboard_snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.dashboard_snapshots.existing_model_note_keys", return_value=set()),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -362,8 +362,8 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.snapshots.existing_model_note_keys", return_value=set()),
+            patch("korean_anki.dashboard_snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.dashboard_snapshots.existing_model_note_keys", return_value=set()),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -427,8 +427,8 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.snapshots.existing_model_note_keys", return_value=set()),
+            patch("korean_anki.dashboard_snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.dashboard_snapshots.existing_model_note_keys", return_value=set()),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -479,8 +479,8 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.snapshots.existing_model_note_keys", return_value={batch.notes[0].note_key}),
+            patch("korean_anki.dashboard_snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.dashboard_snapshots.existing_model_note_keys", return_value={batch.notes[0].note_key}),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))

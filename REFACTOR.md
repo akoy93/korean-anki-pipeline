@@ -8,7 +8,7 @@ The repo is in much better shape than it was before the earlier cleanup work. Th
 
 - the preview app now talks to one real Python backend instead of splitting runtime behavior between Python and Vite
 - preview types are generated from backend schema instead of being hand-maintained
-- repositories and snapshots exist as explicit read boundaries
+- repositories and explicit dashboard/study-state snapshot modules exist as read boundaries
 - batch identity and preview path semantics now come from one backend path-policy boundary instead of being reconstructed in the UI
 - the old `application.py`, `anki.py`, and `llm.py` catch-all modules are gone
 - the thin compatibility layers are now gone too:
@@ -29,28 +29,6 @@ If I had to summarize the current problem in one sentence:
 > the repo is healthier, and the next cleanup should focus on the few modules that still own too much orchestration
 
 ## Findings
-
-### P1. `snapshots.py` is now the real backend read-model controller
-
-`src/korean_anki/snapshots.py` is doing a lot of important work:
-
-- dashboard assembly
-- study-state assembly
-- cache-key/version wiring
-- hydration checks
-- push-state derivation
-- recent-batch shaping for the UI
-
-That may be acceptable, but right now it is large enough that it should be treated as a deliberate boundary rather than an accidental dumping ground.
-
-There are two reasonable directions:
-
-- accept it as the one read-model aggregator for the local preview app and document that explicitly, or
-- split it into two concrete concerns:
-  - study-state snapshot assembly
-  - dashboard/read-model assembly
-
-I would not split it into many tiny helpers. The point should be clearer ownership, not more files.
 
 ### P1. Frontend orchestration is still concentrated in large page-model hooks
 
@@ -146,6 +124,9 @@ Until then, I would leave it alone.
   - `lesson_repository.py`
   - `anki_repository.py`
   - `snapshot_cache.py`
+- the explicit snapshot split:
+  - `study_state_snapshots.py`
+  - `dashboard_snapshots.py`
 - the direct backend surface without thin compatibility facades
 - the current use-case service modules
 - the current Anki infrastructure split
@@ -161,7 +142,7 @@ Until then, I would leave it alone.
 - keep one real backend entry surface
 - prefer direct module ownership over compatibility shims and forwarding facades
 - keep repositories, path policy, and use-case services
-- keep one clear read-model boundary for dashboard/study-state data, whether that remains `snapshots.py` or becomes two concrete snapshot modules
+- keep the explicit split between study-state snapshots and dashboard/read models
 - avoid introducing more "support" or "manager" buckets unless they represent a real domain boundary
 
 ### Frontend
@@ -172,10 +153,9 @@ Until then, I would leave it alone.
 
 ## Refactor Order
 
-1. Give `snapshots.py` an explicit long-term shape: either keep it as the intentional read-model aggregator or split it into dashboard and study-state snapshot modules.
-2. Reduce orchestration density in the frontend by extracting concrete feature slices from `useBatchPreviewModel`, `useHomePageModel`, `BatchPreviewPage.tsx`, and `HomePage.tsx`.
-3. Revisit `new_vocab.py` and `cards.py` only if more feature work keeps expanding them.
-4. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Reduce orchestration density in the frontend by extracting concrete feature slices from `useBatchPreviewModel`, `useHomePageModel`, `BatchPreviewPage.tsx`, and `HomePage.tsx`.
+2. Revisit `new_vocab.py` and `cards.py` only if more feature work keeps expanding them.
+3. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 

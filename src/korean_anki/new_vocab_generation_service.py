@@ -8,8 +8,8 @@ from .batch_generation_service import BatchArtifacts, generate_batch_from_docume
 from .media import enrich_audio, enrich_new_vocab_images
 from .new_vocab import build_new_vocab_document_from_state
 from .schema import GeneratedNote
-from .snapshots import study_state_snapshot
 from .settings import DEFAULT_ANKI_URL, DEFAULT_LLM_MODEL, DEFAULT_NEW_VOCAB_IMAGE_QUALITY
+from .study_state_snapshots import study_state_snapshot
 
 
 def generate_new_vocab_batch(

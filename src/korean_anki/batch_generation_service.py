@@ -13,8 +13,8 @@ from .path_policy import normalize_batch_media_paths
 from .reading_speed import build_reading_speed_document
 from .schema import CardBatch, GeneratedNote, LessonDocument, StudyState
 from .snapshot_cache import invalidate_project_snapshots
-from .snapshots import study_state_snapshot
 from .settings import DEFAULT_ANKI_URL, DEFAULT_GENERATE_IMAGE_QUALITY
+from .study_state_snapshots import study_state_snapshot
 
 
 @dataclass(frozen=True)
