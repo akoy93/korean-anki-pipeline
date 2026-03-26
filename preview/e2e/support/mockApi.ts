@@ -80,6 +80,7 @@ export class MockPreviewApi {
   batches = new Map<string, CardBatch>();
   capturedRequests: CapturedRequest[] = [];
   dashboardDelayMs = 0;
+  legacyBatchResponses = false;
 
   private dashboardCallCount = 0;
   private pausedDashboardResponsesRemaining = 0;
@@ -103,13 +104,16 @@ export class MockPreviewApi {
     dashboard,
     batches = {},
     dashboardDelayMs = 0,
+    legacyBatchResponses = false,
   }: {
     dashboard: DashboardResponse;
     batches?: Record<string, CardBatch>;
     dashboardDelayMs?: number;
+    legacyBatchResponses?: boolean;
   }) {
     this.dashboard = clone(dashboard);
     this.dashboardDelayMs = dashboardDelayMs;
+    this.legacyBatchResponses = legacyBatchResponses;
     for (const [path, batch] of Object.entries(batches)) {
       this.batches.set(path, clone(batch));
     }
@@ -242,13 +246,15 @@ export class MockPreviewApi {
           await fulfillJson(route, 404, { error: "Batch file not found." });
           return;
         }
-        const payload: BatchPreviewResponse = {
-          batch: clone(batch),
-          canonical_batch_path: canonicalPath,
-          preview_batch_path: previewPath,
-          synced_batch_path:
-            previewPath === resolvedSyncedPath ? resolvedSyncedPath : null,
-        };
+        const payload: BatchPreviewResponse | CardBatch = this.legacyBatchResponses
+          ? clone(batch)
+          : {
+              batch: clone(batch),
+              canonical_batch_path: canonicalPath,
+              preview_batch_path: previewPath,
+              synced_batch_path:
+                previewPath === resolvedSyncedPath ? resolvedSyncedPath : null,
+            };
         await fulfillJson(route, 200, payload);
         return;
       }

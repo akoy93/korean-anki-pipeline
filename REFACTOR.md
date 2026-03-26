@@ -13,6 +13,7 @@ The repo is substantially healthier than it was before the earlier cleanup work.
 - the old `application.py`, `anki.py`, and `llm.py` catch-all modules are gone
 - backend jobs now persist across restarts
 - the preview app is no longer concentrated in a single `App.tsx` file
+- `HomePage.tsx` and `BatchPreviewPage.tsx` now use dedicated controller hooks instead of mixing page render code with most async orchestration
 
 Those were the right refactors.
 
@@ -20,33 +21,12 @@ That said, the previous version of this document was too optimistic. The codebas
 
 The main remaining issues now are:
 
-1. the preview pages still carry too much controller logic
-2. runtime defaults are still repeated across schema, CLI, services, and frontend code
-3. `schema.py` is still a watchpoint if the model surface keeps growing
+1. runtime defaults are still repeated across schema, CLI, services, and frontend code
+2. `schema.py` is still a watchpoint if the model surface keeps growing
 
 ## Findings
 
-### P1. Extract page controllers from `HomePage.tsx` and `BatchPreviewPage.tsx`
-
-The preview shell split was worthwhile, but the two page modules are still carrying too much orchestration.
-
-Current pressure points:
-
-- `preview/src/pages/HomePage.tsx` is still about 600 lines
-- `preview/src/pages/BatchPreviewPage.tsx` is still about 850 lines
-- each page mixes markup, API calls, async polling, mutation flows, local error handling, and derived UI state
-
-This is no longer a "single app file" problem, but it is still a "page component as controller" problem.
-
-What I would do:
-
-- extract page-specific controller hooks such as `useHomeActions` and `useBatchPreviewModel`
-- move batch-edit, hydrate, delete, dry-run, and push flows into dedicated hooks or action modules
-- keep the page files mostly focused on composition and rendering
-
-I would treat this as the clearest remaining cleanup target now.
-
-### P2. Centralize runtime defaults and configuration
+### P1. Centralize runtime defaults and configuration
 
 There are still many repeated defaults scattered across schema, CLI, services, and frontend code:
 
@@ -66,7 +46,7 @@ What I would do:
 
 This is a cleanup for coherence more than correctness, but it will reduce incidental churn.
 
-### P3. Consider splitting `schema.py` if it grows further
+### P2. Consider splitting `schema.py` if it grows further
 
 `src/korean_anki/schema.py` is still manageable today, but it mixes:
 
@@ -141,14 +121,13 @@ This is a watchpoint, not an urgent refactor.
 ### Frontend
 
 - keep `pages/`, `components/`, `hooks/`, and `state/`
-- add page-controller hooks for `HomePage` and `BatchPreviewPage`
+- keep page-controller hooks such as `useHomePageModel` and `useBatchPreviewModel`
 - keep the frontend dependent on backend-issued identifiers and paths rather than reconstructing batch identity locally
 
 ## Refactor Order
 
-1. Extract controller hooks from `HomePage.tsx` and `BatchPreviewPage.tsx`.
-2. Centralize shared runtime defaults.
-3. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Centralize shared runtime defaults.
+2. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 
