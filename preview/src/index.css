@@ -17,12 +17,40 @@
   --radius: 0.9rem;
 }
 
+:root.dark {
+  --background: 210 24% 11%;
+  --foreground: 38 38% 94%;
+  --card: 210 22% 16%;
+  --card-foreground: 38 38% 94%;
+  --primary: 171 58% 52%;
+  --primary-foreground: 210 30% 12%;
+  --secondary: 24 28% 24%;
+  --secondary-foreground: 36 36% 92%;
+  --muted: 214 16% 22%;
+  --muted-foreground: 35 18% 72%;
+  --border: 214 18% 30%;
+}
+
 body {
   margin: 0;
   background:
     radial-gradient(circle at top left, rgba(24, 121, 113, 0.15), transparent 35%),
     linear-gradient(180deg, #f8f1e3 0%, #fbf8f2 100%);
   color: hsl(var(--foreground));
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background:
+    radial-gradient(circle at top left, rgba(61, 190, 176, 0.18), transparent 34%),
+    radial-gradient(circle at top right, rgba(196, 121, 64, 0.12), transparent 30%),
+    linear-gradient(180deg, #101722 0%, #182331 100%);
 }
 
 .card-html {

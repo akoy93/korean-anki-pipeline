@@ -15,12 +15,14 @@ import {
   Keyboard,
   Languages,
   Loader2,
+  Moon,
   Play,
   Power,
   RotateCcw,
   Send,
   Server,
   ShieldCheck,
+  SunMedium,
   Trash2,
   XCircle,
 } from "lucide-react";
@@ -69,6 +71,9 @@ import sampleBatch from "../../data/samples/numbers.batch.json";
 
 const initialBatch = sampleBatch as CardBatch;
 const JOB_STATE_STORAGE_KEY = "korean-anki-preview-job-state-v1";
+const THEME_STORAGE_KEY = "korean-anki-preview-theme-v1";
+
+type ThemeMode = "light" | "dark";
 
 type TerminalJobStatus = Extract<JobStatus, "succeeded" | "failed">;
 
@@ -88,6 +93,45 @@ type PersistedJobState = {
   syncingBatchPath: string | null;
   notifications: JobNotification[];
 };
+
+const SOFT_SURFACE_CLASS =
+  "border border-border bg-white/70 dark:bg-card/80";
+const SUCCESS_BADGE_CLASS =
+  "border-emerald-200 bg-emerald-100 text-emerald-900 hover:bg-emerald-100 dark:border-emerald-400/25 dark:bg-emerald-400/15 dark:text-emerald-200 dark:hover:bg-emerald-400/15";
+const WARNING_BADGE_CLASS =
+  "border-amber-200 bg-amber-100 text-amber-900 hover:bg-amber-100 dark:border-amber-400/25 dark:bg-amber-400/15 dark:text-amber-200 dark:hover:bg-amber-400/15";
+const NEUTRAL_BADGE_CLASS =
+  "border-slate-200 bg-slate-100 text-slate-700 hover:bg-slate-100 dark:border-slate-300/20 dark:bg-slate-300/10 dark:text-slate-200 dark:hover:bg-slate-300/10";
+const DANGER_PANEL_CLASS =
+  "rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700 dark:border-red-400/25 dark:bg-red-400/10 dark:text-red-200";
+const WARNING_PANEL_CLASS =
+  "rounded-md border border-amber-200 bg-amber-50 p-3 text-amber-900 dark:border-amber-400/25 dark:bg-amber-400/10 dark:text-amber-100";
+const SUCCESS_PANEL_CLASS =
+  "rounded-md border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800 dark:border-emerald-400/25 dark:bg-emerald-400/10 dark:text-emerald-100";
+
+function readPersistedTheme(): ThemeMode {
+  if (typeof window === "undefined") {
+    return "light";
+  }
+
+  const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+  if (storedTheme === "dark" || storedTheme === "light") {
+    return storedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+function applyTheme(theme: ThemeMode) {
+  if (typeof document === "undefined") {
+    return;
+  }
+
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  document.documentElement.style.colorScheme = theme;
+}
 
 function emptyPersistedJobState(): PersistedJobState {
   return {
@@ -357,6 +401,37 @@ function renderCardsForItem(
   return cards;
 }
 
+function ThemeToggle({
+  theme,
+  onToggle,
+}: {
+  theme: ThemeMode;
+  onToggle: () => void;
+}) {
+  const darkMode = theme === "dark";
+
+  return (
+    <Button
+      type="button"
+      variant="outline"
+      size="sm"
+      className="gap-2 rounded-full bg-background/80 px-3 backdrop-blur supports-[backdrop-filter]:bg-background/70"
+      onClick={onToggle}
+      aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+    >
+      {darkMode ? (
+        <SunMedium className="h-4 w-4" />
+      ) : (
+        <Moon className="h-4 w-4" />
+      )}
+      <span className="sm:hidden">{darkMode ? "Light" : "Dark"}</span>
+      <span className="hidden sm:inline">
+        {darkMode ? "Light mode" : "Dark mode"}
+      </span>
+    </Button>
+  );
+}
+
 function serviceCard(
   label: string,
   ok: boolean | null,
@@ -364,7 +439,9 @@ function serviceCard(
   action?: ReactNode,
 ) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-xl border border-border bg-white/70 px-4 py-3">
+    <div
+      className={`flex items-center justify-between gap-4 rounded-xl px-4 py-3 ${SOFT_SURFACE_CLASS}`}
+    >
       <div>
         <div className="text-sm font-medium">{label}</div>
         {detail ? (
@@ -433,7 +510,9 @@ function systemStatusSummary(
 
 function statCard(label: string, value: number, mobileLabel?: string) {
   return (
-    <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-white/70 px-3 py-2">
+    <div
+      className={`flex items-center justify-between gap-3 rounded-xl px-3 py-2 ${SOFT_SURFACE_CLASS}`}
+    >
       <div className="min-w-0 truncate text-xs text-muted-foreground sm:text-sm">
         <span className="sm:hidden">{mobileLabel ?? label}</span>
         <span className="hidden sm:inline">{label}</span>
@@ -448,13 +527,13 @@ function statCard(label: string, value: number, mobileLabel?: string) {
 function pushStatusBadge(status: BatchPushStatus) {
   if (status === "pushed") {
     return (
-      <Badge className="border-emerald-200 bg-emerald-100 text-emerald-900 hover:bg-emerald-100">
+      <Badge className={SUCCESS_BADGE_CLASS}>
         Pushed
       </Badge>
     );
   }
   return (
-    <Badge className="border-slate-200 bg-slate-100 text-slate-700 hover:bg-slate-100">
+    <Badge className={NEUTRAL_BADGE_CLASS}>
       Not pushed
     </Badge>
   );
@@ -462,11 +541,11 @@ function pushStatusBadge(status: BatchPushStatus) {
 
 function hydrationStatusBadge(mediaHydrated: boolean) {
   return mediaHydrated ? (
-    <Badge className="border-emerald-200 bg-emerald-100 text-emerald-900 hover:bg-emerald-100">
+    <Badge className={SUCCESS_BADGE_CLASS}>
       Hydrated
     </Badge>
   ) : (
-    <Badge className="border-amber-200 bg-amber-100 text-amber-900 hover:bg-amber-100">
+    <Badge className={WARNING_BADGE_CLASS}>
       Not hydrated
     </Badge>
   );
@@ -839,6 +918,8 @@ function jobNoticeActionLabel(notice: JobNotification) {
 }
 
 type HomePageProps = {
+  theme: ThemeMode;
+  onToggleTheme: () => void;
   lessonJob: JobResponse | null;
   newVocabJob: JobResponse | null;
   syncJob: JobResponse | null;
@@ -850,6 +931,8 @@ type HomePageProps = {
 };
 
 function HomePage({
+  theme,
+  onToggleTheme,
   lessonJob,
   newVocabJob,
   syncJob,
@@ -1064,7 +1147,7 @@ function HomePage({
 
   return (
     <div className="mx-auto max-w-7xl px-3 py-5 sm:px-4 sm:py-7">
-      <header className="mb-6 sm:mb-7">
+      <header className="mb-6 flex flex-col gap-4 sm:mb-7 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="font-display text-3xl font-semibold text-primary sm:text-4xl">
             Korean Anki Pipeline
@@ -1074,10 +1157,11 @@ function HomePage({
             local service health from one place.
           </p>
         </div>
+        <ThemeToggle theme={theme} onToggle={onToggleTheme} />
       </header>
 
       {dashboardError ? (
-        <div className="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-red-700 sm:mb-6">
+        <div className={`mb-5 rounded-xl p-4 sm:mb-6 ${DANGER_PANEL_CLASS}`}>
           {dashboardError}
         </div>
       ) : null}
@@ -1100,12 +1184,12 @@ function HomePage({
                     Checking
                   </Badge>
                 ) : statusSummary.ok ? (
-                  <Badge className="gap-2 border-emerald-200 bg-emerald-100 text-emerald-900 hover:bg-emerald-100">
+                  <Badge className={`gap-2 ${SUCCESS_BADGE_CLASS}`}>
                     <CheckCircle2 className="h-3.5 w-3.5" />
                     {statusSummary.label}
                   </Badge>
                 ) : (
-                  <Badge className="gap-2 border-amber-200 bg-amber-100 text-amber-900 hover:bg-amber-100">
+                  <Badge className={`gap-2 ${WARNING_BADGE_CLASS}`}>
                     <AlertTriangle className="h-3.5 w-3.5" />
                     {statusSummary.label}
                   </Badge>
@@ -1232,12 +1316,12 @@ function HomePage({
           </CardHeader>
           <CardContent className="space-y-3">
             {syncError ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+              <div className={DANGER_PANEL_CLASS}>
                 {syncError}
               </div>
             ) : null}
             {deleteError ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+              <div className={DANGER_PANEL_CLASS}>
                 {deleteError}
               </div>
             ) : null}
@@ -1395,7 +1479,7 @@ function HomePage({
               />
             </div>
             {lessonError ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+              <div className={DANGER_PANEL_CLASS}>
                 {lessonError}
               </div>
             ) : null}
@@ -1449,7 +1533,7 @@ function HomePage({
             <div className="space-y-2">
               <Label>Lesson context</Label>
               <select
-                className="h-10 w-full rounded-md border border-border bg-white py-0 pl-3 pr-10 text-sm"
+                className="h-10 w-full rounded-md border border-border bg-background py-0 pl-3 pr-10 text-sm"
                 value={newVocabContext}
                 onChange={(event) => setNewVocabContext(event.target.value)}
               >
@@ -1462,7 +1546,7 @@ function HomePage({
               </select>
             </div>
             {newVocabError ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+              <div className={DANGER_PANEL_CLASS}>
                 {newVocabError}
               </div>
             ) : null}
@@ -1541,7 +1625,9 @@ function JobPanel({ job }: { job: JobResponse }) {
             </div>
           </div>
           <div className="space-y-2">
-            <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
+            <div
+              className={`flex items-center justify-between rounded-md px-3 py-2 ${SOFT_SURFACE_CLASS}`}
+            >
               <div className="flex items-center gap-2">
                 {planningDone ? (
                   <CheckCircle2 className="h-4 w-4 text-emerald-600" />
@@ -1554,7 +1640,9 @@ function JobPanel({ job }: { job: JobResponse }) {
                 {planningDone ? "Done" : "Running"}
               </span>
             </div>
-            <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
+            <div
+              className={`flex items-center justify-between rounded-md px-3 py-2 ${SOFT_SURFACE_CLASS}`}
+            >
               <div className="flex items-center gap-2">
                 {imagesDone ? (
                   <CheckCircle2 className="h-4 w-4 text-emerald-600" />
@@ -1569,7 +1657,9 @@ function JobPanel({ job }: { job: JobResponse }) {
                 {imageCount}/{itemCount}
               </span>
             </div>
-            <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
+            <div
+              className={`flex items-center justify-between rounded-md px-3 py-2 ${SOFT_SURFACE_CLASS}`}
+            >
               <div className="flex items-center gap-2">
                 {audioDone ? (
                   <CheckCircle2 className="h-4 w-4 text-emerald-600" />
@@ -1584,7 +1674,9 @@ function JobPanel({ job }: { job: JobResponse }) {
                 {audioCount}/{itemCount}
               </span>
             </div>
-            <div className="flex items-center justify-between rounded-md border border-border bg-white/70 px-3 py-2">
+            <div
+              className={`flex items-center justify-between rounded-md px-3 py-2 ${SOFT_SURFACE_CLASS}`}
+            >
               <div className="flex items-center gap-2">
                 {cardCount >= itemCount && itemCount > 0 ? (
                   <CheckCircle2 className="h-4 w-4 text-emerald-600" />
@@ -1607,7 +1699,7 @@ function JobPanel({ job }: { job: JobResponse }) {
         </div>
       ) : null}
       {job.error ? (
-        <div className="rounded-md border border-red-200 bg-red-50 p-3 text-red-700">
+        <div className={DANGER_PANEL_CLASS}>
           {job.error}
         </div>
       ) : null}
@@ -1617,7 +1709,7 @@ function JobPanel({ job }: { job: JobResponse }) {
             <a
               key={path}
               href={`/batch/${path}`}
-              className="flex items-center justify-between gap-2 rounded-md border border-border bg-white p-3 hover:bg-muted/60"
+              className="flex items-center justify-between gap-2 rounded-md border border-border bg-background p-3 hover:bg-muted/60"
             >
               <span className="break-all">{path}</span>
               <ArrowRight className="h-4 w-4 shrink-0" />
@@ -1678,7 +1770,15 @@ function JobCompletionNotice({
   );
 }
 
-function BatchPreviewPage({ batchPath }: { batchPath: string }) {
+function BatchPreviewPage({
+  batchPath,
+  theme,
+  onToggleTheme,
+}: {
+  batchPath: string;
+  theme: ThemeMode;
+  onToggleTheme: () => void;
+}) {
   const [batch, setBatch] = useState<CardBatch>(initialBatch);
   const [dashboardBatch, setDashboardBatch] = useState<DashboardBatch | null>(
     null,
@@ -1955,12 +2055,15 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
     <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
       <header className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <a
-            href="/"
-            className="font-display text-sm uppercase tracking-[0.3em] text-primary"
-          >
-            Korean Anki Pipeline
-          </a>
+          <div className="flex items-center justify-between gap-3">
+            <a
+              href="/"
+              className="font-display text-sm uppercase tracking-[0.3em] text-primary"
+            >
+              Korean Anki Pipeline
+            </a>
+            <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+          </div>
           <h1 className="mt-2 break-words font-display text-3xl font-semibold sm:text-4xl">
             {batch.metadata.title}
           </h1>
@@ -1975,7 +2078,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
           </CardHeader>
           <CardContent className="space-y-4">
             {loadError ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+              <div className={DANGER_PANEL_CLASS}>
                 {loadError}
               </div>
             ) : null}
@@ -2059,18 +2162,18 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
               ) : null}
             </div>
             {hydrateError ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+              <div className={DANGER_PANEL_CLASS}>
                 {hydrateError}
               </div>
             ) : null}
             {deleteError ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+              <div className={DANGER_PANEL_CLASS}>
                 {deleteError}
               </div>
             ) : null}
             {hydrateJob ? <JobPanel job={hydrateJob} /> : null}
             {pushError ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+              <div className={DANGER_PANEL_CLASS}>
                 {pushError}
               </div>
             ) : null}
@@ -2084,7 +2187,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
                   cards
                 </div>
                 {pushPlan.duplicate_notes.length > 0 ? (
-                  <div className="rounded-md border border-amber-200 bg-amber-50 p-3 text-amber-900">
+                  <div className={WARNING_PANEL_CLASS}>
                     <div className="font-medium">
                       {pushPlan.duplicate_notes.length} duplicate notes already
                       in Anki
@@ -2118,7 +2221,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
               </Button>
             ) : null}
             {pushResult ? (
-              <div className="rounded-md border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800">
+              <div className={SUCCESS_PANEL_CLASS}>
                 Pushed {pushResult.notes_added} notes /{" "}
                 {pushResult.cards_created} cards.
               </div>
@@ -2380,6 +2483,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
 }
 
 function App() {
+  const [theme, setTheme] = useState<ThemeMode>(() => readPersistedTheme());
   const [jobState, setJobState] = useState<PersistedJobState>(() =>
     readPersistedJobState(),
   );
@@ -2399,6 +2503,11 @@ function App() {
   useEffect(() => {
     writePersistedJobState(jobState);
   }, [jobState]);
+
+  useEffect(() => {
+    applyTheme(theme);
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
 
   useEffect(() => {
     const activeJobs = [
@@ -2425,6 +2534,10 @@ function App() {
     setJobState((current) => removeNotice(current, id));
   }
 
+  function toggleTheme() {
+    setTheme((current) => (current === "dark" ? "light" : "dark"));
+  }
+
   function openNotice(notice: JobNotification) {
     const nextState = removeNotice(jobState, notice.id);
     setJobState(nextState);
@@ -2437,9 +2550,13 @@ function App() {
       batchPath={decodeURIComponent(
         window.location.pathname.slice("/batch/".length),
       )}
+      theme={theme}
+      onToggleTheme={toggleTheme}
     />
   ) : (
     <HomePage
+      theme={theme}
+      onToggleTheme={toggleTheme}
       lessonJob={jobState.lessonJob}
       newVocabJob={jobState.newVocabJob}
       syncJob={jobState.syncJob}
