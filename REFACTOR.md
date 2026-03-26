@@ -26,6 +26,7 @@ The big correctness and drift problems are already gone:
   - `multipart_form.py`
   - `job_handlers.py`
 - project snapshots are now filesystem-driven instead of depending on cross-process marker files and explicit project invalidation hooks
+- the preview client no longer accepts legacy raw batch responses or reuses sample data as batch-page fallback state
 - the preview frontend is no longer concentrated in a single `App.tsx`
 - the home and batch flows now live in concrete feature slices instead of giant page/controller hooks
 - `new_vocab.py` and `cards.py` no longer carry the full implementation burden
@@ -41,26 +42,7 @@ If I had to summarize the current problem in one sentence:
 
 ## Findings
 
-### P1. The preview client still carries compatibility and fallback code that probably no longer pays for itself
-
-The frontend transport layer has improved, but there is still code that exists mostly to tolerate older shapes or to avoid empty-state handling:
-
-- `preview/src/lib/api.ts` still accepts a legacy raw `CardBatch` response from `/api/batch`
-- `preview/src/hooks/useBatchPreviewData.ts` still imports `data/samples/numbers.batch.json` just to synthesize an empty fallback batch shape
-
-For a distributed app, that kind of compatibility logic would be normal.
-
-For this repo, it is less compelling:
-
-- the frontend and backend ship together
-- the app is local-only
-- mixed-version compatibility is mostly a developer convenience during restarts, not a product requirement
-
-That means every compatibility fallback should justify itself. Some may still be worth keeping, but the default posture should be to delete them once they stop preventing real pain.
-
-The sample-batch fallback is the clearest smell. It couples production UI state to demo/test data and makes the batch loader harder to reason about than it needs to be.
-
-### P2. The batch preview editing surface is still the densest frontend area
+### P1. The batch preview editing surface is still the densest frontend area
 
 The broad page-controller hooks are gone, which was the right move. But the actual editing surface is still concentrated in a few large modules:
 
@@ -83,7 +65,7 @@ The right bias here is:
 - avoid introducing another abstraction layer
 - extract only concrete subcomponents or lookup modules when a change repeatedly touches unrelated concerns in the same file
 
-### P3. `schema.py` is still broad, but it is a watchpoint, not the urgent problem
+### P2. `schema.py` is still broad, but it is a watchpoint, not the urgent problem
 
 `src/korean_anki/schema.py` is still the largest backend file.
 
@@ -165,9 +147,8 @@ Until then, I would leave it alone.
 
 ## Refactor Order
 
-1. Remove frontend compatibility and sample-data fallbacks that no longer buy enough value.
-2. Split dense batch-preview UI modules only when further feature work lands there.
-3. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Split dense batch-preview UI modules only when further feature work lands there.
+2. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 

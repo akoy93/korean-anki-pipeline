@@ -3,13 +3,9 @@ import { useEffect, useState } from "react";
 import { createSyncMediaJob, fetchBatch, fetchJob } from "@/lib/api";
 import type { BatchPushStatus, CardBatch, JobResponse } from "@/lib/schema";
 
-import sampleBatch from "../../../data/samples/numbers.batch.json";
-
-const sampleFallbackBatch = sampleBatch as CardBatch;
 const EMPTY_BATCH: CardBatch = {
-  ...sampleFallbackBatch,
+  schema_version: "1",
   metadata: {
-    ...sampleFallbackBatch.metadata,
     lesson_id: "",
     title: "Batch",
     topic: "",

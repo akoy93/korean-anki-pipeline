@@ -22,15 +22,6 @@ async function readJson<T>(response: Response): Promise<T> {
   return body as T;
 }
 
-function isCardBatchPayload(value: unknown): value is CardBatch {
-  return Boolean(
-    value &&
-      typeof value === "object" &&
-      "metadata" in value &&
-      "notes" in value,
-  );
-}
-
 function isBatchPreviewResponsePayload(
   value: unknown,
 ): value is BatchPreviewResponse {
@@ -38,15 +29,12 @@ function isBatchPreviewResponsePayload(
     value &&
       typeof value === "object" &&
       "batch" in value &&
+      typeof value.batch === "object" &&
       "canonical_batch_path" in value &&
-      "preview_batch_path" in value,
+      typeof value.canonical_batch_path === "string" &&
+      "preview_batch_path" in value &&
+      typeof value.preview_batch_path === "string",
   );
-}
-
-function canonicalBatchPathForRequest(path: string) {
-  return path.endsWith(".synced.batch.json")
-    ? `${path.slice(0, -".synced.batch.json".length)}.batch.json`
-    : path;
 }
 
 export async function fetchDashboard(): Promise<DashboardResponse> {
@@ -63,19 +51,11 @@ export async function openAnki(): Promise<{ ok: boolean }> {
 
 export async function fetchBatch(path: string): Promise<BatchPreviewResponse> {
   const response = await fetch(`/api/batch?path=${encodeURIComponent(path)}`);
-  const payload = await readJson<BatchPreviewResponse | CardBatch>(response);
-  if (isBatchPreviewResponsePayload(payload)) {
-    return payload;
+  const payload = await readJson<unknown>(response);
+  if (!isBatchPreviewResponsePayload(payload)) {
+    throw new Error("Invalid batch response.");
   }
-  if (isCardBatchPayload(payload)) {
-    return {
-      batch: payload,
-      canonical_batch_path: canonicalBatchPathForRequest(path),
-      preview_batch_path: path,
-      synced_batch_path: path.endsWith(".synced.batch.json") ? path : null,
-    };
-  }
-  throw new Error("Invalid batch response.");
+  return payload;
 }
 
 export async function checkPush(batch: CardBatch): Promise<PushResult> {

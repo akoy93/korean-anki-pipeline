@@ -85,7 +85,6 @@ export class MockPreviewApi {
   >();
   capturedRequests: CapturedRequest[] = [];
   dashboardDelayMs = 0;
-  legacyBatchResponses = false;
 
   private dashboardCallCount = 0;
   private pausedDashboardResponsesRemaining = 0;
@@ -110,7 +109,6 @@ export class MockPreviewApi {
     batches = {},
     batchPreviewStatuses = {},
     dashboardDelayMs = 0,
-    legacyBatchResponses = false,
   }: {
     dashboard: DashboardResponse;
     batches?: Record<string, CardBatch>;
@@ -119,11 +117,9 @@ export class MockPreviewApi {
       { pushStatus?: BatchPushStatus; mediaHydrated?: boolean }
     >;
     dashboardDelayMs?: number;
-    legacyBatchResponses?: boolean;
   }) {
     this.dashboard = clone(dashboard);
     this.dashboardDelayMs = dashboardDelayMs;
-    this.legacyBatchResponses = legacyBatchResponses;
     for (const [path, batch] of Object.entries(batches)) {
       this.batches.set(path, clone(batch));
     }
@@ -267,23 +263,21 @@ export class MockPreviewApi {
           this.batchPreviewStatuses.get(requestedPath) ??
           this.batchPreviewStatuses.get(previewPath) ??
           this.batchPreviewStatuses.get(canonicalPath);
-        const payload: BatchPreviewResponse | CardBatch = this.legacyBatchResponses
-          ? clone(batch)
-          : {
-              batch: clone(batch),
-              canonical_batch_path: canonicalPath,
-              preview_batch_path: previewPath,
-              synced_batch_path:
-                previewPath === resolvedSyncedPath ? resolvedSyncedPath : null,
-              push_status:
-                previewStatus?.pushStatus ??
-                matchingDashboardBatch?.push_status ??
-                "not-pushed",
-              media_hydrated:
-                previewStatus?.mediaHydrated ??
-                matchingDashboardBatch?.media_hydrated ??
-                false,
-            };
+        const payload: BatchPreviewResponse = {
+          batch: clone(batch),
+          canonical_batch_path: canonicalPath,
+          preview_batch_path: previewPath,
+          synced_batch_path:
+            previewPath === resolvedSyncedPath ? resolvedSyncedPath : null,
+          push_status:
+            previewStatus?.pushStatus ??
+            matchingDashboardBatch?.push_status ??
+            "not-pushed",
+          media_hydrated:
+            previewStatus?.mediaHydrated ??
+            matchingDashboardBatch?.media_hydrated ??
+            false,
+        };
         await fulfillJson(route, 200, payload);
         return;
       }

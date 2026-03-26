@@ -180,29 +180,6 @@ test("ready push flow shows success after push completes", async ({ page }) => {
   await expect(page.getByText("Pushed 2 notes / 4 cards.")).toBeVisible();
 });
 
-test("batch preview remains compatible with a legacy raw batch response", async ({
-  page,
-}) => {
-  const weatherBatch = makeWeatherBatch();
-  const api = new MockPreviewApi({
-    dashboard: makeDashboardResponse({
-      recentBatches: [makeDashboardBatch(WEATHER_BATCH_PATH, weatherBatch)],
-    }),
-    batches: {
-      [WEATHER_BATCH_PATH]: weatherBatch,
-    },
-    legacyBatchResponses: true,
-  });
-  await api.install(page);
-
-  await page.goto(`/batch/${WEATHER_BATCH_PATH}`);
-
-  await expect(page.getByRole("heading", { name: "Weather Basics" })).toBeVisible();
-  await expect(
-    page.locator('[data-testid="note-card"][data-note-id="weather-001"]'),
-  ).toBeVisible();
-});
-
 test("older pushed and hydrated batches hide local action buttons", async ({
   page,
 }) => {
