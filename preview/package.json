@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate:schema": "PYTHONPATH=../src ../.venv/bin/python -m korean_anki.schema_codegen --write src/lib/schema.ts",
+    "generate:schema:contract": "PYTHONPATH=../src ../.venv/bin/python -m korean_anki.schema_codegen --write src/lib/schema.contract.json",
+    "generate:schema": "pnpm run generate:schema:contract && node scripts/generate-schema-types.mjs src/lib/schema.contract.json src/lib/schema.ts",
     "dev": "pnpm run generate:schema && vite",
     "build": "pnpm run generate:schema && tsc -b && vite build",
     "preview": "vite preview",
@@ -27,6 +28,7 @@
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
+    "json-schema-to-typescript": "15.0.4",
     "playwright": "^1.58.2",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",

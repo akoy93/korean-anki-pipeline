@@ -79,7 +79,7 @@ pnpm dev --host 127.0.0.1
 Open `http://127.0.0.1:5173/` for the homepage dashboard, or open a direct `/batch/...` URL to review a specific batch. Use `Check push` for a dry-run; if there are no duplicates, click `Push to Anki` to import the approved cards and sync.
 
 The preview app serves `/media` directly from the repo's local `data/media` directory during `pnpm dev`.
-The preview scripts also regenerate `preview/src/lib/schema.ts` from the Python Pydantic models before dev/build/test runs, so the frontend contract stays sourced from `src/korean_anki/schema.py`.
+The preview scripts also regenerate a standard JSON Schema contract at `preview/src/lib/schema.contract.json`, then derive `preview/src/lib/schema.ts` from that contract before dev/build/test runs, so the frontend contract stays sourced from `src/korean_anki/schema.py` without a bespoke TypeScript renderer in Python.
 
 If you already pushed cards and synced Anki Desktop with AnkiWeb, you can hydrate local preview assets from Anki instead of regenerating them:
 

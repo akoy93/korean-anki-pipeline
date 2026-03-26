@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import subprocess
+import tempfile
 import unittest
 from pathlib import Path
 
 from pydantic import ValidationError
 
-from korean_anki.schema_codegen import render_preview_schema_ts
+from korean_anki.schema_codegen import render_preview_contract_schema_json
 from korean_anki.schema import CardPreview, GeneratedNote, LessonItem
 
 
@@ -54,11 +56,34 @@ class SchemaTests(unittest.TestCase):
         self.assertEqual(note.lane, "lesson")
         self.assertEqual(note.duplicate_status, "new")
 
-    def test_preview_typescript_schema_is_generated_from_backend_schema(self) -> None:
-        generated_path = Path("preview/src/lib/schema.ts")
+    def test_preview_json_schema_contract_is_generated_from_backend_schema(self) -> None:
+        generated_path = Path("preview/src/lib/schema.contract.json")
         self.assertEqual(
             generated_path.read_text(encoding="utf-8"),
-            render_preview_schema_ts(),
+            render_preview_contract_schema_json(),
+        )
+
+    def test_preview_typescript_schema_is_generated_from_contract(self) -> None:
+        contract_path = Path("preview/src/lib/schema.contract.json").resolve()
+        generated_path = Path("preview/src/lib/schema.ts").resolve()
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_path = Path(temp_dir) / "schema.ts"
+            subprocess.run(
+                [
+                    "node",
+                    "scripts/generate-schema-types.mjs",
+                    str(contract_path),
+                    str(output_path),
+                ],
+                check=True,
+                cwd=Path("preview").resolve(),
+            )
+            generated_from_contract = output_path.read_text(encoding="utf-8")
+
+        self.assertEqual(
+            generated_path.read_text(encoding="utf-8"),
+            generated_from_contract,
         )
 
 

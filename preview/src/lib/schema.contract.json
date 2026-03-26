@@ -1,0 +1,4087 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PreviewContract",
+  "type": "object",
+  "$defs": {
+    "SchemaVersion": {
+      "const": "1",
+      "type": "string",
+      "title": "SchemaVersion"
+    },
+    "ItemType": {
+      "enum": [
+        "vocab",
+        "phrase",
+        "grammar",
+        "dialogue",
+        "number"
+      ],
+      "type": "string",
+      "title": "ItemType"
+    },
+    "CardKind": {
+      "enum": [
+        "recognition",
+        "production",
+        "listening",
+        "number-context",
+        "read-aloud",
+        "chunked-reading",
+        "decodable-passage"
+      ],
+      "type": "string",
+      "title": "CardKind"
+    },
+    "StudyLane": {
+      "enum": [
+        "lesson",
+        "new-vocab",
+        "reading-speed",
+        "grammar",
+        "listening"
+      ],
+      "type": "string",
+      "title": "StudyLane"
+    },
+    "DuplicateStatus": {
+      "enum": [
+        "new",
+        "exact-duplicate",
+        "near-duplicate"
+      ],
+      "type": "string",
+      "title": "DuplicateStatus"
+    },
+    "VocabAdjacencyKind": {
+      "enum": [
+        "coverage-gap",
+        "lesson-adjacent"
+      ],
+      "type": "string",
+      "title": "VocabAdjacencyKind"
+    },
+    "RawSourceKind": {
+      "enum": [
+        "image",
+        "text"
+      ],
+      "type": "string",
+      "title": "RawSourceKind"
+    },
+    "QaSeverity": {
+      "enum": [
+        "error",
+        "warning"
+      ],
+      "type": "string",
+      "title": "QaSeverity"
+    },
+    "JobStatus": {
+      "enum": [
+        "queued",
+        "running",
+        "succeeded",
+        "failed"
+      ],
+      "type": "string",
+      "title": "JobStatus"
+    },
+    "JobKind": {
+      "enum": [
+        "lesson-generate",
+        "new-vocab",
+        "sync-media"
+      ],
+      "type": "string",
+      "title": "JobKind"
+    },
+    "BatchPushStatus": {
+      "enum": [
+        "not-pushed",
+        "pushed"
+      ],
+      "type": "string",
+      "title": "BatchPushStatus"
+    },
+    "ExampleSentence": {
+      "additionalProperties": false,
+      "properties": {
+        "korean": {
+          "type": "string"
+        },
+        "english": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "korean",
+        "english"
+      ],
+      "type": "object",
+      "title": "ExampleSentence"
+    },
+    "MediaAsset": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "type": "object",
+      "title": "MediaAsset"
+    },
+    "LessonMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "lesson_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "lesson_date": {
+          "format": "date",
+          "type": "string"
+        },
+        "source_description": {
+          "type": "string"
+        },
+        "target_deck": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "lesson_id",
+        "title",
+        "topic",
+        "lesson_date",
+        "source_description"
+      ],
+      "type": "object",
+      "title": "LessonMetadata"
+    },
+    "LessonItem": {
+      "$defs": {
+        "ExampleSentence": {
+          "additionalProperties": false,
+          "properties": {
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "MediaAsset": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "source_url": {
+              "anyOf": [
+                {
+                  "format": "uri",
+                  "maxLength": 2083,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "lesson_id": {
+          "type": "string"
+        },
+        "item_type": {
+          "enum": [
+            "vocab",
+            "phrase",
+            "grammar",
+            "dialogue",
+            "number"
+          ],
+          "type": "string"
+        },
+        "korean": {
+          "type": "string"
+        },
+        "english": {
+          "type": "string"
+        },
+        "pronunciation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "examples": {
+          "items": {
+            "$ref": "#/$defs/ExampleSentence"
+          },
+          "type": "array"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "lane": {
+          "default": "lesson",
+          "enum": [
+            "lesson",
+            "new-vocab",
+            "reading-speed",
+            "grammar",
+            "listening"
+          ],
+          "type": "string"
+        },
+        "skill_tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "image_prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "audio": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MediaAsset"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MediaAsset"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "lesson_id",
+        "item_type",
+        "korean",
+        "english"
+      ],
+      "type": "object",
+      "title": "LessonItem"
+    },
+    "LessonDocument": {
+      "$defs": {
+        "ExampleSentence": {
+          "additionalProperties": false,
+          "properties": {
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "LessonItem": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "lesson_id": {
+              "type": "string"
+            },
+            "item_type": {
+              "enum": [
+                "vocab",
+                "phrase",
+                "grammar",
+                "dialogue",
+                "number"
+              ],
+              "type": "string"
+            },
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "pronunciation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "examples": {
+              "items": {
+                "$ref": "#/$defs/ExampleSentence"
+              },
+              "type": "array"
+            },
+            "notes": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "lane": {
+              "default": "lesson",
+              "enum": [
+                "lesson",
+                "new-vocab",
+                "reading-speed",
+                "grammar",
+                "listening"
+              ],
+              "type": "string"
+            },
+            "skill_tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image_prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "audio": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MediaAsset"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MediaAsset"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "lesson_id",
+            "item_type",
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "LessonMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "lesson_id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "topic": {
+              "type": "string"
+            },
+            "lesson_date": {
+              "format": "date",
+              "type": "string"
+            },
+            "source_description": {
+              "type": "string"
+            },
+            "target_deck": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "lesson_id",
+            "title",
+            "topic",
+            "lesson_date",
+            "source_description"
+          ],
+          "type": "object"
+        },
+        "MediaAsset": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "source_url": {
+              "anyOf": [
+                {
+                  "format": "uri",
+                  "maxLength": 2083,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/$defs/LessonMetadata"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/$defs/LessonItem"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "metadata",
+        "items"
+      ],
+      "type": "object",
+      "title": "LessonDocument"
+    },
+    "CardPreview": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "item_id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "recognition",
+            "production",
+            "listening",
+            "number-context",
+            "read-aloud",
+            "chunked-reading",
+            "decodable-passage"
+          ],
+          "type": "string"
+        },
+        "front_html": {
+          "type": "string"
+        },
+        "back_html": {
+          "type": "string"
+        },
+        "audio_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "image_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "approved": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "item_id",
+        "kind",
+        "front_html",
+        "back_html"
+      ],
+      "type": "object",
+      "title": "CardPreview"
+    },
+    "GeneratedNote": {
+      "$defs": {
+        "CardPreview": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "item_id": {
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "recognition",
+                "production",
+                "listening",
+                "number-context",
+                "read-aloud",
+                "chunked-reading",
+                "decodable-passage"
+              ],
+              "type": "string"
+            },
+            "front_html": {
+              "type": "string"
+            },
+            "back_html": {
+              "type": "string"
+            },
+            "audio_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "approved": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "item_id",
+            "kind",
+            "front_html",
+            "back_html"
+          ],
+          "type": "object"
+        },
+        "ExampleSentence": {
+          "additionalProperties": false,
+          "properties": {
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "LessonItem": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "lesson_id": {
+              "type": "string"
+            },
+            "item_type": {
+              "enum": [
+                "vocab",
+                "phrase",
+                "grammar",
+                "dialogue",
+                "number"
+              ],
+              "type": "string"
+            },
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "pronunciation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "examples": {
+              "items": {
+                "$ref": "#/$defs/ExampleSentence"
+              },
+              "type": "array"
+            },
+            "notes": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "lane": {
+              "default": "lesson",
+              "enum": [
+                "lesson",
+                "new-vocab",
+                "reading-speed",
+                "grammar",
+                "listening"
+              ],
+              "type": "string"
+            },
+            "skill_tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image_prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "audio": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MediaAsset"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MediaAsset"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "lesson_id",
+            "item_type",
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "MediaAsset": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "source_url": {
+              "anyOf": [
+                {
+                  "format": "uri",
+                  "maxLength": 2083,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "item": {
+          "$ref": "#/$defs/LessonItem"
+        },
+        "cards": {
+          "items": {
+            "$ref": "#/$defs/CardPreview"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "approved": {
+          "default": true,
+          "type": "boolean"
+        },
+        "note_key": {
+          "default": "",
+          "type": "string"
+        },
+        "lane": {
+          "default": "lesson",
+          "enum": [
+            "lesson",
+            "new-vocab",
+            "reading-speed",
+            "grammar",
+            "listening"
+          ],
+          "type": "string"
+        },
+        "skill_tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "duplicate_status": {
+          "default": "new",
+          "enum": [
+            "new",
+            "exact-duplicate",
+            "near-duplicate"
+          ],
+          "type": "string"
+        },
+        "duplicate_note_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "duplicate_note_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "duplicate_source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "inclusion_reason": {
+          "default": "New card",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item",
+        "cards"
+      ],
+      "type": "object",
+      "title": "GeneratedNote"
+    },
+    "CardBatch": {
+      "$defs": {
+        "CardPreview": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "item_id": {
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "recognition",
+                "production",
+                "listening",
+                "number-context",
+                "read-aloud",
+                "chunked-reading",
+                "decodable-passage"
+              ],
+              "type": "string"
+            },
+            "front_html": {
+              "type": "string"
+            },
+            "back_html": {
+              "type": "string"
+            },
+            "audio_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "approved": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "item_id",
+            "kind",
+            "front_html",
+            "back_html"
+          ],
+          "type": "object"
+        },
+        "ExampleSentence": {
+          "additionalProperties": false,
+          "properties": {
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "GeneratedNote": {
+          "additionalProperties": false,
+          "properties": {
+            "item": {
+              "$ref": "#/$defs/LessonItem"
+            },
+            "cards": {
+              "items": {
+                "$ref": "#/$defs/CardPreview"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "approved": {
+              "default": true,
+              "type": "boolean"
+            },
+            "note_key": {
+              "default": "",
+              "type": "string"
+            },
+            "lane": {
+              "default": "lesson",
+              "enum": [
+                "lesson",
+                "new-vocab",
+                "reading-speed",
+                "grammar",
+                "listening"
+              ],
+              "type": "string"
+            },
+            "skill_tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "duplicate_status": {
+              "default": "new",
+              "enum": [
+                "new",
+                "exact-duplicate",
+                "near-duplicate"
+              ],
+              "type": "string"
+            },
+            "duplicate_note_key": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "duplicate_note_id": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "duplicate_source": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "inclusion_reason": {
+              "default": "New card",
+              "type": "string"
+            }
+          },
+          "required": [
+            "item",
+            "cards"
+          ],
+          "type": "object"
+        },
+        "LessonItem": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "lesson_id": {
+              "type": "string"
+            },
+            "item_type": {
+              "enum": [
+                "vocab",
+                "phrase",
+                "grammar",
+                "dialogue",
+                "number"
+              ],
+              "type": "string"
+            },
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "pronunciation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "examples": {
+              "items": {
+                "$ref": "#/$defs/ExampleSentence"
+              },
+              "type": "array"
+            },
+            "notes": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "lane": {
+              "default": "lesson",
+              "enum": [
+                "lesson",
+                "new-vocab",
+                "reading-speed",
+                "grammar",
+                "listening"
+              ],
+              "type": "string"
+            },
+            "skill_tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image_prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "audio": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MediaAsset"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MediaAsset"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "lesson_id",
+            "item_type",
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "LessonMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "lesson_id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "topic": {
+              "type": "string"
+            },
+            "lesson_date": {
+              "format": "date",
+              "type": "string"
+            },
+            "source_description": {
+              "type": "string"
+            },
+            "target_deck": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "lesson_id",
+            "title",
+            "topic",
+            "lesson_date",
+            "source_description"
+          ],
+          "type": "object"
+        },
+        "MediaAsset": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "source_url": {
+              "anyOf": [
+                {
+                  "format": "uri",
+                  "maxLength": 2083,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/$defs/LessonMetadata"
+        },
+        "notes": {
+          "items": {
+            "$ref": "#/$defs/GeneratedNote"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "metadata",
+        "notes"
+      ],
+      "type": "object",
+      "title": "CardBatch"
+    },
+    "ExtractionRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "lesson_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "lesson_date": {
+          "format": "date",
+          "type": "string"
+        },
+        "source_description": {
+          "type": "string"
+        },
+        "item_type_default": {
+          "default": "vocab",
+          "enum": [
+            "vocab",
+            "phrase",
+            "grammar",
+            "dialogue",
+            "number"
+          ],
+          "type": "string"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "image_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "model": {
+          "default": "gpt-5.4",
+          "type": "string"
+        },
+        "qa_model": {
+          "default": "gpt-5.4-pro",
+          "type": "string"
+        },
+        "run_qa": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "lesson_id",
+        "title",
+        "topic",
+        "lesson_date",
+        "source_description"
+      ],
+      "type": "object",
+      "title": "ExtractionRequest"
+    },
+    "RawSourceAsset": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "image",
+            "text"
+          ],
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "path",
+        "description"
+      ],
+      "type": "object",
+      "title": "RawSourceAsset"
+    },
+    "TranscriptionEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "korean": {
+          "type": "string"
+        },
+        "english": {
+          "type": "string"
+        },
+        "pronunciation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "label",
+        "korean",
+        "english"
+      ],
+      "type": "object",
+      "title": "TranscriptionEntry"
+    },
+    "TranscriptionSection": {
+      "$defs": {
+        "TranscriptionEntry": {
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "pronunciation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "notes": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "label",
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "item_type": {
+          "default": "vocab",
+          "enum": [
+            "vocab",
+            "phrase",
+            "grammar",
+            "dialogue",
+            "number"
+          ],
+          "type": "string"
+        },
+        "side": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "number_system": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "usage_notes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "expected_entry_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "target_deck": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/TranscriptionEntry"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "entries"
+      ],
+      "type": "object",
+      "title": "TranscriptionSection"
+    },
+    "LessonTranscription": {
+      "$defs": {
+        "RawSourceAsset": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "image",
+                "text"
+              ],
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "path",
+            "description"
+          ],
+          "type": "object"
+        },
+        "TranscriptionEntry": {
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "pronunciation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "notes": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "label",
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "TranscriptionSection": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "item_type": {
+              "default": "vocab",
+              "enum": [
+                "vocab",
+                "phrase",
+                "grammar",
+                "dialogue",
+                "number"
+              ],
+              "type": "string"
+            },
+            "side": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "number_system": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "usage_notes": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "expected_entry_count": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "target_deck": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "entries": {
+              "items": {
+                "$ref": "#/$defs/TranscriptionEntry"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "entries"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "type": "string"
+        },
+        "lesson_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "lesson_date": {
+          "format": "date",
+          "type": "string"
+        },
+        "source_summary": {
+          "type": "string"
+        },
+        "theme": {
+          "type": "string"
+        },
+        "goals": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "raw_sources": {
+          "items": {
+            "$ref": "#/$defs/RawSourceAsset"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "expected_section_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/$defs/TranscriptionSection"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "lesson_id",
+        "title",
+        "lesson_date",
+        "source_summary",
+        "theme",
+        "raw_sources",
+        "sections"
+      ],
+      "type": "object",
+      "title": "LessonTranscription"
+    },
+    "QaIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "severity": {
+          "enum": [
+            "error",
+            "warning"
+          ],
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "section_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "severity",
+        "code",
+        "message"
+      ],
+      "type": "object",
+      "title": "QaIssue"
+    },
+    "QaReport": {
+      "$defs": {
+        "QaIssue": {
+          "additionalProperties": false,
+          "properties": {
+            "severity": {
+              "enum": [
+                "error",
+                "warning"
+              ],
+              "type": "string"
+            },
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "section_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "severity",
+            "code",
+            "message"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "type": "string"
+        },
+        "lesson_id": {
+          "type": "string"
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "issues": {
+          "items": {
+            "$ref": "#/$defs/QaIssue"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "lesson_id",
+        "passed"
+      ],
+      "type": "object",
+      "title": "QaReport"
+    },
+    "DuplicateNote": {
+      "additionalProperties": false,
+      "properties": {
+        "item_id": {
+          "type": "string"
+        },
+        "korean": {
+          "type": "string"
+        },
+        "english": {
+          "type": "string"
+        },
+        "existing_note_id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "item_id",
+        "korean",
+        "english",
+        "existing_note_id"
+      ],
+      "type": "object",
+      "title": "DuplicateNote"
+    },
+    "PushRequest": {
+      "$defs": {
+        "CardBatch": {
+          "additionalProperties": false,
+          "properties": {
+            "schema_version": {
+              "const": "1",
+              "default": "1",
+              "type": "string"
+            },
+            "metadata": {
+              "$ref": "#/$defs/LessonMetadata"
+            },
+            "notes": {
+              "items": {
+                "$ref": "#/$defs/GeneratedNote"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "metadata",
+            "notes"
+          ],
+          "type": "object"
+        },
+        "CardPreview": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "item_id": {
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "recognition",
+                "production",
+                "listening",
+                "number-context",
+                "read-aloud",
+                "chunked-reading",
+                "decodable-passage"
+              ],
+              "type": "string"
+            },
+            "front_html": {
+              "type": "string"
+            },
+            "back_html": {
+              "type": "string"
+            },
+            "audio_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "approved": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "item_id",
+            "kind",
+            "front_html",
+            "back_html"
+          ],
+          "type": "object"
+        },
+        "ExampleSentence": {
+          "additionalProperties": false,
+          "properties": {
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "GeneratedNote": {
+          "additionalProperties": false,
+          "properties": {
+            "item": {
+              "$ref": "#/$defs/LessonItem"
+            },
+            "cards": {
+              "items": {
+                "$ref": "#/$defs/CardPreview"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "approved": {
+              "default": true,
+              "type": "boolean"
+            },
+            "note_key": {
+              "default": "",
+              "type": "string"
+            },
+            "lane": {
+              "default": "lesson",
+              "enum": [
+                "lesson",
+                "new-vocab",
+                "reading-speed",
+                "grammar",
+                "listening"
+              ],
+              "type": "string"
+            },
+            "skill_tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "duplicate_status": {
+              "default": "new",
+              "enum": [
+                "new",
+                "exact-duplicate",
+                "near-duplicate"
+              ],
+              "type": "string"
+            },
+            "duplicate_note_key": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "duplicate_note_id": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "duplicate_source": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "inclusion_reason": {
+              "default": "New card",
+              "type": "string"
+            }
+          },
+          "required": [
+            "item",
+            "cards"
+          ],
+          "type": "object"
+        },
+        "LessonItem": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "lesson_id": {
+              "type": "string"
+            },
+            "item_type": {
+              "enum": [
+                "vocab",
+                "phrase",
+                "grammar",
+                "dialogue",
+                "number"
+              ],
+              "type": "string"
+            },
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "pronunciation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "examples": {
+              "items": {
+                "$ref": "#/$defs/ExampleSentence"
+              },
+              "type": "array"
+            },
+            "notes": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "lane": {
+              "default": "lesson",
+              "enum": [
+                "lesson",
+                "new-vocab",
+                "reading-speed",
+                "grammar",
+                "listening"
+              ],
+              "type": "string"
+            },
+            "skill_tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image_prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "audio": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MediaAsset"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MediaAsset"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "lesson_id",
+            "item_type",
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "LessonMetadata": {
+          "additionalProperties": false,
+          "properties": {
+            "lesson_id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "topic": {
+              "type": "string"
+            },
+            "lesson_date": {
+              "format": "date",
+              "type": "string"
+            },
+            "source_description": {
+              "type": "string"
+            },
+            "target_deck": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "lesson_id",
+            "title",
+            "topic",
+            "lesson_date",
+            "source_description"
+          ],
+          "type": "object"
+        },
+        "MediaAsset": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "source_url": {
+              "anyOf": [
+                {
+                  "format": "uri",
+                  "maxLength": 2083,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "batch": {
+          "$ref": "#/$defs/CardBatch"
+        },
+        "dry_run": {
+          "default": true,
+          "type": "boolean"
+        },
+        "deck_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_batch_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "anki_url": {
+          "default": "http://127.0.0.1:8765",
+          "type": "string"
+        },
+        "sync": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "batch"
+      ],
+      "type": "object",
+      "title": "PushRequest"
+    },
+    "PushResult": {
+      "$defs": {
+        "DuplicateNote": {
+          "additionalProperties": false,
+          "properties": {
+            "item_id": {
+              "type": "string"
+            },
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "existing_note_id": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "item_id",
+            "korean",
+            "english",
+            "existing_note_id"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "deck_name": {
+          "type": "string"
+        },
+        "approved_notes": {
+          "type": "integer"
+        },
+        "approved_cards": {
+          "type": "integer"
+        },
+        "duplicate_notes": {
+          "items": {
+            "$ref": "#/$defs/DuplicateNote"
+          },
+          "type": "array"
+        },
+        "dry_run": {
+          "type": "boolean"
+        },
+        "can_push": {
+          "type": "boolean"
+        },
+        "notes_added": {
+          "default": 0,
+          "type": "integer"
+        },
+        "cards_created": {
+          "default": 0,
+          "type": "integer"
+        },
+        "pushed_note_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "sync_requested": {
+          "default": false,
+          "type": "boolean"
+        },
+        "sync_completed": {
+          "default": false,
+          "type": "boolean"
+        },
+        "reviewed_batch_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "deck_name",
+        "approved_notes",
+        "approved_cards",
+        "dry_run",
+        "can_push"
+      ],
+      "type": "object",
+      "title": "PushResult"
+    },
+    "PreviewNoteRefreshRequest": {
+      "$defs": {
+        "CardPreview": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "item_id": {
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "recognition",
+                "production",
+                "listening",
+                "number-context",
+                "read-aloud",
+                "chunked-reading",
+                "decodable-passage"
+              ],
+              "type": "string"
+            },
+            "front_html": {
+              "type": "string"
+            },
+            "back_html": {
+              "type": "string"
+            },
+            "audio_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "approved": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "item_id",
+            "kind",
+            "front_html",
+            "back_html"
+          ],
+          "type": "object"
+        },
+        "ExampleSentence": {
+          "additionalProperties": false,
+          "properties": {
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "GeneratedNote": {
+          "additionalProperties": false,
+          "properties": {
+            "item": {
+              "$ref": "#/$defs/LessonItem"
+            },
+            "cards": {
+              "items": {
+                "$ref": "#/$defs/CardPreview"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "approved": {
+              "default": true,
+              "type": "boolean"
+            },
+            "note_key": {
+              "default": "",
+              "type": "string"
+            },
+            "lane": {
+              "default": "lesson",
+              "enum": [
+                "lesson",
+                "new-vocab",
+                "reading-speed",
+                "grammar",
+                "listening"
+              ],
+              "type": "string"
+            },
+            "skill_tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "duplicate_status": {
+              "default": "new",
+              "enum": [
+                "new",
+                "exact-duplicate",
+                "near-duplicate"
+              ],
+              "type": "string"
+            },
+            "duplicate_note_key": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "duplicate_note_id": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "duplicate_source": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "inclusion_reason": {
+              "default": "New card",
+              "type": "string"
+            }
+          },
+          "required": [
+            "item",
+            "cards"
+          ],
+          "type": "object"
+        },
+        "LessonItem": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "lesson_id": {
+              "type": "string"
+            },
+            "item_type": {
+              "enum": [
+                "vocab",
+                "phrase",
+                "grammar",
+                "dialogue",
+                "number"
+              ],
+              "type": "string"
+            },
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "pronunciation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "examples": {
+              "items": {
+                "$ref": "#/$defs/ExampleSentence"
+              },
+              "type": "array"
+            },
+            "notes": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "lane": {
+              "default": "lesson",
+              "enum": [
+                "lesson",
+                "new-vocab",
+                "reading-speed",
+                "grammar",
+                "listening"
+              ],
+              "type": "string"
+            },
+            "skill_tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image_prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "audio": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MediaAsset"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "image": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MediaAsset"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "id",
+            "lesson_id",
+            "item_type",
+            "korean",
+            "english"
+          ],
+          "type": "object"
+        },
+        "MediaAsset": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "prompt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "source_url": {
+              "anyOf": [
+                {
+                  "format": "uri",
+                  "maxLength": 2083,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "note": {
+          "$ref": "#/$defs/GeneratedNote"
+        },
+        "item": {
+          "$ref": "#/$defs/LessonItem"
+        }
+      },
+      "required": [
+        "note",
+        "item"
+      ],
+      "type": "object",
+      "title": "PreviewNoteRefreshRequest"
+    },
+    "DeleteBatchRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "batch_path": {
+          "type": "string"
+        },
+        "anki_url": {
+          "default": "http://127.0.0.1:8765",
+          "type": "string"
+        }
+      },
+      "required": [
+        "batch_path"
+      ],
+      "type": "object",
+      "title": "DeleteBatchRequest"
+    },
+    "DeleteBatchResult": {
+      "additionalProperties": false,
+      "properties": {
+        "deleted_paths": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deleted_media_paths": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object",
+      "title": "DeleteBatchResult"
+    },
+    "PronunciationSuggestion": {
+      "additionalProperties": false,
+      "properties": {
+        "korean": {
+          "type": "string"
+        },
+        "pronunciation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "korean",
+        "pronunciation"
+      ],
+      "type": "object",
+      "title": "PronunciationSuggestion"
+    },
+    "PronunciationBatch": {
+      "$defs": {
+        "PronunciationSuggestion": {
+          "additionalProperties": false,
+          "properties": {
+            "korean": {
+              "type": "string"
+            },
+            "pronunciation": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "korean",
+            "pronunciation"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/$defs/PronunciationSuggestion"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "type": "object",
+      "title": "PronunciationBatch"
+    },
+    "ImageGenerationDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "item_id": {
+          "type": "string"
+        },
+        "generate_image": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id",
+        "generate_image",
+        "reason"
+      ],
+      "type": "object",
+      "title": "ImageGenerationDecision"
+    },
+    "ImageGenerationPlan": {
+      "$defs": {
+        "ImageGenerationDecision": {
+          "additionalProperties": false,
+          "properties": {
+            "item_id": {
+              "type": "string"
+            },
+            "generate_image": {
+              "type": "boolean"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "item_id",
+            "generate_image",
+            "reason"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "decisions": {
+          "items": {
+            "$ref": "#/$defs/ImageGenerationDecision"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "decisions"
+      ],
+      "type": "object",
+      "title": "ImageGenerationPlan"
+    },
+    "NewVocabProposal": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "type": "string"
+        },
+        "korean": {
+          "type": "string"
+        },
+        "english": {
+          "type": "string"
+        },
+        "topic_tag": {
+          "type": "string"
+        },
+        "example_ko": {
+          "type": "string"
+        },
+        "example_en": {
+          "type": "string"
+        },
+        "proposal_reason": {
+          "type": "string"
+        },
+        "image_prompt": {
+          "type": "string"
+        },
+        "adjacency_kind": {
+          "enum": [
+            "coverage-gap",
+            "lesson-adjacent"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "korean",
+        "english",
+        "topic_tag",
+        "example_ko",
+        "example_en",
+        "proposal_reason",
+        "image_prompt",
+        "adjacency_kind"
+      ],
+      "type": "object",
+      "title": "NewVocabProposal"
+    },
+    "NewVocabProposalBatch": {
+      "$defs": {
+        "NewVocabProposal": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "type": "string"
+            },
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "topic_tag": {
+              "type": "string"
+            },
+            "example_ko": {
+              "type": "string"
+            },
+            "example_en": {
+              "type": "string"
+            },
+            "proposal_reason": {
+              "type": "string"
+            },
+            "image_prompt": {
+              "type": "string"
+            },
+            "adjacency_kind": {
+              "enum": [
+                "coverage-gap",
+                "lesson-adjacent"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "korean",
+            "english",
+            "topic_tag",
+            "example_ko",
+            "example_en",
+            "proposal_reason",
+            "image_prompt",
+            "adjacency_kind"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "proposals": {
+          "items": {
+            "$ref": "#/$defs/NewVocabProposal"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "proposals"
+      ],
+      "type": "object",
+      "title": "NewVocabProposalBatch"
+    },
+    "PriorNote": {
+      "additionalProperties": false,
+      "properties": {
+        "note_key": {
+          "type": "string"
+        },
+        "korean": {
+          "type": "string"
+        },
+        "english": {
+          "type": "string"
+        },
+        "item_type": {
+          "enum": [
+            "vocab",
+            "phrase",
+            "grammar",
+            "dialogue",
+            "number"
+          ],
+          "type": "string"
+        },
+        "lane": {
+          "default": "lesson",
+          "enum": [
+            "lesson",
+            "new-vocab",
+            "reading-speed",
+            "grammar",
+            "listening"
+          ],
+          "type": "string"
+        },
+        "skill_tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source": {
+          "type": "string"
+        },
+        "existing_note_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "note_key",
+        "korean",
+        "english",
+        "item_type",
+        "source"
+      ],
+      "type": "object",
+      "title": "PriorNote"
+    },
+    "AnkiStatsSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "note_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "card_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "by_template": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "by_tag": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object",
+      "title": "AnkiStatsSnapshot"
+    },
+    "StudyState": {
+      "$defs": {
+        "AnkiStatsSnapshot": {
+          "additionalProperties": false,
+          "properties": {
+            "note_count": {
+              "default": 0,
+              "type": "integer"
+            },
+            "card_count": {
+              "default": 0,
+              "type": "integer"
+            },
+            "by_template": {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "type": "object"
+            },
+            "by_tag": {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "PriorNote": {
+          "additionalProperties": false,
+          "properties": {
+            "note_key": {
+              "type": "string"
+            },
+            "korean": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "item_type": {
+              "enum": [
+                "vocab",
+                "phrase",
+                "grammar",
+                "dialogue",
+                "number"
+              ],
+              "type": "string"
+            },
+            "lane": {
+              "default": "lesson",
+              "enum": [
+                "lesson",
+                "new-vocab",
+                "reading-speed",
+                "grammar",
+                "listening"
+              ],
+              "type": "string"
+            },
+            "skill_tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "source": {
+              "type": "string"
+            },
+            "existing_note_id": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "note_key",
+            "korean",
+            "english",
+            "item_type",
+            "source"
+          ],
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "generated_notes": {
+          "items": {
+            "$ref": "#/$defs/PriorNote"
+          },
+          "type": "array"
+        },
+        "imported_notes": {
+          "items": {
+            "$ref": "#/$defs/PriorNote"
+          },
+          "type": "array"
+        },
+        "anki_stats": {
+          "$ref": "#/$defs/AnkiStatsSnapshot"
+        }
+      },
+      "type": "object",
+      "title": "StudyState"
+    },
+    "ServiceStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "backend_ok": {
+          "default": true,
+          "type": "boolean"
+        },
+        "anki_connect_ok": {
+          "default": false,
+          "type": "boolean"
+        },
+        "anki_connect_version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "openai_configured": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "type": "object",
+      "title": "ServiceStatus"
+    },
+    "DashboardBatch": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "lesson_date": {
+          "format": "date",
+          "type": "string"
+        },
+        "target_deck": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "notes": {
+          "type": "integer"
+        },
+        "cards": {
+          "type": "integer"
+        },
+        "approved_notes": {
+          "type": "integer"
+        },
+        "approved_cards": {
+          "type": "integer"
+        },
+        "audio_notes": {
+          "type": "integer"
+        },
+        "image_notes": {
+          "type": "integer"
+        },
+        "exact_duplicates": {
+          "type": "integer"
+        },
+        "near_duplicates": {
+          "type": "integer"
+        },
+        "push_status": {
+          "default": "not-pushed",
+          "enum": [
+            "not-pushed",
+            "pushed"
+          ],
+          "type": "string"
+        },
+        "media_hydrated": {
+          "default": false,
+          "type": "boolean"
+        },
+        "synced_batch_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "lanes": {
+          "items": {
+            "enum": [
+              "lesson",
+              "new-vocab",
+              "reading-speed",
+              "grammar",
+              "listening"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "path",
+        "title",
+        "topic",
+        "lesson_date",
+        "notes",
+        "cards",
+        "approved_notes",
+        "approved_cards",
+        "audio_notes",
+        "image_notes",
+        "exact_duplicates",
+        "near_duplicates"
+      ],
+      "type": "object",
+      "title": "DashboardBatch"
+    },
+    "DashboardLessonContext": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "label"
+      ],
+      "type": "object",
+      "title": "DashboardLessonContext"
+    },
+    "DashboardStats": {
+      "additionalProperties": false,
+      "properties": {
+        "local_batch_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "local_note_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "local_card_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "pending_push_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "audio_note_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "image_note_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "lane_counts": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "anki_note_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "anki_card_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "anki_deck_counts": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object",
+      "title": "DashboardStats"
+    },
+    "DashboardResponse": {
+      "$defs": {
+        "DashboardBatch": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "topic": {
+              "type": "string"
+            },
+            "lesson_date": {
+              "format": "date",
+              "type": "string"
+            },
+            "target_deck": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "notes": {
+              "type": "integer"
+            },
+            "cards": {
+              "type": "integer"
+            },
+            "approved_notes": {
+              "type": "integer"
+            },
+            "approved_cards": {
+              "type": "integer"
+            },
+            "audio_notes": {
+              "type": "integer"
+            },
+            "image_notes": {
+              "type": "integer"
+            },
+            "exact_duplicates": {
+              "type": "integer"
+            },
+            "near_duplicates": {
+              "type": "integer"
+            },
+            "push_status": {
+              "default": "not-pushed",
+              "enum": [
+                "not-pushed",
+                "pushed"
+              ],
+              "type": "string"
+            },
+            "media_hydrated": {
+              "default": false,
+              "type": "boolean"
+            },
+            "synced_batch_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "lanes": {
+              "items": {
+                "enum": [
+                  "lesson",
+                  "new-vocab",
+                  "reading-speed",
+                  "grammar",
+                  "listening"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "path",
+            "title",
+            "topic",
+            "lesson_date",
+            "notes",
+            "cards",
+            "approved_notes",
+            "approved_cards",
+            "audio_notes",
+            "image_notes",
+            "exact_duplicates",
+            "near_duplicates"
+          ],
+          "type": "object"
+        },
+        "DashboardLessonContext": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "label"
+          ],
+          "type": "object"
+        },
+        "DashboardStats": {
+          "additionalProperties": false,
+          "properties": {
+            "local_batch_count": {
+              "default": 0,
+              "type": "integer"
+            },
+            "local_note_count": {
+              "default": 0,
+              "type": "integer"
+            },
+            "local_card_count": {
+              "default": 0,
+              "type": "integer"
+            },
+            "pending_push_count": {
+              "default": 0,
+              "type": "integer"
+            },
+            "audio_note_count": {
+              "default": 0,
+              "type": "integer"
+            },
+            "image_note_count": {
+              "default": 0,
+              "type": "integer"
+            },
+            "lane_counts": {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "type": "object"
+            },
+            "anki_note_count": {
+              "default": 0,
+              "type": "integer"
+            },
+            "anki_card_count": {
+              "default": 0,
+              "type": "integer"
+            },
+            "anki_deck_counts": {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "ServiceStatus": {
+          "additionalProperties": false,
+          "properties": {
+            "backend_ok": {
+              "default": true,
+              "type": "boolean"
+            },
+            "anki_connect_ok": {
+              "default": false,
+              "type": "boolean"
+            },
+            "anki_connect_version": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "openai_configured": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/ServiceStatus"
+        },
+        "stats": {
+          "$ref": "#/$defs/DashboardStats"
+        },
+        "recent_batches": {
+          "items": {
+            "$ref": "#/$defs/DashboardBatch"
+          },
+          "type": "array"
+        },
+        "lesson_contexts": {
+          "items": {
+            "$ref": "#/$defs/DashboardLessonContext"
+          },
+          "type": "array"
+        },
+        "syncable_files": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "status",
+        "stats"
+      ],
+      "type": "object",
+      "title": "DashboardResponse"
+    },
+    "NewVocabJobRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "default": 20,
+          "type": "integer"
+        },
+        "gap_ratio": {
+          "default": 0.6,
+          "type": "number"
+        },
+        "lesson_context": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "with_audio": {
+          "default": true,
+          "type": "boolean"
+        },
+        "image_quality": {
+          "default": "low",
+          "enum": [
+            "auto",
+            "low",
+            "medium",
+            "high"
+          ],
+          "type": "string"
+        },
+        "target_deck": {
+          "default": "Korean::New Vocab",
+          "type": "string"
+        },
+        "anki_url": {
+          "default": "http://127.0.0.1:8765",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "title": "NewVocabJobRequest"
+    },
+    "SyncMediaJobRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "input_path": {
+          "type": "string"
+        },
+        "output_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sync_first": {
+          "default": true,
+          "type": "boolean"
+        },
+        "media_dir": {
+          "default": "data/media",
+          "type": "string"
+        },
+        "anki_url": {
+          "default": "http://127.0.0.1:8765",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_path"
+      ],
+      "type": "object",
+      "title": "SyncMediaJobRequest"
+    },
+    "JobResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "lesson-generate",
+            "new-vocab",
+            "sync-media"
+          ],
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "queued",
+            "running",
+            "succeeded",
+            "failed"
+          ],
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "progress_current": {
+          "default": 0,
+          "type": "integer"
+        },
+        "progress_total": {
+          "default": 0,
+          "type": "integer"
+        },
+        "progress_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "logs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "output_paths": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "status",
+        "created_at",
+        "updated_at"
+      ],
+      "type": "object",
+      "title": "JobResponse"
+    }
+  }
+}
