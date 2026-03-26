@@ -5,7 +5,7 @@ import mimetypes
 import os
 import subprocess
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from typing import Callable, cast
+from typing import cast
 from urllib.parse import parse_qs, unquote, urlparse
 
 from pydantic import ValidationError
@@ -23,6 +23,7 @@ from .dashboard_snapshots import (
     service_status_snapshot,
 )
 from .push_workflow_service import delete_batch, handle_push_request
+from .multipart_form import MultipartForm
 from .schema import (
     BatchPreviewResponse,
     CardBatch,
@@ -52,10 +53,10 @@ class PushServiceHandler(BaseHTTPRequestHandler):
         length = int(self.headers.get("Content-Length", "0"))
         return self.rfile.read(length).decode("utf-8")
 
-    def _read_multipart(self) -> jobs.MultipartForm:
+    def _read_multipart(self) -> MultipartForm:
         length = int(self.headers.get("Content-Length", "0"))
         raw_body = self.rfile.read(length)
-        return jobs.MultipartForm.parse(self.headers.get("Content-Type", ""), raw_body)
+        return MultipartForm.parse(self.headers.get("Content-Type", ""), raw_body)
 
     def do_GET(self) -> None:  # noqa: N802
         parsed = urlparse(self.path)
@@ -109,10 +110,10 @@ class PushServiceHandler(BaseHTTPRequestHandler):
             self._handle_lesson_generate_job()
             return
         if parsed.path == "/api/jobs/new-vocab":
-            self._handle_json_job("new-vocab", jobs.new_vocab_job)
+            self._handle_new_vocab_job()
             return
         if parsed.path == "/api/jobs/sync-media":
-            self._handle_json_job("sync-media", jobs.sync_media_job)
+            self._handle_sync_media_job()
             return
         self._send_json(404, {"error": "Not found"})
 
@@ -171,15 +172,25 @@ class PushServiceHandler(BaseHTTPRequestHandler):
     def _handle_lesson_generate_job(self) -> None:
         try:
             form = self._read_multipart()
-            job = jobs.submit_job("lesson-generate", lambda job_id: jobs.lesson_generate_job(job_id, form))
+            job = jobs.submit_lesson_generate_job(form)
             self._send_json(202, cast(dict[str, object], job.model_dump()))
         except Exception as error:  # noqa: BLE001
             self._send_json(400, {"error": str(error)})
 
-    def _handle_json_job(self, kind: str, run_job: Callable[[str, str], list[str]]) -> None:
+    def _handle_new_vocab_job(self) -> None:
         try:
             raw_body = self._read_body()
-            job = jobs.submit_job(kind, lambda job_id: run_job(job_id, raw_body))
+            job = jobs.submit_new_vocab_job(raw_body)
+            self._send_json(202, cast(dict[str, object], job.model_dump()))
+        except ValidationError as error:
+            self._send_json(400, {"error": "Invalid job request.", "details": error.errors()})
+        except Exception as error:  # noqa: BLE001
+            self._send_json(400, {"error": str(error)})
+
+    def _handle_sync_media_job(self) -> None:
+        try:
+            raw_body = self._read_body()
+            job = jobs.submit_sync_media_job(raw_body)
             self._send_json(202, cast(dict[str, object], job.model_dump()))
         except ValidationError as error:
             self._send_json(400, {"error": "Invalid job request.", "details": error.errors()})

@@ -13,7 +13,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from korean_anki.http_api import PushServiceHandler
-from korean_anki.jobs import new_vocab_job
+from korean_anki.job_handlers import new_vocab_job
 from korean_anki.path_policy import unique_new_vocab_output_path
 from korean_anki.schema import (
     AnkiStatsSnapshot,
@@ -654,7 +654,6 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root),
-            patch("korean_anki.jobs.update_job"),
             patch("korean_anki.new_vocab_generation_service.study_state_snapshot", return_value=StudyState(anki_stats=AnkiStatsSnapshot())),
             patch("korean_anki.batch_generation_service.study_state_snapshot", return_value=StudyState(anki_stats=AnkiStatsSnapshot())),
             patch("korean_anki.new_vocab_documents.propose_new_vocab", return_value=proposal_batch),
@@ -663,7 +662,6 @@ class PushServiceTests(unittest.TestCase):
             patch("korean_anki.new_vocab_generation_service.enrich_audio", side_effect=lambda document, *_args, **_kwargs: document),
         ):
             output_paths = new_vocab_job(
-                "job-1",
                 json.dumps(
                     {
                         "count": 1,
@@ -673,6 +671,7 @@ class PushServiceTests(unittest.TestCase):
                         "image_quality": "low",
                     }
                 ),
+                on_progress=lambda **progress: None,
             )
 
         self.assertEqual(len(output_paths), 1)

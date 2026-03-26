@@ -17,6 +17,10 @@ The repo is in much better shape than it was before the earlier cleanup work. Th
   - `study_state.py`
   - `service_support.py`
 - backend jobs now persist across restarts
+- `jobs.py` now only owns local job submission and store/progress integration
+- multipart decoding and concrete job handlers now live in:
+  - `multipart_form.py`
+  - `job_handlers.py`
 - the preview app is no longer concentrated in a single `App.tsx` file
 - the home and batch flows now live in concrete feature slices instead of large page/controller hooks
 - `new_vocab.py` and `cards.py` are now compatibility surfaces over narrower domain modules
@@ -32,21 +36,7 @@ If I had to summarize the current problem in one sentence:
 
 ## Findings
 
-### P1. The job system should stay simple and local-first
-
-The persisted job store is the right idea, but this app is still a local single-user tool. That means the job architecture should optimize for robustness and debuggability, not for generic queue semantics.
-
-`src/korean_anki/jobs.py` currently owns:
-
-- multipart decoding
-- thread submission
-- job progress updates
-- persistent job storage integration
-- per-job workflow dispatch
-
-That is still reasonable. The main caution is to avoid turning it into a general-purpose job framework. If future cleanup happens here, I would simplify toward explicit local job handlers rather than add more abstraction.
-
-### P2. `schema.py` is a watchpoint, not the top priority
+### P1. `schema.py` is a watchpoint, not an urgent split
 
 `src/korean_anki/schema.py` is still broad, but it is no longer the most pressing architectural issue.
 
@@ -94,6 +84,10 @@ Until then, I would leave it alone.
   - `note_generation.py`
   - `new_vocab.py` and `cards.py` as thin compatibility surfaces
 - the local job persistence boundary in `job_store.py`
+- the current local job split:
+  - `jobs.py`
+  - `job_handlers.py`
+  - `multipart_form.py`
 - the concrete frontend feature slices:
   - home status, recent-batch actions, and generation forms
   - batch overview/actions and note-preview editing
@@ -118,8 +112,7 @@ Until then, I would leave it alone.
 
 ## Refactor Order
 
-1. Keep the job system explicit and local-first; simplify toward concrete local handlers if `jobs.py` starts growing again.
-2. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 
@@ -131,4 +124,4 @@ The biggest architectural mistakes are already behind it. The next round of clea
 - keep local-only workflows simple
 - avoid generic abstractions unless they clearly reduce real complexity
 
-The previous risk was "too much logic in too few places." The current risk is narrower: a few remaining modules still do too much orchestration for a local-only app.
+The previous risk was "too much logic in too few places." The current risk is smaller now: mostly watchpoints rather than urgent architectural debt.
