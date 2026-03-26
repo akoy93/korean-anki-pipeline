@@ -9,6 +9,11 @@ def project_root() -> Path:
     return Path.cwd().resolve()
 
 
+def media_root(*, project_root_path: Path | None = None) -> Path:
+    root = (project_root_path or project_root()).resolve()
+    return (root / "data" / "media").resolve()
+
+
 def resolve_project_path(relative_path: str, *, project_root_path: Path | None = None) -> Path:
     if Path(relative_path).is_absolute():
         raise ValueError("Use a project-relative path.")
@@ -18,6 +23,18 @@ def resolve_project_path(relative_path: str, *, project_root_path: Path | None =
     normalized_root = f"{root}{os.sep}"
     if resolved_path != root and not str(resolved_path).startswith(normalized_root):
         raise ValueError("Path escapes project root.")
+    return resolved_path
+
+
+def resolve_media_path(relative_path: str, *, project_root_path: Path | None = None) -> Path:
+    if Path(relative_path).is_absolute():
+        raise ValueError("Use a media-root-relative path.")
+
+    root = media_root(project_root_path=project_root_path)
+    resolved_path = (root / relative_path).resolve()
+    normalized_root = f"{root}{os.sep}"
+    if resolved_path != root and not str(resolved_path).startswith(normalized_root):
+        raise ValueError("Path escapes media root.")
     return resolved_path
 
 

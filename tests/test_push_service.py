@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import shutil
 import threading
 import time
@@ -65,6 +66,64 @@ class PushServiceTests(unittest.TestCase):
             payload = json.loads(response.read().decode("utf-8"))
 
         self.assertEqual(payload, {"ok": True})
+
+    def test_batch_endpoint_returns_batch_json_from_project_root(self) -> None:
+        project_root = Path(self._testMethodName)
+        batch_path = project_root / "data/generated/sample.batch.json"
+        batch_path.parent.mkdir(parents=True, exist_ok=True)
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        batch = make_batch([generate_note(make_item(korean="오늘", english="today"))])
+        batch_path.write_text(batch.model_dump_json(indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()):
+            with urllib.request.urlopen(
+                f"{base_url}/api/batch?path=data/generated/sample.batch.json",
+                timeout=5,
+            ) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        self.assertEqual(payload["metadata"]["title"], batch.metadata.title)
+        self.assertEqual(payload["notes"][0]["item"]["korean"], "오늘")
+
+    def test_media_endpoint_serves_files_from_data_media(self) -> None:
+        project_root = Path(self._testMethodName)
+        media_path = project_root / "data/media/audio/sample.mp3"
+        media_path.parent.mkdir(parents=True, exist_ok=True)
+        media_path.write_bytes(b"mp3-bytes")
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()):
+            with urllib.request.urlopen(f"{base_url}/media/audio/sample.mp3", timeout=5) as response:
+                body = response.read()
+                content_type = response.headers.get_content_type()
+
+        self.assertEqual(body, b"mp3-bytes")
+        self.assertEqual(content_type, "audio/mpeg")
+
+    def test_open_anki_endpoint_launches_desktop_app(self) -> None:
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        request = urllib.request.Request(f"{base_url}/api/open-anki", method="POST")
+        with patch("korean_anki.http_api.subprocess.Popen") as mock_popen:
+            with urllib.request.urlopen(request, timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        self.assertEqual(payload, {"ok": True})
+        mock_popen.assert_called_once_with(
+            ["open", "-a", "Anki"],
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True,
+        )
 
     def test_status_endpoint_returns_service_state(self) -> None:
         server, base_url, thread = self._start_server()

@@ -293,13 +293,13 @@ test("delete removes an unpushed batch from the recent batches list", async ({
   await expect(recentBatchRow(page, DAILY_BATCH_PATH)).toBeVisible();
 });
 
-test("service recovery actions refresh the status panel", async ({ page }) => {
+test("opening Anki refreshes the status panel", async ({ page }) => {
   const weatherBatch = makeWeatherBatch();
   const api = new MockPreviewApi({
     dashboard: makeDashboardResponse({
       recentBatches: [makeDashboardBatch(WEATHER_BATCH_PATH, weatherBatch)],
       status: {
-        backend_ok: false,
+        backend_ok: true,
         anki_connect_ok: false,
         anki_connect_version: null,
       },
@@ -307,18 +307,6 @@ test("service recovery actions refresh the status panel", async ({ page }) => {
     batches: {
       [WEATHER_BATCH_PATH]: weatherBatch,
     },
-  });
-  api.onStartBackend(() => {
-    api.setDashboard(
-      makeDashboardResponse({
-        recentBatches: [makeDashboardBatch(WEATHER_BATCH_PATH, weatherBatch)],
-        status: {
-          backend_ok: true,
-          anki_connect_ok: false,
-          anki_connect_version: null,
-        },
-      }),
-    );
   });
   api.onOpenAnki(() => {
     api.setDashboard(
@@ -338,7 +326,7 @@ test("service recovery actions refresh the status panel", async ({ page }) => {
     window.setTimeout = ((handler, timeout = 0, ...args) =>
       originalSetTimeout(
         handler,
-        timeout === 1500 || timeout === 3000 ? 5 : timeout,
+        timeout === 3000 ? 5 : timeout,
         ...args,
       )) as typeof window.setTimeout;
   });
@@ -347,12 +335,7 @@ test("service recovery actions refresh the status panel", async ({ page }) => {
   await page.getByRole("button", { name: "Show details" }).click();
 
   await expect(page.getByText("Needs attention")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Start" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Open" })).toBeVisible();
-
-  await page.getByRole("button", { name: "Start" }).click();
-  await expect.poll(() => requestCount(api, "/api/start-backend")).toBe(1);
-  await expect(page.getByText("2/3 ready")).toBeVisible();
 
   await page.getByRole("button", { name: "Open" }).click();
   await expect.poll(() => requestCount(api, "/api/open-anki")).toBe(1);

@@ -79,7 +79,6 @@ export class MockPreviewApi {
   private refreshNoteHandler:
     | ((note: GeneratedNote, item: LessonItem) => GeneratedNote)
     | undefined;
-  private startBackendHandler: (() => void) | undefined;
   private openAnkiHandler: (() => void) | undefined;
 
   constructor({
@@ -159,10 +158,6 @@ export class MockPreviewApi {
     this.refreshNoteHandler = handler;
   }
 
-  onStartBackend(handler: () => void) {
-    this.startBackendHandler = handler;
-  }
-
   onOpenAnki(handler: () => void) {
     this.openAnkiHandler = handler;
   }
@@ -217,12 +212,6 @@ export class MockPreviewApi {
           return;
         }
         await fulfillJson(route, 200, clone(batch));
-        return;
-      }
-
-      if (method === "POST" && path === "/api/start-backend") {
-        this.startBackendHandler?.();
-        await fulfillJson(route, 200, { ok: true });
         return;
       }
 

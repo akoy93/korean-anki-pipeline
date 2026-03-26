@@ -1,16 +1,18 @@
 from __future__ import annotations
 
 import json
+import mimetypes
 import os
+import subprocess
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Callable, cast
-from urllib.parse import unquote, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
 
 from pydantic import ValidationError
 
 from . import application, dashboard_service, jobs, path_policy
 from .cards import refresh_preview_note
-from .schema import DeleteBatchRequest, PreviewNoteRefreshRequest, PushRequest
+from .schema import CardBatch, DeleteBatchRequest, PreviewNoteRefreshRequest, PushRequest
 
 
 class PushServiceHandler(BaseHTTPRequestHandler):
@@ -18,9 +20,13 @@ class PushServiceHandler(BaseHTTPRequestHandler):
 
     def _send_json(self, status_code: int, payload: dict[str, object]) -> None:
         body = json.dumps(payload, ensure_ascii=False, default=str).encode("utf-8")
+        self._send_bytes(status_code, body, content_type="application/json; charset=utf-8")
+
+    def _send_bytes(self, status_code: int, body: bytes, *, content_type: str) -> None:
         self.send_response(status_code)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-store")
         self.end_headers()
         self.wfile.write(body)
 
@@ -35,6 +41,9 @@ class PushServiceHandler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:  # noqa: N802
         parsed = urlparse(self.path)
+        if parsed.path.startswith("/media/"):
+            self._handle_media_request(parsed.path)
+            return
         if parsed.path == "/api/health":
             self._send_json(200, {"ok": True})
             return
@@ -43,6 +52,9 @@ class PushServiceHandler(BaseHTTPRequestHandler):
             return
         if parsed.path == "/api/dashboard":
             self._send_json(200, cast(dict[str, object], dashboard_service.dashboard_response().model_dump()))
+            return
+        if parsed.path == "/api/batch":
+            self._handle_batch_request(parsed.query)
             return
         if parsed.path.startswith("/api/jobs/"):
             job_id = unquote(parsed.path.removeprefix("/api/jobs/"))
@@ -65,6 +77,9 @@ class PushServiceHandler(BaseHTTPRequestHandler):
             return
         if parsed.path == "/api/preview-note":
             self._handle_preview_note_refresh()
+            return
+        if parsed.path == "/api/open-anki":
+            self._handle_open_anki()
             return
         if parsed.path == "/api/jobs/lesson-generate":
             self._handle_lesson_generate_job()
@@ -147,6 +162,79 @@ class PushServiceHandler(BaseHTTPRequestHandler):
         except Exception as error:  # noqa: BLE001
             self._send_json(400, {"error": str(error)})
 
+    def _handle_batch_request(self, raw_query: str) -> None:
+        requested_path = parse_qs(raw_query).get("path", [None])[0]
+        if requested_path is None or requested_path.strip() == "":
+            self._send_json(400, {"error": "Missing path query parameter."})
+            return
+        if not requested_path.endswith(".batch.json"):
+            self._send_json(400, {"error": "Only .batch.json files are supported."})
+            return
+
+        try:
+            resolved_path = path_policy.resolve_project_path(
+                requested_path,
+                project_root_path=path_policy.project_root(),
+            )
+        except ValueError as error:
+            self._send_json(403 if "escapes" in str(error) else 400, {"error": str(error)})
+            return
+
+        if not resolved_path.exists() or not resolved_path.is_file():
+            self._send_json(404, {"error": "Batch file not found."})
+            return
+
+        try:
+            batch = CardBatch.model_validate_json(resolved_path.read_text(encoding="utf-8"))
+        except (OSError, ValidationError) as error:
+            self._send_json(500, {"error": str(error)})
+            return
+
+        self._send_json(200, cast(dict[str, object], batch.model_dump(mode="json")))
+
+    def _handle_media_request(self, request_path: str) -> None:
+        relative_path = unquote(request_path.removeprefix("/media/"))
+        if relative_path.strip() == "":
+            self._send_json(404, {"error": "Not found"})
+            return
+
+        try:
+            resolved_path = path_policy.resolve_media_path(
+                relative_path,
+                project_root_path=path_policy.project_root(),
+            )
+        except ValueError as error:
+            self._send_json(403 if "escapes" in str(error) else 400, {"error": str(error)})
+            return
+
+        if not resolved_path.exists() or not resolved_path.is_file():
+            self._send_json(404, {"error": "Media file not found."})
+            return
+
+        try:
+            body = resolved_path.read_bytes()
+        except OSError as error:
+            self._send_json(500, {"error": str(error)})
+            return
+
+        content_type = mimetypes.guess_type(str(resolved_path))[0] or "application/octet-stream"
+        self._send_bytes(200, body, content_type=content_type)
+
+    def _handle_open_anki(self) -> None:
+        try:
+            subprocess.Popen(  # noqa: S603
+                ["open", "-a", "Anki"],
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                start_new_session=True,
+            )
+        except OSError as error:
+            self._send_json(500, {"error": str(error)})
+            return
+
+        self._send_json(200, {"ok": True})
+
     def log_message(self, format: str, *args: object) -> None:
         print(f"[push-service] {self.address_string()} - {format % args}")
 
@@ -154,7 +242,10 @@ class PushServiceHandler(BaseHTTPRequestHandler):
 def run_server(host: str = "127.0.0.1", port: int = 8767) -> None:
     server = ThreadingHTTPServer((host, port), PushServiceHandler)
     print(f"Push service listening on http://{host}:{port}")
-    print("POST /api/push, POST /api/jobs/*, GET /api/status, GET /api/dashboard, and GET /api/health")
+    print(
+        "GET /media/*, GET /api/batch, POST /api/open-anki, POST /api/push, "
+        "POST /api/jobs/*, GET /api/status, GET /api/dashboard, and GET /api/health"
+    )
     try:
         server.serve_forever()
     except KeyboardInterrupt:

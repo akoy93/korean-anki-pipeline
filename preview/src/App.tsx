@@ -20,7 +20,6 @@ import {
   Power,
   RotateCcw,
   Send,
-  Server,
   ShieldCheck,
   SunMedium,
   Trash2,
@@ -39,7 +38,6 @@ import {
   openAnki,
   pushBatch,
   refreshPreviewNote,
-  startBackend,
 } from "@/lib/api";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -324,12 +322,25 @@ function serviceCard(
 function systemStatusSummary(
   status: DashboardResponse["status"] | null,
   loading: boolean,
+  hasError: boolean,
 ) {
-  if (loading || status === null) {
+  if (loading) {
     return {
       ok: null,
       label: "Checking services",
       detail: "Loading backend, AnkiConnect, and API key status.",
+      onlineCount: 0,
+      totalCount: 3,
+    };
+  }
+
+  if (status === null) {
+    return {
+      ok: false,
+      label: "Needs attention",
+      detail: hasError
+        ? "The Python app backend is offline. Start `korean-anki serve` locally."
+        : "Service status is unavailable.",
       onlineCount: 0,
       totalCount: 3,
     };
@@ -808,7 +819,6 @@ function HomePage({
   const [lessonImages, setLessonImages] = useState<FileList | null>(null);
   const [newVocabCount, setNewVocabCount] = useState(20);
   const [newVocabContext, setNewVocabContext] = useState("");
-  const [startingBackend, setStartingBackend] = useState(false);
   const [openingAnki, setOpeningAnki] = useState(false);
   const [deletingBatchPath, setDeletingBatchPath] = useState<string | null>(
     null,
@@ -839,7 +849,7 @@ function HomePage({
       );
       const message = error instanceof Error ? error.message : "";
       setDashboardError(
-        message.startsWith("Request failed:")
+        message === "Failed to fetch" || message.startsWith("Request failed:")
           ? "App backend is offline."
           : message || "Failed to load dashboard.",
       );
@@ -875,23 +885,6 @@ function HomePage({
 
     previousJobActivityRef.current = current;
   }, [lessonJob, newVocabJob, syncJob]);
-
-  async function submitStartBackend() {
-    setDashboardError(null);
-    setStartingBackend(true);
-    try {
-      await startBackend();
-      window.setTimeout(() => {
-        void loadDashboard();
-      }, 1500);
-    } catch (error) {
-      setDashboardError(
-        error instanceof Error ? error.message : "Failed to start backend.",
-      );
-    } finally {
-      setStartingBackend(false);
-    }
-  }
 
   async function submitOpenAnki() {
     setDashboardError(null);
@@ -992,6 +985,7 @@ function HomePage({
   const statusSummary = systemStatusSummary(
     dashboard?.status ?? null,
     dashboardLoading,
+    dashboardError !== null,
   );
 
   return (
@@ -1077,23 +1071,7 @@ function HomePage({
               "App backend",
               dashboardLoading ? null : (dashboard?.status.backend_ok ?? false),
               "Python local service",
-              dashboardLoading || dashboard?.status.backend_ok ? null : (
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="outline"
-                  className="gap-2"
-                  onClick={() => void submitStartBackend()}
-                  disabled={startingBackend}
-                >
-                  {startingBackend ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Server className="h-4 w-4" />
-                  )}
-                  Start
-                </Button>
-              ),
+              null,
             )}
             {serviceCard(
               "AnkiConnect",
@@ -1103,7 +1081,9 @@ function HomePage({
               dashboard?.status.anki_connect_version
                 ? `Version ${dashboard.status.anki_connect_version}`
                 : "Anki Desktop",
-              dashboardLoading || dashboard?.status.anki_connect_ok ? null : (
+              dashboardLoading ||
+                !(dashboard?.status.backend_ok ?? false) ||
+                dashboard?.status.anki_connect_ok ? null : (
                 <Button
                   type="button"
                   size="sm"

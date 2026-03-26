@@ -8,31 +8,12 @@ The repo is still in a good place to refactor, but it has crossed the point wher
 
 The biggest remaining problems are:
 
-1. runtime behavior is still split between the Python backend and Vite middleware
-2. backend and frontend contracts are still duplicated manually
+1. backend and frontend contracts are still duplicated manually
+2. dashboard assembly is too expensive for the current polling model
 
-Those choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would not start with cosmetic file-splitting. I would first consolidate the runtime backend surface.
+Those choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would now tighten the contract boundary before doing more internal cleanup.
 
 ## Findings
-
-### P1. Runtime behavior is split between the Python backend and Vite middleware
-
-Evidence:
-
-- Vite handles real app behavior in `preview/vite.config.ts:18`, `preview/vite.config.ts:49`, `preview/vite.config.ts:107`, and `preview/vite.config.ts:143`.
-- Vite proxies some API routes separately starting at `preview/vite.config.ts:174`.
-
-Why this matters:
-
-- The dev server is not just a dev server; it is part of the runtime architecture.
-- `/api/batch`, `/api/start-backend`, `/api/open-anki`, and `/media` live in Vite, while dashboard/jobs/push live in Python.
-- That split complicates testing, deployment parity, and future cleanup.
-
-What should change:
-
-- Move all app-facing backend endpoints into Python.
-- Keep Vite as a frontend dev server only.
-- If you want a frontend-side convenience proxy in development, make it a proxy only, not a second backend.
 
 ### P1. Backend and frontend contracts are duplicated manually
 
@@ -257,13 +238,11 @@ What should change:
 
 ## Refactor Order
 
-1. Move Vite-only backend behavior into Python so the app has one backend surface.
+1. Generate TypeScript API types from backend schema.
 
-2. Generate TypeScript API types from backend schema.
+2. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
 
-3. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
-
-4. Only after that, split `preview/src/App.tsx`.
+3. Only after that, split `preview/src/App.tsx`.
    If you do this first, you will mostly just spread the existing coupling across more files.
 
 ## Bottom Line
@@ -272,6 +251,6 @@ The codebase is not in bad shape, but it is at the exact point where further fea
 
 If I had to summarize the architectural problem in one sentence:
 
-> the repo has good domain concepts, but too much runtime behavior is split across backend surfaces and too much shared contract/state shape is maintained twice
+> the repo has good domain concepts, but too much shared contract/state shape is maintained twice and too much expensive state is rebuilt on demand
 
 That is what I would fix first.

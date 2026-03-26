@@ -26,13 +26,6 @@ export async function fetchDashboard(): Promise<DashboardResponse> {
   return readJson<DashboardResponse>(response);
 }
 
-export async function startBackend(): Promise<{ ok: boolean }> {
-  const response = await fetch("/api/start-backend", {
-    method: "POST",
-  });
-  return readJson<{ ok: boolean }>(response);
-}
-
 export async function openAnki(): Promise<{ ok: boolean }> {
   const response = await fetch("/api/open-anki", {
     method: "POST",
