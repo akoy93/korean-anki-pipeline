@@ -4,11 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "generate:schema": "PYTHONPATH=../src ../.venv/bin/python -m korean_anki.schema_codegen --write src/lib/schema.ts",
+    "dev": "pnpm run generate:schema && vite",
+    "build": "pnpm run generate:schema && tsc -b && vite build",
     "preview": "vite preview",
-    "test:e2e": "playwright test",
-    "test:e2e:headed": "playwright test --headed"
+    "test:e2e": "pnpm run generate:schema && playwright test",
+    "test:e2e:headed": "pnpm run generate:schema && playwright test --headed"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.2",

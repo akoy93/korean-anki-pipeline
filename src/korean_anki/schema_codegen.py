@@ -1,0 +1,203 @@
+from __future__ import annotations
+
+import argparse
+from pathlib import Path
+import re
+from typing import Any, Literal, get_origin
+
+from pydantic import TypeAdapter
+
+from . import schema as backend_schema
+from .schema import StrictModel
+
+INDENT = "  "
+
+
+def _literal_alias_names() -> list[str]:
+    names: list[str] = []
+    for name, value in vars(backend_schema).items():
+        if name.startswith("_"):
+            continue
+        if get_origin(value) is Literal:
+            names.append(name)
+    return names
+
+
+def _model_names() -> list[str]:
+    names: list[str] = []
+    for name, value in vars(backend_schema).items():
+        if name == "StrictModel":
+            continue
+        if isinstance(value, type) and issubclass(value, StrictModel):
+            names.append(name)
+    return names
+
+
+def _format_literal(value: Any) -> str:
+    if value is None:
+        return "null"
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if isinstance(value, (int, float)):
+        return str(value)
+    escaped = str(value).replace("\\", "\\\\").replace('"', '\\"')
+    return f'"{escaped}"'
+
+
+def _normalize_union(types: list[str]) -> list[str]:
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for type_name in types:
+        if type_name not in seen:
+            ordered.append(type_name)
+            seen.add(type_name)
+    if "null" in seen:
+        ordered = [type_name for type_name in ordered if type_name != "null"] + ["null"]
+    return ordered
+
+
+def _ref_name(ref: str) -> str:
+    return ref.rsplit("/", 1)[-1]
+
+
+def _property_name(name: str) -> str:
+    if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name):
+        return name
+    return _format_literal(name)
+
+
+def _array_type(item_type: str) -> str:
+    return f"({item_type})[]" if " | " in item_type else f"{item_type}[]"
+
+
+def _render_object_literal(schema: dict[str, Any], *, indent_level: int) -> str:
+    properties = schema.get("properties", {})
+    additional_properties = schema.get("additionalProperties")
+    required = set(schema.get("required", []))
+
+    if not properties and isinstance(additional_properties, dict):
+        return f"Record<string, {_render_type(additional_properties, indent_level=indent_level)}>"
+    if not properties:
+        return "Record<string, never>"
+
+    lines = ["{"]
+    for name, property_schema in properties.items():
+        optional = "?" if name not in required else ""
+        rendered_type = _render_type(property_schema, indent_level=indent_level + 1)
+        lines.append(
+            f"{INDENT * (indent_level + 1)}{_property_name(name)}{optional}: {rendered_type};"
+        )
+    if isinstance(additional_properties, dict):
+        lines.append(
+            f"{INDENT * (indent_level + 1)}[key: string]: "
+            f"{_render_type(additional_properties, indent_level=indent_level + 1)};"
+        )
+    lines.append(f"{INDENT * indent_level}}}")
+    return "\n".join(lines)
+
+
+def _render_type(schema: dict[str, Any], *, indent_level: int = 0) -> str:
+    if "$ref" in schema:
+        return _ref_name(schema["$ref"])
+    if "enum" in schema:
+        return " | ".join(_format_literal(value) for value in schema["enum"])
+    if "const" in schema:
+        return _format_literal(schema["const"])
+    if "anyOf" in schema:
+        rendered = _normalize_union(
+            [_render_type(option, indent_level=indent_level) for option in schema["anyOf"]]
+        )
+        return " | ".join(rendered)
+    if "oneOf" in schema:
+        rendered = _normalize_union(
+            [_render_type(option, indent_level=indent_level) for option in schema["oneOf"]]
+        )
+        return " | ".join(rendered)
+
+    schema_type = schema.get("type")
+    if isinstance(schema_type, list):
+        rendered = _normalize_union(
+            [
+                _render_type({key: value for key, value in schema.items() if key != "type"} | {"type": option})
+                for option in schema_type
+            ]
+        )
+        return " | ".join(rendered)
+    if schema_type == "array":
+        return _array_type(_render_type(schema.get("items", {}), indent_level=indent_level))
+    if schema_type == "object":
+        return _render_object_literal(schema, indent_level=indent_level)
+    if schema_type == "string":
+        return "string"
+    if schema_type in {"integer", "number"}:
+        return "number"
+    if schema_type == "boolean":
+        return "boolean"
+    if schema_type == "null":
+        return "null"
+
+    return "unknown"
+
+
+def _render_type_alias(name: str, schema: dict[str, Any]) -> str:
+    return f"export type {name} = {_render_type(schema)};"
+
+
+def _render_model(name: str, schema: dict[str, Any]) -> str:
+    if schema.get("type") == "object" and "properties" in schema:
+        return f"export interface {name} {_render_object_literal(schema, indent_level=0)}"
+    return f"export type {name} = {_render_type(schema)};"
+
+
+def render_preview_schema_ts() -> str:
+    blocks: list[str] = [
+        "// Generated by `python -m korean_anki.schema_codegen --write preview/src/lib/schema.ts`.",
+        "// Do not edit this file manually.",
+    ]
+
+    for alias_name in _literal_alias_names():
+        alias_schema = TypeAdapter(getattr(backend_schema, alias_name)).json_schema(
+            ref_template="#/$defs/{model}"
+        )
+        blocks.append(_render_type_alias(alias_name, alias_schema))
+
+    for model_name in _model_names():
+        model = getattr(backend_schema, model_name)
+        model_schema = model.model_json_schema(ref_template="#/$defs/{model}")
+        blocks.append(_render_model(model_name, model_schema))
+
+    return "\n\n".join(blocks) + "\n"
+
+
+def _parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate preview TypeScript types from Pydantic schema.")
+    parser.add_argument("--write", type=Path, help="Write the generated TypeScript to this path.")
+    parser.add_argument(
+        "--check",
+        type=Path,
+        help="Fail if the generated TypeScript does not match the existing file.",
+    )
+    return parser.parse_args()
+
+
+def main() -> int:
+    args = _parse_args()
+    rendered = render_preview_schema_ts()
+
+    if args.check is not None:
+        existing = args.check.read_text(encoding="utf-8")
+        if existing != rendered:
+            print(f"{args.check} is out of date. Regenerate it with --write.")
+            return 1
+        return 0
+
+    if args.write is not None:
+        args.write.write_text(rendered, encoding="utf-8")
+        return 0
+
+    print(rendered, end="")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

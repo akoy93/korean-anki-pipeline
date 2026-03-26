@@ -8,32 +8,14 @@ The repo is still in a good place to refactor, but it has crossed the point wher
 
 The biggest remaining problems are:
 
-1. backend and frontend contracts are still duplicated manually
-2. dashboard assembly is too expensive for the current polling model
+1. dashboard assembly is too expensive for the current polling model
+2. `anki.py` is too broad and already shows a leaky boundary
 
-Those choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would now tighten the contract boundary before doing more internal cleanup.
+Those choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would now reduce expensive recomputation and sharpen the Anki boundary before doing more internal cleanup.
 
 ## Findings
 
-### P1. Backend and frontend contracts are duplicated manually
-
-Evidence:
-
-- Python source-of-truth models live in `src/korean_anki/schema.py:103`, `src/korean_anki/schema.py:278`, `src/korean_anki/schema.py:285`, `src/korean_anki/schema.py:323`, and `src/korean_anki/schema.py:349`.
-- The frontend mirrors them manually in `preview/src/lib/schema.ts:80`, `preview/src/lib/schema.ts:113`, `preview/src/lib/schema.ts:120`, `preview/src/lib/schema.ts:158`, and `preview/src/lib/schema.ts:166`.
-
-Why this matters:
-
-- Manual contract mirroring is tolerable only while the surface area is small.
-- This repo already has enough shape drift risk around dashboard/job/push state that type duplication is now a maintenance tax.
-
-What should change:
-
-- Generate TypeScript types from the Python schema source.
-- At minimum, emit JSON Schema from Pydantic and generate TS interfaces from that.
-- Better: expose a single OpenAPI/JSON schema package for the preview app.
-
-### P2. Dashboard assembly is too expensive for the current polling model
+### P1. Dashboard assembly is too expensive for the current polling model
 
 Evidence:
 
@@ -62,7 +44,7 @@ What should change:
   - a sync-media job completes
 - Keep Anki stats in a refreshable snapshot instead of recomputing on every dashboard request.
 
-### P2. `anki.py` is too broad and already shows a leaky boundary
+### P1. `anki.py` is too broad and already shows a leaky boundary
 
 Evidence:
 
@@ -238,9 +220,9 @@ What should change:
 
 ## Refactor Order
 
-1. Generate TypeScript API types from backend schema.
+1. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
 
-2. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
+2. Split `anki.py` into clearer transport, query, push, and media-sync modules.
 
 3. Only after that, split `preview/src/App.tsx`.
    If you do this first, you will mostly just spread the existing coupling across more files.
@@ -251,6 +233,6 @@ The codebase is not in bad shape, but it is at the exact point where further fea
 
 If I had to summarize the architectural problem in one sentence:
 
-> the repo has good domain concepts, but too much shared contract/state shape is maintained twice and too much expensive state is rebuilt on demand
+> the repo has good domain concepts, but too much expensive state is rebuilt on demand and the Anki integration boundary is still too wide
 
 That is what I would fix first.

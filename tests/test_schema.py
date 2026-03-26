@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
 
 from pydantic import ValidationError
 
+from korean_anki.schema_codegen import render_preview_schema_ts
 from korean_anki.schema import CardPreview, GeneratedNote, LessonItem
 
 
@@ -51,6 +53,13 @@ class SchemaTests(unittest.TestCase):
         self.assertEqual(note.note_key, "")
         self.assertEqual(note.lane, "lesson")
         self.assertEqual(note.duplicate_status, "new")
+
+    def test_preview_typescript_schema_is_generated_from_backend_schema(self) -> None:
+        generated_path = Path("preview/src/lib/schema.ts")
+        self.assertEqual(
+            generated_path.read_text(encoding="utf-8"),
+            render_preview_schema_ts(),
+        )
 
 
 if __name__ == "__main__":

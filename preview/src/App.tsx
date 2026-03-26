@@ -449,7 +449,7 @@ function isLocallyFilterableCardKind(
 }
 
 function visibleNoteTags(note: GeneratedNote) {
-  return note.item.tags.filter((tag) => tag !== note.item.lane);
+  return (note.item.tags ?? []).filter((tag) => tag !== note.item.lane);
 }
 
 function laneSectionDetails(lane: StudyLane) {
@@ -704,7 +704,7 @@ function buildJobNotification(job: JobResponse): JobNotification | null {
     jobId: job.id,
     kind: job.kind,
     status: job.status,
-    outputPaths: job.output_paths,
+    outputPaths: job.output_paths ?? [],
     createdAt: new Date().toISOString(),
   };
 }
@@ -1175,9 +1175,9 @@ function HomePage({
                       {batch.target_deck ?? "No deck"}
                     </div>
                     <div className="mt-2 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:pb-0 [&::-webkit-scrollbar]:hidden">
-                      {pushStatusBadge(batch.push_status)}
-                      {hydrationStatusBadge(batch.media_hydrated)}
-                      {batch.lanes.map((lane) => (
+                      {pushStatusBadge(batch.push_status ?? "not-pushed")}
+                      {hydrationStatusBadge(batch.media_hydrated ?? false)}
+                      {(batch.lanes ?? []).map((lane) => (
                         <Badge
                           key={`${batch.path}-${lane}`}
                           variant="outline"
@@ -1409,20 +1409,23 @@ function JobPanel({ job }: { job: JobResponse }) {
   const [now, setNow] = useState(new Date());
   const inProgress = job.status === "queued" || job.status === "running";
   const isNewVocabJob = job.kind === "new-vocab";
+  const progressCurrent = job.progress_current ?? 0;
+  const progressTotal = job.progress_total ?? 0;
+  const outputPaths = job.output_paths ?? [];
   const itemCount =
-    isNewVocabJob && job.progress_total > 0
-      ? Math.max(1, Math.round(job.progress_total / 5))
+    isNewVocabJob && progressTotal > 0
+      ? Math.max(1, Math.round(progressTotal / 5))
       : 0;
-  const imageCount = Math.min(itemCount, job.progress_current);
+  const imageCount = Math.min(itemCount, progressCurrent);
   const audioCount = Math.min(
     itemCount,
-    Math.max(0, job.progress_current - itemCount),
+    Math.max(0, progressCurrent - itemCount),
   );
   const cardCount = Math.min(
     itemCount,
-    Math.floor(Math.max(0, job.progress_current - itemCount * 2) / 3),
+    Math.floor(Math.max(0, progressCurrent - itemCount * 2) / 3),
   );
-  const planningDone = job.progress_total > 0;
+  const planningDone = progressTotal > 0;
   const imagesDone = itemCount > 0 && imageCount >= itemCount;
   const audioDone = itemCount > 0 && audioCount >= itemCount;
 
@@ -1534,9 +1537,9 @@ function JobPanel({ job }: { job: JobResponse }) {
           {job.error}
         </div>
       ) : null}
-      {job.output_paths.length > 0 ? (
+      {outputPaths.length > 0 ? (
         <div className="space-y-2">
-          {job.output_paths.map((path) => (
+          {outputPaths.map((path) => (
             <a
               key={path}
               href={`/batch/${path}`}
@@ -1655,9 +1658,10 @@ function BatchPreviewPage({
     void Promise.all([fetchBatch(batchPath), fetchDashboard()])
       .then(([nextBatch, dashboard]) => {
         if (!cancelled) {
+          const recentBatches = dashboard.recent_batches ?? [];
           setBatch(nextBatch);
           setDashboardBatch(
-            dashboard.recent_batches.find(
+            recentBatches.find(
               (candidate) => matchesDashboardBatch(candidate, batchPath),
             ) ?? null,
           );
@@ -1694,8 +1698,9 @@ function BatchPreviewPage({
         setHydrateJob(nextJob);
         if (nextJob.status === "succeeded") {
           void fetchDashboard().then((dashboard) => {
+            const recentBatches = dashboard.recent_batches ?? [];
             const nextDashboardBatch =
-              dashboard.recent_batches.find((candidate) =>
+              recentBatches.find((candidate) =>
                 matchesDashboardBatch(candidate, batchPath),
               ) ?? null;
             setDashboardBatch(nextDashboardBatch);
@@ -2070,20 +2075,20 @@ function BatchPreviewPage({
                   {pushPlan.approved_notes} notes / {pushPlan.approved_cards}{" "}
                   cards
                 </div>
-                {pushPlan.duplicate_notes.length > 0 ? (
+                {(pushPlan.duplicate_notes ?? []).length > 0 ? (
                   <div className={WARNING_PANEL_CLASS}>
                     <div className="font-medium">
-                      {pushPlan.duplicate_notes.length} duplicate notes already
+                      {(pushPlan.duplicate_notes ?? []).length} duplicate notes already
                       in Anki
                     </div>
                     <div className="mt-2 space-y-1">
-                      {pushPlan.duplicate_notes.slice(0, 5).map((note) => (
+                      {(pushPlan.duplicate_notes ?? []).slice(0, 5).map((note) => (
                         <div key={`${note.item_id}-${note.existing_note_id}`}>
                           {note.korean} = {note.english}
                         </div>
                       ))}
-                      {pushPlan.duplicate_notes.length > 5 ? (
-                        <div>+{pushPlan.duplicate_notes.length - 5} more</div>
+                      {(pushPlan.duplicate_notes ?? []).length > 5 ? (
+                        <div>+{(pushPlan.duplicate_notes ?? []).length - 5} more</div>
                       ) : null}
                     </div>
                   </div>
