@@ -1657,7 +1657,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
                       </div>
                     ) : null}
                   </CardHeader>
-                  <CardContent className="grid gap-6 pt-6 lg:grid-cols-[minmax(320px,380px)_1fr]">
+                  <CardContent className="grid gap-6 pt-8 sm:pt-8 lg:grid-cols-[minmax(320px,380px)_1fr]">
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <Label>Korean</Label>
