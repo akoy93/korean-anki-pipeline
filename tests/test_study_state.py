@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
 from korean_anki.cards import generate_batch
-from korean_anki.study_state import generated_history, normalize_text, note_key_for_item
+from korean_anki.study_state import build_study_state, generated_history, normalize_text, note_key_for_item
 
 from support import make_document, make_item
 
@@ -36,6 +37,25 @@ class StudyStateTests(unittest.TestCase):
 
         self.assertEqual([note.korean for note in history], ["일"])
         self.assertEqual(history[0].source, "lessons/2026-03-23-test/generated/real.batch.json")
+
+    def test_build_study_state_refreshes_when_new_batch_is_written(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            project_root = Path(temp_dir)
+            generated_dir = project_root / "data" / "generated"
+            generated_dir.mkdir(parents=True)
+
+            first_batch = generate_batch(make_document([make_item(item_id="real-1", korean="일", english="one")]))
+            second_batch = generate_batch(make_document([make_item(item_id="real-2", korean="이", english="two")]))
+
+            (generated_dir / "first.batch.json").write_text(first_batch.model_dump_json(), encoding="utf-8")
+            first_state = build_study_state(project_root)
+
+            time.sleep(0.01)
+            (generated_dir / "second.batch.json").write_text(second_batch.model_dump_json(), encoding="utf-8")
+            second_state = build_study_state(project_root)
+
+        self.assertEqual([note.korean for note in first_state.generated_notes], ["일"])
+        self.assertEqual([note.korean for note in second_state.generated_notes], ["이", "일"])
 
 
 if __name__ == "__main__":

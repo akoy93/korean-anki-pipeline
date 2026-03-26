@@ -6,10 +6,9 @@ import json
 import os
 import re
 from pathlib import Path
-from typing import Callable, cast
+from typing import Callable
 
 from .anki import (
-    ANKI_MODEL_NAME,
     DEFAULT_DECK,
     AnkiConnectClient,
     MediaSyncSummary,
@@ -24,12 +23,10 @@ from .llm import generate_pronunciations, read_lesson, transcribe_sources, write
 from .media import enrich_audio, enrich_images, enrich_new_vocab_images
 from .new_vocab import build_new_vocab_document_from_state
 from .reading_speed import build_reading_speed_document
+from .repositories import AnkiRepository, BatchRepository, invalidate_anki_snapshots, invalidate_project_snapshots
 from .schema import (
     CardBatch,
-    DashboardBatch,
-    DashboardLessonContext,
     DashboardResponse,
-    DashboardStats,
     DeleteBatchResult,
     GeneratedNote,
     LessonDocument,
@@ -40,6 +37,9 @@ from .schema import (
     ServiceStatus,
     StudyState,
 )
+from .snapshots import batch_media_hydrated as snapshot_batch_media_hydrated
+from .snapshots import batch_referenced_media_paths as snapshot_batch_referenced_media_paths
+from .snapshots import dashboard_response_snapshot
 from .stages import build_lesson_documents, qa_transcription, write_lesson_documents
 from .study_state import build_study_state
 
@@ -153,15 +153,12 @@ def normalize_batch_media_paths(batch: CardBatch, project_root: Path) -> CardBat
 
 
 def build_service_status(*, anki_url: str = "http://127.0.0.1:8765") -> ServiceStatus:
-    anki_connect_ok = False
-    anki_connect_version: int | None = None
-    try:
-        result = AnkiConnectClient(url=anki_url).invoke("version")
-        if isinstance(result, int):
-            anki_connect_ok = True
-            anki_connect_version = result
-    except Exception:  # noqa: BLE001
-        anki_connect_ok = False
+    anki_repository = AnkiRepository(
+        anki_url,
+        client_factory=AnkiConnectClient,
+        note_keys_loader=existing_model_note_keys,
+    )
+    anki_connect_ok, anki_connect_version = anki_repository.service_status()
 
     return ServiceStatus(
         backend_ok=True,
@@ -248,6 +245,7 @@ def _write_batch_artifacts(
         + "\n",
         encoding="utf-8",
     )
+    invalidate_project_snapshots(project_root)
 
     return BatchArtifacts(
         batch=batch_to_write,
@@ -503,6 +501,8 @@ def sync_media_file(
         )
         write_json(synced_document, resolved_output_path)
 
+    invalidate_project_snapshots(project_root)
+
     return MediaSyncArtifacts(output_path=resolved_output_path, summary=summary)
 
 
@@ -539,91 +539,28 @@ def handle_push_request(
         anki_url=request.anki_url,
         sync=request.sync,
     )
+    invalidate_anki_snapshots(request.anki_url)
+    if project_root is not None:
+        invalidate_project_snapshots(project_root)
     if reviewed_batch_path is None:
         return result
     return PushResult.model_validate(result.model_dump() | {"reviewed_batch_path": reviewed_batch_path})
 
 
-def _dashboard_batch(batch_path: Path, *, project_root: Path) -> DashboardBatch | None:
-    try:
-        batch = CardBatch.model_validate_json(batch_path.read_text(encoding="utf-8"))
-    except Exception:  # noqa: BLE001
-        return None
-
-    approved_notes = [note for note in batch.notes if note.approved]
-    approved_cards = [card for note in approved_notes for card in note.cards if card.approved]
-    lanes = sorted({note.lane for note in batch.notes})
-
-    return DashboardBatch(
-        path=str(batch_path.relative_to(project_root)),
-        title=batch.metadata.title,
-        topic=batch.metadata.topic,
-        lesson_date=batch.metadata.lesson_date,
-        target_deck=batch.metadata.target_deck,
-        notes=len(batch.notes),
-        cards=sum(len(note.cards) for note in batch.notes),
-        approved_notes=len(approved_notes),
-        approved_cards=len(approved_cards),
-        audio_notes=sum(1 for note in batch.notes if note.item.audio is not None),
-        image_notes=sum(1 for note in batch.notes if note.item.image is not None),
-        exact_duplicates=sum(1 for note in batch.notes if note.duplicate_status == "exact-duplicate"),
-        near_duplicates=sum(1 for note in batch.notes if note.duplicate_status == "near-duplicate"),
-        lanes=cast(list, lanes),
-    )
-
-
-def _dashboard_lesson_context(transcription_path: Path, *, project_root: Path) -> DashboardLessonContext | None:
-    try:
-        transcription = LessonTranscription.model_validate_json(transcription_path.read_text(encoding="utf-8"))
-    except Exception:  # noqa: BLE001
-        return None
-
-    return DashboardLessonContext(
-        path=str(transcription_path.relative_to(project_root)),
-        label=f"{transcription.lesson_date.isoformat()} • {transcription.title} • {transcription.theme}",
-    )
-
-
-def _canonical_batch_path(batch_path: Path) -> Path:
-    if batch_path.name.endswith(".synced.batch.json"):
-        return batch_path.with_name(f"{batch_path.name.removesuffix('.synced.batch.json')}.batch.json")
-    return batch_path
-
-
-def _resolve_media_reference_path(path: str, *, project_root: Path) -> Path:
-    media_path = Path(path)
-    if media_path.is_absolute():
-        return media_path
-    return project_root / path
-
-
 def batch_referenced_media_paths(batch: CardBatch, *, project_root: Path) -> set[Path]:
-    media_paths: set[Path] = set()
-    for note in batch.notes:
-        if note.item.audio is not None:
-            media_paths.add(_resolve_media_reference_path(note.item.audio.path, project_root=project_root))
-        if note.item.image is not None:
-            media_paths.add(_resolve_media_reference_path(note.item.image.path, project_root=project_root))
-        for card in note.cards:
-            if card.audio_path is not None:
-                media_paths.add(_resolve_media_reference_path(card.audio_path, project_root=project_root))
-            if card.image_path is not None:
-                media_paths.add(_resolve_media_reference_path(card.image_path, project_root=project_root))
-    return media_paths
+    return snapshot_batch_referenced_media_paths(batch, project_root=project_root)
 
 
 def batch_media_hydrated(batch_path: Path, *, project_root: Path) -> bool:
-    try:
-        parsed_batch = CardBatch.model_validate_json(batch_path.read_text(encoding="utf-8"))
-    except Exception:  # noqa: BLE001
-        return False
-
-    referenced_media = batch_referenced_media_paths(parsed_batch, project_root=project_root)
-    return all(path.exists() and path.is_file() for path in referenced_media)
+    return snapshot_batch_media_hydrated(batch_path, project_root=project_root)
 
 
 def batch_is_pushed(batch: CardBatch, *, anki_url: str) -> bool:
-    anki_note_keys = existing_model_note_keys(anki_url=anki_url)
+    anki_note_keys = AnkiRepository(
+        anki_url,
+        client_factory=AnkiConnectClient,
+        note_keys_loader=existing_model_note_keys,
+    ).note_keys()
     approved_notes = [note for note in batch.notes if note.approved]
     return len(approved_notes) > 0 and any(note.note_key in anki_note_keys for note in approved_notes)
 
@@ -648,14 +585,12 @@ def delete_batch(batch_path: Path, *, project_root: Path, anki_url: str = "http:
 
     candidate_media_paths = batch_referenced_media_paths(batch, project_root=project_root)
     referenced_elsewhere: set[Path] = set()
-    for other_batch_path in [
-        *project_root.glob("lessons/**/generated/*.batch.json"),
-        *project_root.glob("data/generated/*.batch.json"),
-    ]:
+    batch_repository = BatchRepository(project_root)
+    for other_batch_path in batch_repository.batch_paths():
         if other_batch_path == batch_path or other_batch_path == synced_batch_path:
             continue
         try:
-            other_batch = CardBatch.model_validate_json(other_batch_path.read_text(encoding="utf-8"))
+            other_batch = batch_repository.load_batch(other_batch_path)
         except Exception:  # noqa: BLE001
             continue
         referenced_elsewhere.update(batch_referenced_media_paths(other_batch, project_root=project_root))
@@ -667,6 +602,7 @@ def delete_batch(batch_path: Path, *, project_root: Path, anki_url: str = "http:
         media_path.unlink()
         deleted_media_paths.append(str(media_path.relative_to(project_root)))
 
+    invalidate_project_snapshots(project_root)
     return DeleteBatchResult(deleted_paths=deleted_paths, deleted_media_paths=deleted_media_paths)
 
 
@@ -675,113 +611,10 @@ def build_dashboard_response(
     project_root: Path,
     anki_url: str = "http://127.0.0.1:8765",
 ) -> DashboardResponse:
-    all_batch_paths = sorted(
-        [
-            *project_root.glob("lessons/**/generated/*.batch.json"),
-            *project_root.glob("data/generated/*.batch.json"),
-        ],
-        key=lambda path: path.stat().st_mtime,
-        reverse=True,
-    )
-    synced_paths = {
-        _canonical_batch_path(path): path
-        for path in all_batch_paths
-        if path.name.endswith(".synced.batch.json")
-    }
-    canonical_batch_paths = [path for path in all_batch_paths if not path.name.endswith(".synced.batch.json")]
-    recent_batches = [
-        batch
-        for path in canonical_batch_paths
-        if (batch := _dashboard_batch(path, project_root=project_root)) is not None
-    ]
-
-    lane_counts: dict[str, int] = {}
-    for batch in recent_batches:
-        for lane in batch.lanes:
-            lane_counts[lane] = lane_counts.get(lane, 0) + batch.notes
-
-    anki_note_count = 0
-    anki_card_count = 0
-    anki_deck_counts: dict[str, int] = {}
-    anki_note_keys: set[str] = set()
-    try:
-        client = AnkiConnectClient(url=anki_url)
-        note_ids = client.invoke("findNotes", query=f'note:"{ANKI_MODEL_NAME}"')
-        if isinstance(note_ids, list):
-            anki_note_count = len(note_ids)
-        card_ids = client.invoke("findCards", query=f'note:"{ANKI_MODEL_NAME}"')
-        if isinstance(card_ids, list):
-            anki_card_count = len(card_ids)
-        deck_names = client.invoke("deckNames")
-        if isinstance(deck_names, list):
-            for deck_name in deck_names:
-                if not isinstance(deck_name, str) or not deck_name.startswith("Korean::"):
-                    continue
-                deck_cards = client.invoke("findCards", query=f'deck:"{deck_name}" note:"{ANKI_MODEL_NAME}"')
-                if isinstance(deck_cards, list) and deck_cards:
-                    anki_deck_counts[deck_name] = len(deck_cards)
-        anki_note_keys = existing_model_note_keys(anki_url=anki_url)
-    except Exception:  # noqa: BLE001
-        anki_note_count = 0
-        anki_card_count = 0
-        anki_deck_counts = {}
-        anki_note_keys = set()
-
-    resolved_batches: list[DashboardBatch] = []
-    for batch in recent_batches:
-        canonical_path = project_root / batch.path
-        synced_batch_path = synced_paths.get(canonical_path)
-        preview_batch_path = synced_batch_path or canonical_path
-        push_status = "not-pushed"
-        canonical_batch = CardBatch.model_validate_json(canonical_path.read_text(encoding="utf-8"))
-        approved_notes = [note for note in canonical_batch.notes if note.approved]
-        if approved_notes and all(note.note_key in anki_note_keys for note in approved_notes):
-            push_status = "pushed"
-        resolved_batches.append(
-            batch.model_copy(
-                update={
-                    "push_status": push_status,
-                    "media_hydrated": batch_media_hydrated(preview_batch_path, project_root=project_root),
-                    "synced_batch_path": str(synced_batch_path.relative_to(project_root))
-                    if synced_batch_path is not None
-                    else None,
-                }
-            )
-        )
-
-    lesson_contexts = [
-        context
-        for path in sorted(project_root.glob("lessons/*/transcription.json"), reverse=True)
-        if (context := _dashboard_lesson_context(path, project_root=project_root)) is not None
-    ]
-    syncable_files = sorted(
-        str(path.relative_to(project_root))
-        for path in [
-            *project_root.glob("lessons/**/generated/*.batch.json"),
-            *project_root.glob("data/generated/*.batch.json"),
-        ]
-        if not path.name.endswith(".synced.batch.json")
-    )
-
-    return DashboardResponse(
-        status=build_service_status(anki_url=anki_url),
-        stats=DashboardStats(
-            local_batch_count=len(resolved_batches),
-            local_note_count=sum(batch.notes for batch in resolved_batches),
-            local_card_count=sum(batch.cards for batch in resolved_batches),
-            pending_push_count=sum(
-                1
-                for batch in resolved_batches
-                if batch.push_status == "not-pushed" and batch.approved_notes > 0 and batch.exact_duplicates == 0
-            ),
-            audio_note_count=sum(batch.audio_notes for batch in resolved_batches),
-            image_note_count=sum(batch.image_notes for batch in resolved_batches),
-            lane_counts=lane_counts,
-            anki_note_count=anki_note_count,
-            anki_card_count=anki_card_count,
-            anki_deck_counts=anki_deck_counts,
-        ),
-        recent_batches=resolved_batches[:20],
-        lesson_contexts=lesson_contexts,
-        syncable_files=syncable_files,
+    return dashboard_response_snapshot(
+        project_root=project_root,
+        anki_url=anki_url,
+        client_factory=AnkiConnectClient,
+        note_keys_loader=existing_model_note_keys,
+        openai_configured=bool(os.environ.get("OPENAI_API_KEY")),
     )

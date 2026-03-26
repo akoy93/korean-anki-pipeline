@@ -4,90 +4,115 @@ Date: 2026-03-26
 
 ## Executive Summary
 
-The repo is still in a good place to refactor, but it has crossed the point where architectural drift is now the main source of future cost.
+The repo is in better shape than it was a few refactors ago.
 
-The biggest remaining problems are:
+Three important cleanup items are already done:
 
-1. dashboard assembly is too expensive for the current polling model
-2. `anki.py` is too broad and already shows a leaky boundary
+- the preview app now uses one real backend surface in Python instead of splitting runtime behavior between Python and Vite
+- preview TypeScript contracts are now generated from `src/korean_anki/schema.py` instead of being hand-maintained separately
+- batch/transcription reads and derived dashboard/study-state snapshots now have explicit repository and snapshot layers in `src/korean_anki/repositories.py` and `src/korean_anki/snapshots.py`
 
-Those choices are what make the rest of the codebase feel more tangled than it actually is. If I were refactoring this repo, I would now reduce expensive recomputation and sharpen the Anki boundary before doing more internal cleanup.
+Those were the right fixes. They removed multiple sources of drift that would have kept compounding.
+
+The biggest remaining architectural problems are now:
+
+1. `application.py` is still acting as the catch-all orchestration layer
+2. `anki.py` and `llm.py` are still too broad for the responsibilities they carry
+3. `App.tsx` is still too concentrated now that the backend seams are cleaner
+
+If I were continuing the cleanup, I would not jump to cosmetic file splitting first. The data-access layer is now in better shape, so the next wins are splitting the remaining wide orchestration and infrastructure modules around those newer boundaries.
 
 ## Findings
 
-### P1. Dashboard assembly is too expensive for the current polling model
+### P1. `application.py` is now a catch-all orchestration module
 
 Evidence:
 
-- The home page polls dashboard state every 5 seconds in `preview/src/App.tsx:1004`.
-- Batch pages fetch both batch and dashboard together in `preview/src/App.tsx:1821`.
-- Job polling happens again in `preview/src/App.tsx:1855` and `preview/src/App.tsx:2541`.
-- `dashboard_response()` still delegates to a full rebuild of dashboard state via `src/korean_anki/dashboard_service.py` into `src/korean_anki/application.py`, which scans batch files and makes several AnkiConnect calls.
+- `src/korean_anki/application.py` is 620 lines.
+- It owns service health in `src/korean_anki/application.py:155`.
+- It owns lesson transcription-to-document flow in `src/korean_anki/application.py:171`.
+- It owns new-vocab generation in `src/korean_anki/application.py:351`.
+- It owns lesson-generation orchestration in `src/korean_anki/application.py:406`.
+- It owns sync-media orchestration in `src/korean_anki/application.py:468`.
+- It owns push handling in `src/korean_anki/application.py:513`.
+- It owns batch deletion in `src/korean_anki/application.py:568`.
+- It owns dashboard assembly in `src/korean_anki/application.py:609`.
 
 Why this matters:
 
-- Today it works because the dataset is still small.
-- The architecture is doing the expensive thing repeatedly:
-  - rescan local batches
-  - re-open JSON
-  - re-query Anki
-  - rebuild dashboard
-- That will become the first obvious performance problem as history grows.
+- The repo now has a service layer in concept, but not yet in module shape.
+- `application.py` mixes:
+  - workflow orchestration
+  - output-path policy
+  - file writing
+  - dashboard assembly
+  - deletion semantics
+  - media-path normalization
+- That means the adapters are cleaner than before, but the real complexity has mostly just moved inward.
 
 What should change:
 
-- Introduce a cached dashboard snapshot with explicit invalidation.
-- Rebuild it when:
-  - a batch is created
-  - a batch is deleted
-  - a push completes
-  - a sync-media job completes
-- Keep Anki stats in a refreshable snapshot instead of recomputing on every dashboard request.
+- Split `application.py` along actual use cases:
+  - `generate_lessons_service.py`
+  - `generate_batch_service.py`
+  - `generate_new_vocab_service.py`
+  - `sync_media_service.py`
+  - `push_service.py`
+  - `dashboard_service.py`
+- Move pure file/path helpers into smaller infrastructure modules or repositories.
+- Let those services depend on the existing repositories/snapshot layer instead of continuing to centralize every workflow in one module.
 
-### P1. `anki.py` is too broad and already shows a leaky boundary
+### P1. `anki.py` is still too broad and still shows a leaky boundary
 
 Evidence:
 
-- Low-level transport is in `src/korean_anki/anki.py:198`.
-- Media hydration and push planning/execution are in `src/korean_anki/anki.py:532`, `src/korean_anki/anki.py:611`, and `src/korean_anki/anki.py:631`.
-- There is even a lazy import of `refresh_generated_note` inside `src/korean_anki/anki.py:539`.
+- `src/korean_anki/anki.py` is 705 lines.
+- Transport lives in `src/korean_anki/anki.py:198`.
+- Note payload shaping lives in `src/korean_anki/anki.py:307`.
+- Existing-note discovery lives in `src/korean_anki/anki.py:366` and `src/korean_anki/anki.py:445`.
+- Media sync lives in `src/korean_anki/anki.py:494` and `src/korean_anki/anki.py:532`.
+- Duplicate detection and push planning live in `src/korean_anki/anki.py:572` and `src/korean_anki/anki.py:611`.
+- Final push execution lives in `src/korean_anki/anki.py:631`.
+- `sync_batch_media()` still lazy-imports card refresh logic from another module in `src/korean_anki/anki.py:539`.
 
 Why this matters:
 
-- `anki.py` currently mixes:
-  - transport client
-  - note serialization
-  - media sync
+- `anki.py` still combines too many concerns:
+  - HTTP transport
+  - note/model serialization
+  - media download/write logic
   - duplicate detection
   - push planning
-  - model definition details
-- The lazy import is a signal that module boundaries are already awkward.
+  - push execution
+- The lazy import is a clear sign that module boundaries are still awkward.
 
 What should change:
 
-- Split it into:
+- Split it into narrower modules such as:
   - `anki_client.py`
-  - `anki_model.py` or `anki_note_codec.py`
-  - `anki_push_service.py`
-  - `anki_media_sync.py`
+  - `anki_note_codec.py`
   - `anki_queries.py`
+  - `anki_media_sync.py`
+  - `anki_push_service.py`
+- Then keep the public orchestration boundary in the application layer, not in a single wide infrastructure module.
 
-### P2. `llm.py` mixes prompt/schema definitions, transport calls, and file helpers
+### P2. `llm.py` still mixes prompt contracts, API transport, and file helpers
 
 Evidence:
 
-- Prompt-specific JSON schemas are defined in `src/korean_anki/llm.py:78`, `src/korean_anki/llm.py:165`, `src/korean_anki/llm.py:258`, `src/korean_anki/llm.py:285`, and `src/korean_anki/llm.py:313`.
-- OpenAI calls and orchestration live in `src/korean_anki/llm.py:375`, `src/korean_anki/llm.py:433`, `src/korean_anki/llm.py:492`, `src/korean_anki/llm.py:528`, and `src/korean_anki/llm.py:581`.
-- File read/write helpers are also here at `src/korean_anki/llm.py:624`, `src/korean_anki/llm.py:629`, and `src/korean_anki/llm.py:633`.
+- Handwritten structured-output schemas live in `src/korean_anki/llm.py:78` and `src/korean_anki/llm.py:165`.
+- OpenAI client creation and request orchestration are repeated in `src/korean_anki/llm.py:376`, `src/korean_anki/llm.py:442`, `src/korean_anki/llm.py:500`, `src/korean_anki/llm.py:540`, and `src/korean_anki/llm.py:591`.
+- File helpers still live in the same module at `src/korean_anki/llm.py:624`, `src/korean_anki/llm.py:629`, and `src/korean_anki/llm.py:633`.
 
 Why this matters:
 
-- This file is doing too many unrelated things under the label “llm.”
-- It is simultaneously:
+- The frontend contract duplication is fixed, but there is still internal schema duplication here.
+- `llm.py` currently serves as:
   - prompt library
   - schema adapter
   - OpenAI client wrapper
-  - lesson I/O helper
+  - lesson/transcription file helper
+- Recreating `OpenAI()` inside each function also makes client configuration and testing more scattered than necessary.
 
 What should change:
 
@@ -96,91 +121,97 @@ What should change:
   - `prompts/`
   - `structured_outputs.py`
   - `lesson_io.py`
+- Use one clearer place for model defaults and client construction.
+- If possible, derive structured-output schemas from the backend Pydantic models instead of handwriting every JSON schema separately.
 
-### P2. Study-state and repository concerns are implicit instead of explicit
-
-Evidence:
-
-- Filesystem history scanning lives in `src/korean_anki/study_state.py:42`.
-- Imported Anki history lives in `src/korean_anki/study_state.py:86`.
-- The combined snapshot builder is `src/korean_anki/study_state.py:154`.
-
-Why this matters:
-
-- The codebase repeatedly reaches into the filesystem and Anki directly instead of depending on an explicit repository boundary.
-- That makes caching, testing, and later refactoring harder than they need to be.
-
-What should change:
-
-- Introduce explicit repositories:
-  - `BatchRepository`
-  - `LessonRepository`
-  - `StudyStateRepository`
-  - `AnkiRepository`
-- Then have higher-level services depend on those, not on globbing or client calls directly.
-
-### P3. The frontend is too concentrated in `App.tsx`
+### P2. The frontend is still too concentrated in `App.tsx`
 
 Evidence:
 
-- `preview/src/App.tsx` is 2612 lines.
-- Home page logic starts at `preview/src/App.tsx:933`.
-- Batch preview page logic starts at `preview/src/App.tsx:1778`.
-- App shell/routing starts at `preview/src/App.tsx:2504`.
-- It also owns manual route parsing at `preview/src/App.tsx:2510`, navigation via `window.location.assign()` at `preview/src/App.tsx:1869`, `preview/src/App.tsx:2050`, and `preview/src/App.tsx:2564`, and local-storage persistence at `preview/src/App.tsx:117`, `preview/src/App.tsx:210`, and `preview/src/App.tsx:245`.
+- `preview/src/App.tsx` is 2495 lines.
+- Home-page logic starts at `preview/src/App.tsx:793`.
+- Job UI logic lives inside the same file at `preview/src/App.tsx:1408`.
+- Batch preview logic starts at `preview/src/App.tsx:1610`.
+- App shell and route selection live in `preview/src/App.tsx:2387`.
+- Manual route parsing still depends on `window.location.pathname` in `preview/src/App.tsx:2393` and `preview/src/App.tsx:2453`.
+- Local-storage persistence is also in the same file at `preview/src/App.tsx:111`, `preview/src/App.tsx:203`, and `preview/src/App.tsx:2411`.
 
 Why this matters:
 
-- The frontend is carrying:
+- The backend boundaries are cleaner than before, so frontend concentration is now more visible.
+- `App.tsx` is still carrying:
+  - shell/routing
   - page composition
-  - routing
   - polling
-  - persistence
-  - notification logic
-  - theming
-- That raises the cost of every UI change.
+  - persisted job state
+  - notifications
+  - theme state
+  - batch editing and push flows
+- That slows down every UI change because too much behavior shares one file and one state surface.
 
 What should change:
 
-- After the backend/service boundaries are fixed, split the frontend into:
+- Split by page and hook, not by arbitrary component count:
   - `pages/HomePage.tsx`
   - `pages/BatchPreviewPage.tsx`
-  - `components/`
   - `hooks/useDashboard.ts`
   - `hooks/useJobs.ts`
   - `state/theme.ts`
   - `state/jobNotifications.ts`
+- Do this after the repository and backend module boundaries are cleaner, not before.
 
-### P3. Job state is ephemeral on the backend
+### P3. Backend job state is still in-memory and restart-fragile
 
 Evidence:
 
-- In-memory global job state now lives in `src/korean_anki/jobs.py`.
-- Job lifecycle is still built on `_JOBS` plus a threadpool inside `src/korean_anki/jobs.py`.
+- Global job state is still `_JOBS` in `src/korean_anki/jobs.py:90`.
+- Concurrency is still a process-local `ThreadPoolExecutor` in `src/korean_anki/jobs.py:92`.
+- Lifecycle entrypoints are still `job_snapshot()`, `update_job()`, and `submit_job()` in `src/korean_anki/jobs.py:95`, `src/korean_anki/jobs.py:100`, and `src/korean_anki/jobs.py:152`.
 
 Why this matters:
 
-- For a local-only tool this is acceptable today, but it is fragile:
-  - restarting the backend drops job state
+- For a local-only tool, this is acceptable for now.
+- It is still operationally fragile:
+  - backend restarts lose job state
   - there is no durable event log
-  - concurrency and retry behavior are implicit
+  - there is no recovery story for interrupted jobs
 
 What should change:
 
-- Keep it simple, but make job state an explicit subsystem.
-- If you stay local-only, even a small JSON-backed job store or structured log would be a better boundary than hidden globals.
+- Keep the local-only model, but make job persistence an explicit subsystem.
+- Even a tiny JSON-backed job store or append-only event log would be a better boundary than hidden globals once restart semantics matter.
+
+### P3. The preview type generation is the right direction, but the generator should stay narrow
+
+Evidence:
+
+- Preview types are now generated by `src/korean_anki/schema_codegen.py`.
+- Preview build and test scripts depend on that generator in `preview/package.json`.
+
+Why this matters:
+
+- This is an improvement, not a regression.
+- The only caution is architectural: a bespoke generator is fine for this repo while it stays small and one-way.
+- It should not quietly turn into a second ad hoc API-description system.
+
+What should change:
+
+- Keep the current generator small and focused on preview needs.
+- If the backend surface grows materially, prefer emitting JSON Schema or OpenAPI as the broader contract artifact rather than making the custom TS renderer increasingly smart.
 
 ## What I Would Keep
 
-- The repo should stay local-first. This does not need to become a distributed system.
-- Pydantic as the backend schema source of truth is the right call.
-- The core domain split is directionally sound:
+- One backend surface in Python via `http_api.py`. That refactor was correct.
+- Generated preview types from `schema.py`. That also was correct.
+- The local-first design. This does not need to become a distributed system.
+- Pydantic as the backend schema source of truth.
+- The Playwright regression suite as a guardrail for continued cleanup.
+- The current high-level domain seams:
   - `cards.py`
   - `new_vocab.py`
   - `reading_speed.py`
   - `stages.py`
   - `study_state.py`
-- The answer is not “rewrite it in a bigger framework.” The answer is clearer boundaries.
 
 ## Recommended Target Shape
 
@@ -193,18 +224,22 @@ What should change:
   - reading-speed rules
   - QA rules
 - `application/`
+  - `generate_lessons_service.py`
   - `generate_batch_service.py`
-  - `generate_lesson_service.py`
   - `generate_new_vocab_service.py`
   - `sync_media_service.py`
   - `push_service.py`
   - `dashboard_service.py`
 - `infrastructure/`
   - `anki_client.py`
+  - `anki_queries.py`
+  - `anki_note_codec.py`
+  - `anki_media_sync.py`
+  - `anki_push_service.py`
   - `openai_client.py`
   - `batch_repository.py`
   - `lesson_repository.py`
-  - `media_store.py`
+  - `study_state_repository.py`
   - `job_store.py`
 - `interfaces/`
   - `cli.py`
@@ -216,23 +251,27 @@ What should change:
 - `components/`
 - `hooks/`
 - `state/`
-- generated API types from backend schema
+- generated preview types from backend schema
 
 ## Refactor Order
 
-1. Add dashboard caching and a more explicit repository layer for batch history and Anki state.
+1. Split `application.py` around real use cases so the application boundary is no longer one catch-all module.
 
-2. Split `anki.py` into clearer transport, query, push, and media-sync modules.
+2. Split `anki.py` and `llm.py` into narrower infrastructure modules.
 
 3. Only after that, split `preview/src/App.tsx`.
-   If you do this first, you will mostly just spread the existing coupling across more files.
+   If you do this first, you will mostly just spread existing coupling across more files.
+
+4. Add a durable local job store if backend restarts and job recovery start mattering to your workflow.
 
 ## Bottom Line
 
-The codebase is not in bad shape, but it is at the exact point where further feature work without boundary cleanup will start compounding quickly.
+The codebase is not in bad shape. The recent refactors fixed the right things.
+
+The remaining cost is no longer “obvious drift between two frontends” or “Vite secretly acting like a backend.” The remaining cost is that the core orchestration and infrastructure boundaries are still too wide.
 
 If I had to summarize the architectural problem in one sentence:
 
-> the repo has good domain concepts, but too much expensive state is rebuilt on demand and the Anki integration boundary is still too wide
+> the repo now has better external boundaries and better state access, but its internal orchestration and infrastructure boundaries are still too wide
 
-That is what I would fix first.
+That is what I would fix next.
