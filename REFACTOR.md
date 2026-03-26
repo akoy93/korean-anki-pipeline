@@ -11,39 +11,24 @@ The repo is in much better shape than it was before the earlier cleanup work. Th
 - repositories and snapshots exist as explicit read boundaries
 - batch identity and preview path semantics now come from one backend path-policy boundary instead of being reconstructed in the UI
 - the old `application.py`, `anki.py`, and `llm.py` catch-all modules are gone
+- the thin compatibility layers are now gone too:
+  - `push_service.py`
+  - `dashboard_service.py`
+  - `study_state.py`
+  - `service_support.py`
 - backend jobs now persist across restarts
 - the preview app is no longer concentrated in a single `App.tsx` file
 - shared runtime defaults now live in `src/korean_anki/settings.py`
 
 Those were good refactors.
 
-The next architectural risk is different. This is a local-only app, so simplicity matters more than abstract purity. The codebase no longer suffers from one huge monolith, but it is now at real risk of drifting toward too many layers, too many forwarding modules, and too much orchestration living in large "model" hooks or read-model helpers.
+The next architectural risk is different. This is a local-only app, so simplicity matters more than abstract purity. The worst layering mistakes have already been removed. The remaining risks are now concentrated in a few broad controllers and read-model modules rather than in cross-module drift.
 
 If I had to summarize the current problem in one sentence:
 
-> the repo is healthier, but the next cleanup should bias toward collapsing low-value indirection rather than inventing more abstraction
+> the repo is healthier, and the next cleanup should focus on the few modules that still own too much orchestration
 
 ## Findings
-
-### P1. Collapse low-value backend indirection
-
-Some backend modules now add very little architectural value for a local-only app.
-
-Examples:
-
-- `src/korean_anki/push_service.py` is mostly a compatibility shim over `http_api.py`, `jobs.py`, `dashboard_service.py`, `path_policy.py`, and service modules
-- `src/korean_anki/dashboard_service.py` is thin and mostly forwards into `snapshots.py`
-- `src/korean_anki/study_state.py` is also mostly a facade over repositories and snapshots
-- `src/korean_anki/service_support.py` is a small helper bucket rather than a real boundary
-
-This is not a correctness bug, but it does increase navigation cost. For a local-only app, "more modules" is not automatically "better architecture."
-
-I would either:
-
-- collapse the thin pass-through modules into the concrete modules they front, or
-- explicitly keep them as stable entry points and stop splitting further behind them
-
-What I would avoid is continuing to add more thin layers of naming and indirection.
 
 ### P1. `snapshots.py` is now the real backend read-model controller
 
@@ -161,6 +146,7 @@ Until then, I would leave it alone.
   - `lesson_repository.py`
   - `anki_repository.py`
   - `snapshot_cache.py`
+- the direct backend surface without thin compatibility facades
 - the current use-case service modules
 - the current Anki infrastructure split
 - the current LLM infrastructure split
@@ -186,11 +172,10 @@ Until then, I would leave it alone.
 
 ## Refactor Order
 
-1. Collapse or justify thin backend facades and helper buckets such as `push_service.py`, `dashboard_service.py`, `study_state.py`, and `service_support.py`.
-2. Give `snapshots.py` an explicit long-term shape: either keep it as the intentional read-model aggregator or split it into dashboard and study-state snapshot modules.
-3. Reduce orchestration density in the frontend by extracting concrete feature slices from `useBatchPreviewModel`, `useHomePageModel`, `BatchPreviewPage.tsx`, and `HomePage.tsx`.
-4. Revisit `new_vocab.py` and `cards.py` only if more feature work keeps expanding them.
-5. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Give `snapshots.py` an explicit long-term shape: either keep it as the intentional read-model aggregator or split it into dashboard and study-state snapshot modules.
+2. Reduce orchestration density in the frontend by extracting concrete feature slices from `useBatchPreviewModel`, `useHomePageModel`, `BatchPreviewPage.tsx`, and `HomePage.tsx`.
+3. Revisit `new_vocab.py` and `cards.py` only if more feature work keeps expanding them.
+4. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 
@@ -202,4 +187,4 @@ The biggest architectural mistakes are already behind it. The next round of clea
 - keep local-only workflows simple
 - avoid generic abstractions unless they clearly reduce real complexity
 
-The previous risk was "too much logic in too few places." The current risk is the mirror image: "too many places that do too little."
+The previous risk was "too much logic in too few places." The current risk is narrower: a few remaining modules still do too much orchestration for a local-only app.

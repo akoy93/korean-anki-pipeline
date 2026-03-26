@@ -9,12 +9,12 @@ from typing import Callable
 from .cards import generate_batch
 from .lesson_io import read_lesson
 from .media import enrich_audio, enrich_images
+from .path_policy import normalize_batch_media_paths
 from .reading_speed import build_reading_speed_document
 from .schema import CardBatch, GeneratedNote, LessonDocument, StudyState
 from .snapshot_cache import invalidate_project_snapshots
+from .snapshots import study_state_snapshot
 from .settings import DEFAULT_ANKI_URL, DEFAULT_GENERATE_IMAGE_QUALITY
-from .service_support import normalize_batch_media_paths
-from .study_state import build_study_state
 
 
 @dataclass(frozen=True)
@@ -100,7 +100,11 @@ def generate_batch_from_document(
     normalize_media_paths_for_output: bool = True,
     on_note_generated: Callable[[GeneratedNote], None] | None = None,
 ) -> BatchArtifacts:
-    state = build_study_state(project_root, anki_url=anki_url, exclude_batch_path=output_path)
+    state = study_state_snapshot(
+        project_root=project_root,
+        anki_url=anki_url,
+        exclude_batch_path=output_path,
+    )
     batch = generate_batch(
         document,
         study_state=state,
@@ -157,7 +161,11 @@ def generate_reading_speed_batch(
     anki_url: str = DEFAULT_ANKI_URL,
     with_audio: bool = False,
 ) -> BatchArtifacts:
-    state = build_study_state(project_root, anki_url=anki_url, exclude_batch_path=output_path)
+    state = study_state_snapshot(
+        project_root=project_root,
+        anki_url=anki_url,
+        exclude_batch_path=output_path,
+    )
     document = build_reading_speed_document(
         state,
         lesson_id=lesson_id,

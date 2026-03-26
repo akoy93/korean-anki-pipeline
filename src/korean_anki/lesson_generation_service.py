@@ -5,9 +5,9 @@ from pathlib import Path
 
 from .batch_generation_service import generate_batch_from_lesson_file
 from .llm_service import generate_pronunciations, transcribe_sources
+from .path_policy import unique_lesson_root
 from .schema import LessonTranscription, RawSourceAsset
 from .settings import DEFAULT_ANKI_URL, DEFAULT_LLM_MODEL, DEFAULT_MEDIA_DIR
-from .service_support import unique_lesson_root
 from .stages import build_lesson_documents, qa_transcription, write_lesson_documents
 
 

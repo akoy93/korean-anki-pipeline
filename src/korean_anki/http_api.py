@@ -10,7 +10,7 @@ from urllib.parse import parse_qs, unquote, urlparse
 
 from pydantic import ValidationError
 
-from . import dashboard_service, jobs, path_policy
+from . import jobs, path_policy
 from .anki_client import AnkiConnectClient
 from .anki_queries import existing_model_note_keys
 from .anki_repository import AnkiRepository
@@ -24,7 +24,12 @@ from .schema import (
     PreviewNoteRefreshRequest,
     PushRequest,
 )
-from .snapshots import batch_media_hydrated, batch_push_status
+from .snapshots import (
+    batch_media_hydrated,
+    batch_push_status,
+    dashboard_response_snapshot,
+    service_status_snapshot,
+)
 from .settings import DEFAULT_ANKI_URL, DEFAULT_PREVIEW_HOST, DEFAULT_PREVIEW_PORT
 
 
@@ -61,10 +66,16 @@ class PushServiceHandler(BaseHTTPRequestHandler):
             self._send_json(200, {"ok": True})
             return
         if parsed.path == "/api/status":
-            self._send_json(200, cast(dict[str, object], dashboard_service.service_status().model_dump()))
+            self._send_json(200, cast(dict[str, object], service_status_snapshot().model_dump()))
             return
         if parsed.path == "/api/dashboard":
-            self._send_json(200, cast(dict[str, object], dashboard_service.dashboard_response().model_dump()))
+            self._send_json(
+                200,
+                cast(
+                    dict[str, object],
+                    dashboard_response_snapshot(project_root=path_policy.project_root()).model_dump(),
+                ),
+            )
             return
         if parsed.path == "/api/batch":
             self._handle_batch_request(parsed.query)

@@ -5,9 +5,9 @@ from html import escape
 from pathlib import Path
 
 from .new_vocab import inclusion_reason_for_item
+from .note_keys import normalize_text, note_key_for_item
 from .reading_speed import chunk_hangul
 from .schema import CardBatch, CardPreview, GeneratedNote, LessonDocument, LessonItem, PriorNote, StudyState
-from .study_state import normalize_text, note_key_for_item
 
 
 def _render_examples(item: LessonItem) -> str:

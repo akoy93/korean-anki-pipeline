@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections.abc import Iterable
 from datetime import date
 
+from .note_keys import normalize_text
 from .schema import LessonDocument, LessonItem, LessonMetadata, PriorNote, StudyState
 from .settings import (
     DEFAULT_READING_SPEED_MAX_CHUNKED,
@@ -11,7 +12,6 @@ from .settings import (
     DEFAULT_READING_SPEED_TARGET_DECK,
     DEFAULT_READING_SPEED_TOPIC,
 )
-from .study_state import normalize_text
 
 
 def chunk_hangul(text: str) -> str:

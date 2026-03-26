@@ -7,6 +7,7 @@ from datetime import date
 from pathlib import Path
 
 from .llm_service import generate_pronunciations, propose_new_vocab
+from .note_keys import normalize_text
 from .schema import (
     ExampleSentence,
     LessonDocument,
@@ -26,7 +27,6 @@ from .settings import (
     DEFAULT_NEW_VOCAB_TITLE,
     DEFAULT_NEW_VOCAB_TOPIC,
 )
-from .study_state import normalize_text
 
 A1_TOPIC_INVENTORY = [
     "greetings",

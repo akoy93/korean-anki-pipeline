@@ -5,8 +5,10 @@ import time
 import unittest
 from pathlib import Path
 
+from korean_anki.batch_repository import BatchRepository
 from korean_anki.cards import generate_batch
-from korean_anki.study_state import build_study_state, generated_history, normalize_text, note_key_for_item
+from korean_anki.note_keys import normalize_text, note_key_for_item
+from korean_anki.snapshots import study_state_snapshot
 
 from support import make_document, make_item
 
@@ -33,7 +35,7 @@ class StudyStateTests(unittest.TestCase):
             (real_dir / "real.batch.json").write_text(real_batch.model_dump_json(), encoding="utf-8")
             (sample_dir / "sample.batch.json").write_text(sample_batch.model_dump_json(), encoding="utf-8")
 
-            history = generated_history(project_root)
+            history = BatchRepository(project_root).generated_history()
 
         self.assertEqual([note.korean for note in history], ["일"])
         self.assertEqual(history[0].source, "lessons/2026-03-23-test/generated/real.batch.json")
@@ -48,11 +50,11 @@ class StudyStateTests(unittest.TestCase):
             second_batch = generate_batch(make_document([make_item(item_id="real-2", korean="이", english="two")]))
 
             (generated_dir / "first.batch.json").write_text(first_batch.model_dump_json(), encoding="utf-8")
-            first_state = build_study_state(project_root)
+            first_state = study_state_snapshot(project_root=project_root, exclude_batch_path=None)
 
             time.sleep(0.01)
             (generated_dir / "second.batch.json").write_text(second_batch.model_dump_json(), encoding="utf-8")
-            second_state = build_study_state(project_root)
+            second_state = study_state_snapshot(project_root=project_root, exclude_batch_path=None)
 
         self.assertEqual([note.korean for note in first_state.generated_notes], ["일"])
         self.assertEqual([note.korean for note in second_state.generated_notes], ["이", "일"])

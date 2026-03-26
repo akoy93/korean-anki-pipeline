@@ -12,7 +12,9 @@ from http.server import ThreadingHTTPServer
 from pathlib import Path
 from unittest.mock import patch
 
-from korean_anki.push_service import PushServiceHandler, _new_vocab_job, _unique_new_vocab_output_path
+from korean_anki.http_api import PushServiceHandler
+from korean_anki.jobs import new_vocab_job
+from korean_anki.path_policy import unique_new_vocab_output_path
 from korean_anki.schema import (
     AnkiStatsSnapshot,
     MediaAsset,
@@ -220,7 +222,7 @@ class PushServiceTests(unittest.TestCase):
         self.addCleanup(self._stop_server, server, thread)
 
         with patch(
-            "korean_anki.dashboard_service.service_status",
+            "korean_anki.http_api.service_status_snapshot",
             return_value=ServiceStatus(
                 backend_ok=True,
                 anki_connect_ok=True,
@@ -289,8 +291,8 @@ class PushServiceTests(unittest.TestCase):
         self.addCleanup(self._stop_server, server, thread)
 
         with (
-            patch("korean_anki.dashboard_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.dashboard_service.existing_model_note_keys", return_value=set()),
+            patch("korean_anki.snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.snapshots.existing_model_note_keys", return_value=set()),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -360,8 +362,8 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.dashboard_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.dashboard_service.existing_model_note_keys", return_value=set()),
+            patch("korean_anki.snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.snapshots.existing_model_note_keys", return_value=set()),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -425,8 +427,8 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.dashboard_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.dashboard_service.existing_model_note_keys", return_value=set()),
+            patch("korean_anki.snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.snapshots.existing_model_note_keys", return_value=set()),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -477,8 +479,8 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.dashboard_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.dashboard_service.existing_model_note_keys", return_value={batch.notes[0].note_key}),
+            patch("korean_anki.snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.snapshots.existing_model_note_keys", return_value={batch.notes[0].note_key}),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -653,14 +655,14 @@ class PushServiceTests(unittest.TestCase):
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root),
             patch("korean_anki.jobs.update_job"),
-            patch("korean_anki.new_vocab_generation_service.build_study_state", return_value=StudyState(anki_stats=AnkiStatsSnapshot())),
-            patch("korean_anki.batch_generation_service.build_study_state", return_value=StudyState(anki_stats=AnkiStatsSnapshot())),
+            patch("korean_anki.new_vocab_generation_service.study_state_snapshot", return_value=StudyState(anki_stats=AnkiStatsSnapshot())),
+            patch("korean_anki.batch_generation_service.study_state_snapshot", return_value=StudyState(anki_stats=AnkiStatsSnapshot())),
             patch("korean_anki.new_vocab.propose_new_vocab", return_value=proposal_batch),
             patch("korean_anki.new_vocab.generate_pronunciations", return_value={"물": "mul"}) as mock_generate_pronunciations,
             patch("korean_anki.new_vocab_generation_service.enrich_new_vocab_images", side_effect=lambda document, *_args, **_kwargs: document),
             patch("korean_anki.new_vocab_generation_service.enrich_audio", side_effect=lambda document, *_args, **_kwargs: document),
         ):
-            output_paths = _new_vocab_job(
+            output_paths = new_vocab_job(
                 "job-1",
                 json.dumps(
                     {
@@ -682,9 +684,9 @@ class PushServiceTests(unittest.TestCase):
     def test_unique_new_vocab_output_path_does_not_overwrite_existing_files(self) -> None:
         output_dir = Path(self._testMethodName) / "data" / "generated"
         output_dir.mkdir(parents=True, exist_ok=True)
-        first_path = _unique_new_vocab_output_path(Path(self._testMethodName))
+        first_path = unique_new_vocab_output_path(Path(self._testMethodName))
         first_path.write_text("{}\n", encoding="utf-8")
-        second_path = _unique_new_vocab_output_path(Path(self._testMethodName))
+        second_path = unique_new_vocab_output_path(Path(self._testMethodName))
 
         self.assertNotEqual(first_path, second_path)
         self.assertEqual(first_path.parent, second_path.parent)

@@ -8,8 +8,8 @@ from .batch_generation_service import BatchArtifacts, generate_batch_from_docume
 from .media import enrich_audio, enrich_new_vocab_images
 from .new_vocab import build_new_vocab_document_from_state
 from .schema import GeneratedNote
+from .snapshots import study_state_snapshot
 from .settings import DEFAULT_ANKI_URL, DEFAULT_LLM_MODEL, DEFAULT_NEW_VOCAB_IMAGE_QUALITY
-from .study_state import build_study_state
 
 
 def generate_new_vocab_batch(
@@ -32,7 +32,11 @@ def generate_new_vocab_batch(
     on_audio_complete: Callable[[], None] | None = None,
     on_note_generated: Callable[[GeneratedNote], None] | None = None,
 ) -> BatchArtifacts:
-    state = build_study_state(project_root, anki_url=anki_url, exclude_batch_path=output_path)
+    state = study_state_snapshot(
+        project_root=project_root,
+        anki_url=anki_url,
+        exclude_batch_path=output_path,
+    )
     document = build_new_vocab_document_from_state(
         state,
         lesson_id=lesson_id,

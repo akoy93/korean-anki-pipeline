@@ -14,9 +14,9 @@ from .job_store import JobStore
 from . import path_policy
 from .lesson_generation_service import generate_lesson_batches_from_sources
 from .new_vocab_generation_service import generate_new_vocab_batch
+from .path_policy import unique_lesson_root, unique_new_vocab_output_path
 from .schema import JobResponse, NewVocabJobRequest, RawSourceAsset, SyncMediaJobRequest
 from .settings import DEFAULT_LESSON_AUDIO, DEFAULT_MEDIA_DIR, DEFAULT_NEW_VOCAB_TITLE
-from .service_support import unique_lesson_root, unique_new_vocab_output_path
 from .sync_media_service import sync_media_file
 
 
