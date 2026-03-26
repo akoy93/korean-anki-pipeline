@@ -198,7 +198,10 @@ class PushServiceTests(unittest.TestCase):
         server, base_url, thread = self._start_server()
         self.addCleanup(self._stop_server, server, thread)
 
-        with patch("korean_anki.application.AnkiConnectClient", return_value=FakeDashboardAnkiClient()):
+        with (
+            patch("korean_anki.dashboard_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.dashboard_service.existing_model_note_keys", return_value=set()),
+        ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
 
@@ -248,8 +251,8 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.application.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.application.existing_model_note_keys", return_value=set()),
+            patch("korean_anki.dashboard_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.dashboard_service.existing_model_note_keys", return_value=set()),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -309,8 +312,8 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.application.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.application.existing_model_note_keys", return_value=set()),
+            patch("korean_anki.dashboard_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.dashboard_service.existing_model_note_keys", return_value=set()),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -357,8 +360,8 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.application.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
-            patch("korean_anki.application.existing_model_note_keys", return_value={batch.notes[0].note_key}),
+            patch("korean_anki.dashboard_service.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
+            patch("korean_anki.dashboard_service.existing_model_note_keys", return_value={batch.notes[0].note_key}),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -387,7 +390,7 @@ class PushServiceTests(unittest.TestCase):
             can_push=True,
         )
 
-        with patch("korean_anki.application.plan_push", return_value=plan):
+        with patch("korean_anki.push_workflow_service.plan_push", return_value=plan):
             request = urllib.request.Request(
                 f"{base_url}/api/push",
                 data=json.dumps({"batch": batch.model_dump(mode="json"), "dry_run": True}).encode("utf-8"),
@@ -418,7 +421,7 @@ class PushServiceTests(unittest.TestCase):
             sync_completed=True,
         )
 
-        with patch("korean_anki.application.push_batch", return_value=result):
+        with patch("korean_anki.push_workflow_service.push_batch", return_value=result):
             request = urllib.request.Request(
                 f"{base_url}/api/push",
                 data=json.dumps({"batch": batch.model_dump(mode="json"), "dry_run": False}).encode("utf-8"),
@@ -455,7 +458,7 @@ class PushServiceTests(unittest.TestCase):
         self.addCleanup(output_dir.rmdir)
         self.addCleanup(output_path.unlink, missing_ok=True)
 
-        with patch("korean_anki.application.push_batch", return_value=result):
+        with patch("korean_anki.push_workflow_service.push_batch", return_value=result):
             request = urllib.request.Request(
                 f"{base_url}/api/push",
                 data=json.dumps(
@@ -529,14 +532,12 @@ class PushServiceTests(unittest.TestCase):
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root),
             patch("korean_anki.jobs.update_job"),
-            patch(
-                "korean_anki.application.build_study_state",
-                return_value=StudyState(anki_stats=AnkiStatsSnapshot()),
-            ),
+            patch("korean_anki.new_vocab_generation_service.build_study_state", return_value=StudyState(anki_stats=AnkiStatsSnapshot())),
+            patch("korean_anki.batch_generation_service.build_study_state", return_value=StudyState(anki_stats=AnkiStatsSnapshot())),
             patch("korean_anki.new_vocab.propose_new_vocab", return_value=proposal_batch),
             patch("korean_anki.new_vocab.generate_pronunciations", return_value={"물": "mul"}) as mock_generate_pronunciations,
-            patch("korean_anki.application.enrich_new_vocab_images", side_effect=lambda document, *_args, **_kwargs: document),
-            patch("korean_anki.application.enrich_audio", side_effect=lambda document, *_args, **_kwargs: document),
+            patch("korean_anki.new_vocab_generation_service.enrich_new_vocab_images", side_effect=lambda document, *_args, **_kwargs: document),
+            patch("korean_anki.new_vocab_generation_service.enrich_audio", side_effect=lambda document, *_args, **_kwargs: document),
         ):
             output_paths = _new_vocab_job(
                 "job-1",
@@ -629,8 +630,10 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.application.existing_model_note_keys", return_value=set()),
+            patch("korean_anki.push_workflow_service.AnkiConnectClient") as mock_client,
+            patch("korean_anki.push_workflow_service.existing_model_note_keys", return_value=set()),
         ):
+            mock_client.return_value.invoke.return_value = 6
             payload = self._post_json(
                 base_url,
                 "/api/delete-batch",
@@ -669,8 +672,10 @@ class PushServiceTests(unittest.TestCase):
 
         with (
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
-            patch("korean_anki.application.existing_model_note_keys", return_value={batch.notes[0].note_key}),
+            patch("korean_anki.push_workflow_service.AnkiConnectClient") as mock_client,
+            patch("korean_anki.push_workflow_service.existing_model_note_keys", return_value={batch.notes[0].note_key}),
         ):
+            mock_client.return_value.invoke.return_value = 6
             with self.assertRaises(urllib.error.HTTPError) as context:
                 self._post_json(
                     base_url,

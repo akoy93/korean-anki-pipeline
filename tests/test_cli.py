@@ -11,8 +11,8 @@ from unittest.mock import patch
 
 from korean_anki import cli
 from korean_anki.anki import MediaSyncSummary
-from korean_anki.application import MediaSyncArtifacts
 from korean_anki.schema import PushResult
+from korean_anki.sync_media_service import MediaSyncArtifacts
 
 from korean_anki.cards import generate_note
 

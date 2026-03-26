@@ -10,8 +10,9 @@ from urllib.parse import parse_qs, unquote, urlparse
 
 from pydantic import ValidationError
 
-from . import application, dashboard_service, jobs, path_policy
+from . import dashboard_service, jobs, path_policy
 from .cards import refresh_preview_note
+from .push_workflow_service import delete_batch, handle_push_request
 from .schema import CardBatch, DeleteBatchRequest, PreviewNoteRefreshRequest, PushRequest
 
 
@@ -103,7 +104,7 @@ class PushServiceHandler(BaseHTTPRequestHandler):
                     project_root_path=path_policy.project_root(),
                 )
 
-            result = application.handle_push_request(
+            result = handle_push_request(
                 request,
                 project_root=path_policy.project_root(),
                 reviewed_batch_path=reviewed_batch_path,
@@ -123,7 +124,7 @@ class PushServiceHandler(BaseHTTPRequestHandler):
     def _handle_delete_batch(self) -> None:
         try:
             request = DeleteBatchRequest.model_validate_json(self._read_body())
-            result = application.delete_batch(
+            result = delete_batch(
                 path_policy.resolve_project_path(request.batch_path, project_root_path=path_policy.project_root()),
                 project_root=path_policy.project_root(),
                 anki_url=request.anki_url,

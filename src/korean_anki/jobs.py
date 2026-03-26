@@ -11,8 +11,12 @@ from pathlib import Path
 import threading
 import uuid
 
-from . import application, path_policy
+from . import path_policy
+from .lesson_generation_service import generate_lesson_batches_from_sources
+from .new_vocab_generation_service import generate_new_vocab_batch
 from .schema import JobResponse, NewVocabJobRequest, RawSourceAsset, SyncMediaJobRequest
+from .service_support import unique_lesson_root, unique_new_vocab_output_path
+from .sync_media_service import sync_media_file
 
 
 @dataclass
@@ -188,7 +192,7 @@ def lesson_generate_job(_job_id: str, form: MultipartForm) -> list[str]:
         raise ValueError("lesson_date, title, topic, and source_summary are required.")
 
     project_root = path_policy.project_root()
-    lesson_root = application.unique_lesson_root(project_root, lesson_date, topic)
+    lesson_root = unique_lesson_root(project_root, lesson_date, topic)
     raw_source_dir = lesson_root / "raw-sources"
     raw_source_dir.mkdir(parents=True, exist_ok=True)
 
@@ -211,7 +215,7 @@ def lesson_generate_job(_job_id: str, form: MultipartForm) -> list[str]:
     if not raw_sources:
         raise ValueError("At least one image is required.")
 
-    artifacts = application.generate_lesson_batches_from_sources(
+    artifacts = generate_lesson_batches_from_sources(
         project_root=project_root,
         lesson_root=lesson_root,
         title=title,
@@ -227,7 +231,7 @@ def lesson_generate_job(_job_id: str, form: MultipartForm) -> list[str]:
 def new_vocab_job(job_id: str, raw_body: str) -> list[str]:
     request = NewVocabJobRequest.model_validate_json(raw_body)
     project_root = path_policy.project_root()
-    output_path = application.unique_new_vocab_output_path(project_root)
+    output_path = unique_new_vocab_output_path(project_root)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     lesson_id = output_path.name.removesuffix(".batch.json")
     progress_total = request.count * (5 if request.with_audio else 4)
@@ -250,7 +254,7 @@ def new_vocab_job(job_id: str, raw_body: str) -> list[str]:
         progress_label="Planning vocab candidates",
     )
 
-    application.generate_new_vocab_batch(
+    generate_new_vocab_batch(
         project_root=project_root,
         output_path=output_path,
         lesson_id=lesson_id,
@@ -274,7 +278,7 @@ def new_vocab_job(job_id: str, raw_body: str) -> list[str]:
 def sync_media_job(_job_id: str, raw_body: str) -> list[str]:
     request = SyncMediaJobRequest.model_validate_json(raw_body)
     project_root = path_policy.project_root()
-    result = application.sync_media_file(
+    result = sync_media_file(
         input_path=path_policy.resolve_project_path(request.input_path, project_root_path=project_root),
         output_path=path_policy.resolve_project_path(request.output_path, project_root_path=project_root)
         if request.output_path is not None

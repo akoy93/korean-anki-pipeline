@@ -2,8 +2,21 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from . import application, dashboard_service, jobs, path_policy
+from . import dashboard_service, jobs, path_policy
 from .http_api import PushServiceHandler, run_server
+from .push_workflow_service import (
+    batch_is_pushed,
+    batch_media_hydrated,
+    batch_referenced_media_paths,
+    delete_batch,
+)
+from .service_support import (
+    default_synced_output_path,
+    normalize_batch_media_paths,
+    project_relative_path,
+    unique_lesson_root,
+    unique_new_vocab_output_path,
+)
 
 MultipartField = jobs.MultipartField
 MultipartForm = jobs.MultipartForm
@@ -26,23 +39,23 @@ def _resolve_reviewed_batch_path(source_batch_path: str | None) -> tuple[int | N
 
 
 def _default_synced_output_path(input_path: Path) -> Path:
-    return application.default_synced_output_path(input_path)
+    return default_synced_output_path(input_path)
 
 
 def _project_relative_path(path: str | None, project_root: Path) -> str | None:
-    return application.project_relative_path(path, project_root)
+    return project_relative_path(path, project_root)
 
 
 def _normalize_batch_media_paths(batch, project_root: Path):
-    return application.normalize_batch_media_paths(batch, project_root)
+    return normalize_batch_media_paths(batch, project_root)
 
 
 def _unique_new_vocab_output_path(project_root: Path) -> Path:
-    return application.unique_new_vocab_output_path(project_root)
+    return unique_new_vocab_output_path(project_root)
 
 
 def _unique_lesson_root(project_root: Path, lesson_date: str, topic: str) -> Path:
-    return application.unique_lesson_root(project_root, lesson_date, topic)
+    return unique_lesson_root(project_root, lesson_date, topic)
 
 
 def _service_status():
@@ -54,19 +67,19 @@ def _dashboard_response():
 
 
 def _batch_media_hydrated(batch_path: Path) -> bool:
-    return application.batch_media_hydrated(batch_path, project_root=_project_root())
+    return batch_media_hydrated(batch_path, project_root=_project_root())
 
 
 def _batch_referenced_media_paths(batch) -> set[Path]:
-    return application.batch_referenced_media_paths(batch, project_root=_project_root())
+    return batch_referenced_media_paths(batch, project_root=_project_root())
 
 
 def _batch_is_pushed(batch, *, anki_url: str) -> bool:
-    return application.batch_is_pushed(batch, anki_url=anki_url)
+    return batch_is_pushed(batch, anki_url=anki_url)
 
 
 def _delete_batch(request):
-    return application.delete_batch(
+    return delete_batch(
         _resolve_project_path(request.batch_path),
         project_root=_project_root(),
         anki_url=request.anki_url,
