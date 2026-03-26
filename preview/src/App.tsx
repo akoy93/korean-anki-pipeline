@@ -352,11 +352,16 @@ function canonicalBatchPath(batchPath: string) {
     : batchPath;
 }
 
-type PreviewFilterKind = "recognition" | "production" | "listening";
+type PreviewFilterKind =
+  | "recognition"
+  | "production"
+  | "listening"
+  | "number-context";
 const PREVIEW_FILTER_KINDS: PreviewFilterKind[] = [
   "recognition",
   "production",
   "listening",
+  "number-context",
 ];
 
 function isLocallyFilterableCardKind(
@@ -365,7 +370,8 @@ function isLocallyFilterableCardKind(
   return (
     kind === "recognition" ||
     kind === "production" ||
-    kind === "listening"
+    kind === "listening" ||
+    kind === "number-context"
   );
 }
 
@@ -1409,6 +1415,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
     recognition: true,
     production: true,
     listening: true,
+    "number-context": true,
   });
   const sourceBatchPath = dashboardBatch?.path ?? canonicalBatchPath(batchPath);
 
@@ -1515,6 +1522,17 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
     () => previewSectionDetails(laneKeys),
     [laneKeys],
   );
+  const availablePreviewFilterKinds = useMemo(() => {
+    const presentKinds = new Set<PreviewFilterKind>();
+    for (const note of batch.notes) {
+      for (const card of note.cards) {
+        if (isLocallyFilterableCardKind(card.kind)) {
+          presentKinds.add(card.kind);
+        }
+      }
+    }
+    return PREVIEW_FILTER_KINDS.filter((kind) => presentKinds.has(kind));
+  }, [batch]);
   const showLaneSections = notesByLane.length > 1;
 
   function updateNote(
@@ -1839,8 +1857,8 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
               </p>
             </div>
           </div>
-          <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {PREVIEW_FILTER_KINDS.map((kind) => {
+          <div className="flex flex-nowrap gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {availablePreviewFilterKinds.map((kind) => {
               const details = cardKindDetails(kind);
               const enabled = visibleCardKinds[kind];
               return (
@@ -1849,7 +1867,7 @@ function BatchPreviewPage({ batchPath }: { batchPath: string }) {
                   type="button"
                   size="sm"
                   variant={enabled ? "default" : "outline"}
-                  className="h-8 shrink-0 rounded-full px-3 text-xs sm:h-9 sm:px-3.5 sm:text-sm"
+                  className="h-8 shrink-0 whitespace-nowrap rounded-full px-3 text-xs sm:h-9 sm:px-3.5 sm:text-sm"
                   onClick={() => toggleVisibleCardKind(kind)}
                 >
                   <span className="mr-1.5 sm:mr-2">{details.icon}</span>
