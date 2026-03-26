@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 
 import { useDashboard } from "@/hooks/useDashboard";
-import { systemStatusSummary } from "@/lib/appUi";
+import { systemStatusSummary } from "@/lib/homeUi";
 import type { JobResponse } from "@/lib/schema";
 import { isActiveJob } from "@/state/jobState";
 

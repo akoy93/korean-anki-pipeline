@@ -11,12 +11,11 @@ import { HomeSystemStatusCard } from "@/components/home/HomeSystemStatusCard";
 import { ThemeToggle } from "@/components/app/ThemeToggle";
 import { useHomeDashboardModel } from "@/hooks/useHomeDashboardModel";
 import {
-  dashboardCanonicalBatchPath,
-  DANGER_PANEL_CLASS,
   statCard,
-} from "@/lib/appUi";
+} from "@/lib/homeUi";
 import type { JobResponse } from "@/lib/schema";
 import type { ThemeMode } from "@/state/theme";
+import { DANGER_PANEL_CLASS } from "@/lib/uiTokens";
 
 type HomePageProps = {
   theme: ThemeMode;

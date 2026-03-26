@@ -8,10 +8,12 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 import {
+  formatElapsedSeconds,
+} from "@/lib/formatting";
+import {
   DANGER_PANEL_CLASS,
   SOFT_SURFACE_CLASS,
-  formatElapsedSeconds,
-} from "@/lib/appUi";
+} from "@/lib/uiTokens";
 import type { JobResponse } from "@/lib/schema";
 
 export function JobPanel({ job }: { job: JobResponse }) {

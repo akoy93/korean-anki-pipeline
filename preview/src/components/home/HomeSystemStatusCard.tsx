@@ -17,12 +17,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  DANGER_PANEL_CLASS,
-  SUCCESS_BADGE_CLASS,
-  WARNING_BADGE_CLASS,
   expandCollapseButton,
   serviceCard,
-} from "@/lib/appUi";
+  systemStatusBadge,
+} from "@/lib/homeUi";
+import { DANGER_PANEL_CLASS } from "@/lib/uiTokens";
 import { openAnki } from "@/lib/api";
 import type { DashboardResponse } from "@/lib/schema";
 
@@ -78,23 +77,8 @@ export function HomeSystemStatusCard({
             <CardDescription>{statusSummary.detail}</CardDescription>
           </div>
           <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-end">
-            <div className="flex min-w-0 items-center gap-2">
-              {statusSummary.ok === null ? (
-                <Badge variant="secondary" className="gap-2">
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  Checking
-                </Badge>
-              ) : statusSummary.ok ? (
-                <Badge className={`gap-2 ${SUCCESS_BADGE_CLASS}`}>
-                  <CheckCircle2 className="h-3.5 w-3.5" />
-                  {statusSummary.label}
-                </Badge>
-              ) : (
-                <Badge className={`gap-2 ${WARNING_BADGE_CLASS}`}>
-                  <AlertTriangle className="h-3.5 w-3.5" />
-                  {statusSummary.label}
-                </Badge>
-              )}
+              <div className="flex min-w-0 items-center gap-2">
+              {systemStatusBadge(statusSummary.ok, statusSummary.label)}
               <Badge variant="outline">
                 {statusSummary.ok === null
                   ? "..."

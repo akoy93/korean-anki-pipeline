@@ -17,12 +17,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
+  hydrationStatusBadge,
+  pushStatusBadge,
+} from "@/lib/batchUi";
+import {
   DANGER_PANEL_CLASS,
   SUCCESS_PANEL_CLASS,
   WARNING_PANEL_CLASS,
-  hydrationStatusBadge,
-  pushStatusBadge,
-} from "@/lib/appUi";
+} from "@/lib/uiTokens";
 import type {
   BatchPushStatus,
   CardBatch,

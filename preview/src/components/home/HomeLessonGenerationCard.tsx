@@ -13,9 +13,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { DANGER_PANEL_CLASS } from "@/lib/appUi";
 import { createLessonGenerateJob } from "@/lib/api";
 import type { JobResponse } from "@/lib/schema";
+import { DANGER_PANEL_CLASS } from "@/lib/uiTokens";
 
 type HomeLessonGenerationCardProps = {
   lessonJob: JobResponse | null;

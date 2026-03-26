@@ -29,6 +29,7 @@ The big correctness and drift problems are already gone:
 - the preview client no longer accepts legacy raw batch responses or reuses sample data as batch-page fallback state
 - the preview frontend is no longer concentrated in a single `App.tsx`
 - the home and batch flows now live in concrete feature slices instead of giant page/controller hooks
+- the densest batch-preview modules have been split into concrete subcomponents and narrower UI helper modules
 - `new_vocab.py` and `cards.py` no longer carry the full implementation burden
 - shared runtime defaults now live in `src/korean_anki/settings.py`
 
@@ -42,30 +43,7 @@ If I had to summarize the current problem in one sentence:
 
 ## Findings
 
-### P1. The batch preview editing surface is still the densest frontend area
-
-The broad page-controller hooks are gone, which was the right move. But the actual editing surface is still concentrated in a few large modules:
-
-- `preview/src/components/batch/BatchNotesSection.tsx`
-- `preview/src/components/batch/BatchOverviewCard.tsx`
-- `preview/src/lib/appUi.tsx`
-
-This is not automatically bad. The question is whether the current boundaries match the actual UI responsibilities.
-
-Right now:
-
-- `BatchNotesSection.tsx` mixes note editing, local card filtering, preview rendering, approval UI, duplicate messaging, and per-card media behavior
-- `appUi.tsx` is partly a style token file, partly a UI factory file, partly a domain-label lookup table, and partly a formatting helper module
-
-For a local-only app, I would not split these just to make files shorter. But I would split them the moment new feature work lands there, because they are already near the point where small UX changes require too much context loading.
-
-The right bias here is:
-
-- keep feature logic close to the feature
-- avoid introducing another abstraction layer
-- extract only concrete subcomponents or lookup modules when a change repeatedly touches unrelated concerns in the same file
-
-### P2. `schema.py` is still broad, but it is a watchpoint, not the urgent problem
+### Watchpoint. `schema.py` is still broad, but it is not the urgent problem
 
 `src/korean_anki/schema.py` is still the largest backend file.
 
@@ -147,17 +125,18 @@ Until then, I would leave it alone.
 
 ## Refactor Order
 
-1. Split dense batch-preview UI modules only when further feature work lands there.
-2. Revisit splitting `schema.py` only if the model surface keeps growing.
+1. Revisit splitting `schema.py` only if the model surface keeps growing.
 
 ## Bottom Line
 
 The repo does not need a large new architecture phase.
 
-The most useful next work is simplification work:
+The most useful next work is still simplification work:
 
 - reduce cleverness where a local-only app can afford straightforward behavior
 - remove compatibility code that is no longer justified
 - split files only where that lowers real cognitive load
+
+There is not a new urgent refactor item right now. The remaining concern is a watchpoint: if `schema.py` keeps accumulating unrelated model families, then split it by usage boundary rather than waiting for it to become the next catch-all file.
 
 The previous risk was major architectural drift. The current risk is smaller: a few subsystems are now just complex enough to deserve simplification before they quietly become the next hard-to-change parts of the app.

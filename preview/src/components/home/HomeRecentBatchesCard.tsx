@@ -17,12 +17,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  DANGER_PANEL_CLASS,
   dashboardCanonicalBatchPath,
   hydrationStatusBadge,
   previewBatchPath,
   pushStatusBadge,
-} from "@/lib/appUi";
+} from "@/lib/batchUi";
+import { DANGER_PANEL_CLASS } from "@/lib/uiTokens";
 import { createSyncMediaJob, deleteBatch } from "@/lib/api";
 import type { DashboardBatch, JobResponse } from "@/lib/schema";
 

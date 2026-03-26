@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Loader2, Play, RotateCcw } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { formatAudioDuration, mediaFileName } from "@/lib/appUi";
+import { formatAudioDuration, mediaFileName } from "@/lib/formatting";
 
 export function AudioPlayButton({ audioPath }: { audioPath: string }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
