@@ -2,12 +2,13 @@ from __future__ import annotations
 
 import unittest
 from datetime import date
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from korean_anki.new_vocab_documents import (
     build_new_vocab_document,
     build_new_vocab_document_from_state,
 )
+from korean_anki.llm_service import propose_new_vocab
 from korean_anki.new_vocab_selection import (
     LessonContext,
     auto_new_vocab_batch_title,
@@ -460,6 +461,69 @@ class NewVocabTests(unittest.TestCase):
         self.assertEqual(
             propose.call_args.kwargs["topic_coverage_counts"],
             dict(topic_coverage_counts(state)),
+        )
+
+    def test_propose_new_vocab_uses_high_reasoning_for_utility_mode(self) -> None:
+        mock_client = Mock()
+        mock_client.responses.create.return_value.output_text = NewVocabProposalBatch(
+            proposals=[
+                _proposal(
+                    1,
+                    korean="안녕하세요",
+                    english="hello",
+                    topic_tag="greetings",
+                    adjacency_kind="coverage-gap",
+                    part_of_speech="fixed-expression",
+                    target_form="fixed-expression",
+                    usage_register="polite-formula",
+                )
+            ]
+        ).model_dump_json()
+
+        with patch("korean_anki.llm_service.create_openai_client", return_value=mock_client):
+            propose_new_vocab(
+                candidate_count=20,
+                selection_strategy="utility",
+                known_vocab_count=20,
+                batch_theme=None,
+                target_gap_topics=["greetings", "numbers"],
+                curriculum_focus_topics=["greetings", "numbers", "time", "places"],
+                topic_coverage_counts={"greetings": 0, "numbers": 0},
+                lesson_context_summary=None,
+                lesson_context_tags=[],
+                excluded_pairs=[],
+            )
+
+        self.assertEqual(
+            mock_client.responses.create.call_args.kwargs["reasoning"],
+            {"effort": "high"},
+        )
+
+    def test_propose_new_vocab_uses_medium_reasoning_for_hybrid_or_themed_modes(self) -> None:
+        mock_client = Mock()
+        mock_client.responses.create.return_value.output_text = NewVocabProposalBatch(
+            proposals=[
+                _proposal(1, korean="물", english="water", topic_tag="food", adjacency_kind="coverage-gap")
+            ]
+        ).model_dump_json()
+
+        with patch("korean_anki.llm_service.create_openai_client", return_value=mock_client):
+            propose_new_vocab(
+                candidate_count=20,
+                selection_strategy="hybrid",
+                known_vocab_count=250,
+                batch_theme=None,
+                target_gap_topics=["food", "places"],
+                curriculum_focus_topics=["food", "places", "time", "daily-routines"],
+                topic_coverage_counts={"food": 4, "places": 5},
+                lesson_context_summary=None,
+                lesson_context_tags=[],
+                excluded_pairs=[],
+            )
+
+        self.assertEqual(
+            mock_client.responses.create.call_args.kwargs["reasoning"],
+            {"effort": "medium"},
         )
 
 

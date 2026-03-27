@@ -239,6 +239,7 @@ def propose_new_vocab(
     excluded_pairs: list[str],
 ) -> NewVocabProposalBatch:
     client = create_openai_client()
+    reasoning_effort = "high" if selection_strategy == "utility" else "medium"
     lines = [
         f"Propose {candidate_count} candidate vocab items.",
         f"Learner known vocabulary count estimate: {known_vocab_count}",
@@ -307,7 +308,7 @@ def propose_new_vocab(
             {"role": "user", "content": "\n".join(lines)},
         ],
         text={"format": {"type": "json_schema", **response_json_schema("new_vocab_proposal_batch", NewVocabProposalBatch)}},
-        reasoning={"effort": "medium"},
+        reasoning={"effort": reasoning_effort},
     )
     return NewVocabProposalBatch.model_validate_json(response.output_text)
 
