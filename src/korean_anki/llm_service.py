@@ -228,8 +228,12 @@ def propose_new_vocab(
     *,
     model: str = DEFAULT_LLM_MODEL,
     candidate_count: int,
-    batch_theme: str,
+    selection_strategy: str,
+    known_vocab_count: int,
+    batch_theme: str | None,
     target_gap_topics: list[str],
+    curriculum_focus_topics: list[str],
+    topic_coverage_counts: dict[str, int],
     lesson_context_summary: str | None,
     lesson_context_tags: list[str],
     excluded_pairs: list[str],
@@ -237,22 +241,65 @@ def propose_new_vocab(
     client = create_openai_client()
     lines = [
         f"Propose {candidate_count} candidate vocab items.",
-        f"Batch theme: {batch_theme}",
-        "All candidates must fit this single cohesive theme.",
+        f"Learner known vocabulary count estimate: {known_vocab_count}",
+        "Assume the learner is A1 and still building their first core everyday vocabulary.",
         "Return part_of_speech for each proposal: noun, verb, adjective, or fixed-expression.",
         "Return target_form='headword' for nouns and dictionary-form verbs/adjectives.",
+        "Return utility_band for each proposal: core, supporting, or expansion.",
+        "Return frequency_band for each proposal: high, medium, or low.",
+        "Return usage_register for each proposal: everyday-spoken, polite-formula, formal-written, literary, or niche.",
         "Use target_form='fixed-expression' only for expressions that a beginner should memorize as one chunk.",
         f"Target coverage-gap topics: {', '.join(target_gap_topics)}",
+        (
+            f"Current curriculum focus topics: {', '.join(curriculum_focus_topics)}"
+            if curriculum_focus_topics
+            else "Current curriculum focus topics: (none)"
+        ),
+        "Current unique known/generated vocabulary counts by topic:",
+        *[
+            f"- {topic}: {topic_coverage_counts.get(topic, 0)}"
+            for topic in sorted(topic_coverage_counts)
+        ],
         (
             f"Latest lesson context: {lesson_context_summary}"
             if lesson_context_summary is not None
             else "No latest lesson context provided; use coverage-gap proposals only."
         ),
         f"Latest lesson tags: {', '.join(lesson_context_tags) if lesson_context_tags else '(none)'}",
+        "Bias heavily toward the next most useful beginner words before broader or more specialized words.",
+        "Prefer survival vocabulary, polite formulas, routine nouns, places, time words, food, greetings, and simple dictionary-form actions over descriptive or niche vocabulary.",
         "Excluded known words (normalized korean | english):",
         *(excluded_pairs[:200] or ["(none)"]),
-        "Return a diverse pool. If lesson context is present, include both coverage-gap and lesson-adjacent candidates.",
     ]
+    if selection_strategy == "themed":
+        lines.extend(
+            [
+                f"Batch theme: {batch_theme or '(none)'}",
+                "All candidates must fit this single cohesive theme.",
+                "Keep the theme coherent, but still choose the highest-utility beginner words inside it first.",
+            ]
+        )
+    elif selection_strategy == "hybrid":
+        lines.extend(
+            [
+                "Do not force a single narrow theme.",
+                "Prefer globally useful beginner vocabulary first, but it is acceptable if the batch clusters loosely around one or two current focus topics.",
+                "If lesson context is present, you may include some lesson-adjacent vocabulary, but do not sacrifice beginner utility for topical purity.",
+            ]
+        )
+    else:
+        lines.extend(
+            [
+                "Do not force a single narrow theme.",
+                "This is an early-stage utility-first batch. Choose the next words a true beginner should know soonest, even if they span multiple topics.",
+                "Especially value greetings, thanks, apologies, polite set phrases, numbers, time words, basic places, and simple everyday actions.",
+                "Favor high-frequency everyday-spoken words and polite formulas. Avoid low-frequency, formal-written, literary, or niche vocabulary.",
+                "Aim for breadth across the current focus topics rather than thematic purity.",
+            ]
+        )
+    lines.append(
+        "Return a diverse pool. If lesson context is present, include lesson-adjacent candidates only when they are still genuinely high-utility for a beginner."
+    )
     response = client.responses.create(
         model=model,
         input=[

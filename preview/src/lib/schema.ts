@@ -259,6 +259,17 @@ export interface DuplicateNote {
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "JobPhase".
+ */
+export interface JobPhase {
+  key: string;
+  label: string;
+  status?: "pending" | "running" | "succeeded" | "failed";
+  current?: number;
+  total?: number;
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
  * via the `definition` "JobResponse".
  */
 export interface JobResponse {
@@ -270,6 +281,7 @@ export interface JobResponse {
   progress_current?: number;
   progress_total?: number;
   progress_label?: string | null;
+  phases?: JobPhase[];
   logs?: string[];
   error?: string | null;
   output_paths?: string[];

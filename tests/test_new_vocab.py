@@ -10,9 +10,14 @@ from korean_anki.new_vocab_documents import (
 )
 from korean_anki.new_vocab_selection import (
     LessonContext,
+    auto_new_vocab_batch_title,
+    choose_new_vocab_strategy,
     choose_new_vocab_theme,
+    curriculum_focus_topics,
+    known_vocab_count,
     new_vocab_batch_title,
     select_new_vocab_proposals,
+    topic_coverage_counts,
     undercovered_topics,
 )
 from korean_anki.note_generation import generate_batch
@@ -28,6 +33,9 @@ def _proposal(
     adjacency_kind: str,
     part_of_speech: str | None = None,
     target_form: str | None = None,
+    utility_band: str = "core",
+    frequency_band: str = "high",
+    usage_register: str | None = None,
 ) -> NewVocabProposal:
     resolved_part_of_speech = (
         part_of_speech
@@ -39,12 +47,18 @@ def _proposal(
         if target_form is not None
         else ("fixed-expression" if resolved_part_of_speech == "fixed-expression" else "headword")
     )
+    resolved_register = usage_register
+    if resolved_register is None:
+        resolved_register = "polite-formula" if resolved_part_of_speech == "fixed-expression" else "everyday-spoken"
     return NewVocabProposal(
         candidate_id=f"cand-{index:03d}",
         korean=korean,
         english=english,
         part_of_speech=resolved_part_of_speech,  # type: ignore[arg-type]
         target_form=resolved_target_form,  # type: ignore[arg-type]
+        utility_band=utility_band,  # type: ignore[arg-type]
+        frequency_band=frequency_band,  # type: ignore[arg-type]
+        usage_register=resolved_register,  # type: ignore[arg-type]
         topic_tag=topic_tag,
         example_ko=f"{korean} 있어요.",
         example_en=f"There is {english}.",
@@ -55,6 +69,21 @@ def _proposal(
 
 
 class NewVocabTests(unittest.TestCase):
+    def _state_with_vocab_count(self, count: int) -> StudyState:
+        return StudyState(
+            generated_notes=[
+                PriorNote(
+                    note_key=f"vocab:단어{index}:word{index}",
+                    korean=f"단어{index}",
+                    english=f"word {index}",
+                    item_type="vocab",
+                    source="prior.batch.json",
+                    skill_tags=["greetings"],
+                )
+                for index in range(count)
+            ]
+        )
+
     def test_undercovered_topics_prefers_low_count_skill_tags(self) -> None:
         state = StudyState()
         state.anki_stats.by_tag = {
@@ -84,6 +113,35 @@ class NewVocabTests(unittest.TestCase):
 
         self.assertEqual(choose_new_vocab_theme(state, lesson_context), "time")
         self.assertEqual(new_vocab_batch_title("time"), "Time Basics")
+
+    def test_choose_new_vocab_strategy_uses_vocab_count_thresholds(self) -> None:
+        utility_state = self._state_with_vocab_count(20)
+        hybrid_state = self._state_with_vocab_count(220)
+        themed_state = self._state_with_vocab_count(400)
+
+        self.assertEqual(known_vocab_count(utility_state), 20)
+        self.assertEqual(choose_new_vocab_strategy(utility_state), "utility")
+        self.assertEqual(choose_new_vocab_strategy(hybrid_state), "hybrid")
+        self.assertEqual(choose_new_vocab_strategy(themed_state), "themed")
+
+    def test_curriculum_focus_topics_hold_back_later_expansion_topics(self) -> None:
+        state = StudyState()
+        state.anki_stats.by_tag = {
+            "skill:greetings": 8,
+            "skill:numbers": 12,
+            "skill:time": 3,
+            "skill:places": 0,
+            "skill:food": 0,
+            "skill:daily-routines": 0,
+            "skill:family": 0,
+            "skill:weather": 0,
+        }
+
+        self.assertEqual(
+            curriculum_focus_topics(state, limit=4),
+            ["places", "food", "time", "daily-routines"],
+        )
+        self.assertEqual(choose_new_vocab_theme(state), "places")
 
     def test_select_new_vocab_respects_split_excludes_exact_and_uses_near_only_to_fill(self) -> None:
         state = StudyState(
@@ -256,18 +314,121 @@ class NewVocabTests(unittest.TestCase):
         self.assertIn("안녕하세요", selected_korean)
         self.assertIn("안녕히 가세요", selected_korean)
 
-    def test_build_new_vocab_from_state_uses_theme_title_and_single_topic_prompt(self) -> None:
+    def test_select_new_vocab_prefers_core_utility_before_expansion(self) -> None:
+        state = StudyState()
+        proposals = [
+            _proposal(1, korean="물", english="water", topic_tag="food", adjacency_kind="coverage-gap", utility_band="core"),
+            _proposal(2, korean="밥", english="rice", topic_tag="food", adjacency_kind="coverage-gap", utility_band="core"),
+            _proposal(
+                3,
+                korean="먹다",
+                english="eat",
+                topic_tag="food",
+                adjacency_kind="coverage-gap",
+                part_of_speech="verb",
+                target_form="headword",
+                utility_band="core",
+            ),
+            _proposal(4, korean="후식", english="dessert", topic_tag="food", adjacency_kind="coverage-gap", utility_band="supporting"),
+            _proposal(5, korean="식초", english="vinegar", topic_tag="food", adjacency_kind="coverage-gap", utility_band="expansion"),
+        ]
+
+        selected = select_new_vocab_proposals(proposals, state, count=3, gap_ratio=1.0, lesson_context=None)
+        selected_korean = [proposal.korean for proposal, _near_duplicate in selected]
+
+        self.assertEqual(selected_korean, ["물", "밥", "먹다"])
+
+    def test_utility_stage_filters_low_frequency_and_formal_words(self) -> None:
+        state = StudyState()
+        proposals = [
+            _proposal(
+                1,
+                korean="소강하다",
+                english="subside temporarily",
+                topic_tag="weather",
+                adjacency_kind="coverage-gap",
+                part_of_speech="verb",
+                target_form="headword",
+                utility_band="core",
+                frequency_band="low",
+                usage_register="formal-written",
+            ),
+            _proposal(
+                2,
+                korean="안녕하세요",
+                english="hello",
+                topic_tag="greetings",
+                adjacency_kind="coverage-gap",
+                part_of_speech="fixed-expression",
+                target_form="fixed-expression",
+                utility_band="core",
+                frequency_band="high",
+                usage_register="polite-formula",
+            ),
+            _proposal(
+                3,
+                korean="감사합니다",
+                english="thank you",
+                topic_tag="greetings",
+                adjacency_kind="coverage-gap",
+                part_of_speech="fixed-expression",
+                target_form="fixed-expression",
+                utility_band="core",
+                frequency_band="high",
+                usage_register="polite-formula",
+            ),
+        ]
+
+        selected = select_new_vocab_proposals(proposals, state, count=2, gap_ratio=1.0, lesson_context=None)
+
+        self.assertEqual(
+            [proposal.korean for proposal, _near_duplicate in selected],
+            ["감사합니다", "안녕하세요"],
+        )
+
+    def test_auto_new_vocab_batch_title_uses_selected_topics_for_utility_mode(self) -> None:
+        title = auto_new_vocab_batch_title(
+            [
+                _proposal(1, korean="안녕하세요", english="hello", topic_tag="greetings", adjacency_kind="coverage-gap", part_of_speech="fixed-expression", target_form="fixed-expression"),
+                _proposal(2, korean="감사합니다", english="thank you", topic_tag="greetings", adjacency_kind="coverage-gap", part_of_speech="fixed-expression", target_form="fixed-expression"),
+                _proposal(3, korean="하나", english="one", topic_tag="numbers", adjacency_kind="coverage-gap"),
+            ],
+            selection_strategy="utility",
+        )
+
+        self.assertEqual(title, "Core Korean: Greetings and Numbers")
+
+    def test_build_new_vocab_from_state_uses_utility_prompt_and_auto_title_early(self) -> None:
         state = StudyState()
         proposal_batch = NewVocabProposalBatch(
             proposals=[
                 _proposal(
-                    index,
-                    korean=f"인사{index}",
-                    english=f"greeting {index}",
+                    1,
+                    korean="안녕하세요",
+                    english="hello",
                     topic_tag="greetings",
                     adjacency_kind="coverage-gap",
-                )
-                for index in range(1, 4)
+                    part_of_speech="fixed-expression",
+                    target_form="fixed-expression",
+                    usage_register="polite-formula",
+                ),
+                _proposal(
+                    2,
+                    korean="감사합니다",
+                    english="thank you",
+                    topic_tag="greetings",
+                    adjacency_kind="coverage-gap",
+                    part_of_speech="fixed-expression",
+                    target_form="fixed-expression",
+                    usage_register="polite-formula",
+                ),
+                _proposal(
+                    3,
+                    korean="하나",
+                    english="one",
+                    topic_tag="numbers",
+                    adjacency_kind="coverage-gap",
+                ),
             ]
         )
 
@@ -286,11 +447,20 @@ class NewVocabTests(unittest.TestCase):
                 target_deck="Korean::New Vocab",
             )
 
-        self.assertEqual(document.metadata.title, "Greetings Basics")
+        self.assertEqual(document.metadata.title, "Core Korean: Greetings and Numbers")
         self.assertEqual(document.metadata.topic, "New Vocab")
         propose.assert_called_once()
-        self.assertEqual(propose.call_args.kwargs["batch_theme"], "Greetings Basics")
-        self.assertEqual(propose.call_args.kwargs["target_gap_topics"], ["greetings"])
+        self.assertIsNone(propose.call_args.kwargs["batch_theme"])
+        self.assertEqual(propose.call_args.kwargs["selection_strategy"], "utility")
+        self.assertEqual(propose.call_args.kwargs["target_gap_topics"], ["greetings", "numbers", "time", "places"])
+        self.assertEqual(
+            propose.call_args.kwargs["curriculum_focus_topics"],
+            ["greetings", "numbers", "time", "places"],
+        )
+        self.assertEqual(
+            propose.call_args.kwargs["topic_coverage_counts"],
+            dict(topic_coverage_counts(state)),
+        )
 
 
 if __name__ == "__main__":

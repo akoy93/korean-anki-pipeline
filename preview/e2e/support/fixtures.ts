@@ -411,6 +411,7 @@ export function makeJobResponse(
     progress_current: overrides.progress_current ?? 0,
     progress_total: overrides.progress_total ?? 0,
     progress_label: overrides.progress_label ?? null,
+    phases: overrides.phases ?? [],
     logs: overrides.logs ?? [],
     error: overrides.error ?? null,
     output_paths: overrides.output_paths ?? [],

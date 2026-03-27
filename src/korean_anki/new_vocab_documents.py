@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Callable
 from datetime import date
 from pathlib import Path
 
@@ -24,11 +25,17 @@ from .settings import (
 )
 from .new_vocab_selection import (
     LessonContext,
+    auto_new_vocab_batch_title,
+    choose_new_vocab_strategy,
     choose_new_vocab_theme,
+    curriculum_focus_topics,
+    known_vocab_count,
     load_lesson_context,
     new_vocab_batch_title,
+    prompt_focus_topics,
     prior_notes_for_vocab,
     select_new_vocab_proposals,
+    topic_coverage_counts,
 )
 
 
@@ -79,16 +86,26 @@ def build_new_vocab_document(
     gap_ratio: float = DEFAULT_NEW_VOCAB_GAP_RATIO,
     lesson_context: LessonContext | None = None,
     target_deck: str = DEFAULT_NEW_VOCAB_TARGET_DECK,
+    selection_strategy: str | None = None,
 ) -> LessonDocument:
+    resolved_strategy = selection_strategy or choose_new_vocab_strategy(study_state)
     selected = select_new_vocab_proposals(
         proposals,
         study_state,
         count=count,
         gap_ratio=gap_ratio,
         lesson_context=lesson_context,
+        selection_strategy=resolved_strategy,
     )
     if not selected:
         raise ValueError("No new-vocab proposals survived local dedupe and selection.")
+
+    resolved_title = title
+    if title == DEFAULT_NEW_VOCAB_TITLE:
+        resolved_title = auto_new_vocab_batch_title(
+            [proposal for proposal, _near_duplicate in selected],
+            selection_strategy=resolved_strategy,
+        )
 
     items = [
         _make_item(
@@ -102,7 +119,7 @@ def build_new_vocab_document(
 
     metadata = LessonMetadata(
         lesson_id=lesson_id,
-        title=title,
+        title=resolved_title,
         topic=DEFAULT_NEW_VOCAB_TOPIC,
         lesson_date=lesson_date,
         source_description=(
@@ -127,38 +144,84 @@ def build_new_vocab_document_from_state(
     lesson_context_path: Path | None,
     target_deck: str,
     model: str = DEFAULT_LLM_MODEL,
+    on_theme_selected: Callable[[str], None] | None = None,
+    on_proposals_generated: Callable[[int], None] | None = None,
+    on_selection_complete: Callable[[int], None] | None = None,
+    on_pronunciations_generated: Callable[[int], None] | None = None,
 ) -> LessonDocument:
     lesson_context = load_lesson_context(lesson_context_path) if lesson_context_path is not None else None
-    theme_topic = choose_new_vocab_theme(state, lesson_context)
+    selection_strategy = choose_new_vocab_strategy(state)
+    focus_topics = prompt_focus_topics(
+        state,
+        selection_strategy=selection_strategy,
+        lesson_context=lesson_context,
+    )
+    theme_topic = choose_new_vocab_theme(state, lesson_context) if selection_strategy == "themed" else None
+    if on_theme_selected is not None:
+        on_theme_selected(theme_topic or ", ".join(focus_topics[:2]) or "utility")
+    coverage_counts = dict(topic_coverage_counts(state))
     prior_vocab = prior_notes_for_vocab(state)
     excluded_pairs = [
         f"{normalize_text(note.korean)} | {normalize_text(note.english)}"
         for note in prior_vocab
     ]
+    if selection_strategy == "utility":
+        candidate_count = max((count * 3) + 10, count + 20)
+    elif selection_strategy == "hybrid":
+        candidate_count = max((count * 3), count + 15)
+    else:
+        candidate_count = max((count * 2) + 10, count + 15)
     proposal_batch = propose_new_vocab(
         model=model,
-        candidate_count=max((count * 2) + 10, count + 15),
-        batch_theme=new_vocab_batch_title(theme_topic),
-        target_gap_topics=[theme_topic],
+        candidate_count=candidate_count,
+        selection_strategy=selection_strategy,
+        known_vocab_count=known_vocab_count(state),
+        batch_theme=new_vocab_batch_title(theme_topic) if theme_topic is not None else None,
+        target_gap_topics=focus_topics,
+        curriculum_focus_topics=focus_topics,
+        topic_coverage_counts=coverage_counts,
         lesson_context_summary=lesson_context.summary if lesson_context is not None else None,
         lesson_context_tags=lesson_context.tags if lesson_context is not None else [],
         excluded_pairs=excluded_pairs,
     )
-    document = build_new_vocab_document(
+    if on_proposals_generated is not None:
+        on_proposals_generated(len(proposal_batch.proposals))
+    selected = select_new_vocab_proposals(
         proposal_batch.proposals,
         state,
+        count=count,
+        gap_ratio=gap_ratio,
+        lesson_context=lesson_context,
+        selection_strategy=selection_strategy,
+    )
+    if not selected:
+        raise ValueError("No new-vocab proposals survived local dedupe and selection.")
+    resolved_title = title
+    if title == DEFAULT_NEW_VOCAB_TITLE:
+        resolved_title = auto_new_vocab_batch_title(
+            [proposal for proposal, _near_duplicate in selected],
+            selection_strategy=selection_strategy,
+        )
+    document = build_new_vocab_document(
+        [proposal for proposal, _near_duplicate in selected],
+        state,
         lesson_id=lesson_id,
-        title=new_vocab_batch_title(theme_topic) if title == DEFAULT_NEW_VOCAB_TITLE else title,
+        title=resolved_title,
         lesson_date=lesson_date,
         count=count,
         gap_ratio=gap_ratio,
         lesson_context=lesson_context,
         target_deck=target_deck,
+        selection_strategy=selection_strategy,
     )
+    if on_selection_complete is not None:
+        on_selection_complete(len(document.items))
     pronunciation_lookup = generate_pronunciations(
         [item.korean for item in document.items],
         model=model,
     )
+    if on_pronunciations_generated is not None:
+        on_pronunciations_generated(len(document.items))
     return document.model_copy(
         update={
             "items": [

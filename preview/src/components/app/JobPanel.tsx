@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  AlertTriangle,
   ArrowRight,
   CheckCircle2,
   Circle,
@@ -20,6 +21,8 @@ export function JobPanel({ job }: { job: JobResponse }) {
   const [now, setNow] = useState(new Date());
   const inProgress = job.status === "queued" || job.status === "running";
   const isNewVocabJob = job.kind === "new-vocab";
+  const phases = job.phases ?? [];
+  const hasExplicitPhases = inProgress && phases.length > 0;
   const progressCurrent = job.progress_current ?? 0;
   const progressTotal = job.progress_total ?? 0;
   const outputPaths = job.output_paths ?? [];
@@ -60,7 +63,49 @@ export function JobPanel({ job }: { job: JobResponse }) {
           {job.status}
         </Badge>
       </div>
-      {inProgress && isNewVocabJob ? (
+      {hasExplicitPhases ? (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
+            <div>{job.progress_label ?? "Working"}</div>
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+              <span>{formatElapsedSeconds(job.created_at, now)}</span>
+            </div>
+          </div>
+          <div className="space-y-2">
+            {phases.map((phase) => (
+              <div
+                key={phase.key}
+                className={`flex items-center justify-between rounded-md px-3 py-2 ${SOFT_SURFACE_CLASS}`}
+              >
+                <div className="flex items-center gap-2">
+                  {phase.status === "succeeded" ? (
+                    <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                  ) : phase.status === "running" ? (
+                    <Loader2 className="h-4 w-4 animate-spin text-primary" />
+                  ) : phase.status === "failed" ? (
+                    <AlertTriangle className="h-4 w-4 text-amber-600" />
+                  ) : (
+                    <Circle className="h-4 w-4 text-muted-foreground" />
+                  )}
+                  <span>{phase.label}</span>
+                </div>
+                <span className="text-xs text-muted-foreground">
+                  {(phase.total ?? 0) > 0
+                    ? `${phase.current ?? 0}/${phase.total ?? 0}`
+                    : phase.status === "succeeded"
+                      ? "Done"
+                      : phase.status === "running"
+                        ? "Running"
+                        : phase.status === "failed"
+                          ? "Failed"
+                          : "Pending"}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : inProgress && isNewVocabJob ? (
         <div className="space-y-3">
           <div className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
             <div>{job.progress_label ?? "Working"}</div>

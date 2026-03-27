@@ -43,10 +43,13 @@ from .domain import (
     LessonItem,
     LessonMetadata,
     MediaAsset,
+    NewVocabFrequencyBand,
     NewVocabPartOfSpeech,
     NewVocabProposal,
     NewVocabProposalBatch,
+    NewVocabRegister,
     NewVocabTargetForm,
+    NewVocabUtilityBand,
     PriorNote,
     PronunciationBatch,
     PronunciationSuggestion,
@@ -69,7 +72,15 @@ from .extraction import (
     TranscriptionSection,
 )
 from .extraction import __all__ as extraction_all
-from .jobs import JobKind, JobResponse, JobStatus, NewVocabJobRequest, SyncMediaJobRequest
+from .jobs import (
+    JobKind,
+    JobPhase,
+    JobPhaseStatus,
+    JobResponse,
+    JobStatus,
+    NewVocabJobRequest,
+    SyncMediaJobRequest,
+)
 from .jobs import __all__ as jobs_all
 
 __all__ = [

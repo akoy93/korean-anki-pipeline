@@ -536,6 +536,41 @@
       "type": "string",
       "title": "JobKind"
     },
+    "JobPhase": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "running",
+            "succeeded",
+            "failed"
+          ],
+          "type": "string"
+        },
+        "current": {
+          "default": 0,
+          "type": "integer"
+        },
+        "total": {
+          "default": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "key",
+        "label"
+      ],
+      "type": "object",
+      "title": "JobPhase"
+    },
     "JobResponse": {
       "additionalProperties": false,
       "properties": {
@@ -585,6 +620,12 @@
             }
           ],
           "default": null
+        },
+        "phases": {
+          "items": {
+            "$ref": "#/$defs/JobPhase"
+          },
+          "type": "array"
         },
         "logs": {
           "items": {

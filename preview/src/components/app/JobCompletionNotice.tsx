@@ -21,39 +21,44 @@ export function JobCompletionNotice({
   return (
     <div
       data-testid="job-completion-notice"
-      className="fixed inset-x-3 bottom-3 z-50 sm:inset-x-auto sm:right-4 sm:w-[min(420px,calc(100vw-2rem))]"
+      className="fixed inset-x-3 bottom-3 z-50 sm:inset-x-auto sm:right-4 sm:w-[min(380px,calc(100vw-2rem))]"
     >
       <Card className="border-border/80 bg-background/95 shadow-lg backdrop-blur">
-        <CardContent className="space-y-3 p-4">
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <div className="flex items-center gap-2 font-medium">
-                {notice.status === "succeeded" ? (
-                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                ) : (
-                  <AlertTriangle className="h-4 w-4 text-amber-600" />
-                )}
-                <span>{jobNoticeTitle(notice)}</span>
+        <CardContent className="px-4 pb-4 pt-5 sm:px-5 sm:pb-5 sm:pt-6">
+          <div className="flex items-start gap-3">
+            {notice.status === "succeeded" ? (
+              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+            ) : (
+              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+            )}
+            <div className="min-w-0 flex-1">
+              <div className="font-medium leading-tight">
+                {jobNoticeTitle(notice)}
               </div>
               <p className="mt-1 text-sm text-muted-foreground">
                 {jobNoticeBody(notice)}
               </p>
+              <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <Button
+                  type="button"
+                  size="sm"
+                  className="w-full sm:w-auto"
+                  onClick={onOpen}
+                >
+                  {jobNoticeActionLabel(notice)}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="w-full border-border/80 px-3 sm:w-auto"
+                  onClick={onDismiss}
+                >
+                  Dismiss
+                </Button>
+              </div>
             </div>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="shrink-0 px-2"
-              onClick={onDismiss}
-            >
-              Dismiss
-            </Button>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <Button type="button" size="sm" onClick={onOpen}>
-              {jobNoticeActionLabel(notice)}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
           </div>
         </CardContent>
       </Card>

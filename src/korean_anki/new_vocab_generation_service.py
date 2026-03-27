@@ -28,6 +28,11 @@ def generate_new_vocab_batch(
     with_audio: bool = False,
     image_quality: str = DEFAULT_NEW_VOCAB_IMAGE_QUALITY,
     model: str = DEFAULT_LLM_MODEL,
+    on_study_state_loaded: Callable[[], None] | None = None,
+    on_theme_selected: Callable[[str], None] | None = None,
+    on_proposals_generated: Callable[[int], None] | None = None,
+    on_selection_complete: Callable[[int], None] | None = None,
+    on_pronunciations_generated: Callable[[int], None] | None = None,
     on_image_complete: Callable[[], None] | None = None,
     on_audio_complete: Callable[[], None] | None = None,
     on_note_generated: Callable[[GeneratedNote], None] | None = None,
@@ -37,6 +42,8 @@ def generate_new_vocab_batch(
         anki_url=anki_url,
         exclude_batch_path=output_path,
     )
+    if on_study_state_loaded is not None:
+        on_study_state_loaded()
     document = build_new_vocab_document_from_state(
         state,
         lesson_id=lesson_id,
@@ -47,6 +54,10 @@ def generate_new_vocab_batch(
         lesson_context_path=lesson_context_path,
         target_deck=target_deck,
         model=model,
+        on_theme_selected=on_theme_selected,
+        on_proposals_generated=on_proposals_generated,
+        on_selection_complete=on_selection_complete,
+        on_pronunciations_generated=on_pronunciations_generated,
     )
     document = enrich_new_vocab_images(
         document,

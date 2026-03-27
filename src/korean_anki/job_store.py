@@ -5,7 +5,7 @@ from pathlib import Path
 import threading
 import uuid
 
-from .schema import JobKind, JobResponse
+from .schema import JobKind, JobPhase, JobResponse
 
 _ACTIVE_JOB_STATUSES = {"queued", "running"}
 _INTERRUPTED_JOB_ERROR = "Job interrupted by backend restart."
@@ -50,6 +50,7 @@ class JobStore:
         progress_current: int | None = None,
         progress_total: int | None = None,
         progress_label: str | None = None,
+        phases: list[JobPhase] | None = None,
     ) -> JobResponse:
         with self._lock:
             current = self._read_job(job_id)
@@ -73,6 +74,7 @@ class JobStore:
                     "progress_label": progress_label
                     if progress_label is not None
                     else current.progress_label,
+                    "phases": phases if phases is not None else current.phases,
                     "updated_at": datetime.now(),
                 }
             )

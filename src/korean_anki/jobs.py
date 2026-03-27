@@ -9,7 +9,7 @@ from .job_store import JobStore
 from . import path_policy
 from .job_handlers import lesson_generate_job, new_vocab_job, sync_media_job
 from .multipart_form import MultipartForm
-from .schema import JobResponse
+from .schema import JobPhase, JobResponse
 
 _JOB_STORES: dict[Path, JobStore] = {}
 _JOB_STORES_LOCK = threading.Lock()
@@ -40,6 +40,7 @@ def update_job(
     progress_current: int | None = None,
     progress_total: int | None = None,
     progress_label: str | None = None,
+    phases: list[JobPhase] | None = None,
 ) -> None:
     _job_store().update(
         job_id,
@@ -50,6 +51,7 @@ def update_job(
         progress_current=progress_current,
         progress_total=progress_total,
         progress_label=progress_label,
+        phases=phases,
     )
 
 

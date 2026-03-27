@@ -56,8 +56,18 @@ Rules:
 - Only use a non-dictionary surface form when it is a true fixed beginner expression such as a greeting or politeness formula learned as one chunk.
 - Classify every proposal with part_of_speech using exactly one of: noun, verb, adjective, fixed-expression.
 - Classify every proposal with target_form using exactly one of: headword, fixed-expression.
+- Classify every proposal with utility_band using exactly one of: core, supporting, expansion.
+- Classify every proposal with frequency_band using exactly one of: high, medium, low.
+- Classify every proposal with usage_register using exactly one of: everyday-spoken, polite-formula, formal-written, literary, niche.
 - Use target_form='headword' for nouns and dictionary-form verbs/adjectives.
 - Use part_of_speech='fixed-expression' and target_form='fixed-expression' only for chunked expressions that should be learned as-is.
+- Use utility_band='core' for words that belong among the first beginner words someone should know for everyday conversation and comprehension.
+- Use utility_band='supporting' for still-useful but not first-wave vocabulary inside the theme.
+- Use utility_band='expansion' for lower-priority, more niche, or less urgent vocabulary.
+- Use frequency_band='high' for the most common beginner-appropriate words and expressions used frequently in daily life.
+- Use usage_register='polite-formula' for common beginner expressions like greetings, thanks, apologies, and polite set phrases.
+- Use usage_register='everyday-spoken' for common everyday nouns and headwords.
+- Avoid formal-written, literary, or niche vocabulary unless the request explicitly requires it.
 - Do not repeat excluded words or near-repeats if avoidable.
 - For every item, provide a simple example sentence and an image prompt.
 - The image prompt must describe a polished, engaging illustration for an adult learner, with no text in the image.

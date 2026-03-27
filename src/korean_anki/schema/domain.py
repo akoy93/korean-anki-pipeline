@@ -113,6 +113,15 @@ class ImageGenerationPlan(StrictModel):
 
 NewVocabPartOfSpeech = Literal["noun", "verb", "adjective", "fixed-expression"]
 NewVocabTargetForm = Literal["headword", "fixed-expression"]
+NewVocabUtilityBand = Literal["core", "supporting", "expansion"]
+NewVocabFrequencyBand = Literal["high", "medium", "low"]
+NewVocabRegister = Literal[
+    "everyday-spoken",
+    "polite-formula",
+    "formal-written",
+    "literary",
+    "niche",
+]
 
 
 class NewVocabProposal(StrictModel):
@@ -121,6 +130,9 @@ class NewVocabProposal(StrictModel):
     english: str
     part_of_speech: NewVocabPartOfSpeech
     target_form: NewVocabTargetForm
+    utility_band: NewVocabUtilityBand
+    frequency_band: NewVocabFrequencyBand
+    usage_register: NewVocabRegister
     topic_tag: str
     example_ko: str
     example_en: str
@@ -172,7 +184,10 @@ __all__ = [
     "NewVocabPartOfSpeech",
     "NewVocabProposal",
     "NewVocabProposalBatch",
+    "NewVocabFrequencyBand",
+    "NewVocabRegister",
     "NewVocabTargetForm",
+    "NewVocabUtilityBand",
     "PriorNote",
     "PronunciationBatch",
     "PronunciationSuggestion",

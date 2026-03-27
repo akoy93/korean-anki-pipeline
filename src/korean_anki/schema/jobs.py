@@ -19,6 +19,7 @@ from .common import StrictModel
 
 JobStatus = Literal["queued", "running", "succeeded", "failed"]
 JobKind = Literal["lesson-generate", "new-vocab", "sync-media"]
+JobPhaseStatus = Literal["pending", "running", "succeeded", "failed"]
 
 
 class NewVocabJobRequest(StrictModel):
@@ -39,6 +40,14 @@ class SyncMediaJobRequest(StrictModel):
     anki_url: str = DEFAULT_ANKI_URL
 
 
+class JobPhase(StrictModel):
+    key: str
+    label: str
+    status: JobPhaseStatus = "pending"
+    current: int = 0
+    total: int = 0
+
+
 class JobResponse(StrictModel):
     id: str
     kind: JobKind
@@ -48,6 +57,7 @@ class JobResponse(StrictModel):
     progress_current: int = 0
     progress_total: int = 0
     progress_label: str | None = None
+    phases: list[JobPhase] = Field(default_factory=list)
     logs: list[str] = Field(default_factory=list)
     error: str | None = None
     output_paths: list[str] = Field(default_factory=list)
@@ -55,6 +65,8 @@ class JobResponse(StrictModel):
 
 __all__ = [
     "JobKind",
+    "JobPhase",
+    "JobPhaseStatus",
     "JobResponse",
     "JobStatus",
     "NewVocabJobRequest",
