@@ -137,7 +137,7 @@ def build_new_vocab_document_from_state(
     ]
     proposal_batch = propose_new_vocab(
         model=model,
-        candidate_count=max(count * 2, count + 10),
+        candidate_count=max((count * 2) + 10, count + 15),
         batch_theme=new_vocab_batch_title(theme_topic),
         target_gap_topics=[theme_topic],
         lesson_context_summary=lesson_context.summary if lesson_context is not None else None,

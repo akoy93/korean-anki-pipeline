@@ -642,6 +642,8 @@ class PushServiceTests(unittest.TestCase):
                     candidate_id="candidate-1",
                     korean="물",
                     english="water",
+                    part_of_speech="noun",
+                    target_form="headword",
                     topic_tag="food",
                     example_ko="물을 마셔요.",
                     example_en="I drink water.",

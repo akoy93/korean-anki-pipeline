@@ -239,6 +239,9 @@ def propose_new_vocab(
         f"Propose {candidate_count} candidate vocab items.",
         f"Batch theme: {batch_theme}",
         "All candidates must fit this single cohesive theme.",
+        "Return part_of_speech for each proposal: noun, verb, adjective, or fixed-expression.",
+        "Return target_form='headword' for nouns and dictionary-form verbs/adjectives.",
+        "Use target_form='fixed-expression' only for expressions that a beginner should memorize as one chunk.",
         f"Target coverage-gap topics: {', '.join(target_gap_topics)}",
         (
             f"Latest lesson context: {lesson_context_summary}"

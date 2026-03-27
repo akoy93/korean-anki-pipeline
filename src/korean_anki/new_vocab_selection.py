@@ -36,6 +36,31 @@ A1_TOPIC_TITLES = {
     "weather": "Weather",
 }
 
+_SURFACE_FORM_SUFFIXES = (
+    "했습니다",
+    "합니다",
+    "였어요",
+    "했어요",
+    "았어요",
+    "었어요",
+    "이에요",
+    "예요",
+    "에요",
+    "해요",
+    "아요",
+    "어요",
+    "여요",
+    "네요",
+    "군요",
+    "나요",
+    "세요",
+    "니다",
+    "했다",
+    "했어",
+    "았다",
+    "었다",
+    "요",
+)
 
 @dataclass(frozen=True)
 class LessonContext:
@@ -134,6 +159,43 @@ def proposal_note_key(proposal: NewVocabProposal) -> str:
     return f"vocab:{normalize_text(proposal.korean)}:{normalize_text(proposal.english)}"
 
 
+def _collapsed_korean(value: str) -> str:
+    return normalize_text(value).replace(" ", "").rstrip(".?!")
+
+
+def _is_fixed_expression_target(proposal: NewVocabProposal) -> bool:
+    return (
+        proposal.part_of_speech == "fixed-expression"
+        and proposal.target_form == "fixed-expression"
+    )
+
+
+def _looks_like_conjugated_surface_form(korean: str) -> bool:
+    collapsed = _collapsed_korean(korean)
+    if not collapsed or collapsed.endswith("다"):
+        return False
+    return any(collapsed.endswith(suffix) for suffix in _SURFACE_FORM_SUFFIXES)
+
+
+def _is_beginner_headword_target(proposal: NewVocabProposal) -> bool:
+    collapsed = _collapsed_korean(proposal.korean)
+    if not collapsed:
+        return False
+    if _is_fixed_expression_target(proposal):
+        return True
+    if proposal.target_form != "headword":
+        return False
+    if proposal.part_of_speech in {"verb", "adjective"}:
+        return collapsed.endswith("다")
+    if proposal.part_of_speech != "noun":
+        return False
+    if " " in normalize_text(proposal.korean):
+        return False
+    if _looks_like_conjugated_surface_form(proposal.korean):
+        return False
+    return True
+
+
 def find_exact_duplicate(proposal: NewVocabProposal, prior_notes: list[PriorNote]) -> PriorNote | None:
     note_key = proposal_note_key(proposal)
     for prior_note in prior_notes:
@@ -158,11 +220,18 @@ def _score_proposal(
     *,
     target_topics: list[str],
     near_duplicate: bool,
-) -> tuple[int, int, int, str]:
+) -> tuple[int, int, int, int, str]:
     topic_rank = target_topics.index(proposal.topic_tag) if proposal.topic_tag in target_topics else len(target_topics)
     adjacency_rank = 0 if proposal.adjacency_kind == "coverage-gap" else 1
     near_penalty = 1 if near_duplicate else 0
-    return (near_penalty, adjacency_rank, topic_rank, normalize_text(proposal.korean))
+    fixed_expression_penalty = 1 if _is_fixed_expression_target(proposal) else 0
+    return (
+        near_penalty,
+        fixed_expression_penalty,
+        adjacency_rank,
+        topic_rank,
+        normalize_text(proposal.korean),
+    )
 
 
 def select_new_vocab_proposals(
@@ -193,6 +262,9 @@ def select_new_vocab_proposals(
     seen_keys: set[str] = set()
 
     for proposal in proposals:
+        if not _is_beginner_headword_target(proposal):
+            continue
+
         note_key = proposal_note_key(proposal)
         if note_key in seen_keys:
             continue

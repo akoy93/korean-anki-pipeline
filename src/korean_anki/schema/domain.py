@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import date
-from typing import Annotated
+from typing import Annotated, Literal
 
 from pydantic import Field, HttpUrl
 
@@ -111,10 +111,16 @@ class ImageGenerationPlan(StrictModel):
     decisions: Annotated[list[ImageGenerationDecision], Field(min_length=1)]
 
 
+NewVocabPartOfSpeech = Literal["noun", "verb", "adjective", "fixed-expression"]
+NewVocabTargetForm = Literal["headword", "fixed-expression"]
+
+
 class NewVocabProposal(StrictModel):
     candidate_id: str
     korean: str
     english: str
+    part_of_speech: NewVocabPartOfSpeech
+    target_form: NewVocabTargetForm
     topic_tag: str
     example_ko: str
     example_en: str
@@ -163,8 +169,10 @@ __all__ = [
     "LessonItem",
     "LessonMetadata",
     "MediaAsset",
+    "NewVocabPartOfSpeech",
     "NewVocabProposal",
     "NewVocabProposalBatch",
+    "NewVocabTargetForm",
     "PriorNote",
     "PronunciationBatch",
     "PronunciationSuggestion",

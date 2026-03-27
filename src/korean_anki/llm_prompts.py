@@ -50,6 +50,14 @@ Rules:
 - Propose A1-level, high-utility words only.
 - Keep one atomic meaning per item.
 - Prefer everyday words a beginner can use immediately.
+- Prefer nouns plus dictionary-form verbs and descriptive adjectives.
+- If the meaning is verbal or adjectival, the Korean field must use the dictionary form ending in 다.
+- Do not output conjugated surface forms like 먹어요, 바빠요, 했어요, 예요, or 이에요 as the main vocab target.
+- Only use a non-dictionary surface form when it is a true fixed beginner expression such as a greeting or politeness formula learned as one chunk.
+- Classify every proposal with part_of_speech using exactly one of: noun, verb, adjective, fixed-expression.
+- Classify every proposal with target_form using exactly one of: headword, fixed-expression.
+- Use target_form='headword' for nouns and dictionary-form verbs/adjectives.
+- Use part_of_speech='fixed-expression' and target_form='fixed-expression' only for chunked expressions that should be learned as-is.
 - Do not repeat excluded words or near-repeats if avoidable.
 - For every item, provide a simple example sentence and an image prompt.
 - The image prompt must describe a polished, engaging illustration for an adult learner, with no text in the image.

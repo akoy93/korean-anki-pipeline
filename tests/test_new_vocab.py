@@ -26,11 +26,25 @@ def _proposal(
     english: str,
     topic_tag: str,
     adjacency_kind: str,
+    part_of_speech: str | None = None,
+    target_form: str | None = None,
 ) -> NewVocabProposal:
+    resolved_part_of_speech = (
+        part_of_speech
+        if part_of_speech is not None
+        else ("verb" if korean.endswith("다") else "noun")
+    )
+    resolved_target_form = (
+        target_form
+        if target_form is not None
+        else ("fixed-expression" if resolved_part_of_speech == "fixed-expression" else "headword")
+    )
     return NewVocabProposal(
         candidate_id=f"cand-{index:03d}",
         korean=korean,
         english=english,
+        part_of_speech=resolved_part_of_speech,  # type: ignore[arg-type]
+        target_form=resolved_target_form,  # type: ignore[arg-type]
         topic_tag=topic_tag,
         example_ko=f"{korean} 있어요.",
         example_en=f"There is {english}.",
@@ -179,6 +193,68 @@ class NewVocabTests(unittest.TestCase):
         self.assertTrue(all("coverage-gap" in item.tags for item in document.items))
         self.assertTrue(all(item.lane == "new-vocab" for item in document.items))
         self.assertTrue(all(item.image_prompt is not None for item in document.items))
+
+    def test_select_new_vocab_filters_surface_forms_but_keeps_fixed_expressions(self) -> None:
+        state = StudyState()
+        proposals = [
+            _proposal(
+                1,
+                korean="먹어요",
+                english="eat",
+                topic_tag="food",
+                adjacency_kind="coverage-gap",
+                part_of_speech="verb",
+                target_form="headword",
+            ),
+            _proposal(
+                2,
+                korean="바빠요",
+                english="busy",
+                topic_tag="daily-routines",
+                adjacency_kind="coverage-gap",
+                part_of_speech="adjective",
+                target_form="headword",
+            ),
+            _proposal(
+                3,
+                korean="먹다",
+                english="eat",
+                topic_tag="food",
+                adjacency_kind="coverage-gap",
+                part_of_speech="verb",
+                target_form="headword",
+            ),
+            _proposal(4, korean="버스", english="bus", topic_tag="places", adjacency_kind="coverage-gap"),
+            _proposal(5, korean="학교", english="school", topic_tag="places", adjacency_kind="coverage-gap"),
+            _proposal(
+                6,
+                korean="안녕하세요",
+                english="hello",
+                topic_tag="greetings",
+                adjacency_kind="coverage-gap",
+                part_of_speech="fixed-expression",
+                target_form="fixed-expression",
+            ),
+            _proposal(
+                7,
+                korean="안녕히 가세요",
+                english="goodbye",
+                topic_tag="greetings",
+                adjacency_kind="coverage-gap",
+                part_of_speech="fixed-expression",
+                target_form="fixed-expression",
+            ),
+        ]
+
+        selected = select_new_vocab_proposals(proposals, state, count=5, gap_ratio=1.0, lesson_context=None)
+        selected_korean = [proposal.korean for proposal, _near_duplicate in selected]
+
+        self.assertNotIn("먹어요", selected_korean)
+        self.assertNotIn("바빠요", selected_korean)
+        self.assertIn("먹다", selected_korean)
+        self.assertIn("버스", selected_korean)
+        self.assertIn("안녕하세요", selected_korean)
+        self.assertIn("안녕히 가세요", selected_korean)
 
     def test_build_new_vocab_from_state_uses_theme_title_and_single_topic_prompt(self) -> None:
         state = StudyState()
