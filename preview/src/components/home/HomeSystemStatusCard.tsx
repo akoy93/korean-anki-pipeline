@@ -3,7 +3,6 @@ import {
   AlertTriangle,
   CheckCircle2,
   Loader2,
-  Power,
   ShieldCheck,
 } from "lucide-react";
 
@@ -25,7 +24,7 @@ import { DANGER_PANEL_CLASS } from "@/lib/uiTokens";
 import { openAnki } from "@/lib/api";
 import type { DashboardResponse } from "@/lib/schema";
 
-const SERVICE_OPEN_BUTTON_CLASS = "w-28 shrink-0 justify-center";
+const SERVICE_OPEN_BUTTON_CLASS = "shrink-0 justify-center";
 
 type HomeSystemStatusCardProps = {
   dashboard: DashboardResponse | null;
@@ -120,15 +119,11 @@ export function HomeSystemStatusCard({
                 size="sm"
                 variant="outline"
                 aria-label="Open Anki"
-                className={`${SERVICE_OPEN_BUTTON_CLASS} gap-2`}
+                className={SERVICE_OPEN_BUTTON_CLASS}
                 onClick={() => void submitOpenAnki()}
                 disabled={openingAnki}
               >
-                {openingAnki ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <Power className="h-4 w-4" />
-                )}
+                {openingAnki ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
                 Open
               </Button>
             ),
