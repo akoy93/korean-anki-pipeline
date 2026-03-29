@@ -1,0 +1,1636 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "new-vocab-2026-03-26-191441",
+    "title": "Core Korean: Daily Routines and Food",
+    "topic": "New Vocab",
+    "lesson_date": "2026-03-26",
+    "source_description": "Supplemental A1 vocab selected from coverage gaps",
+    "target_deck": "Korean::New Vocab",
+    "tags": [
+      "new-vocab"
+    ]
+  },
+  "notes": [
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-001",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "부모님",
+        "english": "parents",
+        "pronunciation": "bumonim",
+        "examples": [
+          {
+            "korean": "부모님은 서울에 사세요.",
+            "english": "My parents live in Seoul."
+          }
+        ],
+        "notes": "Coverage gap: family. High-utility family noun for introducing and talking about household members.",
+        "tags": [
+          "new-vocab",
+          "family",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": "Polished illustration of Korean parents standing together in a bright modern living room, natural family portrait style, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-001.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-001.png",
+          "prompt": "Polished illustration of Korean parents standing together in a bright modern living room, natural family portrait style, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-001-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-001",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>부모님</div>",
+          "back_html": "<div class='answer answer-en'>parents</div><div class='answer answer-ko'>부모님</div><div class='pronunciation'>bumonim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>부모님은 서울에 사세요.</div><div class='example-en'>My parents live in Seoul.</div></li></ul></section><div class='notes'>Coverage gap: family. High-utility family noun for introducing and talking about household members.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-001.png' alt='parents' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-001-production",
+          "item_id": "new-vocab-2026-03-26-191441-001",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>parents</div>",
+          "back_html": "<div class='answer answer-ko'>부모님</div><div class='answer answer-en'>parents</div><div class='pronunciation'>bumonim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>부모님은 서울에 사세요.</div><div class='example-en'>My parents live in Seoul.</div></li></ul></section><div class='notes'>Coverage gap: family. High-utility family noun for introducing and talking about household members.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-001.png' alt='parents' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-001-listening",
+          "item_id": "new-vocab-2026-03-26-191441-001",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-001.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>부모님</div><div class='answer answer-en'>parents</div><div class='pronunciation'>bumonim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>부모님은 서울에 사세요.</div><div class='example-en'>My parents live in Seoul.</div></li></ul></section><div class='notes'>Coverage gap: family. High-utility family noun for introducing and talking about household members.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-001.png' alt='parents' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-001.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:부모님:parents",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-002",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "아빠",
+        "english": "father",
+        "pronunciation": "appa",
+        "examples": [
+          {
+            "korean": "아빠는 아침에 운동해요.",
+            "english": "Dad exercises in the morning."
+          }
+        ],
+        "notes": "Coverage gap: family. Core everyday family word with very high beginner usefulness.",
+        "tags": [
+          "new-vocab",
+          "family",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": "Polished illustration of a Korean father stretching in a park in the morning, contemporary casual clothing, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-002.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-002.png",
+          "prompt": "Polished illustration of a Korean father stretching in a park in the morning, contemporary casual clothing, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-002-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-002",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>아빠</div>",
+          "back_html": "<div class='answer answer-en'>father</div><div class='answer answer-ko'>아빠</div><div class='pronunciation'>appa</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아빠는 아침에 운동해요.</div><div class='example-en'>Dad exercises in the morning.</div></li></ul></section><div class='notes'>Coverage gap: family. Core everyday family word with very high beginner usefulness.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-002.png' alt='father' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-002-production",
+          "item_id": "new-vocab-2026-03-26-191441-002",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>father</div>",
+          "back_html": "<div class='answer answer-ko'>아빠</div><div class='answer answer-en'>father</div><div class='pronunciation'>appa</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아빠는 아침에 운동해요.</div><div class='example-en'>Dad exercises in the morning.</div></li></ul></section><div class='notes'>Coverage gap: family. Core everyday family word with very high beginner usefulness.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-002.png' alt='father' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-002-listening",
+          "item_id": "new-vocab-2026-03-26-191441-002",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-002.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>아빠</div><div class='answer answer-en'>father</div><div class='pronunciation'>appa</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아빠는 아침에 운동해요.</div><div class='example-en'>Dad exercises in the morning.</div></li></ul></section><div class='notes'>Coverage gap: family. Core everyday family word with very high beginner usefulness.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-002.png' alt='father' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-002.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:아빠:father",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-003",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "아이",
+        "english": "child",
+        "pronunciation": "ai",
+        "examples": [
+          {
+            "korean": "아이가 지금 자요.",
+            "english": "The child is sleeping now."
+          }
+        ],
+        "notes": "Coverage gap: family. Broad, high-frequency family noun used across many everyday situations.",
+        "tags": [
+          "new-vocab",
+          "family",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": "Polished illustration of a Korean child asleep under a blanket in a modern bedroom, gentle peaceful mood, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-003.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-003.png",
+          "prompt": "Polished illustration of a Korean child asleep under a blanket in a modern bedroom, gentle peaceful mood, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-003-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-003",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>아이</div>",
+          "back_html": "<div class='answer answer-en'>child</div><div class='answer answer-ko'>아이</div><div class='pronunciation'>ai</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아이가 지금 자요.</div><div class='example-en'>The child is sleeping now.</div></li></ul></section><div class='notes'>Coverage gap: family. Broad, high-frequency family noun used across many everyday situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-003.png' alt='child' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-003-production",
+          "item_id": "new-vocab-2026-03-26-191441-003",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>child</div>",
+          "back_html": "<div class='answer answer-ko'>아이</div><div class='answer answer-en'>child</div><div class='pronunciation'>ai</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아이가 지금 자요.</div><div class='example-en'>The child is sleeping now.</div></li></ul></section><div class='notes'>Coverage gap: family. Broad, high-frequency family noun used across many everyday situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-003.png' alt='child' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-003-listening",
+          "item_id": "new-vocab-2026-03-26-191441-003",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-003.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>아이</div><div class='answer answer-en'>child</div><div class='pronunciation'>ai</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아이가 지금 자요.</div><div class='example-en'>The child is sleeping now.</div></li></ul></section><div class='notes'>Coverage gap: family. Broad, high-frequency family noun used across many everyday situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-003.png' alt='child' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-003.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:아이:child",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-004",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "엄마",
+        "english": "mother",
+        "pronunciation": "eomma",
+        "examples": [
+          {
+            "korean": "엄마가 김밥을 만들어요.",
+            "english": "Mom makes gimbap."
+          }
+        ],
+        "notes": "Coverage gap: family. Core family word used very early in real conversation.",
+        "tags": [
+          "new-vocab",
+          "family",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": "Polished illustration of a Korean mother preparing food in a modern home kitchen, warm family atmosphere, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-004.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-004.png",
+          "prompt": "Polished illustration of a Korean mother preparing food in a modern home kitchen, warm family atmosphere, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-004-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-004",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>엄마</div>",
+          "back_html": "<div class='answer answer-en'>mother</div><div class='answer answer-ko'>엄마</div><div class='pronunciation'>eomma</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>엄마가 김밥을 만들어요.</div><div class='example-en'>Mom makes gimbap.</div></li></ul></section><div class='notes'>Coverage gap: family. Core family word used very early in real conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-004.png' alt='mother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-004-production",
+          "item_id": "new-vocab-2026-03-26-191441-004",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>mother</div>",
+          "back_html": "<div class='answer answer-ko'>엄마</div><div class='answer answer-en'>mother</div><div class='pronunciation'>eomma</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>엄마가 김밥을 만들어요.</div><div class='example-en'>Mom makes gimbap.</div></li></ul></section><div class='notes'>Coverage gap: family. Core family word used very early in real conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-004.png' alt='mother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-004-listening",
+          "item_id": "new-vocab-2026-03-26-191441-004",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-004.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>엄마</div><div class='answer answer-en'>mother</div><div class='pronunciation'>eomma</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>엄마가 김밥을 만들어요.</div><div class='example-en'>Mom makes gimbap.</div></li></ul></section><div class='notes'>Coverage gap: family. Core family word used very early in real conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-004.png' alt='mother' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-004.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:엄마:mother",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-005",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "계란",
+        "english": "egg",
+        "pronunciation": "gyeran",
+        "examples": [
+          {
+            "korean": "계란 두 개 주세요.",
+            "english": "Two eggs, please."
+          }
+        ],
+        "notes": "Coverage gap: food. Basic food noun with high usefulness in shopping and meals.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished illustration of fresh eggs in a simple kitchen bowl on a modern Korean countertop, clean realistic style, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-005.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-005.png",
+          "prompt": "Polished illustration of fresh eggs in a simple kitchen bowl on a modern Korean countertop, clean realistic style, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-005-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-005",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>계란</div>",
+          "back_html": "<div class='answer answer-en'>egg</div><div class='answer answer-ko'>계란</div><div class='pronunciation'>gyeran</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>계란 두 개 주세요.</div><div class='example-en'>Two eggs, please.</div></li></ul></section><div class='notes'>Coverage gap: food. Basic food noun with high usefulness in shopping and meals.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-005.png' alt='egg' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-005-production",
+          "item_id": "new-vocab-2026-03-26-191441-005",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>egg</div>",
+          "back_html": "<div class='answer answer-ko'>계란</div><div class='answer answer-en'>egg</div><div class='pronunciation'>gyeran</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>계란 두 개 주세요.</div><div class='example-en'>Two eggs, please.</div></li></ul></section><div class='notes'>Coverage gap: food. Basic food noun with high usefulness in shopping and meals.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-005.png' alt='egg' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-005-listening",
+          "item_id": "new-vocab-2026-03-26-191441-005",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-005.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>계란</div><div class='answer answer-en'>egg</div><div class='pronunciation'>gyeran</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>계란 두 개 주세요.</div><div class='example-en'>Two eggs, please.</div></li></ul></section><div class='notes'>Coverage gap: food. Basic food noun with high usefulness in shopping and meals.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-005.png' alt='egg' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-005.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:계란:egg",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-006",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "김밥",
+        "english": "gimbap",
+        "pronunciation": "gimbap",
+        "examples": [
+          {
+            "korean": "점심에 김밥을 먹어요.",
+            "english": "I eat gimbap for lunch."
+          }
+        ],
+        "notes": "Coverage gap: food. Common practical food word often encountered by beginners in Korea.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished illustration of sliced gimbap neatly arranged on a plate in a bright home kitchen, detailed and appetizing, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-006.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-006.png",
+          "prompt": "Polished illustration of sliced gimbap neatly arranged on a plate in a bright home kitchen, detailed and appetizing, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-006-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-006",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>김밥</div>",
+          "back_html": "<div class='answer answer-en'>gimbap</div><div class='answer answer-ko'>김밥</div><div class='pronunciation'>gimbap</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>점심에 김밥을 먹어요.</div><div class='example-en'>I eat gimbap for lunch.</div></li></ul></section><div class='notes'>Coverage gap: food. Common practical food word often encountered by beginners in Korea.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-006.png' alt='gimbap' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-006-production",
+          "item_id": "new-vocab-2026-03-26-191441-006",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>gimbap</div>",
+          "back_html": "<div class='answer answer-ko'>김밥</div><div class='answer answer-en'>gimbap</div><div class='pronunciation'>gimbap</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>점심에 김밥을 먹어요.</div><div class='example-en'>I eat gimbap for lunch.</div></li></ul></section><div class='notes'>Coverage gap: food. Common practical food word often encountered by beginners in Korea.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-006.png' alt='gimbap' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-006-listening",
+          "item_id": "new-vocab-2026-03-26-191441-006",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-006.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>김밥</div><div class='answer answer-en'>gimbap</div><div class='pronunciation'>gimbap</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>점심에 김밥을 먹어요.</div><div class='example-en'>I eat gimbap for lunch.</div></li></ul></section><div class='notes'>Coverage gap: food. Common practical food word often encountered by beginners in Korea.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-006.png' alt='gimbap' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-006.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:김밥:gimbap",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-007",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "김치",
+        "english": "kimchi",
+        "pronunciation": "gimchi",
+        "examples": [
+          {
+            "korean": "김치가 맛있어요.",
+            "english": "The kimchi is delicious."
+          }
+        ],
+        "notes": "Coverage gap: food. Extremely common food word in Korean daily life and menus.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished illustration of a bowl of bright red kimchi on a Korean dining table with side dishes, appetizing detail, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-007.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-007.png",
+          "prompt": "Polished illustration of a bowl of bright red kimchi on a Korean dining table with side dishes, appetizing detail, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-007-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-007",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>김치</div>",
+          "back_html": "<div class='answer answer-en'>kimchi</div><div class='answer answer-ko'>김치</div><div class='pronunciation'>gimchi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>김치가 맛있어요.</div><div class='example-en'>The kimchi is delicious.</div></li></ul></section><div class='notes'>Coverage gap: food. Extremely common food word in Korean daily life and menus.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-007.png' alt='kimchi' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-007-production",
+          "item_id": "new-vocab-2026-03-26-191441-007",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>kimchi</div>",
+          "back_html": "<div class='answer answer-ko'>김치</div><div class='answer answer-en'>kimchi</div><div class='pronunciation'>gimchi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>김치가 맛있어요.</div><div class='example-en'>The kimchi is delicious.</div></li></ul></section><div class='notes'>Coverage gap: food. Extremely common food word in Korean daily life and menus.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-007.png' alt='kimchi' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-007-listening",
+          "item_id": "new-vocab-2026-03-26-191441-007",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-007.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>김치</div><div class='answer answer-en'>kimchi</div><div class='pronunciation'>gimchi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>김치가 맛있어요.</div><div class='example-en'>The kimchi is delicious.</div></li></ul></section><div class='notes'>Coverage gap: food. Extremely common food word in Korean daily life and menus.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-007.png' alt='kimchi' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-007.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:김치:kimchi",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-008",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "커피",
+        "english": "coffee",
+        "pronunciation": "keopi",
+        "examples": [
+          {
+            "korean": "아침에 커피를 마셔요.",
+            "english": "I drink coffee in the morning."
+          }
+        ],
+        "notes": "Coverage gap: food. Very high-frequency beverage word in everyday Korean life.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished illustration of a cup of coffee in a modern Korean cafe setting, soft warm light, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-008.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-008.png",
+          "prompt": "Polished illustration of a cup of coffee in a modern Korean cafe setting, soft warm light, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-008-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-008",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>커피</div>",
+          "back_html": "<div class='answer answer-en'>coffee</div><div class='answer answer-ko'>커피</div><div class='pronunciation'>keopi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아침에 커피를 마셔요.</div><div class='example-en'>I drink coffee in the morning.</div></li></ul></section><div class='notes'>Coverage gap: food. Very high-frequency beverage word in everyday Korean life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-008.png' alt='coffee' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-008-production",
+          "item_id": "new-vocab-2026-03-26-191441-008",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>coffee</div>",
+          "back_html": "<div class='answer answer-ko'>커피</div><div class='answer answer-en'>coffee</div><div class='pronunciation'>keopi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아침에 커피를 마셔요.</div><div class='example-en'>I drink coffee in the morning.</div></li></ul></section><div class='notes'>Coverage gap: food. Very high-frequency beverage word in everyday Korean life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-008.png' alt='coffee' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-008-listening",
+          "item_id": "new-vocab-2026-03-26-191441-008",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-008.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>커피</div><div class='answer answer-en'>coffee</div><div class='pronunciation'>keopi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아침에 커피를 마셔요.</div><div class='example-en'>I drink coffee in the morning.</div></li></ul></section><div class='notes'>Coverage gap: food. Very high-frequency beverage word in everyday Korean life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-008.png' alt='coffee' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-008.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:커피:coffee",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-009",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "날씨",
+        "english": "weather",
+        "pronunciation": "nalssi",
+        "examples": [
+          {
+            "korean": "오늘 날씨가 좋아요.",
+            "english": "The weather is good today."
+          }
+        ],
+        "notes": "Coverage gap: weather. Core topic word for small talk and daily conversation in Korean.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished illustration of a contemporary Seoul street under pleasant weather with blue sky and people walking, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-009.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-009.png",
+          "prompt": "Polished illustration of a contemporary Seoul street under pleasant weather with blue sky and people walking, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-009-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-009",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>날씨</div>",
+          "back_html": "<div class='answer answer-en'>weather</div><div class='answer answer-ko'>날씨</div><div class='pronunciation'>nalssi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘 날씨가 좋아요.</div><div class='example-en'>The weather is good today.</div></li></ul></section><div class='notes'>Coverage gap: weather. Core topic word for small talk and daily conversation in Korean.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-009.png' alt='weather' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-009-production",
+          "item_id": "new-vocab-2026-03-26-191441-009",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>weather</div>",
+          "back_html": "<div class='answer answer-ko'>날씨</div><div class='answer answer-en'>weather</div><div class='pronunciation'>nalssi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘 날씨가 좋아요.</div><div class='example-en'>The weather is good today.</div></li></ul></section><div class='notes'>Coverage gap: weather. Core topic word for small talk and daily conversation in Korean.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-009.png' alt='weather' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-009-listening",
+          "item_id": "new-vocab-2026-03-26-191441-009",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-009.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>날씨</div><div class='answer answer-en'>weather</div><div class='pronunciation'>nalssi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘 날씨가 좋아요.</div><div class='example-en'>The weather is good today.</div></li></ul></section><div class='notes'>Coverage gap: weather. Core topic word for small talk and daily conversation in Korean.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-009.png' alt='weather' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-009.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:날씨:weather",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-010",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "눈",
+        "english": "snow",
+        "pronunciation": "nun",
+        "examples": [
+          {
+            "korean": "겨울에 눈이 와요.",
+            "english": "It snows in winter."
+          }
+        ],
+        "notes": "Coverage gap: weather. Basic weather noun and common beginner seasonal vocabulary.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished illustration of fresh snow covering a quiet Korean neighborhood street in winter, soft muted colors, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-010.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-010.png",
+          "prompt": "Polished illustration of fresh snow covering a quiet Korean neighborhood street in winter, soft muted colors, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-010-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-010",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>눈</div>",
+          "back_html": "<div class='answer answer-en'>snow</div><div class='answer answer-ko'>눈</div><div class='pronunciation'>nun</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>겨울에 눈이 와요.</div><div class='example-en'>It snows in winter.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic weather noun and common beginner seasonal vocabulary.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-010.png' alt='snow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-010-production",
+          "item_id": "new-vocab-2026-03-26-191441-010",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>snow</div>",
+          "back_html": "<div class='answer answer-ko'>눈</div><div class='answer answer-en'>snow</div><div class='pronunciation'>nun</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>겨울에 눈이 와요.</div><div class='example-en'>It snows in winter.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic weather noun and common beginner seasonal vocabulary.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-010.png' alt='snow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-010-listening",
+          "item_id": "new-vocab-2026-03-26-191441-010",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-010.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>눈</div><div class='answer answer-en'>snow</div><div class='pronunciation'>nun</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>겨울에 눈이 와요.</div><div class='example-en'>It snows in winter.</div></li></ul></section><div class='notes'>Coverage gap: weather. Basic weather noun and common beginner seasonal vocabulary.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-010.png' alt='snow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-010.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:눈:snow",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-011",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "바람",
+        "english": "wind",
+        "pronunciation": "baram",
+        "examples": [
+          {
+            "korean": "바람이 많이 불어요.",
+            "english": "The wind blows a lot."
+          }
+        ],
+        "notes": "Coverage gap: weather. Frequent weather noun useful for describing daily conditions.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished illustration of strong wind moving tree branches and coats on a modern Korean street, dynamic scene, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-011.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-011.png",
+          "prompt": "Polished illustration of strong wind moving tree branches and coats on a modern Korean street, dynamic scene, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-011-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-011",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>바람</div>",
+          "back_html": "<div class='answer answer-en'>wind</div><div class='answer answer-ko'>바람</div><div class='pronunciation'>baram</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>바람이 많이 불어요.</div><div class='example-en'>The wind blows a lot.</div></li></ul></section><div class='notes'>Coverage gap: weather. Frequent weather noun useful for describing daily conditions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-011.png' alt='wind' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-011-production",
+          "item_id": "new-vocab-2026-03-26-191441-011",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>wind</div>",
+          "back_html": "<div class='answer answer-ko'>바람</div><div class='answer answer-en'>wind</div><div class='pronunciation'>baram</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>바람이 많이 불어요.</div><div class='example-en'>The wind blows a lot.</div></li></ul></section><div class='notes'>Coverage gap: weather. Frequent weather noun useful for describing daily conditions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-011.png' alt='wind' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-011-listening",
+          "item_id": "new-vocab-2026-03-26-191441-011",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-011.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>바람</div><div class='answer answer-en'>wind</div><div class='pronunciation'>baram</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>바람이 많이 불어요.</div><div class='example-en'>The wind blows a lot.</div></li></ul></section><div class='notes'>Coverage gap: weather. Frequent weather noun useful for describing daily conditions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-011.png' alt='wind' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-011.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:바람:wind",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-012",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "비",
+        "english": "rain",
+        "pronunciation": "bi",
+        "examples": [
+          {
+            "korean": "비가 와요.",
+            "english": "It's raining."
+          }
+        ],
+        "notes": "Coverage gap: weather. Very common weather noun used in everyday planning and observation.",
+        "tags": [
+          "new-vocab",
+          "weather",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • weather",
+        "image_prompt": "Polished illustration of rain falling on a modern Korean city street with umbrellas and reflections, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-012.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-012.png",
+          "prompt": "Polished illustration of rain falling on a modern Korean city street with umbrellas and reflections, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-012-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-012",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>비</div>",
+          "back_html": "<div class='answer answer-en'>rain</div><div class='answer answer-ko'>비</div><div class='pronunciation'>bi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>비가 와요.</div><div class='example-en'>It&#x27;s raining.</div></li></ul></section><div class='notes'>Coverage gap: weather. Very common weather noun used in everyday planning and observation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-012.png' alt='rain' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-012-production",
+          "item_id": "new-vocab-2026-03-26-191441-012",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>rain</div>",
+          "back_html": "<div class='answer answer-ko'>비</div><div class='answer answer-en'>rain</div><div class='pronunciation'>bi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>비가 와요.</div><div class='example-en'>It&#x27;s raining.</div></li></ul></section><div class='notes'>Coverage gap: weather. Very common weather noun used in everyday planning and observation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-012.png' alt='rain' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-012-listening",
+          "item_id": "new-vocab-2026-03-26-191441-012",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-012.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>비</div><div class='answer answer-en'>rain</div><div class='pronunciation'>bi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>비가 와요.</div><div class='example-en'>It&#x27;s raining.</div></li></ul></section><div class='notes'>Coverage gap: weather. Very common weather noun used in everyday planning and observation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • weather</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-012.png' alt='rain' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-012.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:비:rain",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-013",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "가다",
+        "english": "go",
+        "pronunciation": "gada",
+        "examples": [
+          {
+            "korean": "저는 회사에 가요.",
+            "english": "I go to the office."
+          }
+        ],
+        "notes": "Coverage gap: daily-routines. Essential beginner verb for movement and daily schedules.",
+        "tags": [
+          "new-vocab",
+          "daily-routines",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • daily-routines",
+        "image_prompt": "Polished illustration of a Korean adult leaving a modern apartment building in Seoul and heading out for the day, soft morning light, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-013.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-013.png",
+          "prompt": "Polished illustration of a Korean adult leaving a modern apartment building in Seoul and heading out for the day, soft morning light, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-013-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-013",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>가다</div>",
+          "back_html": "<div class='answer answer-en'>go</div><div class='answer answer-ko'>가다</div><div class='pronunciation'>gada</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 회사에 가요.</div><div class='example-en'>I go to the office.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Essential beginner verb for movement and daily schedules.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-013.png' alt='go' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-013-production",
+          "item_id": "new-vocab-2026-03-26-191441-013",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>go</div>",
+          "back_html": "<div class='answer answer-ko'>가다</div><div class='answer answer-en'>go</div><div class='pronunciation'>gada</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 회사에 가요.</div><div class='example-en'>I go to the office.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Essential beginner verb for movement and daily schedules.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-013.png' alt='go' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-013-listening",
+          "item_id": "new-vocab-2026-03-26-191441-013",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-013.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>가다</div><div class='answer answer-en'>go</div><div class='pronunciation'>gada</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 회사에 가요.</div><div class='example-en'>I go to the office.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Essential beginner verb for movement and daily schedules.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-013.png' alt='go' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-013.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:가다:go",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-014",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "공부하다",
+        "english": "study",
+        "pronunciation": "gongbuhada",
+        "examples": [
+          {
+            "korean": "저는 한국어를 공부해요.",
+            "english": "I study Korean."
+          }
+        ],
+        "notes": "Coverage gap: daily-routines. Very common beginner verb for school, self-introduction, and routines.",
+        "tags": [
+          "new-vocab",
+          "daily-routines",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • daily-routines",
+        "image_prompt": "Polished illustration of a Korean adult studying at a desk with notebooks in a modern apartment, focused atmosphere, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-014.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-014.png",
+          "prompt": "Polished illustration of a Korean adult studying at a desk with notebooks in a modern apartment, focused atmosphere, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-014-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-014",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>공부하다</div>",
+          "back_html": "<div class='answer answer-en'>study</div><div class='answer answer-ko'>공부하다</div><div class='pronunciation'>gongbuhada</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 한국어를 공부해요.</div><div class='example-en'>I study Korean.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Very common beginner verb for school, self-introduction, and routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-014.png' alt='study' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-014-production",
+          "item_id": "new-vocab-2026-03-26-191441-014",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>study</div>",
+          "back_html": "<div class='answer answer-ko'>공부하다</div><div class='answer answer-en'>study</div><div class='pronunciation'>gongbuhada</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 한국어를 공부해요.</div><div class='example-en'>I study Korean.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Very common beginner verb for school, self-introduction, and routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-014.png' alt='study' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-014-listening",
+          "item_id": "new-vocab-2026-03-26-191441-014",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-014.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>공부하다</div><div class='answer answer-en'>study</div><div class='pronunciation'>gongbuhada</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 한국어를 공부해요.</div><div class='example-en'>I study Korean.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Very common beginner verb for school, self-introduction, and routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-014.png' alt='study' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-014.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:공부하다:study",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-015",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "듣다",
+        "english": "listen",
+        "pronunciation": "deutda",
+        "examples": [
+          {
+            "korean": "저는 음악을 들어요.",
+            "english": "I listen to music."
+          }
+        ],
+        "notes": "Coverage gap: daily-routines. Basic perception verb used in many daily beginner contexts.",
+        "tags": [
+          "new-vocab",
+          "daily-routines",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • daily-routines",
+        "image_prompt": "Polished illustration of a Korean adult listening to music with earphones in a modern room, relaxed atmosphere, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-015.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-015.png",
+          "prompt": "Polished illustration of a Korean adult listening to music with earphones in a modern room, relaxed atmosphere, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-015-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-015",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>듣다</div>",
+          "back_html": "<div class='answer answer-en'>listen</div><div class='answer answer-ko'>듣다</div><div class='pronunciation'>deutda</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 음악을 들어요.</div><div class='example-en'>I listen to music.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Basic perception verb used in many daily beginner contexts.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-015.png' alt='listen' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-015-production",
+          "item_id": "new-vocab-2026-03-26-191441-015",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>listen</div>",
+          "back_html": "<div class='answer answer-ko'>듣다</div><div class='answer answer-en'>listen</div><div class='pronunciation'>deutda</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 음악을 들어요.</div><div class='example-en'>I listen to music.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Basic perception verb used in many daily beginner contexts.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-015.png' alt='listen' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-015-listening",
+          "item_id": "new-vocab-2026-03-26-191441-015",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-015.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>듣다</div><div class='answer answer-en'>listen</div><div class='pronunciation'>deutda</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 음악을 들어요.</div><div class='example-en'>I listen to music.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Basic perception verb used in many daily beginner contexts.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-015.png' alt='listen' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-015.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:듣다:listen",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-016",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "마시다",
+        "english": "drink",
+        "pronunciation": "masida",
+        "examples": [
+          {
+            "korean": "저는 커피를 마셔요.",
+            "english": "I drink coffee."
+          }
+        ],
+        "notes": "Coverage gap: daily-routines. Core everyday verb needed for food, cafes, and simple statements.",
+        "tags": [
+          "new-vocab",
+          "daily-routines",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • daily-routines",
+        "image_prompt": "Polished illustration of a Korean adult drinking coffee in a bright modern kitchen, clean contemporary style, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-016.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-016.png",
+          "prompt": "Polished illustration of a Korean adult drinking coffee in a bright modern kitchen, clean contemporary style, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-016-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-016",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>마시다</div>",
+          "back_html": "<div class='answer answer-en'>drink</div><div class='answer answer-ko'>마시다</div><div class='pronunciation'>masida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 커피를 마셔요.</div><div class='example-en'>I drink coffee.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Core everyday verb needed for food, cafes, and simple statements.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-016.png' alt='drink' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-016-production",
+          "item_id": "new-vocab-2026-03-26-191441-016",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>drink</div>",
+          "back_html": "<div class='answer answer-ko'>마시다</div><div class='answer answer-en'>drink</div><div class='pronunciation'>masida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 커피를 마셔요.</div><div class='example-en'>I drink coffee.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Core everyday verb needed for food, cafes, and simple statements.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-016.png' alt='drink' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-016-listening",
+          "item_id": "new-vocab-2026-03-26-191441-016",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-016.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>마시다</div><div class='answer answer-en'>drink</div><div class='pronunciation'>masida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 커피를 마셔요.</div><div class='example-en'>I drink coffee.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Core everyday verb needed for food, cafes, and simple statements.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-016.png' alt='drink' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-016.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:마시다:drink",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-017",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "만나다",
+        "english": "meet",
+        "pronunciation": "mannada",
+        "examples": [
+          {
+            "korean": "친구를 카페에서 만나요.",
+            "english": "I meet a friend at a cafe."
+          }
+        ],
+        "notes": "Coverage gap: daily-routines. Core social verb for making plans and talking about people.",
+        "tags": [
+          "new-vocab",
+          "daily-routines",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • daily-routines",
+        "image_prompt": "Polished illustration of two Korean friends meeting outside a modern cafe in Seoul, friendly everyday mood, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-017.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-017.png",
+          "prompt": "Polished illustration of two Korean friends meeting outside a modern cafe in Seoul, friendly everyday mood, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-017-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-017",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>만나다</div>",
+          "back_html": "<div class='answer answer-en'>meet</div><div class='answer answer-ko'>만나다</div><div class='pronunciation'>mannada</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>친구를 카페에서 만나요.</div><div class='example-en'>I meet a friend at a cafe.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Core social verb for making plans and talking about people.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-017.png' alt='meet' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-017-production",
+          "item_id": "new-vocab-2026-03-26-191441-017",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>meet</div>",
+          "back_html": "<div class='answer answer-ko'>만나다</div><div class='answer answer-en'>meet</div><div class='pronunciation'>mannada</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>친구를 카페에서 만나요.</div><div class='example-en'>I meet a friend at a cafe.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Core social verb for making plans and talking about people.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-017.png' alt='meet' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-017-listening",
+          "item_id": "new-vocab-2026-03-26-191441-017",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-017.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>만나다</div><div class='answer answer-en'>meet</div><div class='pronunciation'>mannada</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>친구를 카페에서 만나요.</div><div class='example-en'>I meet a friend at a cafe.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Core social verb for making plans and talking about people.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-017.png' alt='meet' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-017.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:만나다:meet",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-018",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "먹다",
+        "english": "eat",
+        "pronunciation": "meokda",
+        "examples": [
+          {
+            "korean": "저는 김밥을 먹어요.",
+            "english": "I eat gimbap."
+          }
+        ],
+        "notes": "Coverage gap: daily-routines. Foundational action verb for food, routines, and survival conversation.",
+        "tags": [
+          "new-vocab",
+          "daily-routines",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • daily-routines",
+        "image_prompt": "Polished illustration of a Korean adult eating gimbap at a small home table in a contemporary apartment kitchen, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-018.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-018.png",
+          "prompt": "Polished illustration of a Korean adult eating gimbap at a small home table in a contemporary apartment kitchen, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-018-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-018",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>먹다</div>",
+          "back_html": "<div class='answer answer-en'>eat</div><div class='answer answer-ko'>먹다</div><div class='pronunciation'>meokda</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 김밥을 먹어요.</div><div class='example-en'>I eat gimbap.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Foundational action verb for food, routines, and survival conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-018.png' alt='eat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-018-production",
+          "item_id": "new-vocab-2026-03-26-191441-018",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>eat</div>",
+          "back_html": "<div class='answer answer-ko'>먹다</div><div class='answer answer-en'>eat</div><div class='pronunciation'>meokda</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 김밥을 먹어요.</div><div class='example-en'>I eat gimbap.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Foundational action verb for food, routines, and survival conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-018.png' alt='eat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-018-listening",
+          "item_id": "new-vocab-2026-03-26-191441-018",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-018.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>먹다</div><div class='answer answer-en'>eat</div><div class='pronunciation'>meokda</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 김밥을 먹어요.</div><div class='example-en'>I eat gimbap.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Foundational action verb for food, routines, and survival conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-018.png' alt='eat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-018.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:먹다:eat",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-019",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "보다",
+        "english": "watch",
+        "pronunciation": "boda",
+        "examples": [
+          {
+            "korean": "저는 밤에 영화를 봐요.",
+            "english": "I watch a movie at night."
+          }
+        ],
+        "notes": "Coverage gap: daily-routines. Very frequent verb for media, activities, and simple conversation.",
+        "tags": [
+          "new-vocab",
+          "daily-routines",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • daily-routines",
+        "image_prompt": "Polished illustration of a Korean adult watching a movie at home on a sofa in a contemporary apartment, evening light, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-019.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-019.png",
+          "prompt": "Polished illustration of a Korean adult watching a movie at home on a sofa in a contemporary apartment, evening light, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-019-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-019",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>보다</div>",
+          "back_html": "<div class='answer answer-en'>watch</div><div class='answer answer-ko'>보다</div><div class='pronunciation'>boda</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 밤에 영화를 봐요.</div><div class='example-en'>I watch a movie at night.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Very frequent verb for media, activities, and simple conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-019.png' alt='watch' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-019-production",
+          "item_id": "new-vocab-2026-03-26-191441-019",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>watch</div>",
+          "back_html": "<div class='answer answer-ko'>보다</div><div class='answer answer-en'>watch</div><div class='pronunciation'>boda</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 밤에 영화를 봐요.</div><div class='example-en'>I watch a movie at night.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Very frequent verb for media, activities, and simple conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-019.png' alt='watch' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-019-listening",
+          "item_id": "new-vocab-2026-03-26-191441-019",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-019.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>보다</div><div class='answer answer-en'>watch</div><div class='pronunciation'>boda</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저는 밤에 영화를 봐요.</div><div class='example-en'>I watch a movie at night.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. Very frequent verb for media, activities, and simple conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-019.png' alt='watch' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-019.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:보다:watch",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-020",
+        "lesson_id": "new-vocab-2026-03-26-191441",
+        "item_type": "vocab",
+        "korean": "쉬다",
+        "english": "rest",
+        "pronunciation": "swida",
+        "examples": [
+          {
+            "korean": "주말에 집에서 쉬어요.",
+            "english": "I rest at home on the weekend."
+          }
+        ],
+        "notes": "Coverage gap: daily-routines. High-frequency verb for everyday routines, health, and plans.",
+        "tags": [
+          "new-vocab",
+          "daily-routines",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • daily-routines",
+        "image_prompt": "Polished illustration of a Korean adult relaxing on a sofa in a cozy modern apartment living room, quiet weekend mood, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-191441-020.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-191441-020.png",
+          "prompt": "Polished illustration of a Korean adult relaxing on a sofa in a cozy modern apartment living room, quiet weekend mood, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-191441-020-recognition",
+          "item_id": "new-vocab-2026-03-26-191441-020",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>쉬다</div>",
+          "back_html": "<div class='answer answer-en'>rest</div><div class='answer answer-ko'>쉬다</div><div class='pronunciation'>swida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>주말에 집에서 쉬어요.</div><div class='example-en'>I rest at home on the weekend.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. High-frequency verb for everyday routines, health, and plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-020.png' alt='rest' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-020-production",
+          "item_id": "new-vocab-2026-03-26-191441-020",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>rest</div>",
+          "back_html": "<div class='answer answer-ko'>쉬다</div><div class='answer answer-en'>rest</div><div class='pronunciation'>swida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>주말에 집에서 쉬어요.</div><div class='example-en'>I rest at home on the weekend.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. High-frequency verb for everyday routines, health, and plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-020.png' alt='rest' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-191441-020-listening",
+          "item_id": "new-vocab-2026-03-26-191441-020",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-191441-020.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>쉬다</div><div class='answer answer-en'>rest</div><div class='pronunciation'>swida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>주말에 집에서 쉬어요.</div><div class='example-en'>I rest at home on the weekend.</div></li></ul></section><div class='notes'>Coverage gap: daily-routines. High-frequency verb for everyday routines, health, and plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • daily-routines</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-191441-020.png' alt='rest' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-191441-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-191441-020.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:쉬다:rest",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    }
+  ]
+}

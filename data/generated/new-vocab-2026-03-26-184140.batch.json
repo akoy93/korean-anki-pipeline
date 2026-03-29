@@ -1,0 +1,1636 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "new-vocab-2026-03-26-184140",
+    "title": "Core Korean: Time and Greetings",
+    "topic": "New Vocab",
+    "lesson_date": "2026-03-26",
+    "source_description": "Supplemental A1 vocab selected from coverage gaps",
+    "target_deck": "Korean::New Vocab",
+    "tags": [
+      "new-vocab"
+    ]
+  },
+  "notes": [
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-001",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "감사합니다",
+        "english": "thank you",
+        "pronunciation": "gamsahamnida",
+        "examples": [
+          {
+            "korean": "도움 주셔서 감사합니다.",
+            "english": "Thank you for your help."
+          }
+        ],
+        "notes": "Coverage gap: greetings. Core politeness formula used every day.",
+        "tags": [
+          "new-vocab",
+          "greetings",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": "Polished illustration of a Korean adult receiving help and smiling gratefully in a contemporary city setting, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-001.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-001.png",
+          "prompt": "Polished illustration of a Korean adult receiving help and smiling gratefully in a contemporary city setting, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-001-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-001",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>감사합니다</div>",
+          "back_html": "<div class='answer answer-en'>thank you</div><div class='answer answer-ko'>감사합니다</div><div class='pronunciation'>gamsahamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>도움 주셔서 감사합니다.</div><div class='example-en'>Thank you for your help.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Core politeness formula used every day.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-001.png' alt='thank you' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-001-production",
+          "item_id": "new-vocab-2026-03-26-184140-001",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>thank you</div>",
+          "back_html": "<div class='answer answer-ko'>감사합니다</div><div class='answer answer-en'>thank you</div><div class='pronunciation'>gamsahamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>도움 주셔서 감사합니다.</div><div class='example-en'>Thank you for your help.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Core politeness formula used every day.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-001.png' alt='thank you' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-001-listening",
+          "item_id": "new-vocab-2026-03-26-184140-001",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-001.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>감사합니다</div><div class='answer answer-en'>thank you</div><div class='pronunciation'>gamsahamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>도움 주셔서 감사합니다.</div><div class='example-en'>Thank you for your help.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Core politeness formula used every day.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-001.png' alt='thank you' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-001.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:감사합니다:thank you",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-002",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "괜찮아요",
+        "english": "it's okay",
+        "pronunciation": "gwaenchanayo",
+        "examples": [
+          {
+            "korean": "늦어도 괜찮아요.",
+            "english": "It's okay even if you're late."
+          }
+        ],
+        "notes": "Coverage gap: greetings. Extremely common comfort and permission expression.",
+        "tags": [
+          "new-vocab",
+          "greetings",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": "Polished illustration of a Korean adult reassuring a friend with a calm smile in a bright cafe, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-002.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-002.png",
+          "prompt": "Polished illustration of a Korean adult reassuring a friend with a calm smile in a bright cafe, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-002-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-002",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>괜찮아요</div>",
+          "back_html": "<div class='answer answer-en'>it&#x27;s okay</div><div class='answer answer-ko'>괜찮아요</div><div class='pronunciation'>gwaenchanayo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>늦어도 괜찮아요.</div><div class='example-en'>It&#x27;s okay even if you&#x27;re late.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Extremely common comfort and permission expression.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-002.png' alt='it&#x27;s okay' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-002-production",
+          "item_id": "new-vocab-2026-03-26-184140-002",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>it&#x27;s okay</div>",
+          "back_html": "<div class='answer answer-ko'>괜찮아요</div><div class='answer answer-en'>it&#x27;s okay</div><div class='pronunciation'>gwaenchanayo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>늦어도 괜찮아요.</div><div class='example-en'>It&#x27;s okay even if you&#x27;re late.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Extremely common comfort and permission expression.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-002.png' alt='it&#x27;s okay' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-002-listening",
+          "item_id": "new-vocab-2026-03-26-184140-002",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-002.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>괜찮아요</div><div class='answer answer-en'>it&#x27;s okay</div><div class='pronunciation'>gwaenchanayo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>늦어도 괜찮아요.</div><div class='example-en'>It&#x27;s okay even if you&#x27;re late.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Extremely common comfort and permission expression.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-002.png' alt='it&#x27;s okay' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-002.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:괜찮아요:it's okay",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-003",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "네",
+        "english": "yes",
+        "pronunciation": "ne",
+        "examples": [
+          {
+            "korean": "네, 좋아요.",
+            "english": "Yes, that's good."
+          }
+        ],
+        "notes": "Coverage gap: greetings. Fundamental response word for beginner conversation.",
+        "tags": [
+          "new-vocab",
+          "greetings",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": "Polished illustration of a Korean adult nodding in agreement during a casual conversation at a cafe table, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-003.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-003.png",
+          "prompt": "Polished illustration of a Korean adult nodding in agreement during a casual conversation at a cafe table, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-003-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-003",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>네</div>",
+          "back_html": "<div class='answer answer-en'>yes</div><div class='answer answer-ko'>네</div><div class='pronunciation'>ne</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>네, 좋아요.</div><div class='example-en'>Yes, that&#x27;s good.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Fundamental response word for beginner conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-003.png' alt='yes' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-003-production",
+          "item_id": "new-vocab-2026-03-26-184140-003",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>yes</div>",
+          "back_html": "<div class='answer answer-ko'>네</div><div class='answer answer-en'>yes</div><div class='pronunciation'>ne</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>네, 좋아요.</div><div class='example-en'>Yes, that&#x27;s good.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Fundamental response word for beginner conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-003.png' alt='yes' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-003-listening",
+          "item_id": "new-vocab-2026-03-26-184140-003",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-003.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>네</div><div class='answer answer-en'>yes</div><div class='pronunciation'>ne</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>네, 좋아요.</div><div class='example-en'>Yes, that&#x27;s good.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Fundamental response word for beginner conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-003.png' alt='yes' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-003.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:네:yes",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-004",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "실례합니다",
+        "english": "excuse me",
+        "pronunciation": "sillyehamnida",
+        "examples": [
+          {
+            "korean": "실례합니다. 화장실이 어디예요?",
+            "english": "Excuse me. Where is the restroom?"
+          }
+        ],
+        "notes": "Coverage gap: greetings. Very useful for getting attention or asking politely.",
+        "tags": [
+          "new-vocab",
+          "greetings",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": "Polished illustration of a Korean adult politely asking a question in a subway station, contemporary Seoul atmosphere, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-004.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-004.png",
+          "prompt": "Polished illustration of a Korean adult politely asking a question in a subway station, contemporary Seoul atmosphere, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-004-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-004",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>실례합니다</div>",
+          "back_html": "<div class='answer answer-en'>excuse me</div><div class='answer answer-ko'>실례합니다</div><div class='pronunciation'>sillyehamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>실례합니다. 화장실이 어디예요?</div><div class='example-en'>Excuse me. Where is the restroom?</div></li></ul></section><div class='notes'>Coverage gap: greetings. Very useful for getting attention or asking politely.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-004.png' alt='excuse me' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-004-production",
+          "item_id": "new-vocab-2026-03-26-184140-004",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>excuse me</div>",
+          "back_html": "<div class='answer answer-ko'>실례합니다</div><div class='answer answer-en'>excuse me</div><div class='pronunciation'>sillyehamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>실례합니다. 화장실이 어디예요?</div><div class='example-en'>Excuse me. Where is the restroom?</div></li></ul></section><div class='notes'>Coverage gap: greetings. Very useful for getting attention or asking politely.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-004.png' alt='excuse me' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-004-listening",
+          "item_id": "new-vocab-2026-03-26-184140-004",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-004.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>실례합니다</div><div class='answer answer-en'>excuse me</div><div class='pronunciation'>sillyehamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>실례합니다. 화장실이 어디예요?</div><div class='example-en'>Excuse me. Where is the restroom?</div></li></ul></section><div class='notes'>Coverage gap: greetings. Very useful for getting attention or asking politely.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-004.png' alt='excuse me' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-004.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:실례합니다:excuse me",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-005",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "아니요",
+        "english": "no",
+        "pronunciation": "aniyo",
+        "examples": [
+          {
+            "korean": "아니요, 괜찮아요.",
+            "english": "No, it's okay."
+          }
+        ],
+        "notes": "Coverage gap: greetings. Essential negative response for simple communication.",
+        "tags": [
+          "new-vocab",
+          "greetings",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": "Polished illustration of a Korean adult gently declining an offer with a polite hand gesture in a modern indoor setting, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-005.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-005.png",
+          "prompt": "Polished illustration of a Korean adult gently declining an offer with a polite hand gesture in a modern indoor setting, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-005-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-005",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>아니요</div>",
+          "back_html": "<div class='answer answer-en'>no</div><div class='answer answer-ko'>아니요</div><div class='pronunciation'>aniyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아니요, 괜찮아요.</div><div class='example-en'>No, it&#x27;s okay.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Essential negative response for simple communication.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-005.png' alt='no' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-005-production",
+          "item_id": "new-vocab-2026-03-26-184140-005",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>no</div>",
+          "back_html": "<div class='answer answer-ko'>아니요</div><div class='answer answer-en'>no</div><div class='pronunciation'>aniyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아니요, 괜찮아요.</div><div class='example-en'>No, it&#x27;s okay.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Essential negative response for simple communication.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-005.png' alt='no' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-005-listening",
+          "item_id": "new-vocab-2026-03-26-184140-005",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-005.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>아니요</div><div class='answer answer-en'>no</div><div class='pronunciation'>aniyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아니요, 괜찮아요.</div><div class='example-en'>No, it&#x27;s okay.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Essential negative response for simple communication.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-005.png' alt='no' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-005.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:아니요:no",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-006",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "안녕하세요",
+        "english": "hello",
+        "pronunciation": "annyeonghaseyo",
+        "examples": [
+          {
+            "korean": "안녕하세요? 저는 민수예요.",
+            "english": "Hello. I'm Minsu."
+          }
+        ],
+        "notes": "Coverage gap: greetings. Default polite greeting for first interactions.",
+        "tags": [
+          "new-vocab",
+          "greetings",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": "Polished illustration of two Korean adults greeting each other with small bows in a bright contemporary apartment entrance, friendly mood, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-006.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-006.png",
+          "prompt": "Polished illustration of two Korean adults greeting each other with small bows in a bright contemporary apartment entrance, friendly mood, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-006-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-006",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>안녕하세요</div>",
+          "back_html": "<div class='answer answer-en'>hello</div><div class='answer answer-ko'>안녕하세요</div><div class='pronunciation'>annyeonghaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>안녕하세요? 저는 민수예요.</div><div class='example-en'>Hello. I&#x27;m Minsu.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Default polite greeting for first interactions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-006.png' alt='hello' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-006-production",
+          "item_id": "new-vocab-2026-03-26-184140-006",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>hello</div>",
+          "back_html": "<div class='answer answer-ko'>안녕하세요</div><div class='answer answer-en'>hello</div><div class='pronunciation'>annyeonghaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>안녕하세요? 저는 민수예요.</div><div class='example-en'>Hello. I&#x27;m Minsu.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Default polite greeting for first interactions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-006.png' alt='hello' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-006-listening",
+          "item_id": "new-vocab-2026-03-26-184140-006",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-006.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>안녕하세요</div><div class='answer answer-en'>hello</div><div class='pronunciation'>annyeonghaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>안녕하세요? 저는 민수예요.</div><div class='example-en'>Hello. I&#x27;m Minsu.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Default polite greeting for first interactions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-006.png' alt='hello' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-006.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:안녕하세요:hello",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-007",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "안녕히 가세요",
+        "english": "goodbye",
+        "pronunciation": "annyeonghi gaseyo",
+        "examples": [
+          {
+            "korean": "네, 안녕히 가세요.",
+            "english": "Okay, goodbye."
+          }
+        ],
+        "notes": "Coverage gap: greetings. Essential polite farewell when the other person leaves.",
+        "tags": [
+          "new-vocab",
+          "greetings",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": "Polished illustration of a Korean shop clerk saying goodbye to a customer leaving a small store, warm modern setting, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-007.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-007.png",
+          "prompt": "Polished illustration of a Korean shop clerk saying goodbye to a customer leaving a small store, warm modern setting, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-007-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-007",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>안녕히 가세요</div>",
+          "back_html": "<div class='answer answer-en'>goodbye</div><div class='answer answer-ko'>안녕히 가세요</div><div class='pronunciation'>annyeonghi gaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>네, 안녕히 가세요.</div><div class='example-en'>Okay, goodbye.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Essential polite farewell when the other person leaves.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-007.png' alt='goodbye' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-007-production",
+          "item_id": "new-vocab-2026-03-26-184140-007",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>goodbye</div>",
+          "back_html": "<div class='answer answer-ko'>안녕히 가세요</div><div class='answer answer-en'>goodbye</div><div class='pronunciation'>annyeonghi gaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>네, 안녕히 가세요.</div><div class='example-en'>Okay, goodbye.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Essential polite farewell when the other person leaves.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-007.png' alt='goodbye' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-007-listening",
+          "item_id": "new-vocab-2026-03-26-184140-007",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-007.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>안녕히 가세요</div><div class='answer answer-en'>goodbye</div><div class='pronunciation'>annyeonghi gaseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>네, 안녕히 가세요.</div><div class='example-en'>Okay, goodbye.</div></li></ul></section><div class='notes'>Coverage gap: greetings. Essential polite farewell when the other person leaves.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-007.png' alt='goodbye' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-007.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:안녕히 가세요:goodbye",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-008",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "죄송합니다",
+        "english": "sorry",
+        "pronunciation": "joesonghamnida",
+        "examples": [
+          {
+            "korean": "죄송합니다. 제가 늦었어요.",
+            "english": "I'm sorry. I was late."
+          }
+        ],
+        "notes": "Coverage gap: greetings. High-utility apology formula for daily situations.",
+        "tags": [
+          "new-vocab",
+          "greetings",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • greetings",
+        "image_prompt": "Polished illustration of a Korean adult apologizing with a slight bow in a busy office hallway, respectful atmosphere, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-008.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-008.png",
+          "prompt": "Polished illustration of a Korean adult apologizing with a slight bow in a busy office hallway, respectful atmosphere, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-008-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-008",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>죄송합니다</div>",
+          "back_html": "<div class='answer answer-en'>sorry</div><div class='answer answer-ko'>죄송합니다</div><div class='pronunciation'>joesonghamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>죄송합니다. 제가 늦었어요.</div><div class='example-en'>I&#x27;m sorry. I was late.</div></li></ul></section><div class='notes'>Coverage gap: greetings. High-utility apology formula for daily situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-008.png' alt='sorry' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-008-production",
+          "item_id": "new-vocab-2026-03-26-184140-008",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>sorry</div>",
+          "back_html": "<div class='answer answer-ko'>죄송합니다</div><div class='answer answer-en'>sorry</div><div class='pronunciation'>joesonghamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>죄송합니다. 제가 늦었어요.</div><div class='example-en'>I&#x27;m sorry. I was late.</div></li></ul></section><div class='notes'>Coverage gap: greetings. High-utility apology formula for daily situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-008.png' alt='sorry' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-008-listening",
+          "item_id": "new-vocab-2026-03-26-184140-008",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-008.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>죄송합니다</div><div class='answer answer-en'>sorry</div><div class='pronunciation'>joesonghamnida</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>죄송합니다. 제가 늦었어요.</div><div class='example-en'>I&#x27;m sorry. I was late.</div></li></ul></section><div class='notes'>Coverage gap: greetings. High-utility apology formula for daily situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • greetings</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-008.png' alt='sorry' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-008.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:죄송합니다:sorry",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-009",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "주세요",
+        "english": "please give me",
+        "pronunciation": "juseyo",
+        "examples": [
+          {
+            "korean": "물 주세요.",
+            "english": "Water, please."
+          }
+        ],
+        "notes": "Coverage gap: food. Key survival expression for ordering and requesting things.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished illustration of a Korean adult politely ordering water from staff at a casual restaurant, contemporary interior, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-009.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-009.png",
+          "prompt": "Polished illustration of a Korean adult politely ordering water from staff at a casual restaurant, contemporary interior, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-009-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-009",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>주세요</div>",
+          "back_html": "<div class='answer answer-en'>please give me</div><div class='answer answer-ko'>주세요</div><div class='pronunciation'>juseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>물 주세요.</div><div class='example-en'>Water, please.</div></li></ul></section><div class='notes'>Coverage gap: food. Key survival expression for ordering and requesting things.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-009.png' alt='please give me' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-009-production",
+          "item_id": "new-vocab-2026-03-26-184140-009",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>please give me</div>",
+          "back_html": "<div class='answer answer-ko'>주세요</div><div class='answer answer-en'>please give me</div><div class='pronunciation'>juseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>물 주세요.</div><div class='example-en'>Water, please.</div></li></ul></section><div class='notes'>Coverage gap: food. Key survival expression for ordering and requesting things.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-009.png' alt='please give me' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-009-listening",
+          "item_id": "new-vocab-2026-03-26-184140-009",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-009.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>주세요</div><div class='answer answer-en'>please give me</div><div class='pronunciation'>juseyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>물 주세요.</div><div class='example-en'>Water, please.</div></li></ul></section><div class='notes'>Coverage gap: food. Key survival expression for ordering and requesting things.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-009.png' alt='please give me' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-009.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:주세요:please give me",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-010",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "내일",
+        "english": "tomorrow",
+        "pronunciation": "naeil",
+        "examples": [
+          {
+            "korean": "내일 학교에 가요.",
+            "english": "I go to school tomorrow."
+          }
+        ],
+        "notes": "Coverage gap: time. Essential for talking about near-future plans.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of a Korean adult preparing a bag in the evening for tomorrow, modern apartment setting, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-010.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-010.png",
+          "prompt": "Polished illustration of a Korean adult preparing a bag in the evening for tomorrow, modern apartment setting, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-010-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-010",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>내일</div>",
+          "back_html": "<div class='answer answer-en'>tomorrow</div><div class='answer answer-ko'>내일</div><div class='pronunciation'>naeil</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>내일 학교에 가요.</div><div class='example-en'>I go to school tomorrow.</div></li></ul></section><div class='notes'>Coverage gap: time. Essential for talking about near-future plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-010.png' alt='tomorrow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-010-production",
+          "item_id": "new-vocab-2026-03-26-184140-010",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>tomorrow</div>",
+          "back_html": "<div class='answer answer-ko'>내일</div><div class='answer answer-en'>tomorrow</div><div class='pronunciation'>naeil</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>내일 학교에 가요.</div><div class='example-en'>I go to school tomorrow.</div></li></ul></section><div class='notes'>Coverage gap: time. Essential for talking about near-future plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-010.png' alt='tomorrow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-010-listening",
+          "item_id": "new-vocab-2026-03-26-184140-010",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-010.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>내일</div><div class='answer answer-en'>tomorrow</div><div class='pronunciation'>naeil</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>내일 학교에 가요.</div><div class='example-en'>I go to school tomorrow.</div></li></ul></section><div class='notes'>Coverage gap: time. Essential for talking about near-future plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-010.png' alt='tomorrow' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-010.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:내일:tomorrow",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-011",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "분",
+        "english": "minute",
+        "pronunciation": "bun",
+        "examples": [
+          {
+            "korean": "오 분만 기다려 주세요.",
+            "english": "Please wait just five minutes."
+          }
+        ],
+        "notes": "Coverage gap: time. Core time unit for everyday timing and waiting.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of a Korean adult waiting on a station bench while checking a watch, contemporary transit setting, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-011.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-011.png",
+          "prompt": "Polished illustration of a Korean adult waiting on a station bench while checking a watch, contemporary transit setting, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-011-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-011",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>분</div>",
+          "back_html": "<div class='answer answer-en'>minute</div><div class='answer answer-ko'>분</div><div class='pronunciation'>bun</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오 분만 기다려 주세요.</div><div class='example-en'>Please wait just five minutes.</div></li></ul></section><div class='notes'>Coverage gap: time. Core time unit for everyday timing and waiting.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-011.png' alt='minute' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-011-production",
+          "item_id": "new-vocab-2026-03-26-184140-011",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>minute</div>",
+          "back_html": "<div class='answer answer-ko'>분</div><div class='answer answer-en'>minute</div><div class='pronunciation'>bun</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오 분만 기다려 주세요.</div><div class='example-en'>Please wait just five minutes.</div></li></ul></section><div class='notes'>Coverage gap: time. Core time unit for everyday timing and waiting.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-011.png' alt='minute' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-011-listening",
+          "item_id": "new-vocab-2026-03-26-184140-011",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-011.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>분</div><div class='answer answer-en'>minute</div><div class='pronunciation'>bun</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오 분만 기다려 주세요.</div><div class='example-en'>Please wait just five minutes.</div></li></ul></section><div class='notes'>Coverage gap: time. Core time unit for everyday timing and waiting.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-011.png' alt='minute' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-011.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:분:minute",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-012",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "시",
+        "english": "o'clock",
+        "pronunciation": "si",
+        "examples": [
+          {
+            "korean": "지금 두 시예요.",
+            "english": "It's 2 o'clock now."
+          }
+        ],
+        "notes": "Coverage gap: time. Essential unit for telling the time.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of an analog clock showing two o'clock in a bright Korean living room, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-012.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-012.png",
+          "prompt": "Polished illustration of an analog clock showing two o'clock in a bright Korean living room, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-012-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-012",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>시</div>",
+          "back_html": "<div class='answer answer-en'>o&#x27;clock</div><div class='answer answer-ko'>시</div><div class='pronunciation'>si</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금 두 시예요.</div><div class='example-en'>It&#x27;s 2 o&#x27;clock now.</div></li></ul></section><div class='notes'>Coverage gap: time. Essential unit for telling the time.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-012.png' alt='o&#x27;clock' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-012-production",
+          "item_id": "new-vocab-2026-03-26-184140-012",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>o&#x27;clock</div>",
+          "back_html": "<div class='answer answer-ko'>시</div><div class='answer answer-en'>o&#x27;clock</div><div class='pronunciation'>si</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금 두 시예요.</div><div class='example-en'>It&#x27;s 2 o&#x27;clock now.</div></li></ul></section><div class='notes'>Coverage gap: time. Essential unit for telling the time.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-012.png' alt='o&#x27;clock' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-012-listening",
+          "item_id": "new-vocab-2026-03-26-184140-012",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-012.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>시</div><div class='answer answer-en'>o&#x27;clock</div><div class='pronunciation'>si</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>지금 두 시예요.</div><div class='example-en'>It&#x27;s 2 o&#x27;clock now.</div></li></ul></section><div class='notes'>Coverage gap: time. Essential unit for telling the time.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-012.png' alt='o&#x27;clock' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-012.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:시:o'clock",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-013",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "시간",
+        "english": "time",
+        "pronunciation": "sigan",
+        "examples": [
+          {
+            "korean": "시간이 없어요.",
+            "english": "I don't have time."
+          }
+        ],
+        "notes": "Coverage gap: time. Foundational noun for schedules, duration, and questions.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of a Korean adult looking at a wall clock while getting ready quickly, modern apartment scene, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-013.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-013.png",
+          "prompt": "Polished illustration of a Korean adult looking at a wall clock while getting ready quickly, modern apartment scene, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-013-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-013",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>시간</div>",
+          "back_html": "<div class='answer answer-en'>time</div><div class='answer answer-ko'>시간</div><div class='pronunciation'>sigan</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>시간이 없어요.</div><div class='example-en'>I don&#x27;t have time.</div></li></ul></section><div class='notes'>Coverage gap: time. Foundational noun for schedules, duration, and questions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-013.png' alt='time' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-013-production",
+          "item_id": "new-vocab-2026-03-26-184140-013",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>time</div>",
+          "back_html": "<div class='answer answer-ko'>시간</div><div class='answer answer-en'>time</div><div class='pronunciation'>sigan</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>시간이 없어요.</div><div class='example-en'>I don&#x27;t have time.</div></li></ul></section><div class='notes'>Coverage gap: time. Foundational noun for schedules, duration, and questions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-013.png' alt='time' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-013-listening",
+          "item_id": "new-vocab-2026-03-26-184140-013",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-013.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>시간</div><div class='answer answer-en'>time</div><div class='pronunciation'>sigan</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>시간이 없어요.</div><div class='example-en'>I don&#x27;t have time.</div></li></ul></section><div class='notes'>Coverage gap: time. Foundational noun for schedules, duration, and questions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-013.png' alt='time' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-013.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:시간:time",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-014",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "아침",
+        "english": "morning",
+        "pronunciation": "achim",
+        "examples": [
+          {
+            "korean": "아침에 커피를 마셔요.",
+            "english": "I drink coffee in the morning."
+          }
+        ],
+        "notes": "Coverage gap: time. Basic daily time word used in routines.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of a Korean adult having coffee by a kitchen window in the morning, clean modern home, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-014.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-014.png",
+          "prompt": "Polished illustration of a Korean adult having coffee by a kitchen window in the morning, clean modern home, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-014-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-014",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>아침</div>",
+          "back_html": "<div class='answer answer-en'>morning</div><div class='answer answer-ko'>아침</div><div class='pronunciation'>achim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아침에 커피를 마셔요.</div><div class='example-en'>I drink coffee in the morning.</div></li></ul></section><div class='notes'>Coverage gap: time. Basic daily time word used in routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-014.png' alt='morning' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-014-production",
+          "item_id": "new-vocab-2026-03-26-184140-014",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>morning</div>",
+          "back_html": "<div class='answer answer-ko'>아침</div><div class='answer answer-en'>morning</div><div class='pronunciation'>achim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아침에 커피를 마셔요.</div><div class='example-en'>I drink coffee in the morning.</div></li></ul></section><div class='notes'>Coverage gap: time. Basic daily time word used in routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-014.png' alt='morning' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-014-listening",
+          "item_id": "new-vocab-2026-03-26-184140-014",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-014.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>아침</div><div class='answer answer-en'>morning</div><div class='pronunciation'>achim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>아침에 커피를 마셔요.</div><div class='example-en'>I drink coffee in the morning.</div></li></ul></section><div class='notes'>Coverage gap: time. Basic daily time word used in routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-014.png' alt='morning' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-014.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:아침:morning",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-015",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "어제",
+        "english": "yesterday",
+        "pronunciation": "eoje",
+        "examples": [
+          {
+            "korean": "어제는 바빴어요.",
+            "english": "I was busy yesterday."
+          }
+        ],
+        "notes": "Coverage gap: time. Core reference word for simple past conversation.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of a Korean adult looking at yesterday's calendar page on a desk, warm home setting, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-015.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-015.png",
+          "prompt": "Polished illustration of a Korean adult looking at yesterday's calendar page on a desk, warm home setting, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-015-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-015",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>어제</div>",
+          "back_html": "<div class='answer answer-en'>yesterday</div><div class='answer answer-ko'>어제</div><div class='pronunciation'>eoje</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>어제는 바빴어요.</div><div class='example-en'>I was busy yesterday.</div></li></ul></section><div class='notes'>Coverage gap: time. Core reference word for simple past conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-015.png' alt='yesterday' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-015-production",
+          "item_id": "new-vocab-2026-03-26-184140-015",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>yesterday</div>",
+          "back_html": "<div class='answer answer-ko'>어제</div><div class='answer answer-en'>yesterday</div><div class='pronunciation'>eoje</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>어제는 바빴어요.</div><div class='example-en'>I was busy yesterday.</div></li></ul></section><div class='notes'>Coverage gap: time. Core reference word for simple past conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-015.png' alt='yesterday' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-015-listening",
+          "item_id": "new-vocab-2026-03-26-184140-015",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-015.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>어제</div><div class='answer answer-en'>yesterday</div><div class='pronunciation'>eoje</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>어제는 바빴어요.</div><div class='example-en'>I was busy yesterday.</div></li></ul></section><div class='notes'>Coverage gap: time. Core reference word for simple past conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-015.png' alt='yesterday' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-015.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:어제:yesterday",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-016",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "오늘",
+        "english": "today",
+        "pronunciation": "oneul",
+        "examples": [
+          {
+            "korean": "오늘은 집에 있어요.",
+            "english": "I'm at home today."
+          }
+        ],
+        "notes": "Coverage gap: time. Basic time word needed for daily plans.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of a Korean adult checking today's schedule on a phone at home in daylight, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-016.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-016.png",
+          "prompt": "Polished illustration of a Korean adult checking today's schedule on a phone at home in daylight, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-016-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-016",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>오늘</div>",
+          "back_html": "<div class='answer answer-en'>today</div><div class='answer answer-ko'>오늘</div><div class='pronunciation'>oneul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘은 집에 있어요.</div><div class='example-en'>I&#x27;m at home today.</div></li></ul></section><div class='notes'>Coverage gap: time. Basic time word needed for daily plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-016.png' alt='today' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-016-production",
+          "item_id": "new-vocab-2026-03-26-184140-016",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>today</div>",
+          "back_html": "<div class='answer answer-ko'>오늘</div><div class='answer answer-en'>today</div><div class='pronunciation'>oneul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘은 집에 있어요.</div><div class='example-en'>I&#x27;m at home today.</div></li></ul></section><div class='notes'>Coverage gap: time. Basic time word needed for daily plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-016.png' alt='today' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-016-listening",
+          "item_id": "new-vocab-2026-03-26-184140-016",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-016.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>오늘</div><div class='answer answer-en'>today</div><div class='pronunciation'>oneul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오늘은 집에 있어요.</div><div class='example-en'>I&#x27;m at home today.</div></li></ul></section><div class='notes'>Coverage gap: time. Basic time word needed for daily plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-016.png' alt='today' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-016.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:오늘:today",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-017",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "오전",
+        "english": "AM",
+        "pronunciation": "ojeon",
+        "examples": [
+          {
+            "korean": "오전 열 시에 만나요.",
+            "english": "Let's meet at 10 a.m."
+          }
+        ],
+        "notes": "Coverage gap: time. Useful for reading and saying times clearly.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of a Korean adult checking a calendar appointment set for the morning, sleek modern desk scene, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-017.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-017.png",
+          "prompt": "Polished illustration of a Korean adult checking a calendar appointment set for the morning, sleek modern desk scene, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-017-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-017",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>오전</div>",
+          "back_html": "<div class='answer answer-en'>AM</div><div class='answer answer-ko'>오전</div><div class='pronunciation'>ojeon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오전 열 시에 만나요.</div><div class='example-en'>Let&#x27;s meet at 10 a.m.</div></li></ul></section><div class='notes'>Coverage gap: time. Useful for reading and saying times clearly.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-017.png' alt='AM' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-017-production",
+          "item_id": "new-vocab-2026-03-26-184140-017",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>AM</div>",
+          "back_html": "<div class='answer answer-ko'>오전</div><div class='answer answer-en'>AM</div><div class='pronunciation'>ojeon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오전 열 시에 만나요.</div><div class='example-en'>Let&#x27;s meet at 10 a.m.</div></li></ul></section><div class='notes'>Coverage gap: time. Useful for reading and saying times clearly.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-017.png' alt='AM' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-017-listening",
+          "item_id": "new-vocab-2026-03-26-184140-017",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-017.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>오전</div><div class='answer answer-en'>AM</div><div class='pronunciation'>ojeon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오전 열 시에 만나요.</div><div class='example-en'>Let&#x27;s meet at 10 a.m.</div></li></ul></section><div class='notes'>Coverage gap: time. Useful for reading and saying times clearly.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-017.png' alt='AM' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-017.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:오전:am",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-018",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "오후",
+        "english": "PM",
+        "pronunciation": "ohu",
+        "examples": [
+          {
+            "korean": "오후 세 시예요.",
+            "english": "It's 3 p.m."
+          }
+        ],
+        "notes": "Coverage gap: time. Needed for basic schedules and appointments.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of soft afternoon sunlight in a Korean cafe with a person checking the time, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-018.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-018.png",
+          "prompt": "Polished illustration of soft afternoon sunlight in a Korean cafe with a person checking the time, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-018-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-018",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>오후</div>",
+          "back_html": "<div class='answer answer-en'>PM</div><div class='answer answer-ko'>오후</div><div class='pronunciation'>ohu</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오후 세 시예요.</div><div class='example-en'>It&#x27;s 3 p.m.</div></li></ul></section><div class='notes'>Coverage gap: time. Needed for basic schedules and appointments.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-018.png' alt='PM' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-018-production",
+          "item_id": "new-vocab-2026-03-26-184140-018",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>PM</div>",
+          "back_html": "<div class='answer answer-ko'>오후</div><div class='answer answer-en'>PM</div><div class='pronunciation'>ohu</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오후 세 시예요.</div><div class='example-en'>It&#x27;s 3 p.m.</div></li></ul></section><div class='notes'>Coverage gap: time. Needed for basic schedules and appointments.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-018.png' alt='PM' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-018-listening",
+          "item_id": "new-vocab-2026-03-26-184140-018",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-018.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>오후</div><div class='answer answer-en'>PM</div><div class='pronunciation'>ohu</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>오후 세 시예요.</div><div class='example-en'>It&#x27;s 3 p.m.</div></li></ul></section><div class='notes'>Coverage gap: time. Needed for basic schedules and appointments.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-018.png' alt='PM' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-018.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:오후:pm",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-019",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "저녁",
+        "english": "dinner",
+        "pronunciation": "jeonyeok",
+        "examples": [
+          {
+            "korean": "저녁에 밥을 먹어요.",
+            "english": "I eat rice for dinner."
+          }
+        ],
+        "notes": "Coverage gap: time. Common everyday word for evening meals and schedules.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of a Korean adult eating a simple evening meal at home, cozy lighting, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-019.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-019.png",
+          "prompt": "Polished illustration of a Korean adult eating a simple evening meal at home, cozy lighting, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-019-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-019",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>저녁</div>",
+          "back_html": "<div class='answer answer-en'>dinner</div><div class='answer answer-ko'>저녁</div><div class='pronunciation'>jeonyeok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저녁에 밥을 먹어요.</div><div class='example-en'>I eat rice for dinner.</div></li></ul></section><div class='notes'>Coverage gap: time. Common everyday word for evening meals and schedules.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-019.png' alt='dinner' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-019-production",
+          "item_id": "new-vocab-2026-03-26-184140-019",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>dinner</div>",
+          "back_html": "<div class='answer answer-ko'>저녁</div><div class='answer answer-en'>dinner</div><div class='pronunciation'>jeonyeok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저녁에 밥을 먹어요.</div><div class='example-en'>I eat rice for dinner.</div></li></ul></section><div class='notes'>Coverage gap: time. Common everyday word for evening meals and schedules.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-019.png' alt='dinner' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-019-listening",
+          "item_id": "new-vocab-2026-03-26-184140-019",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-019.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>저녁</div><div class='answer answer-en'>dinner</div><div class='pronunciation'>jeonyeok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>저녁에 밥을 먹어요.</div><div class='example-en'>I eat rice for dinner.</div></li></ul></section><div class='notes'>Coverage gap: time. Common everyday word for evening meals and schedules.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-019.png' alt='dinner' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-019.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:저녁:dinner",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-020",
+        "lesson_id": "new-vocab-2026-03-26-184140",
+        "item_type": "vocab",
+        "korean": "점심",
+        "english": "lunch",
+        "pronunciation": "jeomsim",
+        "examples": [
+          {
+            "korean": "점심에 식당에 가요.",
+            "english": "I go to a restaurant for lunch."
+          }
+        ],
+        "notes": "Coverage gap: time. High-utility word for mealtimes and plans.",
+        "tags": [
+          "new-vocab",
+          "time",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • time",
+        "image_prompt": "Polished illustration of Korean office workers walking to lunch in a city street at midday, no text in the image.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-184140-020.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-184140-020.png",
+          "prompt": "Polished illustration of Korean office workers walking to lunch in a city street at midday, no text in the image. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-184140-020-recognition",
+          "item_id": "new-vocab-2026-03-26-184140-020",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>점심</div>",
+          "back_html": "<div class='answer answer-en'>lunch</div><div class='answer answer-ko'>점심</div><div class='pronunciation'>jeomsim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>점심에 식당에 가요.</div><div class='example-en'>I go to a restaurant for lunch.</div></li></ul></section><div class='notes'>Coverage gap: time. High-utility word for mealtimes and plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-020.png' alt='lunch' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-020-production",
+          "item_id": "new-vocab-2026-03-26-184140-020",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>lunch</div>",
+          "back_html": "<div class='answer answer-ko'>점심</div><div class='answer answer-en'>lunch</div><div class='pronunciation'>jeomsim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>점심에 식당에 가요.</div><div class='example-en'>I go to a restaurant for lunch.</div></li></ul></section><div class='notes'>Coverage gap: time. High-utility word for mealtimes and plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-020.png' alt='lunch' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-184140-020-listening",
+          "item_id": "new-vocab-2026-03-26-184140-020",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-184140-020.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>점심</div><div class='answer answer-en'>lunch</div><div class='pronunciation'>jeomsim</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>점심에 식당에 가요.</div><div class='example-en'>I go to a restaurant for lunch.</div></li></ul></section><div class='notes'>Coverage gap: time. High-utility word for mealtimes and plans.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • time</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-184140-020.png' alt='lunch' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-184140-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-184140-020.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:점심:lunch",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    }
+  ]
+}

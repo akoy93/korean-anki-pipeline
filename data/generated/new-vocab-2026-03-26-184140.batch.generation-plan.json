@@ -1,0 +1,485 @@
+{
+  "lesson_id": "new-vocab-2026-03-26-184140",
+  "notes": [
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-001",
+        "item_type": "vocab",
+        "korean": "감사합니다",
+        "english": "thank you",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult receiving help and smiling gratefully in a contemporary city setting, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:감사합니다:thank you",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-002",
+        "item_type": "vocab",
+        "korean": "괜찮아요",
+        "english": "it's okay",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult reassuring a friend with a calm smile in a bright cafe, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:괜찮아요:it's okay",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-003",
+        "item_type": "vocab",
+        "korean": "네",
+        "english": "yes",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult nodding in agreement during a casual conversation at a cafe table, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:네:yes",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-004",
+        "item_type": "vocab",
+        "korean": "실례합니다",
+        "english": "excuse me",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult politely asking a question in a subway station, contemporary Seoul atmosphere, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:실례합니다:excuse me",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-005",
+        "item_type": "vocab",
+        "korean": "아니요",
+        "english": "no",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult gently declining an offer with a polite hand gesture in a modern indoor setting, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:아니요:no",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-006",
+        "item_type": "vocab",
+        "korean": "안녕하세요",
+        "english": "hello",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "image_prompt": "Polished illustration of two Korean adults greeting each other with small bows in a bright contemporary apartment entrance, friendly mood, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:안녕하세요:hello",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-007",
+        "item_type": "vocab",
+        "korean": "안녕히 가세요",
+        "english": "goodbye",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "image_prompt": "Polished illustration of a Korean shop clerk saying goodbye to a customer leaving a small store, warm modern setting, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:안녕히 가세요:goodbye",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-008",
+        "item_type": "vocab",
+        "korean": "죄송합니다",
+        "english": "sorry",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "greetings"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult apologizing with a slight bow in a busy office hallway, respectful atmosphere, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:죄송합니다:sorry",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "greetings"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: greetings"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-009",
+        "item_type": "vocab",
+        "korean": "주세요",
+        "english": "please give me",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult politely ordering water from staff at a casual restaurant, contemporary interior, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:주세요:please give me",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-010",
+        "item_type": "vocab",
+        "korean": "내일",
+        "english": "tomorrow",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult preparing a bag in the evening for tomorrow, modern apartment setting, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:내일:tomorrow",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-011",
+        "item_type": "vocab",
+        "korean": "분",
+        "english": "minute",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult waiting on a station bench while checking a watch, contemporary transit setting, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:분:minute",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-012",
+        "item_type": "vocab",
+        "korean": "시",
+        "english": "o'clock",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of an analog clock showing two o'clock in a bright Korean living room, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:시:o'clock",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-013",
+        "item_type": "vocab",
+        "korean": "시간",
+        "english": "time",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult looking at a wall clock while getting ready quickly, modern apartment scene, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:시간:time",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-014",
+        "item_type": "vocab",
+        "korean": "아침",
+        "english": "morning",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult having coffee by a kitchen window in the morning, clean modern home, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:아침:morning",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-015",
+        "item_type": "vocab",
+        "korean": "어제",
+        "english": "yesterday",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult looking at yesterday's calendar page on a desk, warm home setting, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:어제:yesterday",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-016",
+        "item_type": "vocab",
+        "korean": "오늘",
+        "english": "today",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult checking today's schedule on a phone at home in daylight, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:오늘:today",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-017",
+        "item_type": "vocab",
+        "korean": "오전",
+        "english": "AM",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult checking a calendar appointment set for the morning, sleek modern desk scene, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:오전:am",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-018",
+        "item_type": "vocab",
+        "korean": "오후",
+        "english": "PM",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of soft afternoon sunlight in a Korean cafe with a person checking the time, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:오후:pm",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-019",
+        "item_type": "vocab",
+        "korean": "저녁",
+        "english": "dinner",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult eating a simple evening meal at home, cozy lighting, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:저녁:dinner",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-184140-020",
+        "item_type": "vocab",
+        "korean": "점심",
+        "english": "lunch",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "time"
+        ],
+        "image_prompt": "Polished illustration of Korean office workers walking to lunch in a city street at midday, no text in the image."
+      },
+      "approved": true,
+      "note_key": "vocab:점심:lunch",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "time"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: time"
+    }
+  ]
+}
