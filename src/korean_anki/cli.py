@@ -15,6 +15,7 @@ from .lesson_generation_service import build_lesson_documents_from_transcription
 from .new_vocab_generation_service import generate_new_vocab_batch
 from .path_policy import default_synced_output_path
 from .push_workflow_service import handle_push_request
+from .service_guardian import run_watchdog_once
 from .sync_media_service import sync_media_file
 from .http_api import run_server
 from .lesson_io import read_transcription, write_json
@@ -40,6 +41,7 @@ from .settings import (
     DEFAULT_READING_SPEED_SOURCE_DESCRIPTION,
     DEFAULT_READING_SPEED_TARGET_DECK,
     DEFAULT_READING_SPEED_TOPIC,
+    DEFAULT_SELF_HEAL_BACKEND_LABEL,
 )
 from .stages import qa_transcription
 
@@ -161,6 +163,14 @@ def _parse_args() -> argparse.Namespace:
     serve = subparsers.add_parser("serve", help="Run the local-only Python HTTP service for preview push actions.")
     serve.add_argument("--host", default=DEFAULT_PREVIEW_HOST)
     serve.add_argument("--port", type=int, default=DEFAULT_PREVIEW_PORT)
+
+    watchdog = subparsers.add_parser(
+        "watchdog",
+        help="Run one self-healing pass for the unattended backend/Tailscale/Anki stack.",
+    )
+    watchdog.add_argument("--backend-label", default=DEFAULT_SELF_HEAL_BACKEND_LABEL)
+    watchdog.add_argument("--tailscale-bin", default=None)
+    watchdog.add_argument("--check-only", action="store_true")
 
     return parser.parse_args()
 
@@ -314,6 +324,16 @@ def _command_sync_media(args: argparse.Namespace) -> None:
     print(json.dumps({"output_path": str(result.output_path), **result.summary.__dict__}, indent=2))
 
 
+def _command_watchdog(args: argparse.Namespace) -> None:
+    result = run_watchdog_once(
+        project_root=Path.cwd().resolve(),
+        backend_label=args.backend_label,
+        tailscale_bin=args.tailscale_bin,
+        repair=not args.check_only,
+    )
+    print(result.status.model_dump_json(indent=2, exclude_none=True))
+
+
 def main() -> None:
     load_dotenv(override=True)
     args = _parse_args()
@@ -346,6 +366,9 @@ def main() -> None:
         return
     if args.command == "serve":
         run_server(host=args.host, port=args.port)
+        return
+    if args.command == "watchdog":
+        _command_watchdog(args)
         return
 
     raise SystemExit(f"Unknown command: {args.command}")

@@ -68,6 +68,29 @@ class PushServiceTests(unittest.TestCase):
             time.sleep(0.05)
         raise AssertionError(f"Job did not finish: {job_id}")
 
+    def _service_status(
+        self,
+        *,
+        backend_ok: bool = True,
+        anki_connect_ok: bool = False,
+        anki_connect_version: int | None = None,
+        openai_configured: bool = True,
+        preview_ok: bool = True,
+        tailscale_ok: bool = True,
+    ) -> ServiceStatus:
+        return ServiceStatus(
+            backend_ok=backend_ok,
+            anki_connect_ok=anki_connect_ok,
+            anki_connect_version=anki_connect_version,
+            openai_configured=openai_configured,
+            preview_ok=preview_ok,
+            preview_detail="Built preview bundle available at preview/dist.",
+            tailscale_ok=tailscale_ok,
+            tailscale_detail="https://alberts-mac-mini.tailnet.test/",
+            tailscale_dns_name="alberts-mac-mini.tailnet.test",
+            remote_url="https://alberts-mac-mini.tailnet.test/",
+        )
+
     def test_health_endpoint_returns_ok(self) -> None:
         server, base_url, thread = self._start_server()
         self.addCleanup(self._stop_server, server, thread)
@@ -76,6 +99,59 @@ class PushServiceTests(unittest.TestCase):
             payload = json.loads(response.read().decode("utf-8"))
 
         self.assertEqual(payload, {"ok": True})
+
+    def test_root_serves_built_preview_bundle(self) -> None:
+        project_root = Path(self._testMethodName)
+        dist_root = project_root / "preview/dist"
+        dist_root.mkdir(parents=True, exist_ok=True)
+        (dist_root / "index.html").write_text("<!doctype html><title>Preview</title>", encoding="utf-8")
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()):
+            with urllib.request.urlopen(f"{base_url}/", timeout=5) as response:
+                body = response.read().decode("utf-8")
+                content_type = response.headers.get_content_type()
+
+        self.assertIn("Preview", body)
+        self.assertEqual(content_type, "text/html")
+
+    def test_preview_assets_are_served_from_dist(self) -> None:
+        project_root = Path(self._testMethodName)
+        asset_path = project_root / "preview/dist/assets/app.js"
+        asset_path.parent.mkdir(parents=True, exist_ok=True)
+        (project_root / "preview/dist/index.html").write_text("<!doctype html>", encoding="utf-8")
+        asset_path.write_text("console.log('preview');", encoding="utf-8")
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()):
+            with urllib.request.urlopen(f"{base_url}/assets/app.js", timeout=5) as response:
+                body = response.read().decode("utf-8")
+                content_type = response.headers.get_content_type()
+
+        self.assertIn("preview", body)
+        self.assertIn("javascript", content_type)
+
+    def test_batch_route_serves_preview_spa_fallback(self) -> None:
+        project_root = Path(self._testMethodName)
+        dist_root = project_root / "preview/dist"
+        dist_root.mkdir(parents=True, exist_ok=True)
+        (dist_root / "index.html").write_text("<!doctype html><div id='root'></div>", encoding="utf-8")
+        self.addCleanup(lambda: shutil.rmtree(project_root, ignore_errors=True))
+
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()):
+            with urllib.request.urlopen(f"{base_url}/batch/data/generated/sample.batch.json", timeout=5) as response:
+                body = response.read().decode("utf-8")
+
+        self.assertIn("root", body)
 
     def test_batch_endpoint_returns_batch_json_from_project_root(self) -> None:
         project_root = Path(self._testMethodName)
@@ -223,11 +299,9 @@ class PushServiceTests(unittest.TestCase):
 
         with patch(
             "korean_anki.http_api.service_status_snapshot",
-            return_value=ServiceStatus(
-                backend_ok=True,
+            return_value=self._service_status(
                 anki_connect_ok=True,
                 anki_connect_version=6,
-                openai_configured=True,
             ),
         ):
             with urllib.request.urlopen(f"{base_url}/api/status", timeout=5) as response:
@@ -240,6 +314,13 @@ class PushServiceTests(unittest.TestCase):
                 "anki_connect_ok": True,
                 "anki_connect_version": 6,
                 "openai_configured": True,
+                "preview_ok": True,
+                "preview_detail": "Built preview bundle available at preview/dist.",
+                "tailscale_ok": True,
+                "tailscale_detail": "https://alberts-mac-mini.tailnet.test/",
+                "tailscale_dns_name": "alberts-mac-mini.tailnet.test",
+                "tailscale_key_expiry_at": None,
+                "remote_url": "https://alberts-mac-mini.tailnet.test/",
             },
         )
 
@@ -293,6 +374,10 @@ class PushServiceTests(unittest.TestCase):
         with (
             patch("korean_anki.dashboard_snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
             patch("korean_anki.dashboard_snapshots.existing_model_note_keys", return_value=set()),
+            patch(
+                "korean_anki.dashboard_snapshots.collect_service_status",
+                return_value=self._service_status(anki_connect_ok=True, anki_connect_version=6),
+            ),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -364,6 +449,10 @@ class PushServiceTests(unittest.TestCase):
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
             patch("korean_anki.dashboard_snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
             patch("korean_anki.dashboard_snapshots.existing_model_note_keys", return_value=set()),
+            patch(
+                "korean_anki.dashboard_snapshots.collect_service_status",
+                return_value=self._service_status(anki_connect_ok=True, anki_connect_version=6),
+            ),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -429,6 +518,10 @@ class PushServiceTests(unittest.TestCase):
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
             patch("korean_anki.dashboard_snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
             patch("korean_anki.dashboard_snapshots.existing_model_note_keys", return_value=set()),
+            patch(
+                "korean_anki.dashboard_snapshots.collect_service_status",
+                return_value=self._service_status(anki_connect_ok=True, anki_connect_version=6),
+            ),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))
@@ -481,6 +574,10 @@ class PushServiceTests(unittest.TestCase):
             patch("korean_anki.path_policy.project_root", return_value=project_root.resolve()),
             patch("korean_anki.dashboard_snapshots.AnkiConnectClient", return_value=FakeDashboardAnkiClient()),
             patch("korean_anki.dashboard_snapshots.existing_model_note_keys", return_value={batch.notes[0].note_key}),
+            patch(
+                "korean_anki.dashboard_snapshots.collect_service_status",
+                return_value=self._service_status(anki_connect_ok=True, anki_connect_version=6),
+            ),
         ):
             with urllib.request.urlopen(f"{base_url}/api/dashboard", timeout=5) as response:
                 payload = json.loads(response.read().decode("utf-8"))

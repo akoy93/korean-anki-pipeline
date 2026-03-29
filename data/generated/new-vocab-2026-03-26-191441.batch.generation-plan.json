@@ -1,0 +1,485 @@
+{
+  "lesson_id": "new-vocab-2026-03-26-191441",
+  "notes": [
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-001",
+        "item_type": "vocab",
+        "korean": "부모님",
+        "english": "parents",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "image_prompt": "Polished illustration of Korean parents standing together in a bright modern living room, natural family portrait style, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:부모님:parents",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-002",
+        "item_type": "vocab",
+        "korean": "아빠",
+        "english": "father",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "image_prompt": "Polished illustration of a Korean father stretching in a park in the morning, contemporary casual clothing, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:아빠:father",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-003",
+        "item_type": "vocab",
+        "korean": "아이",
+        "english": "child",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "image_prompt": "Polished illustration of a Korean child asleep under a blanket in a modern bedroom, gentle peaceful mood, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:아이:child",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-004",
+        "item_type": "vocab",
+        "korean": "엄마",
+        "english": "mother",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "image_prompt": "Polished illustration of a Korean mother preparing food in a modern home kitchen, warm family atmosphere, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:엄마:mother",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-005",
+        "item_type": "vocab",
+        "korean": "계란",
+        "english": "egg",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished illustration of fresh eggs in a simple kitchen bowl on a modern Korean countertop, clean realistic style, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:계란:egg",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-006",
+        "item_type": "vocab",
+        "korean": "김밥",
+        "english": "gimbap",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished illustration of sliced gimbap neatly arranged on a plate in a bright home kitchen, detailed and appetizing, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:김밥:gimbap",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-007",
+        "item_type": "vocab",
+        "korean": "김치",
+        "english": "kimchi",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished illustration of a bowl of bright red kimchi on a Korean dining table with side dishes, appetizing detail, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:김치:kimchi",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-008",
+        "item_type": "vocab",
+        "korean": "커피",
+        "english": "coffee",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished illustration of a cup of coffee in a modern Korean cafe setting, soft warm light, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:커피:coffee",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-009",
+        "item_type": "vocab",
+        "korean": "날씨",
+        "english": "weather",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "image_prompt": "Polished illustration of a contemporary Seoul street under pleasant weather with blue sky and people walking, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:날씨:weather",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-010",
+        "item_type": "vocab",
+        "korean": "눈",
+        "english": "snow",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "image_prompt": "Polished illustration of fresh snow covering a quiet Korean neighborhood street in winter, soft muted colors, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:눈:snow",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-011",
+        "item_type": "vocab",
+        "korean": "바람",
+        "english": "wind",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "image_prompt": "Polished illustration of strong wind moving tree branches and coats on a modern Korean street, dynamic scene, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:바람:wind",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-012",
+        "item_type": "vocab",
+        "korean": "비",
+        "english": "rain",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "weather"
+        ],
+        "image_prompt": "Polished illustration of rain falling on a modern Korean city street with umbrellas and reflections, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:비:rain",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "weather"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: weather"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-013",
+        "item_type": "vocab",
+        "korean": "가다",
+        "english": "go",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult leaving a modern apartment building in Seoul and heading out for the day, soft morning light, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:가다:go",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-014",
+        "item_type": "vocab",
+        "korean": "공부하다",
+        "english": "study",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult studying at a desk with notebooks in a modern apartment, focused atmosphere, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:공부하다:study",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-015",
+        "item_type": "vocab",
+        "korean": "듣다",
+        "english": "listen",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult listening to music with earphones in a modern room, relaxed atmosphere, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:듣다:listen",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-016",
+        "item_type": "vocab",
+        "korean": "마시다",
+        "english": "drink",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult drinking coffee in a bright modern kitchen, clean contemporary style, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:마시다:drink",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-017",
+        "item_type": "vocab",
+        "korean": "만나다",
+        "english": "meet",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "image_prompt": "Polished illustration of two Korean friends meeting outside a modern cafe in Seoul, friendly everyday mood, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:만나다:meet",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-018",
+        "item_type": "vocab",
+        "korean": "먹다",
+        "english": "eat",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult eating gimbap at a small home table in a contemporary apartment kitchen, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:먹다:eat",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-019",
+        "item_type": "vocab",
+        "korean": "보다",
+        "english": "watch",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult watching a movie at home on a sofa in a contemporary apartment, evening light, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:보다:watch",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-191441-020",
+        "item_type": "vocab",
+        "korean": "쉬다",
+        "english": "rest",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "daily-routines"
+        ],
+        "image_prompt": "Polished illustration of a Korean adult relaxing on a sofa in a cozy modern apartment living room, quiet weekend mood, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:쉬다:rest",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "daily-routines"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: daily-routines"
+    }
+  ]
+}

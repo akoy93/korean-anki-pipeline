@@ -22,6 +22,27 @@ For a fresh clone, run the bootstrap script:
 
 That creates `.venv`, installs the Python package, installs preview dependencies, seeds `.env` from `.env.example` if needed, and starts the local push backend, preview app, and Anki Desktop if they are not already running.
 
+## Unattended macOS mode
+
+For a long-running setup that should recover while you are away from the machine, use the unattended installer instead of `pnpm dev`:
+
+```bash
+./scripts/install-self-heal.sh
+```
+
+That script:
+
+- builds the preview bundle under `preview/dist/`
+- installs user `launchd` agents for the backend and watchdog
+- configures Tailscale Serve to proxy `https://<tailscale-dns-name>/` to `http://127.0.0.1:8767`
+- keeps checking backend health, AnkiConnect, Tailscale, and `OPENAI_API_KEY`
+
+Important unattended-mode constraints:
+
+- Anki is a GUI app, so macOS still needs to return to a logged-in user session after reboot.
+- The installer will refuse to proceed if your Tailscale node key expires too soon for unattended use.
+- The installer warns if restart-after-power-failure is disabled on the Mac.
+
 Manual setup still works too:
 
 ```bash
@@ -68,6 +89,8 @@ Run the local push service in one terminal:
 korean-anki serve
 ```
 
+If `preview/dist/` exists, that backend also serves the built preview app at `/` and supports deep links under `/batch/...`.
+
 Open the review UI in another terminal:
 
 ```bash
@@ -77,6 +100,12 @@ pnpm dev --host 127.0.0.1
 ```
 
 Open `http://127.0.0.1:5173/` for the homepage dashboard, or open a direct `/batch/...` URL to review a specific batch. Use `Check push` for a dry-run; if there are no duplicates, click `Push to Anki` to import the approved cards and sync.
+
+Run one unattended watchdog pass manually:
+
+```bash
+korean-anki watchdog
+```
 
 The preview app serves `/media` directly from the repo's local `data/media` directory during `pnpm dev`.
 The preview scripts also regenerate a standard JSON Schema contract at `preview/src/lib/schema.contract.json`, then derive `preview/src/lib/schema.ts` from that contract before dev/build/test runs. That contract is intentionally limited to preview-facing transport models from `src/korean_anki/schema/`, so the frontend type surface stays explicit instead of mirroring every backend schema.

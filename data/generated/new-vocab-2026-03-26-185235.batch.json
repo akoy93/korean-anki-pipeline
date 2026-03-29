@@ -1,0 +1,1636 @@
+{
+  "schema_version": "1",
+  "metadata": {
+    "lesson_id": "new-vocab-2026-03-26-185235",
+    "title": "Core Korean: Places and Food",
+    "topic": "New Vocab",
+    "lesson_date": "2026-03-26",
+    "source_description": "Supplemental A1 vocab selected from coverage gaps",
+    "target_deck": "Korean::New Vocab",
+    "tags": [
+      "new-vocab"
+    ]
+  },
+  "notes": [
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-001",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "가게",
+        "english": "store",
+        "pronunciation": "gage",
+        "examples": [
+          {
+            "korean": "가게에서 물을 사요.",
+            "english": "I buy water at a store."
+          }
+        ],
+        "notes": "Coverage gap: places. Basic general place word useful before more specific shop names.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a small neighborhood store in Korea with shelves and a customer at the entrance, natural street setting, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-001.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-001.png",
+          "prompt": "Polished digital illustration of a small neighborhood store in Korea with shelves and a customer at the entrance, natural street setting, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-001-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-001",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>가게</div>",
+          "back_html": "<div class='answer answer-en'>store</div><div class='answer answer-ko'>가게</div><div class='pronunciation'>gage</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가게에서 물을 사요.</div><div class='example-en'>I buy water at a store.</div></li></ul></section><div class='notes'>Coverage gap: places. Basic general place word useful before more specific shop names.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-001.png' alt='store' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-001-production",
+          "item_id": "new-vocab-2026-03-26-185235-001",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>store</div>",
+          "back_html": "<div class='answer answer-ko'>가게</div><div class='answer answer-en'>store</div><div class='pronunciation'>gage</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가게에서 물을 사요.</div><div class='example-en'>I buy water at a store.</div></li></ul></section><div class='notes'>Coverage gap: places. Basic general place word useful before more specific shop names.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-001.png' alt='store' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-001.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-001-listening",
+          "item_id": "new-vocab-2026-03-26-185235-001",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-001.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>가게</div><div class='answer answer-en'>store</div><div class='pronunciation'>gage</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가게에서 물을 사요.</div><div class='example-en'>I buy water at a store.</div></li></ul></section><div class='notes'>Coverage gap: places. Basic general place word useful before more specific shop names.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-001.png' alt='store' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-001.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-001.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:가게:store",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-002",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "방",
+        "english": "room",
+        "pronunciation": "bang",
+        "examples": [
+          {
+            "korean": "방에서 자요.",
+            "english": "I sleep in the room."
+          }
+        ],
+        "notes": "Coverage gap: places. Basic home vocabulary needed for talking about where everyday actions happen.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a tidy bedroom in a contemporary Korean home, soft light, realistic furniture, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-002.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-002.png",
+          "prompt": "Polished digital illustration of a tidy bedroom in a contemporary Korean home, soft light, realistic furniture, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-002-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-002",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>방</div>",
+          "back_html": "<div class='answer answer-en'>room</div><div class='answer answer-ko'>방</div><div class='pronunciation'>bang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>방에서 자요.</div><div class='example-en'>I sleep in the room.</div></li></ul></section><div class='notes'>Coverage gap: places. Basic home vocabulary needed for talking about where everyday actions happen.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-002.png' alt='room' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-002-production",
+          "item_id": "new-vocab-2026-03-26-185235-002",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>room</div>",
+          "back_html": "<div class='answer answer-ko'>방</div><div class='answer answer-en'>room</div><div class='pronunciation'>bang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>방에서 자요.</div><div class='example-en'>I sleep in the room.</div></li></ul></section><div class='notes'>Coverage gap: places. Basic home vocabulary needed for talking about where everyday actions happen.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-002.png' alt='room' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-002.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-002-listening",
+          "item_id": "new-vocab-2026-03-26-185235-002",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-002.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>방</div><div class='answer answer-en'>room</div><div class='pronunciation'>bang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>방에서 자요.</div><div class='example-en'>I sleep in the room.</div></li></ul></section><div class='notes'>Coverage gap: places. Basic home vocabulary needed for talking about where everyday actions happen.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-002.png' alt='room' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-002.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-002.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:방:room",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-003",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "병원",
+        "english": "hospital",
+        "pronunciation": "byeongwon",
+        "examples": [
+          {
+            "korean": "병원에 가요.",
+            "english": "I go to the hospital."
+          }
+        ],
+        "notes": "Coverage gap: places. Important survival place word for health-related situations.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a modern Korean hospital lobby with a patient checking in, bright clean environment, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-003.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-003.png",
+          "prompt": "Polished digital illustration of a modern Korean hospital lobby with a patient checking in, bright clean environment, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-003-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-003",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>병원</div>",
+          "back_html": "<div class='answer answer-en'>hospital</div><div class='answer answer-ko'>병원</div><div class='pronunciation'>byeongwon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>병원에 가요.</div><div class='example-en'>I go to the hospital.</div></li></ul></section><div class='notes'>Coverage gap: places. Important survival place word for health-related situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-003.png' alt='hospital' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-003-production",
+          "item_id": "new-vocab-2026-03-26-185235-003",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>hospital</div>",
+          "back_html": "<div class='answer answer-ko'>병원</div><div class='answer answer-en'>hospital</div><div class='pronunciation'>byeongwon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>병원에 가요.</div><div class='example-en'>I go to the hospital.</div></li></ul></section><div class='notes'>Coverage gap: places. Important survival place word for health-related situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-003.png' alt='hospital' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-003.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-003-listening",
+          "item_id": "new-vocab-2026-03-26-185235-003",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-003.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>병원</div><div class='answer answer-en'>hospital</div><div class='pronunciation'>byeongwon</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>병원에 가요.</div><div class='example-en'>I go to the hospital.</div></li></ul></section><div class='notes'>Coverage gap: places. Important survival place word for health-related situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-003.png' alt='hospital' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-003.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-003.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:병원:hospital",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-004",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "식당",
+        "english": "restaurant",
+        "pronunciation": "sikdang",
+        "examples": [
+          {
+            "korean": "식당에서 밥을 먹어요.",
+            "english": "I eat a meal at a restaurant."
+          }
+        ],
+        "notes": "Coverage gap: places. Core beginner place word for eating out and simple travel or daily interactions.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a cozy Korean restaurant interior with adults eating at tables, contemporary setting, appetizing atmosphere, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-004.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-004.png",
+          "prompt": "Polished digital illustration of a cozy Korean restaurant interior with adults eating at tables, contemporary setting, appetizing atmosphere, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-004-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-004",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>식당</div>",
+          "back_html": "<div class='answer answer-en'>restaurant</div><div class='answer answer-ko'>식당</div><div class='pronunciation'>sikdang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>식당에서 밥을 먹어요.</div><div class='example-en'>I eat a meal at a restaurant.</div></li></ul></section><div class='notes'>Coverage gap: places. Core beginner place word for eating out and simple travel or daily interactions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-004.png' alt='restaurant' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-004-production",
+          "item_id": "new-vocab-2026-03-26-185235-004",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>restaurant</div>",
+          "back_html": "<div class='answer answer-ko'>식당</div><div class='answer answer-en'>restaurant</div><div class='pronunciation'>sikdang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>식당에서 밥을 먹어요.</div><div class='example-en'>I eat a meal at a restaurant.</div></li></ul></section><div class='notes'>Coverage gap: places. Core beginner place word for eating out and simple travel or daily interactions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-004.png' alt='restaurant' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-004.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-004-listening",
+          "item_id": "new-vocab-2026-03-26-185235-004",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-004.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>식당</div><div class='answer answer-en'>restaurant</div><div class='pronunciation'>sikdang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>식당에서 밥을 먹어요.</div><div class='example-en'>I eat a meal at a restaurant.</div></li></ul></section><div class='notes'>Coverage gap: places. Core beginner place word for eating out and simple travel or daily interactions.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-004.png' alt='restaurant' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-004.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-004.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:식당:restaurant",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-005",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "약국",
+        "english": "pharmacy",
+        "pronunciation": "yakguk",
+        "examples": [
+          {
+            "korean": "약국에서 약을 사요.",
+            "english": "I buy medicine at the pharmacy."
+          }
+        ],
+        "notes": "Coverage gap: places. Highly practical place word for everyday health needs.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a Korean pharmacy counter with medicine shelves behind it and an adult customer, contemporary setting, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-005.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-005.png",
+          "prompt": "Polished digital illustration of a Korean pharmacy counter with medicine shelves behind it and an adult customer, contemporary setting, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-005-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-005",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>약국</div>",
+          "back_html": "<div class='answer answer-en'>pharmacy</div><div class='answer answer-ko'>약국</div><div class='pronunciation'>yakguk</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>약국에서 약을 사요.</div><div class='example-en'>I buy medicine at the pharmacy.</div></li></ul></section><div class='notes'>Coverage gap: places. Highly practical place word for everyday health needs.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-005.png' alt='pharmacy' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-005-production",
+          "item_id": "new-vocab-2026-03-26-185235-005",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>pharmacy</div>",
+          "back_html": "<div class='answer answer-ko'>약국</div><div class='answer answer-en'>pharmacy</div><div class='pronunciation'>yakguk</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>약국에서 약을 사요.</div><div class='example-en'>I buy medicine at the pharmacy.</div></li></ul></section><div class='notes'>Coverage gap: places. Highly practical place word for everyday health needs.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-005.png' alt='pharmacy' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-005.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-005-listening",
+          "item_id": "new-vocab-2026-03-26-185235-005",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-005.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>약국</div><div class='answer answer-en'>pharmacy</div><div class='pronunciation'>yakguk</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>약국에서 약을 사요.</div><div class='example-en'>I buy medicine at the pharmacy.</div></li></ul></section><div class='notes'>Coverage gap: places. Highly practical place word for everyday health needs.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-005.png' alt='pharmacy' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-005.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-005.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:약국:pharmacy",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-006",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "역",
+        "english": "station",
+        "pronunciation": "yeok",
+        "examples": [
+          {
+            "korean": "역에서 만나요.",
+            "english": "We meet at the station."
+          }
+        ],
+        "notes": "Coverage gap: places. Core transportation place word for directions, travel, and meeting people.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a Korean train or subway station platform with commuters waiting, modern urban atmosphere, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-006.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-006.png",
+          "prompt": "Polished digital illustration of a Korean train or subway station platform with commuters waiting, modern urban atmosphere, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-006-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-006",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>역</div>",
+          "back_html": "<div class='answer answer-en'>station</div><div class='answer answer-ko'>역</div><div class='pronunciation'>yeok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>역에서 만나요.</div><div class='example-en'>We meet at the station.</div></li></ul></section><div class='notes'>Coverage gap: places. Core transportation place word for directions, travel, and meeting people.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-006.png' alt='station' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-006-production",
+          "item_id": "new-vocab-2026-03-26-185235-006",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>station</div>",
+          "back_html": "<div class='answer answer-ko'>역</div><div class='answer answer-en'>station</div><div class='pronunciation'>yeok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>역에서 만나요.</div><div class='example-en'>We meet at the station.</div></li></ul></section><div class='notes'>Coverage gap: places. Core transportation place word for directions, travel, and meeting people.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-006.png' alt='station' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-006.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-006-listening",
+          "item_id": "new-vocab-2026-03-26-185235-006",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-006.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>역</div><div class='answer answer-en'>station</div><div class='pronunciation'>yeok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>역에서 만나요.</div><div class='example-en'>We meet at the station.</div></li></ul></section><div class='notes'>Coverage gap: places. Core transportation place word for directions, travel, and meeting people.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-006.png' alt='station' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-006.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-006.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:역:station",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-007",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "집",
+        "english": "home",
+        "pronunciation": "jip",
+        "examples": [
+          {
+            "korean": "집에 가요.",
+            "english": "I go home."
+          }
+        ],
+        "notes": "Coverage gap: places. Essential place word for daily movement, basic conversation, and beginner sentence building.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a Korean adult arriving at a small apartment home in a contemporary Seoul neighborhood, warm evening light, realistic and inviting, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-007.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-007.png",
+          "prompt": "Polished digital illustration of a Korean adult arriving at a small apartment home in a contemporary Seoul neighborhood, warm evening light, realistic and inviting, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-007-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-007",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>집</div>",
+          "back_html": "<div class='answer answer-en'>home</div><div class='answer answer-ko'>집</div><div class='pronunciation'>jip</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>집에 가요.</div><div class='example-en'>I go home.</div></li></ul></section><div class='notes'>Coverage gap: places. Essential place word for daily movement, basic conversation, and beginner sentence building.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-007.png' alt='home' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-007-production",
+          "item_id": "new-vocab-2026-03-26-185235-007",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>home</div>",
+          "back_html": "<div class='answer answer-ko'>집</div><div class='answer answer-en'>home</div><div class='pronunciation'>jip</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>집에 가요.</div><div class='example-en'>I go home.</div></li></ul></section><div class='notes'>Coverage gap: places. Essential place word for daily movement, basic conversation, and beginner sentence building.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-007.png' alt='home' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-007.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-007-listening",
+          "item_id": "new-vocab-2026-03-26-185235-007",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-007.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>집</div><div class='answer answer-en'>home</div><div class='pronunciation'>jip</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>집에 가요.</div><div class='example-en'>I go home.</div></li></ul></section><div class='notes'>Coverage gap: places. Essential place word for daily movement, basic conversation, and beginner sentence building.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-007.png' alt='home' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-007.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-007.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:집:home",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-008",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "카페",
+        "english": "cafe",
+        "pronunciation": "kape",
+        "examples": [
+          {
+            "korean": "카페에서 커피를 마셔요.",
+            "english": "I drink coffee at a cafe."
+          }
+        ],
+        "notes": "Coverage gap: places. Very common modern place word for everyday social plans and routines.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a stylish Korean cafe with a barista and an adult customer holding a coffee, warm modern interior, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-008.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-008.png",
+          "prompt": "Polished digital illustration of a stylish Korean cafe with a barista and an adult customer holding a coffee, warm modern interior, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-008-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-008",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>카페</div>",
+          "back_html": "<div class='answer answer-en'>cafe</div><div class='answer answer-ko'>카페</div><div class='pronunciation'>kape</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>카페에서 커피를 마셔요.</div><div class='example-en'>I drink coffee at a cafe.</div></li></ul></section><div class='notes'>Coverage gap: places. Very common modern place word for everyday social plans and routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-008.png' alt='cafe' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-008-production",
+          "item_id": "new-vocab-2026-03-26-185235-008",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>cafe</div>",
+          "back_html": "<div class='answer answer-ko'>카페</div><div class='answer answer-en'>cafe</div><div class='pronunciation'>kape</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>카페에서 커피를 마셔요.</div><div class='example-en'>I drink coffee at a cafe.</div></li></ul></section><div class='notes'>Coverage gap: places. Very common modern place word for everyday social plans and routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-008.png' alt='cafe' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-008.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-008-listening",
+          "item_id": "new-vocab-2026-03-26-185235-008",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-008.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>카페</div><div class='answer answer-en'>cafe</div><div class='pronunciation'>kape</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>카페에서 커피를 마셔요.</div><div class='example-en'>I drink coffee at a cafe.</div></li></ul></section><div class='notes'>Coverage gap: places. Very common modern place word for everyday social plans and routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-008.png' alt='cafe' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-008.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-008.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:카페:cafe",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-009",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "편의점",
+        "english": "convenience store",
+        "pronunciation": "pyeonuijeom",
+        "examples": [
+          {
+            "korean": "편의점에 가요.",
+            "english": "I go to the convenience store."
+          }
+        ],
+        "notes": "Coverage gap: places. Extremely practical place word in Korea for everyday purchases and survival situations.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a Korean convenience store exterior at night with bright lights and one adult customer entering, no visible text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-009.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-009.png",
+          "prompt": "Polished digital illustration of a Korean convenience store exterior at night with bright lights and one adult customer entering, no visible text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-009-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-009",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>편의점</div>",
+          "back_html": "<div class='answer answer-en'>convenience store</div><div class='answer answer-ko'>편의점</div><div class='pronunciation'>pyeonuijeom</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>편의점에 가요.</div><div class='example-en'>I go to the convenience store.</div></li></ul></section><div class='notes'>Coverage gap: places. Extremely practical place word in Korea for everyday purchases and survival situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-009.png' alt='convenience store' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-009-production",
+          "item_id": "new-vocab-2026-03-26-185235-009",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>convenience store</div>",
+          "back_html": "<div class='answer answer-ko'>편의점</div><div class='answer answer-en'>convenience store</div><div class='pronunciation'>pyeonuijeom</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>편의점에 가요.</div><div class='example-en'>I go to the convenience store.</div></li></ul></section><div class='notes'>Coverage gap: places. Extremely practical place word in Korea for everyday purchases and survival situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-009.png' alt='convenience store' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-009.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-009-listening",
+          "item_id": "new-vocab-2026-03-26-185235-009",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-009.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>편의점</div><div class='answer answer-en'>convenience store</div><div class='pronunciation'>pyeonuijeom</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>편의점에 가요.</div><div class='example-en'>I go to the convenience store.</div></li></ul></section><div class='notes'>Coverage gap: places. Extremely practical place word in Korea for everyday purchases and survival situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-009.png' alt='convenience store' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-009.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-009.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:편의점:convenience store",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-010",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "학교",
+        "english": "school",
+        "pronunciation": "hakgyo",
+        "examples": [
+          {
+            "korean": "학교에 가요.",
+            "english": "I go to school."
+          }
+        ],
+        "notes": "Coverage gap: places. Very common beginner place word used in routines, introductions, and simple daily statements.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a modern Korean school building with a student walking toward the entrance, daytime, clean contemporary setting, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-010.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-010.png",
+          "prompt": "Polished digital illustration of a modern Korean school building with a student walking toward the entrance, daytime, clean contemporary setting, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-010-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-010",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>학교</div>",
+          "back_html": "<div class='answer answer-en'>school</div><div class='answer answer-ko'>학교</div><div class='pronunciation'>hakgyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>학교에 가요.</div><div class='example-en'>I go to school.</div></li></ul></section><div class='notes'>Coverage gap: places. Very common beginner place word used in routines, introductions, and simple daily statements.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-010.png' alt='school' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-010-production",
+          "item_id": "new-vocab-2026-03-26-185235-010",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>school</div>",
+          "back_html": "<div class='answer answer-ko'>학교</div><div class='answer answer-en'>school</div><div class='pronunciation'>hakgyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>학교에 가요.</div><div class='example-en'>I go to school.</div></li></ul></section><div class='notes'>Coverage gap: places. Very common beginner place word used in routines, introductions, and simple daily statements.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-010.png' alt='school' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-010.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-010-listening",
+          "item_id": "new-vocab-2026-03-26-185235-010",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-010.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>학교</div><div class='answer answer-en'>school</div><div class='pronunciation'>hakgyo</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>학교에 가요.</div><div class='example-en'>I go to school.</div></li></ul></section><div class='notes'>Coverage gap: places. Very common beginner place word used in routines, introductions, and simple daily statements.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-010.png' alt='school' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-010.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-010.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:학교:school",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-011",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "화장실",
+        "english": "restroom",
+        "pronunciation": "hwajangsil",
+        "examples": [
+          {
+            "korean": "화장실이 어디예요?",
+            "english": "Where is the restroom?"
+          }
+        ],
+        "notes": "Coverage gap: places. Critical survival word for public places and daily life.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a clean modern restroom interior in Korea with sinks, mirrors, and stalls, no people, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-011.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-011.png",
+          "prompt": "Polished digital illustration of a clean modern restroom interior in Korea with sinks, mirrors, and stalls, no people, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-011-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-011",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>화장실</div>",
+          "back_html": "<div class='answer answer-en'>restroom</div><div class='answer answer-ko'>화장실</div><div class='pronunciation'>hwajangsil</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>화장실이 어디예요?</div><div class='example-en'>Where is the restroom?</div></li></ul></section><div class='notes'>Coverage gap: places. Critical survival word for public places and daily life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-011.png' alt='restroom' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-011-production",
+          "item_id": "new-vocab-2026-03-26-185235-011",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>restroom</div>",
+          "back_html": "<div class='answer answer-ko'>화장실</div><div class='answer answer-en'>restroom</div><div class='pronunciation'>hwajangsil</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>화장실이 어디예요?</div><div class='example-en'>Where is the restroom?</div></li></ul></section><div class='notes'>Coverage gap: places. Critical survival word for public places and daily life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-011.png' alt='restroom' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-011.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-011-listening",
+          "item_id": "new-vocab-2026-03-26-185235-011",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-011.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>화장실</div><div class='answer answer-en'>restroom</div><div class='pronunciation'>hwajangsil</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>화장실이 어디예요?</div><div class='example-en'>Where is the restroom?</div></li></ul></section><div class='notes'>Coverage gap: places. Critical survival word for public places and daily life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-011.png' alt='restroom' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-011.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-011.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:화장실:restroom",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-012",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "회사",
+        "english": "office",
+        "pronunciation": "hoesa",
+        "examples": [
+          {
+            "korean": "회사에 가요.",
+            "english": "I go to the office."
+          }
+        ],
+        "notes": "Coverage gap: places. High-utility place word for talking about work and daily routines.",
+        "tags": [
+          "new-vocab",
+          "places",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • places",
+        "image_prompt": "Polished digital illustration of a Korean office worker entering a modern office building in Seoul, professional everyday scene, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-012.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-012.png",
+          "prompt": "Polished digital illustration of a Korean office worker entering a modern office building in Seoul, professional everyday scene, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-012-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-012",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>회사</div>",
+          "back_html": "<div class='answer answer-en'>office</div><div class='answer answer-ko'>회사</div><div class='pronunciation'>hoesa</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>회사에 가요.</div><div class='example-en'>I go to the office.</div></li></ul></section><div class='notes'>Coverage gap: places. High-utility place word for talking about work and daily routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-012.png' alt='office' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-012-production",
+          "item_id": "new-vocab-2026-03-26-185235-012",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>office</div>",
+          "back_html": "<div class='answer answer-ko'>회사</div><div class='answer answer-en'>office</div><div class='pronunciation'>hoesa</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>회사에 가요.</div><div class='example-en'>I go to the office.</div></li></ul></section><div class='notes'>Coverage gap: places. High-utility place word for talking about work and daily routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-012.png' alt='office' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-012.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-012-listening",
+          "item_id": "new-vocab-2026-03-26-185235-012",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-012.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>회사</div><div class='answer answer-en'>office</div><div class='pronunciation'>hoesa</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>회사에 가요.</div><div class='example-en'>I go to the office.</div></li></ul></section><div class='notes'>Coverage gap: places. High-utility place word for talking about work and daily routines.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • places</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-012.png' alt='office' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-012.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-012.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:회사:office",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-013",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "고기",
+        "english": "meat",
+        "pronunciation": "gogi",
+        "examples": [
+          {
+            "korean": "고기를 먹어요.",
+            "english": "I eat meat."
+          }
+        ],
+        "notes": "Coverage gap: food. Very common food word in daily meals and restaurant situations.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished digital illustration of Korean grilled meat on a table grill with side dishes, appetizing restaurant scene, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-013.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-013.png",
+          "prompt": "Polished digital illustration of Korean grilled meat on a table grill with side dishes, appetizing restaurant scene, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-013-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-013",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>고기</div>",
+          "back_html": "<div class='answer answer-en'>meat</div><div class='answer answer-ko'>고기</div><div class='pronunciation'>gogi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>고기를 먹어요.</div><div class='example-en'>I eat meat.</div></li></ul></section><div class='notes'>Coverage gap: food. Very common food word in daily meals and restaurant situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-013.png' alt='meat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-013-production",
+          "item_id": "new-vocab-2026-03-26-185235-013",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>meat</div>",
+          "back_html": "<div class='answer answer-ko'>고기</div><div class='answer answer-en'>meat</div><div class='pronunciation'>gogi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>고기를 먹어요.</div><div class='example-en'>I eat meat.</div></li></ul></section><div class='notes'>Coverage gap: food. Very common food word in daily meals and restaurant situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-013.png' alt='meat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-013.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-013-listening",
+          "item_id": "new-vocab-2026-03-26-185235-013",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-013.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>고기</div><div class='answer answer-en'>meat</div><div class='pronunciation'>gogi</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>고기를 먹어요.</div><div class='example-en'>I eat meat.</div></li></ul></section><div class='notes'>Coverage gap: food. Very common food word in daily meals and restaurant situations.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-013.png' alt='meat' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-013.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-013.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:고기:meat",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-014",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "과일",
+        "english": "fruit",
+        "pronunciation": "gwail",
+        "examples": [
+          {
+            "korean": "과일을 먹어요.",
+            "english": "I eat fruit."
+          }
+        ],
+        "notes": "Coverage gap: food. High-utility category word that supports shopping and food talk.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished digital illustration of a bowl of fresh mixed fruit on a kitchen counter in a Korean home, colorful realistic style, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-014.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-014.png",
+          "prompt": "Polished digital illustration of a bowl of fresh mixed fruit on a kitchen counter in a Korean home, colorful realistic style, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-014-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-014",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>과일</div>",
+          "back_html": "<div class='answer answer-en'>fruit</div><div class='answer answer-ko'>과일</div><div class='pronunciation'>gwail</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>과일을 먹어요.</div><div class='example-en'>I eat fruit.</div></li></ul></section><div class='notes'>Coverage gap: food. High-utility category word that supports shopping and food talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-014.png' alt='fruit' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-014-production",
+          "item_id": "new-vocab-2026-03-26-185235-014",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>fruit</div>",
+          "back_html": "<div class='answer answer-ko'>과일</div><div class='answer answer-en'>fruit</div><div class='pronunciation'>gwail</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>과일을 먹어요.</div><div class='example-en'>I eat fruit.</div></li></ul></section><div class='notes'>Coverage gap: food. High-utility category word that supports shopping and food talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-014.png' alt='fruit' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-014.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-014-listening",
+          "item_id": "new-vocab-2026-03-26-185235-014",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-014.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>과일</div><div class='answer answer-en'>fruit</div><div class='pronunciation'>gwail</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>과일을 먹어요.</div><div class='example-en'>I eat fruit.</div></li></ul></section><div class='notes'>Coverage gap: food. High-utility category word that supports shopping and food talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-014.png' alt='fruit' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-014.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-014.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:과일:fruit",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-015",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "물",
+        "english": "water",
+        "pronunciation": "mul",
+        "examples": [
+          {
+            "korean": "물을 마셔요.",
+            "english": "I drink water."
+          }
+        ],
+        "notes": "Coverage gap: food. Top-priority survival vocabulary for eating, health, and daily life.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished digital illustration of a clear glass of water on a dining table in a Korean home, fresh bright lighting, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-015.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-015.png",
+          "prompt": "Polished digital illustration of a clear glass of water on a dining table in a Korean home, fresh bright lighting, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-015-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-015",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>물</div>",
+          "back_html": "<div class='answer answer-en'>water</div><div class='answer answer-ko'>물</div><div class='pronunciation'>mul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>물을 마셔요.</div><div class='example-en'>I drink water.</div></li></ul></section><div class='notes'>Coverage gap: food. Top-priority survival vocabulary for eating, health, and daily life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-015.png' alt='water' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-015-production",
+          "item_id": "new-vocab-2026-03-26-185235-015",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>water</div>",
+          "back_html": "<div class='answer answer-ko'>물</div><div class='answer answer-en'>water</div><div class='pronunciation'>mul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>물을 마셔요.</div><div class='example-en'>I drink water.</div></li></ul></section><div class='notes'>Coverage gap: food. Top-priority survival vocabulary for eating, health, and daily life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-015.png' alt='water' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-015.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-015-listening",
+          "item_id": "new-vocab-2026-03-26-185235-015",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-015.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>물</div><div class='answer answer-en'>water</div><div class='pronunciation'>mul</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>물을 마셔요.</div><div class='example-en'>I drink water.</div></li></ul></section><div class='notes'>Coverage gap: food. Top-priority survival vocabulary for eating, health, and daily life.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-015.png' alt='water' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-015.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-015.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:물:water",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-016",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "밥",
+        "english": "meal",
+        "pronunciation": "bap",
+        "examples": [
+          {
+            "korean": "밥을 먹어요.",
+            "english": "I eat a meal."
+          }
+        ],
+        "notes": "Coverage gap: food. Foundational Korean food word used constantly in beginner conversation.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished digital illustration of a simple Korean meal with a bowl of rice and side dishes on a table, appetizing realistic style, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-016.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-016.png",
+          "prompt": "Polished digital illustration of a simple Korean meal with a bowl of rice and side dishes on a table, appetizing realistic style, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-016-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-016",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>밥</div>",
+          "back_html": "<div class='answer answer-en'>meal</div><div class='answer answer-ko'>밥</div><div class='pronunciation'>bap</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>밥을 먹어요.</div><div class='example-en'>I eat a meal.</div></li></ul></section><div class='notes'>Coverage gap: food. Foundational Korean food word used constantly in beginner conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-016.png' alt='meal' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-016-production",
+          "item_id": "new-vocab-2026-03-26-185235-016",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>meal</div>",
+          "back_html": "<div class='answer answer-ko'>밥</div><div class='answer answer-en'>meal</div><div class='pronunciation'>bap</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>밥을 먹어요.</div><div class='example-en'>I eat a meal.</div></li></ul></section><div class='notes'>Coverage gap: food. Foundational Korean food word used constantly in beginner conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-016.png' alt='meal' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-016.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-016-listening",
+          "item_id": "new-vocab-2026-03-26-185235-016",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-016.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>밥</div><div class='answer answer-en'>meal</div><div class='pronunciation'>bap</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>밥을 먹어요.</div><div class='example-en'>I eat a meal.</div></li></ul></section><div class='notes'>Coverage gap: food. Foundational Korean food word used constantly in beginner conversation.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-016.png' alt='meal' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-016.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-016.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:밥:meal",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-017",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "빵",
+        "english": "bread",
+        "pronunciation": "ppang",
+        "examples": [
+          {
+            "korean": "빵을 사요.",
+            "english": "I buy bread."
+          }
+        ],
+        "notes": "Coverage gap: food. Common everyday food word that beginners can use immediately.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished digital illustration of fresh bread on a tray in a Korean bakery, warm natural light, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-017.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-017.png",
+          "prompt": "Polished digital illustration of fresh bread on a tray in a Korean bakery, warm natural light, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-017-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-017",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>빵</div>",
+          "back_html": "<div class='answer answer-en'>bread</div><div class='answer answer-ko'>빵</div><div class='pronunciation'>ppang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>빵을 사요.</div><div class='example-en'>I buy bread.</div></li></ul></section><div class='notes'>Coverage gap: food. Common everyday food word that beginners can use immediately.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-017.png' alt='bread' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-017-production",
+          "item_id": "new-vocab-2026-03-26-185235-017",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>bread</div>",
+          "back_html": "<div class='answer answer-ko'>빵</div><div class='answer answer-en'>bread</div><div class='pronunciation'>ppang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>빵을 사요.</div><div class='example-en'>I buy bread.</div></li></ul></section><div class='notes'>Coverage gap: food. Common everyday food word that beginners can use immediately.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-017.png' alt='bread' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-017.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-017-listening",
+          "item_id": "new-vocab-2026-03-26-185235-017",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-017.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>빵</div><div class='answer answer-en'>bread</div><div class='pronunciation'>ppang</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>빵을 사요.</div><div class='example-en'>I buy bread.</div></li></ul></section><div class='notes'>Coverage gap: food. Common everyday food word that beginners can use immediately.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-017.png' alt='bread' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-017.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-017.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:빵:bread",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-018",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "우유",
+        "english": "milk",
+        "pronunciation": "uyu",
+        "examples": [
+          {
+            "korean": "우유를 마셔요.",
+            "english": "I drink milk."
+          }
+        ],
+        "notes": "Coverage gap: food. Frequent basic food word for shopping and daily routine sentences.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished digital illustration of a glass bottle and cup of milk on a kitchen table in a Korean home, clean bright scene, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-018.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-018.png",
+          "prompt": "Polished digital illustration of a glass bottle and cup of milk on a kitchen table in a Korean home, clean bright scene, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-018-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-018",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>우유</div>",
+          "back_html": "<div class='answer answer-en'>milk</div><div class='answer answer-ko'>우유</div><div class='pronunciation'>uyu</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>우유를 마셔요.</div><div class='example-en'>I drink milk.</div></li></ul></section><div class='notes'>Coverage gap: food. Frequent basic food word for shopping and daily routine sentences.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-018.png' alt='milk' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-018-production",
+          "item_id": "new-vocab-2026-03-26-185235-018",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>milk</div>",
+          "back_html": "<div class='answer answer-ko'>우유</div><div class='answer answer-en'>milk</div><div class='pronunciation'>uyu</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>우유를 마셔요.</div><div class='example-en'>I drink milk.</div></li></ul></section><div class='notes'>Coverage gap: food. Frequent basic food word for shopping and daily routine sentences.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-018.png' alt='milk' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-018.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-018-listening",
+          "item_id": "new-vocab-2026-03-26-185235-018",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-018.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>우유</div><div class='answer answer-en'>milk</div><div class='pronunciation'>uyu</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>우유를 마셔요.</div><div class='example-en'>I drink milk.</div></li></ul></section><div class='notes'>Coverage gap: food. Frequent basic food word for shopping and daily routine sentences.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-018.png' alt='milk' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-018.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-018.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:우유:milk",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-019",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "음식",
+        "english": "food",
+        "pronunciation": "eumsik",
+        "examples": [
+          {
+            "korean": "한국 음식을 좋아해요.",
+            "english": "I like Korean food."
+          }
+        ],
+        "notes": "Coverage gap: food. Broad essential food word for preferences, shopping, and restaurant talk.",
+        "tags": [
+          "new-vocab",
+          "food",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • food",
+        "image_prompt": "Polished digital illustration of a Korean dining table with a variety of dishes arranged neatly, rich colors and modern style, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-019.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-019.png",
+          "prompt": "Polished digital illustration of a Korean dining table with a variety of dishes arranged neatly, rich colors and modern style, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-019-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-019",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>음식</div>",
+          "back_html": "<div class='answer answer-en'>food</div><div class='answer answer-ko'>음식</div><div class='pronunciation'>eumsik</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>한국 음식을 좋아해요.</div><div class='example-en'>I like Korean food.</div></li></ul></section><div class='notes'>Coverage gap: food. Broad essential food word for preferences, shopping, and restaurant talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-019.png' alt='food' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-019-production",
+          "item_id": "new-vocab-2026-03-26-185235-019",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>food</div>",
+          "back_html": "<div class='answer answer-ko'>음식</div><div class='answer answer-en'>food</div><div class='pronunciation'>eumsik</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>한국 음식을 좋아해요.</div><div class='example-en'>I like Korean food.</div></li></ul></section><div class='notes'>Coverage gap: food. Broad essential food word for preferences, shopping, and restaurant talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-019.png' alt='food' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-019.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-019-listening",
+          "item_id": "new-vocab-2026-03-26-185235-019",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-019.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>음식</div><div class='answer answer-en'>food</div><div class='pronunciation'>eumsik</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>한국 음식을 좋아해요.</div><div class='example-en'>I like Korean food.</div></li></ul></section><div class='notes'>Coverage gap: food. Broad essential food word for preferences, shopping, and restaurant talk.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • food</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-019.png' alt='food' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-019.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-019.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:음식:food",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-020",
+        "lesson_id": "new-vocab-2026-03-26-185235",
+        "item_type": "vocab",
+        "korean": "가족",
+        "english": "family",
+        "pronunciation": "gajok",
+        "examples": [
+          {
+            "korean": "가족이 있어요.",
+            "english": "I have a family."
+          }
+        ],
+        "notes": "Coverage gap: family. Foundational family word used in introductions and many beginner contexts.",
+        "tags": [
+          "new-vocab",
+          "family",
+          "coverage-gap"
+        ],
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "source_ref": "New vocab proposal • coverage-gap • family",
+        "image_prompt": "Polished digital illustration of a Korean family sitting together in a modern living room, warm natural interaction, no text.",
+        "audio": {
+          "path": "data/media/audio/new-vocab-2026-03-26-185235-020.mp3",
+          "prompt": null,
+          "source_url": null
+        },
+        "image": {
+          "path": "data/media/images/new-vocab-2026-03-26-185235-020.png",
+          "prompt": "Polished digital illustration of a Korean family sitting together in a modern living room, warm natural interaction, no text. Stylish, contemporary editorial illustration for an adult language learner in their 30s. Keep it warm, playful, and visually engaging without looking childish. Use clean composition, rich color, and a polished modern textbook feel. If the scene includes people, depict Korean people in a natural contemporary Korean setting. No text in the image.",
+          "source_url": null
+        }
+      },
+      "cards": [
+        {
+          "id": "new-vocab-2026-03-26-185235-020-recognition",
+          "item_id": "new-vocab-2026-03-26-185235-020",
+          "kind": "recognition",
+          "front_html": "<div class='prompt prompt-ko'>가족</div>",
+          "back_html": "<div class='answer answer-en'>family</div><div class='answer answer-ko'>가족</div><div class='pronunciation'>gajok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가족이 있어요.</div><div class='example-en'>I have a family.</div></li></ul></section><div class='notes'>Coverage gap: family. Foundational family word used in introductions and many beginner contexts.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-020.png' alt='family' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-020-production",
+          "item_id": "new-vocab-2026-03-26-185235-020",
+          "kind": "production",
+          "front_html": "<div class='prompt prompt-en'>family</div>",
+          "back_html": "<div class='answer answer-ko'>가족</div><div class='answer answer-en'>family</div><div class='pronunciation'>gajok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가족이 있어요.</div><div class='example-en'>I have a family.</div></li></ul></section><div class='notes'>Coverage gap: family. Foundational family word used in introductions and many beginner contexts.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-020.png' alt='family' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-020.png",
+          "approved": true
+        },
+        {
+          "id": "new-vocab-2026-03-26-185235-020-listening",
+          "item_id": "new-vocab-2026-03-26-185235-020",
+          "kind": "listening",
+          "front_html": "<div class='prompt prompt-listening'>Listen and recall the meaning.</div><audio controls src='/media/audio/new-vocab-2026-03-26-185235-020.mp3'></audio>",
+          "back_html": "<div class='answer answer-ko'>가족</div><div class='answer answer-en'>family</div><div class='pronunciation'>gajok</div><section class='examples'><h4>Examples</h4><ul><li><div class='example-ko'>가족이 있어요.</div><div class='example-en'>I have a family.</div></li></ul></section><div class='notes'>Coverage gap: family. Foundational family word used in introductions and many beginner contexts.</div><div class='source-ref'>Source: New vocab proposal • coverage-gap • family</div><div class='image-wrap'><img src='/media/images/new-vocab-2026-03-26-185235-020.png' alt='family' /></div>",
+          "audio_path": "data/media/audio/new-vocab-2026-03-26-185235-020.mp3",
+          "image_path": "data/media/images/new-vocab-2026-03-26-185235-020.png",
+          "approved": true
+        }
+      ],
+      "approved": true,
+      "note_key": "vocab:가족:family",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    }
+  ]
+}

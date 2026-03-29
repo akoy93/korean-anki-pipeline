@@ -192,6 +192,13 @@ export interface ServiceStatus {
   anki_connect_ok?: boolean;
   anki_connect_version?: number | null;
   openai_configured?: boolean;
+  preview_ok?: boolean;
+  preview_detail?: string | null;
+  tailscale_ok?: boolean;
+  tailscale_detail?: string | null;
+  tailscale_dns_name?: string | null;
+  tailscale_key_expiry_at?: string | null;
+  remote_url?: string | null;
 }
 /**
  * This interface was referenced by `PreviewContract`'s JSON-Schema

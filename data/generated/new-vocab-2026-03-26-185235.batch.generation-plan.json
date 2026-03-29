@@ -1,0 +1,485 @@
+{
+  "lesson_id": "new-vocab-2026-03-26-185235",
+  "notes": [
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-001",
+        "item_type": "vocab",
+        "korean": "가게",
+        "english": "store",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a small neighborhood store in Korea with shelves and a customer at the entrance, natural street setting, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:가게:store",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-002",
+        "item_type": "vocab",
+        "korean": "방",
+        "english": "room",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a tidy bedroom in a contemporary Korean home, soft light, realistic furniture, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:방:room",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-003",
+        "item_type": "vocab",
+        "korean": "병원",
+        "english": "hospital",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a modern Korean hospital lobby with a patient checking in, bright clean environment, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:병원:hospital",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-004",
+        "item_type": "vocab",
+        "korean": "식당",
+        "english": "restaurant",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a cozy Korean restaurant interior with adults eating at tables, contemporary setting, appetizing atmosphere, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:식당:restaurant",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-005",
+        "item_type": "vocab",
+        "korean": "약국",
+        "english": "pharmacy",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a Korean pharmacy counter with medicine shelves behind it and an adult customer, contemporary setting, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:약국:pharmacy",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-006",
+        "item_type": "vocab",
+        "korean": "역",
+        "english": "station",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a Korean train or subway station platform with commuters waiting, modern urban atmosphere, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:역:station",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-007",
+        "item_type": "vocab",
+        "korean": "집",
+        "english": "home",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a Korean adult arriving at a small apartment home in a contemporary Seoul neighborhood, warm evening light, realistic and inviting, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:집:home",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-008",
+        "item_type": "vocab",
+        "korean": "카페",
+        "english": "cafe",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a stylish Korean cafe with a barista and an adult customer holding a coffee, warm modern interior, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:카페:cafe",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-009",
+        "item_type": "vocab",
+        "korean": "편의점",
+        "english": "convenience store",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a Korean convenience store exterior at night with bright lights and one adult customer entering, no visible text."
+      },
+      "approved": true,
+      "note_key": "vocab:편의점:convenience store",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-010",
+        "item_type": "vocab",
+        "korean": "학교",
+        "english": "school",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a modern Korean school building with a student walking toward the entrance, daytime, clean contemporary setting, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:학교:school",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-011",
+        "item_type": "vocab",
+        "korean": "화장실",
+        "english": "restroom",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a clean modern restroom interior in Korea with sinks, mirrors, and stalls, no people, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:화장실:restroom",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-012",
+        "item_type": "vocab",
+        "korean": "회사",
+        "english": "office",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "places"
+        ],
+        "image_prompt": "Polished digital illustration of a Korean office worker entering a modern office building in Seoul, professional everyday scene, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:회사:office",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "places"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: places"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-013",
+        "item_type": "vocab",
+        "korean": "고기",
+        "english": "meat",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished digital illustration of Korean grilled meat on a table grill with side dishes, appetizing restaurant scene, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:고기:meat",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-014",
+        "item_type": "vocab",
+        "korean": "과일",
+        "english": "fruit",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished digital illustration of a bowl of fresh mixed fruit on a kitchen counter in a Korean home, colorful realistic style, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:과일:fruit",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-015",
+        "item_type": "vocab",
+        "korean": "물",
+        "english": "water",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished digital illustration of a clear glass of water on a dining table in a Korean home, fresh bright lighting, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:물:water",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-016",
+        "item_type": "vocab",
+        "korean": "밥",
+        "english": "meal",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished digital illustration of a simple Korean meal with a bowl of rice and side dishes on a table, appetizing realistic style, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:밥:meal",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-017",
+        "item_type": "vocab",
+        "korean": "빵",
+        "english": "bread",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished digital illustration of fresh bread on a tray in a Korean bakery, warm natural light, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:빵:bread",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-018",
+        "item_type": "vocab",
+        "korean": "우유",
+        "english": "milk",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished digital illustration of a glass bottle and cup of milk on a kitchen table in a Korean home, clean bright scene, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:우유:milk",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-019",
+        "item_type": "vocab",
+        "korean": "음식",
+        "english": "food",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "food"
+        ],
+        "image_prompt": "Polished digital illustration of a Korean dining table with a variety of dishes arranged neatly, rich colors and modern style, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:음식:food",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "food"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: food"
+    },
+    {
+      "item": {
+        "id": "new-vocab-2026-03-26-185235-020",
+        "item_type": "vocab",
+        "korean": "가족",
+        "english": "family",
+        "lane": "new-vocab",
+        "skill_tags": [
+          "family"
+        ],
+        "image_prompt": "Polished digital illustration of a Korean family sitting together in a modern living room, warm natural interaction, no text."
+      },
+      "approved": true,
+      "note_key": "vocab:가족:family",
+      "lane": "new-vocab",
+      "skill_tags": [
+        "family"
+      ],
+      "duplicate_status": "new",
+      "duplicate_note_key": null,
+      "duplicate_note_id": null,
+      "duplicate_source": null,
+      "inclusion_reason": "Coverage gap: family"
+    }
+  ]
+}

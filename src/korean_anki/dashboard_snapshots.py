@@ -1,6 +1,4 @@
 from __future__ import annotations
-
-import os
 from pathlib import Path
 from typing import Callable, cast
 
@@ -10,6 +8,7 @@ from .anki_queries import existing_model_note_keys
 from .anki_repository import AnkiRepository
 from .batch_repository import BatchRepository
 from .lesson_repository import LessonRepository
+from .service_guardian import collect_service_status
 from .schema import (
     BatchPushStatus,
     CardBatch,
@@ -144,7 +143,13 @@ def dashboard_response_snapshot(
 
     note_count, card_count, deck_counts = anki_repository.dashboard_stats()
     note_keys = anki_repository.note_keys()
-    connected, version = anki_repository.service_status()
+    status = collect_service_status(
+        project_root=project_root,
+        anki_url=anki_url,
+        client_factory=resolved_client_factory,
+        note_keys_loader=resolved_note_keys_loader,
+        openai_configured=openai_configured,
+    )
 
     resolved_batches: list[DashboardBatch] = []
     for batch in recent_batches:
@@ -172,14 +177,7 @@ def dashboard_response_snapshot(
 
     return DashboardResponse(
         status=ServiceStatus(
-            backend_ok=True,
-            anki_connect_ok=connected,
-            anki_connect_version=version,
-            openai_configured=(
-                bool(os.environ.get("OPENAI_API_KEY"))
-                if openai_configured is None
-                else openai_configured
-            ),
+            **status.model_dump()
         ),
         stats=DashboardStats(
             local_batch_count=len(resolved_batches),
@@ -210,21 +208,10 @@ def service_status_snapshot(
     note_keys_loader: Callable[..., set[str]] | None = None,
     openai_configured: bool | None = None,
 ) -> ServiceStatus:
-    resolved_client_factory = client_factory or AnkiConnectClient
-    resolved_note_keys_loader = note_keys_loader or existing_model_note_keys
-    anki_repository = AnkiRepository(
-        anki_url,
-        client_factory=resolved_client_factory,
-        note_keys_loader=resolved_note_keys_loader,
-    )
-    anki_connect_ok, anki_connect_version = anki_repository.service_status()
-    return ServiceStatus(
-        backend_ok=True,
-        anki_connect_ok=anki_connect_ok,
-        anki_connect_version=anki_connect_version,
-        openai_configured=(
-            bool(os.environ.get("OPENAI_API_KEY"))
-            if openai_configured is None
-            else openai_configured
-        ),
+    return collect_service_status(
+        project_root=path_policy.project_root(),
+        anki_url=anki_url,
+        client_factory=client_factory or AnkiConnectClient,
+        note_keys_loader=note_keys_loader or existing_model_note_keys,
+        openai_configured=openai_configured,
     )

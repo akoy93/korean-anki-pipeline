@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime
 from typing import Literal
 
 from pydantic import Field
@@ -69,6 +69,13 @@ class ServiceStatus(StrictModel):
     anki_connect_ok: bool = False
     anki_connect_version: int | None = None
     openai_configured: bool = False
+    preview_ok: bool = False
+    preview_detail: str | None = None
+    tailscale_ok: bool = False
+    tailscale_detail: str | None = None
+    tailscale_dns_name: str | None = None
+    tailscale_key_expiry_at: datetime | None = None
+    remote_url: str | None = None
 
 
 class DashboardBatch(StrictModel):
