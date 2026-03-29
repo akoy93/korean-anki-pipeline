@@ -14,6 +14,7 @@ import {
   makeJobResponse,
   makeNumbersBatch,
   makePushResult,
+  makeVocabularyModelResponse,
   makeWeatherBatch,
 } from "./support/fixtures";
 import { MockPreviewApi } from "./support/mockApi";
@@ -56,16 +57,54 @@ test("home page shows loading state before dashboard data resolves", async ({
 
   await expect(
     page.getByText(
-      "Loading backend, preview, AnkiConnect, Tailscale, and API key status.",
+      "Checking backend, preview, Anki, network access, and API key status.",
     ),
   ).toBeVisible();
-  await expect(page.getByText("Checking")).toBeVisible();
+  await expect(page.getByText("Checking", { exact: true })).toBeVisible();
 
   api.resumeDashboardResponses();
 
-  await expect(page.getByText("Ready", { exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Recent batches" })).toBeVisible();
+  await expect(page.getByText("Everything you need is connected.")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Recent study sets" }),
+  ).toBeVisible();
   await expect(page.getByText("Weather Basics")).toBeVisible();
+});
+
+test("home page renders the vocabulary chart between stats and recent study sets", async ({
+  page,
+}) => {
+  const weatherBatch = makeWeatherBatch();
+  const api = new MockPreviewApi({
+    dashboard: makeDashboardResponse({
+      recentBatches: [makeDashboardBatch(WEATHER_BATCH_PATH, weatherBatch)],
+    }),
+    vocabularyModel: makeVocabularyModelResponse(),
+  });
+  await api.install(page);
+
+  await page.goto("/");
+
+  const ankiNotesStat = page.getByText("Anki Notes").last();
+  const vocabularyHeading = page.getByRole("heading", {
+    name: "Vocabulary",
+  });
+  const recentStudySetsHeading = page.getByRole("heading", {
+    name: "Recent study sets",
+  });
+  await expect(vocabularyHeading).toBeVisible();
+  await expect(page.getByText("Current 24.6")).toBeVisible();
+  await expect(page.getByText("6 days streak")).toBeVisible();
+  await expect(page.getByText("31 reviewed items")).toBeVisible();
+
+  const statBounds = await ankiNotesStat.boundingBox();
+  const vocabularyBounds = await vocabularyHeading.boundingBox();
+  const recentStudySetsBounds = await recentStudySetsHeading.boundingBox();
+  expect(statBounds).not.toBeNull();
+  expect(vocabularyBounds).not.toBeNull();
+  expect(recentStudySetsBounds).not.toBeNull();
+  expect(vocabularyBounds!.y).toBeGreaterThan(statBounds!.y);
+  expect(vocabularyBounds!.y).toBeLessThan(recentStudySetsBounds!.y);
 });
 
 test("theme toggle persists across navigation and reload", async ({ page }) => {
@@ -239,12 +278,12 @@ test("only the clicked hydrate button shows a loading spinner and hydration stat
   const weatherRow = recentBatchRow(page, WEATHER_BATCH_PATH);
   const dailyRow = recentBatchRow(page, DAILY_BATCH_PATH);
 
-  await weatherRow.getByRole("button", { name: "Hydrate" }).click();
+  await weatherRow.getByRole("button", { name: "Sync media" }).click();
 
   await expect(weatherRow.locator("button svg.animate-spin")).toBeVisible();
   await expect(dailyRow.locator("button svg.animate-spin")).toHaveCount(0);
-  await expect(weatherRow.getByText("Hydrated")).toBeVisible();
-  await expect(dailyRow.getByText("Not hydrated")).toBeVisible();
+  await expect(weatherRow.getByText("Media ready")).toBeVisible();
+  await expect(dailyRow.getByText("Needs media")).toBeVisible();
 });
 
 test("delete removes an unpushed batch from the recent batches list", async ({
@@ -337,27 +376,60 @@ test("opening Anki refreshes the status panel", async ({ page }) => {
   await page.getByRole("button", { name: "Show details" }).click();
 
   const openAnkiButton = page.getByRole("button", { name: "Open Anki" });
-  const openTailscaleButton = page.getByRole("button", {
-    name: "Open Tailscale preview",
-  });
 
   await expect(page.getByText("Needs attention")).toBeVisible();
   await expect(openAnkiButton).toBeVisible();
-  await expect(openTailscaleButton).toBeVisible();
   await expect(openAnkiButton.locator("svg")).toHaveCount(0);
-  await expect(openTailscaleButton.locator("svg")).toHaveCount(0);
-
-  const ankiButtonBounds = await openAnkiButton.boundingBox();
-  const tailscaleButtonBounds = await openTailscaleButton.boundingBox();
-  expect(ankiButtonBounds).not.toBeNull();
-  expect(tailscaleButtonBounds).not.toBeNull();
-  expect(ankiButtonBounds!.width).toBeCloseTo(tailscaleButtonBounds!.width, 0);
-  expect(ankiButtonBounds!.height).toBeCloseTo(tailscaleButtonBounds!.height, 0);
+  await expect(
+    page.getByRole("button", { name: "Open Tailscale preview" }),
+  ).toHaveCount(0);
 
   await openAnkiButton.click();
   await expect.poll(() => requestCount(api, "/api/open-anki")).toBe(1);
-  await expect(page.getByText("Ready", { exact: true })).toBeVisible();
+  await expect(page.getByText("Everything you need is connected.")).toBeVisible();
   await expect(page.getByText("5/5 ready")).toBeVisible();
+});
+
+test("vocabulary model polling refreshes the chart", async ({ page }) => {
+  test.setTimeout(25_000);
+
+  const weatherBatch = makeWeatherBatch();
+  const api = new MockPreviewApi({
+    dashboard: makeDashboardResponse({
+      recentBatches: [makeDashboardBatch(WEATHER_BATCH_PATH, weatherBatch)],
+    }),
+    vocabularyModel: makeVocabularyModelResponse({
+      currentEstimatedSize: 24.6,
+      change7d: 3.2,
+      projected30dSize: 19.4,
+    }),
+  });
+  await api.install(page);
+
+  await page.goto("/");
+  await expect(page.getByText("Current 24.6")).toBeVisible();
+  const baselineRequestCount = requestCount(api, "/api/vocabulary-model", "GET");
+  expect(baselineRequestCount).toBeGreaterThan(0);
+
+  api.setVocabularyModel(
+    makeVocabularyModelResponse({
+      currentEstimatedSize: 27.8,
+      change7d: 6.1,
+      projected30dSize: 22.3,
+      peakEstimatedSize: 28.1,
+      atRiskUnits: 4,
+      currentStreakDays: 7,
+    }),
+  );
+
+  await expect
+    .poll(() => requestCount(api, "/api/vocabulary-model", "GET"), {
+      timeout: 20_000,
+    })
+    .toBeGreaterThan(baselineRequestCount);
+  await expect(page.getByText("Current 27.8")).toBeVisible({ timeout: 20_000 });
+  await expect(page.getByText("7 days streak")).toBeVisible();
+  await expect(page.getByText("7d +6.1")).toBeVisible();
 });
 
 test("lesson generation requires the expected inputs and starts a job", async ({

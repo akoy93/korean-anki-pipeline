@@ -65,7 +65,7 @@ export function systemStatusSummary(
     return {
       ok: null,
       label: "Checking services",
-      detail: "Loading backend, preview, AnkiConnect, Tailscale, and API key status.",
+      detail: "Checking backend, preview, Anki, network access, and API key status.",
       onlineCount: 0,
       totalCount: 5,
     };
@@ -96,7 +96,7 @@ export function systemStatusSummary(
     return {
       ok: true,
       label: "Ready",
-      detail: "All unattended services are available.",
+      detail: "Everything you need is connected.",
       onlineCount,
       totalCount: states.length,
     };

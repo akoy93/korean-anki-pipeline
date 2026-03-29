@@ -143,6 +143,34 @@ class DashboardResponse(StrictModel):
     defaults: PreviewDefaults = Field(default_factory=PreviewDefaults)
 
 
+class VocabularyModelPoint(StrictModel):
+    date: date
+    estimated_size: float = 0
+    retained_units: int = 0
+    at_risk_units: int = 0
+    review_count: int = 0
+    is_forecast: bool = False
+
+
+class VocabularyModelSummary(StrictModel):
+    current_estimated_size: float = 0
+    change_7d: float = 0
+    projected_30d_size: float = 0
+    peak_estimated_size: float = 0
+    total_observed_units: int = 0
+    at_risk_units: int = 0
+    current_streak_days: int = 0
+
+
+class VocabularyModelResponse(StrictModel):
+    available: bool = False
+    reason: str | None = None
+    scope_label: str = "Words + phrases"
+    forecast_days: int = 30
+    points: list[VocabularyModelPoint] = Field(default_factory=list)
+    summary: VocabularyModelSummary | None = None
+
+
 class BatchPreviewResponse(StrictModel):
     batch: CardBatch
     canonical_batch_path: str
@@ -168,4 +196,7 @@ __all__ = [
     "PushRequest",
     "PushResult",
     "ServiceStatus",
+    "VocabularyModelPoint",
+    "VocabularyModelResponse",
+    "VocabularyModelSummary",
 ]

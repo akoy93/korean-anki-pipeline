@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -51,6 +53,15 @@ html.dark body {
     radial-gradient(circle at top left, rgba(61, 190, 176, 0.18), transparent 34%),
     radial-gradient(circle at top right, rgba(196, 121, 64, 0.12), transparent 30%),
     linear-gradient(180deg, #101722 0%, #182331 100%);
+}
+
+.home-wordmark {
+  font-family: "Fraunces", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  text-wrap: balance;
 }
 
 .card-html {

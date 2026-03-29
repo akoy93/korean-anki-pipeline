@@ -27,6 +27,7 @@ PREVIEW_CONTRACT_MODEL_EXPORTS = (
     "JobResponse",
     "LessonItem",
     "PushResult",
+    "VocabularyModelResponse",
 )
 
 

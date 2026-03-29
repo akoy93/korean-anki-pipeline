@@ -16,6 +16,9 @@ from .api import (
     PushRequest,
     PushResult,
     ServiceStatus,
+    VocabularyModelPoint,
+    VocabularyModelResponse,
+    VocabularyModelSummary,
 )
 from .api import __all__ as api_all
 from .common import (

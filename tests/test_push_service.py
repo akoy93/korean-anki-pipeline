@@ -23,6 +23,8 @@ from korean_anki.schema import (
     PushResult,
     ServiceStatus,
     StudyState,
+    VocabularyModelResponse,
+    VocabularyModelSummary,
 )
 from korean_anki.settings import (
     DEFAULT_LESSON_AUDIO,
@@ -323,6 +325,59 @@ class PushServiceTests(unittest.TestCase):
                 "remote_url": "https://alberts-mac-mini.tailnet.test/",
             },
         )
+
+    def test_vocabulary_model_endpoint_returns_payload(self) -> None:
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch(
+            "korean_anki.http_api.AnkiRepository.vocabulary_model",
+            return_value=VocabularyModelResponse(
+                available=True,
+                reason=None,
+                scope_label="Words + phrases",
+                forecast_days=30,
+                points=[],
+                summary=VocabularyModelSummary(
+                    current_estimated_size=24.6,
+                    change_7d=3.2,
+                    projected_30d_size=19.4,
+                    peak_estimated_size=25.8,
+                    total_observed_units=31,
+                    at_risk_units=6,
+                    current_streak_days=6,
+                ),
+            ),
+        ):
+            with urllib.request.urlopen(f"{base_url}/api/vocabulary-model", timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        self.assertEqual(payload["scope_label"], "Words + phrases")
+        self.assertTrue(payload["available"])
+        self.assertEqual(payload["summary"]["current_estimated_size"], 24.6)
+        self.assertEqual(payload["summary"]["projected_30d_size"], 19.4)
+        self.assertEqual(payload["summary"]["current_streak_days"], 6)
+
+    def test_vocabulary_model_endpoint_surfaces_unavailable_state(self) -> None:
+        server, base_url, thread = self._start_server()
+        self.addCleanup(self._stop_server, server, thread)
+
+        with patch(
+            "korean_anki.http_api.AnkiRepository.vocabulary_model",
+            return_value=VocabularyModelResponse(
+                available=False,
+                reason="Vocabulary model needs an AnkiConnect build with review statistics support.",
+                scope_label="Words + phrases",
+                forecast_days=30,
+                points=[],
+                summary=None,
+            ),
+        ):
+            with urllib.request.urlopen(f"{base_url}/api/vocabulary-model", timeout=5) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+
+        self.assertFalse(payload["available"])
+        self.assertIn("review statistics support", payload["reason"])
 
     def test_preview_note_endpoint_refreshes_cards_with_backend_logic(self) -> None:
         server, base_url, thread = self._start_server()

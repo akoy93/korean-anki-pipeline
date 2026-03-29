@@ -1116,6 +1116,122 @@
       ],
       "type": "string",
       "title": "StudyLane"
+    },
+    "VocabularyModelPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "format": "date",
+          "type": "string"
+        },
+        "estimated_size": {
+          "default": 0,
+          "type": "number"
+        },
+        "retained_units": {
+          "default": 0,
+          "type": "integer"
+        },
+        "at_risk_units": {
+          "default": 0,
+          "type": "integer"
+        },
+        "review_count": {
+          "default": 0,
+          "type": "integer"
+        },
+        "is_forecast": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "date"
+      ],
+      "type": "object",
+      "title": "VocabularyModelPoint"
+    },
+    "VocabularyModelResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "available": {
+          "default": false,
+          "type": "boolean"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "scope_label": {
+          "default": "Words + phrases",
+          "type": "string"
+        },
+        "forecast_days": {
+          "default": 30,
+          "type": "integer"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/$defs/VocabularyModelPoint"
+          },
+          "type": "array"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/VocabularyModelSummary"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "type": "object",
+      "title": "VocabularyModelResponse"
+    },
+    "VocabularyModelSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "current_estimated_size": {
+          "default": 0,
+          "type": "number"
+        },
+        "change_7d": {
+          "default": 0,
+          "type": "number"
+        },
+        "projected_30d_size": {
+          "default": 0,
+          "type": "number"
+        },
+        "peak_estimated_size": {
+          "default": 0,
+          "type": "number"
+        },
+        "total_observed_units": {
+          "default": 0,
+          "type": "integer"
+        },
+        "at_risk_units": {
+          "default": 0,
+          "type": "integer"
+        },
+        "current_streak_days": {
+          "default": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object",
+      "title": "VocabularyModelSummary"
     }
   }
 }

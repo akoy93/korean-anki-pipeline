@@ -10,6 +10,7 @@ import type {
   JobResponse,
   LessonItem,
   PushResult,
+  VocabularyModelResponse,
 } from "../../src/lib/schema";
 
 type CapturedRequest = {
@@ -78,6 +79,7 @@ function parseBody(route: Route): unknown {
 
 export class MockPreviewApi {
   dashboard: DashboardResponse;
+  vocabularyModel: VocabularyModelResponse;
   batches = new Map<string, CardBatch>();
   batchPreviewStatuses = new Map<
     string,
@@ -106,11 +108,27 @@ export class MockPreviewApi {
 
   constructor({
     dashboard,
+    vocabularyModel = {
+      available: true,
+      reason: null,
+      scope_label: "Words + phrases",
+      forecast_days: 30,
+      points: [],
+      summary: {
+        current_estimated_size: 0,
+        change_7d: 0,
+        projected_30d_size: 0,
+        peak_estimated_size: 0,
+        total_observed_units: 0,
+        at_risk_units: 0,
+      },
+    },
     batches = {},
     batchPreviewStatuses = {},
     dashboardDelayMs = 0,
   }: {
     dashboard: DashboardResponse;
+    vocabularyModel?: VocabularyModelResponse;
     batches?: Record<string, CardBatch>;
     batchPreviewStatuses?: Record<
       string,
@@ -119,6 +137,7 @@ export class MockPreviewApi {
     dashboardDelayMs?: number;
   }) {
     this.dashboard = clone(dashboard);
+    this.vocabularyModel = clone(vocabularyModel);
     this.dashboardDelayMs = dashboardDelayMs;
     for (const [path, batch] of Object.entries(batches)) {
       this.batches.set(path, clone(batch));
@@ -130,6 +149,10 @@ export class MockPreviewApi {
 
   setDashboard(dashboard: DashboardResponse) {
     this.dashboard = clone(dashboard);
+  }
+
+  setVocabularyModel(vocabularyModel: VocabularyModelResponse) {
+    this.vocabularyModel = clone(vocabularyModel);
   }
 
   setBatch(path: string, batch: CardBatch) {
@@ -223,6 +246,11 @@ export class MockPreviewApi {
 
       if (method === "GET" && path === "/api/status") {
         await fulfillJson(route, 200, clone(this.dashboard.status));
+        return;
+      }
+
+      if (method === "GET" && path === "/api/vocabulary-model") {
+        await fulfillJson(route, 200, clone(this.vocabularyModel));
         return;
       }
 

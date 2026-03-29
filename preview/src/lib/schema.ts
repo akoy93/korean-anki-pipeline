@@ -311,3 +311,40 @@ export interface PushResult {
   sync_completed?: boolean;
   reviewed_batch_path?: string | null;
 }
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "VocabularyModelPoint".
+ */
+export interface VocabularyModelPoint {
+  date: string;
+  estimated_size?: number;
+  retained_units?: number;
+  at_risk_units?: number;
+  review_count?: number;
+  is_forecast?: boolean;
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "VocabularyModelResponse".
+ */
+export interface VocabularyModelResponse {
+  available?: boolean;
+  reason?: string | null;
+  scope_label?: string;
+  forecast_days?: number;
+  points?: VocabularyModelPoint[];
+  summary?: VocabularyModelSummary | null;
+}
+/**
+ * This interface was referenced by `PreviewContract`'s JSON-Schema
+ * via the `definition` "VocabularyModelSummary".
+ */
+export interface VocabularyModelSummary {
+  current_estimated_size?: number;
+  change_7d?: number;
+  projected_30d_size?: number;
+  peak_estimated_size?: number;
+  total_observed_units?: number;
+  at_risk_units?: number;
+  current_streak_days?: number;
+}

@@ -10,6 +10,7 @@ import type {
   JobResponse,
   PushResult,
   StudyLane,
+  VocabularyModelResponse,
 } from "../../src/lib/schema";
 
 export const WEATHER_BATCH_PATH = "data/generated/weather-basics.batch.json";
@@ -399,6 +400,110 @@ export function makeDashboardResponse({
         image_quality: "low",
         target_deck: "Korean::New Vocab",
       },
+    },
+  };
+}
+
+export function makeVocabularyModelResponse({
+  available = true,
+  reason = null,
+  currentEstimatedSize = 24.6,
+  change7d = 3.2,
+  projected30dSize = 19.4,
+  peakEstimatedSize = 25.8,
+  totalObservedUnits = 31,
+  atRiskUnits = 6,
+  currentStreakDays = 6,
+}: {
+  available?: boolean;
+  reason?: string | null;
+  currentEstimatedSize?: number;
+  change7d?: number;
+  projected30dSize?: number;
+  peakEstimatedSize?: number;
+  totalObservedUnits?: number;
+  atRiskUnits?: number;
+  currentStreakDays?: number;
+} = {}): VocabularyModelResponse {
+  return {
+    available,
+    reason,
+    scope_label: "Words + phrases",
+    forecast_days: 30,
+    points: [
+      {
+        date: "2026-03-23",
+        estimated_size: 18.1,
+        retained_units: 12,
+        at_risk_units: 3,
+        review_count: 8,
+        is_forecast: false,
+      },
+      {
+        date: "2026-03-24",
+        estimated_size: 19.2,
+        retained_units: 13,
+        at_risk_units: 4,
+        review_count: 9,
+        is_forecast: false,
+      },
+      {
+        date: "2026-03-25",
+        estimated_size: 20.8,
+        retained_units: 15,
+        at_risk_units: 4,
+        review_count: 11,
+        is_forecast: false,
+      },
+      {
+        date: "2026-03-26",
+        estimated_size: 22.7,
+        retained_units: 17,
+        at_risk_units: 5,
+        review_count: 13,
+        is_forecast: false,
+      },
+      {
+        date: "2026-03-27",
+        estimated_size: currentEstimatedSize - 0.8,
+        retained_units: 18,
+        at_risk_units: Math.max(0, atRiskUnits - 1),
+        review_count: 7,
+        is_forecast: false,
+      },
+      {
+        date: "2026-03-28",
+        estimated_size: currentEstimatedSize,
+        retained_units: 19,
+        at_risk_units: atRiskUnits,
+        review_count: 10,
+        is_forecast: false,
+      },
+      {
+        date: "2026-03-29",
+        estimated_size: Math.max(projected30dSize, currentEstimatedSize - 0.7),
+        retained_units: 18,
+        at_risk_units: atRiskUnits + 1,
+        review_count: 0,
+        is_forecast: true,
+      },
+      {
+        date: "2026-04-27",
+        estimated_size: projected30dSize,
+        retained_units: 14,
+        at_risk_units: atRiskUnits + 3,
+        review_count: 0,
+        is_forecast: true,
+      },
+    ],
+    summary: {
+      current_estimated_size: currentEstimatedSize,
+      change_7d: change7d,
+      projected_30d_size: projected30dSize,
+      peak_estimated_size: peakEstimatedSize,
+      total_observed_units: totalObservedUnits,
+      at_risk_units: atRiskUnits,
+      current_streak_days: currentStreakDays,
     },
   };
 }

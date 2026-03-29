@@ -6,11 +6,15 @@ from typing import Callable
 
 from .anki_client import ANKI_MODEL_NAME, AnkiConnectClient
 from .note_keys import normalize_text
-from .schema import AnkiStatsSnapshot, PriorNote
+from .schema import AnkiStatsSnapshot, PriorNote, VocabularyModelResponse
 from .snapshot_cache import (
     anki_snapshot_version,
     invalidate_anki_snapshots,
     record_anki_availability,
+)
+from .vocabulary_model import (
+    VocabularyModelUnavailable,
+    cached_vocabulary_model_snapshot,
 )
 
 
@@ -84,6 +88,27 @@ class AnkiRepository:
             self._client_factory,
         )
         return [note.model_copy(deep=True) for note in imported_notes], stats.model_copy(deep=True)
+
+    def vocabulary_model(self) -> VocabularyModelResponse:
+        connected, _ = self.service_status()
+        if not connected:
+            return VocabularyModelResponse(
+                available=False,
+                reason="AnkiConnect is offline.",
+            )
+
+        try:
+            response = cached_vocabulary_model_snapshot(
+                self.anki_url,
+                self.snapshot_version,
+                self._client_factory,
+            )
+        except VocabularyModelUnavailable as error:
+            return VocabularyModelResponse(
+                available=False,
+                reason=str(error),
+            )
+        return response.model_copy(deep=True)
 
 
 def _parse_item_type(tags: list[str]) -> str:

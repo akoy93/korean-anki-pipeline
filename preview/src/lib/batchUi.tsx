@@ -29,9 +29,9 @@ export function pushStatusBadge(status: BatchPushStatus) {
 
 export function hydrationStatusBadge(mediaHydrated: boolean) {
   return mediaHydrated ? (
-    <Badge className={SUCCESS_BADGE_CLASS}>Hydrated</Badge>
+    <Badge className={SUCCESS_BADGE_CLASS}>Media ready</Badge>
   ) : (
-    <Badge className={WARNING_BADGE_CLASS}>Not hydrated</Badge>
+    <Badge className={WARNING_BADGE_CLASS}>Needs media</Badge>
   );
 }
 

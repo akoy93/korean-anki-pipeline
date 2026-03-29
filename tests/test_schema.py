@@ -100,6 +100,7 @@ class SchemaTests(unittest.TestCase):
             "LessonItem",
             "PushResult",
             "StudyLane",
+            "VocabularyModelResponse",
         }:
             self.assertIn(expected_name, definitions)
 

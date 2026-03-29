@@ -7,6 +7,7 @@ import type {
   JobResponse,
   LessonItem,
   PushResult,
+  VocabularyModelResponse,
 } from "@/lib/schema";
 
 async function readJson<T>(response: Response): Promise<T> {
@@ -40,6 +41,11 @@ function isBatchPreviewResponsePayload(
 export async function fetchDashboard(): Promise<DashboardResponse> {
   const response = await fetch("/api/dashboard");
   return readJson<DashboardResponse>(response);
+}
+
+export async function fetchVocabularyModel(): Promise<VocabularyModelResponse> {
+  const response = await fetch("/api/vocabulary-model");
+  return readJson<VocabularyModelResponse>(response);
 }
 
 export async function openAnki(): Promise<{ ok: boolean }> {

@@ -139,24 +139,7 @@ export function HomeSystemStatusCard({
             dashboard?.status.tailscale_detail ??
               dashboard?.status.remote_url ??
               "Tailnet HTTPS proxy",
-            dashboardLoading || !dashboard?.status.remote_url ? null : (
-              <Button
-                type="button"
-                size="sm"
-                variant="outline"
-                aria-label="Open Tailscale preview"
-                className={SERVICE_OPEN_BUTTON_CLASS}
-                onClick={() => {
-                  window.open(
-                    dashboard.status.remote_url!,
-                    "_blank",
-                    "noopener,noreferrer",
-                  );
-                }}
-              >
-                Open
-              </Button>
-            ),
+            null,
           )}
           {openError ? <div className={DANGER_PANEL_CLASS}>{openError}</div> : null}
         </CardContent>

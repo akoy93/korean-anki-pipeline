@@ -88,9 +88,9 @@ export function HomeRecentBatchesCard({
   return (
     <Card>
       <CardHeader className="pb-3 sm:pb-4">
-        <CardTitle>Recent batches</CardTitle>
+        <CardTitle>Recent study sets</CardTitle>
         <CardDescription>
-          Open generated batches directly in the review flow.
+          Open your latest card sets and keep media in sync.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -172,7 +172,7 @@ export function HomeRecentBatchesCard({
                     ) : (
                       <CloudDownload className="mr-2 h-4 w-4" />
                     )}
-                    Hydrate
+                    Sync media
                   </Button>
                 )}
                 <Button type="button" asChild className="w-full sm:w-auto">

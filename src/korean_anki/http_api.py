@@ -80,6 +80,19 @@ class PushServiceHandler(BaseHTTPRequestHandler):
                 ),
             )
             return
+        if parsed.path == "/api/vocabulary-model":
+            self._send_json(
+                200,
+                cast(
+                    dict[str, object],
+                    AnkiRepository(
+                        DEFAULT_ANKI_URL,
+                        client_factory=AnkiConnectClient,
+                        note_keys_loader=existing_model_note_keys,
+                    ).vocabulary_model().model_dump(mode="json"),
+                ),
+            )
+            return
         if parsed.path == "/api/batch":
             self._handle_batch_request(parsed.query)
             return
@@ -357,7 +370,8 @@ def run_server(host: str = DEFAULT_PREVIEW_HOST, port: int = DEFAULT_PREVIEW_POR
     print(f"Push service listening on http://{host}:{port}")
     print(
         "GET /media/*, GET /api/batch, POST /api/open-anki, POST /api/push, "
-        "POST /api/jobs/*, GET /api/status, GET /api/dashboard, and GET /api/health"
+        "POST /api/jobs/*, GET /api/status, GET /api/dashboard, GET /api/vocabulary-model, "
+        "and GET /api/health"
     )
     try:
         server.serve_forever()
