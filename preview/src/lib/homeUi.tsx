@@ -65,9 +65,9 @@ export function systemStatusSummary(
     return {
       ok: null,
       label: "Checking services",
-      detail: "Loading backend, AnkiConnect, and API key status.",
+      detail: "Loading backend, preview, AnkiConnect, Tailscale, and API key status.",
       onlineCount: 0,
-      totalCount: 3,
+      totalCount: 5,
     };
   }
 
@@ -79,18 +79,24 @@ export function systemStatusSummary(
         ? "The Python app backend is offline. Start `korean-anki serve` locally."
         : "Service status is unavailable.",
       onlineCount: 0,
-      totalCount: 3,
+      totalCount: 5,
     };
   }
 
-  const states = [status.backend_ok, status.anki_connect_ok, status.openai_configured];
+  const states = [
+    status.backend_ok,
+    status.preview_ok,
+    status.anki_connect_ok,
+    status.openai_configured,
+    status.tailscale_ok,
+  ];
   const onlineCount = states.filter(Boolean).length;
 
   if (onlineCount === states.length) {
     return {
       ok: true,
       label: "Ready",
-      detail: "All required local services are available.",
+      detail: "All unattended services are available.",
       onlineCount,
       totalCount: states.length,
     };

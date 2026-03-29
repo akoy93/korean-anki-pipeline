@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import mimetypes
 import os
+from pathlib import Path
 import subprocess
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import cast
@@ -24,6 +25,7 @@ from .dashboard_snapshots import (
 )
 from .push_workflow_service import delete_batch, handle_push_request
 from .multipart_form import MultipartForm
+from .service_guardian import preview_dist_root
 from .schema import (
     BatchPreviewResponse,
     CardBatch,
@@ -89,6 +91,8 @@ class PushServiceHandler(BaseHTTPRequestHandler):
                 self._send_json(404, {"error": "Job not found"})
                 return
             self._send_json(200, cast(dict[str, object], job.model_dump()))
+            return
+        if self._handle_preview_request(parsed.path):
             return
         self._send_json(404, {"error": "Not found"})
 
@@ -285,6 +289,49 @@ class PushServiceHandler(BaseHTTPRequestHandler):
 
         content_type = mimetypes.guess_type(str(resolved_path))[0] or "application/octet-stream"
         self._send_bytes(200, body, content_type=content_type)
+
+    def _send_preview_file(self, path: Path) -> None:
+        body = path.read_bytes()
+        content_type = mimetypes.guess_type(str(path))[0] or "application/octet-stream"
+        self._send_bytes(200, body, content_type=content_type)
+
+    def _send_preview_unavailable(self) -> None:
+        body = (
+            "Preview build is unavailable. Run `pnpm build` from preview/ before using unattended mode.\n"
+        ).encode("utf-8")
+        self._send_bytes(503, body, content_type="text/plain; charset=utf-8")
+
+    def _handle_preview_request(self, request_path: str) -> bool:
+        if request_path.startswith("/api/") or request_path.startswith("/media/"):
+            return False
+
+        dist_root = preview_dist_root(project_root=path_policy.project_root())
+        index_path = dist_root / "index.html"
+
+        if request_path == "/" or request_path.startswith("/batch/"):
+            if not index_path.is_file():
+                self._send_preview_unavailable()
+            else:
+                self._send_preview_file(index_path)
+            return True
+
+        relative_path = request_path.removeprefix("/")
+        if relative_path == "":
+            return False
+
+        candidate = (dist_root / relative_path).resolve()
+        normalized_root = f"{dist_root}{os.sep}"
+        if candidate != dist_root and not str(candidate).startswith(normalized_root):
+            self._send_json(403, {"error": "Path escapes preview root."})
+            return True
+        if not candidate.is_file():
+            return False
+
+        try:
+            self._send_preview_file(candidate)
+        except OSError as error:
+            self._send_json(500, {"error": str(error)})
+        return True
 
     def _handle_open_anki(self) -> None:
         try:

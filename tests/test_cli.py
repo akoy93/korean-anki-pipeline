@@ -11,7 +11,7 @@ from unittest.mock import patch
 
 from korean_anki import cli
 from korean_anki.anki_media_sync import MediaSyncSummary
-from korean_anki.schema import PushResult
+from korean_anki.schema import PushResult, ServiceStatus
 from korean_anki.settings import (
     DEFAULT_ANKI_URL,
     DEFAULT_LLM_MODEL,
@@ -21,7 +21,9 @@ from korean_anki.settings import (
     DEFAULT_NEW_VOCAB_IMAGE_QUALITY,
     DEFAULT_NEW_VOCAB_TARGET_DECK,
     DEFAULT_NEW_VOCAB_TITLE,
+    DEFAULT_SELF_HEAL_BACKEND_LABEL,
 )
+from korean_anki.service_guardian import WatchdogRunResult
 from korean_anki.sync_media_service import MediaSyncArtifacts
 
 from korean_anki.note_generation import generate_note
@@ -42,6 +44,14 @@ class CliTests(unittest.TestCase):
         self.assertEqual(args.media_dir, DEFAULT_MEDIA_DIR)
         self.assertEqual(args.anki_url, DEFAULT_ANKI_URL)
         self.assertEqual(args.model, DEFAULT_LLM_MODEL)
+
+    def test_parse_args_uses_shared_watchdog_defaults(self) -> None:
+        with patch("sys.argv", ["korean-anki", "watchdog"]):
+            args = cli._parse_args()
+
+        self.assertEqual(args.backend_label, DEFAULT_SELF_HEAL_BACKEND_LABEL)
+        self.assertIsNone(args.tailscale_bin)
+        self.assertFalse(args.check_only)
 
     def test_command_build_lessons_delegates_to_application_service(self) -> None:
         args = argparse.Namespace(
@@ -194,6 +204,32 @@ class CliTests(unittest.TestCase):
             project_root=Path.cwd().resolve(),
             anki_url="http://127.0.0.1:8765",
             sync_first=True,
+        )
+
+    def test_command_watchdog_delegates_to_service_guardian(self) -> None:
+        args = argparse.Namespace(
+            backend_label="com.albertkoy.korean-anki.backend",
+            tailscale_bin="/Applications/Tailscale.app/Contents/MacOS/tailscale",
+            check_only=True,
+        )
+
+        with (
+            patch(
+                "korean_anki.cli.run_watchdog_once",
+                return_value=WatchdogRunResult(
+                    status=ServiceStatus(),
+                    actions=tuple(),
+                ),
+            ) as mock_watchdog,
+            redirect_stdout(io.StringIO()),
+        ):
+            cli._command_watchdog(args)
+
+        mock_watchdog.assert_called_once_with(
+            project_root=Path.cwd().resolve(),
+            backend_label="com.albertkoy.korean-anki.backend",
+            tailscale_bin="/Applications/Tailscale.app/Contents/MacOS/tailscale",
+            repair=False,
         )
 
 

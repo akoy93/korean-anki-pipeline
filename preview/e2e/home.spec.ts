@@ -55,7 +55,9 @@ test("home page shows loading state before dashboard data resolves", async ({
   await page.goto("/", { waitUntil: "domcontentloaded" });
 
   await expect(
-    page.getByText("Loading backend, AnkiConnect, and API key status."),
+    page.getByText(
+      "Loading backend, preview, AnkiConnect, Tailscale, and API key status.",
+    ),
   ).toBeVisible();
   await expect(page.getByText("Checking")).toBeVisible();
 
@@ -334,13 +336,15 @@ test("opening Anki refreshes the status panel", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Show details" }).click();
 
-  await expect(page.getByText("Needs attention")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Open" })).toBeVisible();
+  const openAnkiButton = page.getByRole("button", { name: "Open Anki" });
 
-  await page.getByRole("button", { name: "Open" }).click();
+  await expect(page.getByText("Needs attention")).toBeVisible();
+  await expect(openAnkiButton).toBeVisible();
+
+  await openAnkiButton.click();
   await expect.poll(() => requestCount(api, "/api/open-anki")).toBe(1);
   await expect(page.getByText("Ready", { exact: true })).toBeVisible();
-  await expect(page.getByText("3/3 ready")).toBeVisible();
+  await expect(page.getByText("5/5 ready")).toBeVisible();
 });
 
 test("lesson generation requires the expected inputs and starts a job", async ({

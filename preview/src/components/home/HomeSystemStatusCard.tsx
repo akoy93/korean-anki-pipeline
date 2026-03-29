@@ -25,6 +25,8 @@ import { DANGER_PANEL_CLASS } from "@/lib/uiTokens";
 import { openAnki } from "@/lib/api";
 import type { DashboardResponse } from "@/lib/schema";
 
+const SERVICE_OPEN_BUTTON_CLASS = "w-28 shrink-0 justify-center";
+
 type HomeSystemStatusCardProps = {
   dashboard: DashboardResponse | null;
   dashboardLoading: boolean;
@@ -100,6 +102,11 @@ export function HomeSystemStatusCard({
             null,
           )}
           {serviceCard(
+            "Preview",
+            dashboardLoading ? null : (dashboard?.status.preview_ok ?? false),
+            dashboard?.status.preview_detail ?? "Built preview bundle",
+          )}
+          {serviceCard(
             "AnkiConnect",
             dashboardLoading ? null : (dashboard?.status.anki_connect_ok ?? false),
             dashboard?.status.anki_connect_version
@@ -112,7 +119,8 @@ export function HomeSystemStatusCard({
                 type="button"
                 size="sm"
                 variant="outline"
-                className="gap-2"
+                aria-label="Open Anki"
+                className={`${SERVICE_OPEN_BUTTON_CLASS} gap-2`}
                 onClick={() => void submitOpenAnki()}
                 disabled={openingAnki}
               >
@@ -129,6 +137,31 @@ export function HomeSystemStatusCard({
             "OpenAI key",
             dashboardLoading ? null : (dashboard?.status.openai_configured ?? false),
             ".env",
+          )}
+          {serviceCard(
+            "Tailscale",
+            dashboardLoading ? null : (dashboard?.status.tailscale_ok ?? false),
+            dashboard?.status.tailscale_detail ??
+              dashboard?.status.remote_url ??
+              "Tailnet HTTPS proxy",
+            dashboardLoading || !dashboard?.status.remote_url ? null : (
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                aria-label="Open Tailscale preview"
+                className={SERVICE_OPEN_BUTTON_CLASS}
+                onClick={() => {
+                  window.open(
+                    dashboard.status.remote_url!,
+                    "_blank",
+                    "noopener,noreferrer",
+                  );
+                }}
+              >
+                Open
+              </Button>
+            ),
           )}
           {openError ? <div className={DANGER_PANEL_CLASS}>{openError}</div> : null}
         </CardContent>

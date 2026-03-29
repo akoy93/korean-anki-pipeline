@@ -343,6 +343,13 @@ export function makeDashboardResponse({
       anki_connect_ok: true,
       anki_connect_version: 6,
       openai_configured: true,
+      preview_ok: true,
+      preview_detail: "Built preview bundle available at preview/dist.",
+      tailscale_ok: true,
+      tailscale_detail: "https://alberts-mac-mini.tailnet.test/",
+      tailscale_dns_name: "alberts-mac-mini.tailnet.test",
+      tailscale_key_expiry_at: null,
+      remote_url: "https://alberts-mac-mini.tailnet.test/",
       ...status,
     },
     stats: {
