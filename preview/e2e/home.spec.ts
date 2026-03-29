@@ -337,9 +337,22 @@ test("opening Anki refreshes the status panel", async ({ page }) => {
   await page.getByRole("button", { name: "Show details" }).click();
 
   const openAnkiButton = page.getByRole("button", { name: "Open Anki" });
+  const openTailscaleButton = page.getByRole("button", {
+    name: "Open Tailscale preview",
+  });
 
   await expect(page.getByText("Needs attention")).toBeVisible();
   await expect(openAnkiButton).toBeVisible();
+  await expect(openTailscaleButton).toBeVisible();
+  await expect(openAnkiButton.locator("svg")).toHaveCount(0);
+  await expect(openTailscaleButton.locator("svg")).toHaveCount(0);
+
+  const ankiButtonBounds = await openAnkiButton.boundingBox();
+  const tailscaleButtonBounds = await openTailscaleButton.boundingBox();
+  expect(ankiButtonBounds).not.toBeNull();
+  expect(tailscaleButtonBounds).not.toBeNull();
+  expect(ankiButtonBounds!.width).toBeCloseTo(tailscaleButtonBounds!.width, 0);
+  expect(ankiButtonBounds!.height).toBeCloseTo(tailscaleButtonBounds!.height, 0);
 
   await openAnkiButton.click();
   await expect.poll(() => requestCount(api, "/api/open-anki")).toBe(1);
